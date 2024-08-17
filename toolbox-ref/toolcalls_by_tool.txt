@@ -1,0 +1,1388 @@
+
+Tool Locator ($01)
+
+$01 $01  Tool Locator    _TLBootInit       Initializes Tool Locator and all other ROM-based tools sets - not called by application
+$01 $02  Tool Locator    _TLStartUp        Starts up the Tool Locator for use by an application
+$01 $03  Tool Locator    _TLShutDown       Shuts down the Tool Locator when an application quits
+$01 $04  Tool Locator    _TLVersion        Returns the version number of the Tool Locator
+$01 $05  Tool Locator    _TLReset          Resets the Tool Locator & all other ROM-based tool sets on system reset - not by appl.
+$01 $06  Tool Locator    _TLStatus         Indicates whether Tool Locator is active
+$01 $09  Tool Locator    _GetTSPtr         Returns the pointer to the function pointer table of a specified tool set
+$01 $0A  Tool Locator    _SetTSPtr         Installs the pointer to a function ptr table in the appropriate tool pointer table
+$01 $0B  Tool Locator    _GetFuncPtr       Returns entry in the function ptr table for a spec function in a specified tool set
+$01 $0C  Tool Locator    _GetWAP           Gets the pointer to the work area for a specified tool set
+$01 $0D  Tool Locator    _SetWAP           Sets the pointer to the work area for a specified tool set
+$01 $0E  Tool Locator    _LoadTools        Ensures that spec system tool sets are available & have specified minimum version numbers
+$01 $0F  Tool Locator    _LoadOneTool      Ensures that spec system tool set is available & has a spec minimum version number
+$01 $10  Tool Locator    _UnloadOneTool    Unloads a specified tool set from memory
+$01 $11  Tool Locator    _TLMountVolume    Displays on SHR screen a simulated dialog box to prompt user to mount a volume
+$01 $12  Tool Locator    _TLTextMountVol   Displays on 40-column text screen a simulated dialog box to prompt user to mount volume
+$01 $13  Tool Locator    _SaveTextState    Saves state of text scrn & forces hardware to display text scrn regardless of current mode
+$01 $14  Tool Locator    _RestoreTextSta   Restores state of text screen from a specified handle and disposes of the handle
+$01 $15  Tool Locator    _MessageCenter    Allows applications to communicate with each other
+$01 $16  Tool Locator    _SetDefaultTPT    Sets default Tool Pointer Table to current TPT - permanently installs tool patch (no appl)
+$01 $17  Tool Locator    _MessageByName    Creates and associates a name with a new message
+$01 $18  Tool Locator    _StartUpTools     Starts and loads the tools specified in the input StartStop record
+$01 $19  Tool Locator    _ShutDownTools    Shuts down the tools specified in the input StartStop record
+$01 $1A  Tool Locator    _GetMsgHandle     Returns the handle to a messsage in the Message Center
+$01 $1B  Tool Locator    _AcceptRequests   Call AcceptRequests to notify the system that you can receive requests
+$01 $1C  Tool Locator    _SendRequest      Sends the specified request to zero or more qualifying registered request procedures
+
+
+Memory Manager ($02)
+
+$02 $01  Memory Manager  _MMBootInit       Called ONLY by the Tool Locator when Memory Manager is initialized
+$02 $02  Memory Manager  _MMStartUp        Starts up the Memory Manager for use by an application
+$02 $03  Memory Manager  _MMShutDown       Shuts down the Memory Manager when the application quits
+$02 $04  Memory Manager  _MMVersion        Returns the version number of the Memory Manager
+$02 $05  Memory Manager  _MMReset          Called ONLY when the system is Reset
+$02 $06  Memory Manager  _MMStatus         Indicates whether or not the Memory Manager is active
+$02 $09  Memory Manager  _NewHandle        Creates a new block and returns the handle to the block
+$02 $0A  Memory Manager  _ReallocHandle    Reallocates a purged block using new attributes
+$02 $0B  Memory Manager  _RestoreHandle    Reallocates purged blk with same attrib, user ID, & size as the purged handle
+$02 $0C  Memory Manager  _AddToOOMQueue    Adds the specified out-of-memory routine to the head of the out-of-memory queue
+$02 $0D  Memory Manager  _RemoveFromOOMQ   Removes the specified out-of-memory routine from the queue
+$02 $10  Memory Manager  _DisposeHandle    Discards a specified block and deallocates its handle
+$02 $11  Memory Manager  _DisposeAll       Discards all of the handles and blocks belonging to a specifed user ID
+$02 $12  Memory Manager  _PurgeHandle      Purges a specified purgeable, unlocked block, but doesn't deallocate handle
+$02 $13  Memory Manager  _PurgeAll         Purges all of the purgeable, unlocked blocks for a specified user ID
+$02 $18  Memory Manager  _GetHandleSize    Returns the size of a block
+$02 $19  Memory Manager  _SetHandleSize    Changes the size of a specified block
+$02 $1A  Memory Manager  _FindHandle       Returns the handle of a block containing a specified address
+$02 $1B  Memory Manager  _FreeMem          Returns the total number of free bytes in memory
+$02 $1C  Memory Manager  _MaxBlock         Returns size of largest free mem block, but not mem that can be freed by purge or compact
+$02 $1D  Memory Manager  _TotalMem         Returns the size of all memory, including the main 256k
+$02 $1E  Memory Manager  _CheckHandle      Checks a specified handle to see whether it is valid
+$02 $1F  Memory Manager  _CompactMem       Compacts memory space
+$02 $20  Memory Manager  _HLock            Locks a specified block
+$02 $21  Memory Manager  _HLockAll         Locks all of the blocks belonging to a specified user ID
+$02 $22  Memory Manager  _HUnLock          Unlocks a specified block
+$02 $23  Memory Manager  _HUnLockAll       Unlocks all of the blocks belonging to a specified user ID
+$02 $24  Memory Manager  _SetPurge         Sets the purge level of a specified block
+$02 $25  Memory Manager  _SetPurgeAll      Sets the purge level of all blocks belonging to a specified user ID
+$02 $28  Memory Manager  _PtrToHand        Copies spec. # of bytes from src to dest., w/src spec. by pointer, & dest. spec. by handle
+$02 $29  Memory Manager  _HandToPtr        Copies spec. # of bytes from src to dest., w/src spec. by handle, & dest. spec. by pointer
+$02 $2A  Memory Manager  _HandToHand       Copies spec. # of bytes from src to dest., w/src spec. by handle, & dest. spec. by handle
+$02 $2B  Memory Manager  _BlockMove        Copies a specified number of bytes from a source to a destination
+$02 $2F  Memory Manager  _RealFreeMem      Returns number of free bytes in memory, plus number that could be made free by purging
+$02 $30  Memory Manager  _SetHandleID      Provides a supported way to determine and optionally change the User ID associated with a Memory Manager handle
+
+
+Misc Tools ($03)
+
+$03 $01  Misc Tools      _MTBootInit       Initializes the Miscellaneous Tools Set; called only by Tool Locator
+$03 $02  Misc Tools      _MTStartUp        Starts up the Miscellaneous Tool Set for use by an application
+$03 $03  Misc Tools      _MTShutDown       Shuts down the Miscellaneous Tool Set when an application quits
+$03 $04  Misc Tools      _MTVersion        Returns the version number of the Miscellaneous Tool Set
+$03 $05  Misc Tools      _MTReset          Resets the Miscellaneous Tool Set; called only when the system is reset
+$03 $06  Misc Tools      _MTStatus         Indicates whether the Miscellaneous Tools Set is active
+$03 $09  Misc Tools      _WriteBRam        Writes 252 bytes of data from a spec mem loc, plus 4 checksum bytes, to Battery RAM
+$03 $0A  Misc Tools      _ReadBRam         Reads 252 bytes of data from Battery RAM, plus 4 checksum bytes, & writes to spec mem loc
+$03 $0B  Misc Tools      _WriteBParam      Writes data to a specified paramameter in Battery RAM
+$03 $0C  Misc Tools      _ReadBParam       Reads data from a specified parameter in Battery RAM
+$03 $0D  Misc Tools      _ReadTimeHex      Returns current time in hexadecimal format
+$03 $0E  Misc Tools      _WriteTimeHex     Sets the current time in hexadecimal format
+$03 $0F  Misc Tools      _ReadAsciiTime    Reads elapsed time since 00:00:00, Jan 1, 1904, converts it to ASCII output, & puts @ addr
+$03 $10  Misc Tools      _SetVector        Sets the vector address for a specified interrupt manager or handler
+$03 $11  Misc Tools      _GetVector        Returns the vector address for a specified interrupt manager or handler
+$03 $12  Misc Tools      _SetHeartBeat     Installs a specified task into the HeartBeat Interrupt Task queue
+$03 $13  Misc Tools      _DelHeartBeat     Deletes a specified task from the HeartBeat Interrupt Task queue
+$03 $14  Misc Tools      _ClrHeartBeat     Removes all tasks from the Heartbeat Interrupt Task queue by clearing Heartbeat Task ptr
+$03 $15  Misc Tools      _SysFailMgr       Displays system failure message and halts program execution
+$03 $16  Misc Tools      _GetAddr          Returns an address of a byte, word, or long parameter referenced by the firmware
+$03 $17  Misc Tools      _ReadMouse        Returns mouse position, status, and mode
+$03 $18  Misc Tools      _InitMouse        Initializes mouse clamp values to $000 min & $3FF max & clears mouse mode & status
+$03 $19  Misc Tools      _SetMouse         Sets the mouse mode
+$03 $1A  Misc Tools      _HomeMouse        Positions the mouse at the minimum clamp position
+$03 $1B  Misc Tools      _ClearMouse       Sets X & Y axis to $0000 if min clamps are negative or to the min clamp pos if positive
+$03 $1C  Misc Tools      _ClampMouse       Sets new clamp values & then sets the mouse position to the minimum clamp values
+$03 $1D  Misc Tools      _GetMouseClamp    Returns the current mouse clamp values
+$03 $1E  Misc Tools      _PosMouse         Positions the mouse at specified coordinates
+$03 $1F  Misc Tools      _ServeMouse       Returns the mouse interrupt status
+$03 $20  Misc Tools      _GetNewID         Creates a new user ID
+$03 $21  Misc Tools      _DeleteID         Deletes all references to a specified user ID
+$03 $22  Misc Tools      _StatusID         Indicates whether a specified user ID is active
+$03 $23  Misc Tools      _IntSource        Enables or disables certain interrupt sources
+$03 $24  Misc Tools      _FWentry          Allows some Apple II emulation-mode entry points to be supported from full native mode
+$03 $25  Misc Tools      _GetTick          Returns the current value of the tick counter
+$03 $26  Misc Tools      _PackBytes        Packs bytes into a special format that uses less storage space
+$03 $27  Misc Tools      _UnPackBytes      Umpacks data from the packed format used by PackBytes
+$03 $28  Misc Tools      _Munger           Manipulates bytes in a string of bytes
+$03 $29  Misc Tools      _GetIRQEnable     Returns w/hardware interrupt enable states for interrupt srces that Misc.Tool can control
+$03 $2A  Misc Tools      _SetAbsClamp      Sets the clamp values for an absolute device to new values
+$03 $2B  Misc Tools      _GetAbsClamp      Returns the current values of the absolute device clamps
+$03 $2C  Misc Tools      _SysBeep          Calls the Apple II monitor entry point BELL1
+$03 $2D  Misc Tools      _BasicInit        Unofficial call to set up the clamp flags when calling from BASICMOUSE
+$03 $2E  Misc Tools      _AddToQueue       Adds the specified entry to a queue
+$03 $2F  Misc Tools      _DeleteFromQueu   Deletes a specified element from a queue
+$03 $30  Misc Tools      _SetInterruptSt   Copies the specified number of bytes from the input interrupt state record into the system interrupt variables
+$03 $31  Misc Tools      _GetInterruptSt   Copies the specified number of bytes into an input interrupt record from the system interrupt variables
+$03 $32  Misc Tools      _GetIntStateRec   Returns the size (in bytes) of the interrupt state record
+$03 $33  Misc Tools      _ReadMouse2       Returns the mouse position, status, and mode
+$03 $34  Misc Tools      _GetCodeResConv   Returns the address of a routine that loads code resources
+$03 $35  Misc Tools      _GetROMResource   This call is for use only by system firmware
+$03 $36  Misc Tools      _ReleaseROMReso   This call is for use only by system firmware
+$03 $37  Misc Tools      _ConvSeconds      Allows conversion to and from a long integer containing the number of seconds since January 1, 1904
+$03 $38  Misc Tools      _SysBeep2         SysBeep2 takes an integer parameter indicating what sound to make
+$03 $39  Misc Tools      _VersionString    Converts a 32-bit Version number into a Pascal string
+$03 $3A  Misc Tools      _WaitUntil        Provides an upper limit on the frequency of repeating actions
+$03 $3B  Misc Tools      _StringToText     StringToText translates 8-bit-character text into similar text that can be displayed on the Apple IIGS text screen
+$03 $3C  Misc Tools      _ShowBootInfo     Provides a way for special system extensions to make their presence known while the system is starting up
+$03 $3D  Misc Tools      _ScanDevices      Provides easy access to a GS/OS system service vector which checks for disk insertions
+$03 $3E  Misc Tools      _AlertMessage     Displays a message on either the text screen or the Super Hi-Res screen and makes the user choose 1 of up to 3 buttons
+$03 $3F  Misc Tools      _DoSysPrefs       Clears and then sets specified bits in the GS/OS system preferences word
+
+
+QuickDraw ($04)
+
+$04 $01  QuickDraw       _QDBootInit       Initializes QuickDraw II; called only by the Tool Locator - not by application
+$04 $02  QuickDraw       _QDStartUp        Starts up QuickDraw II for use by an application
+$04 $03  QuickDraw       _QDShutDown       Shuts down QuickDraw II when an application quits
+$04 $04  QuickDraw       _QDVersion        Returns the version number of QuickDraw II
+$04 $05  QuickDraw       _QDReset          Resets QuickDraw II; called only when the system is reset - not by applicaiton
+$04 $06  QuickDraw       _QDStatus         Indicates whether QuickDraw II is active
+$04 $09  QuickDraw       _GetAddress       Returns a pointer to a specified table
+$04 $0A  QuickDraw       _GrafOn           Turns on Super Hi-Res graphics mode
+$04 $0B  QuickDraw       _GrafOff          Turns off Super Hi-Res graphics mode
+$04 $0C  QuickDraw       _GetStandardSCB   Returns a copy of the standard scan line control byte (SCB)
+$04 $0D  QuickDraw       _InitColorTable   Returns a copy of the standard color table for the current mode
+$04 $0E  QuickDraw       _SetColorTable    Sets a specified color table to specified values
+$04 $0F  QuickDraw       _GetColorTable    Fills a specified color table with the contents of another color table
+$04 $10  QuickDraw       _SetColorEntry    Sets the value of a color in a specified color table
+$04 $11  QuickDraw       _GetColorEntry    Returns the value of a specified color in a specified color table
+$04 $12  QuickDraw       _SetSCB           Sets the SCB to a specified value
+$04 $13  QuickDraw       _GetSCB           Returns the value of a specified SCB
+$04 $14  QuickDraw       _SetAllSCBs       Sets all SCBs to a specified value
+$04 $15  QuickDraw       _ClearScreen      Sets the words in screen memory to a specified value
+$04 $16  QuickDraw       _SetMasterSCB     Sets the master SCB to a specified value
+$04 $17  QuickDraw       _GetMasterSCB     Returns a copy of the master SCB
+$04 $18  QuickDraw       _OpenPort         Init spec mem loc as a std Grafport, allocate new visbl & clip regn & make GrafPrt current
+$04 $19  QuickDraw       _InitPort         Initializes specified memory locations as a standard port
+$04 $1A  QuickDraw       _ClosePort        Deallocates the clipping and visible regions in a port
+$04 $1B  QuickDraw       _SetPort          Makes a specified port the current GrafPort
+$04 $1C  QuickDraw       _GetPort          Returns a pointer to the current GrafPort
+$04 $1D  QuickDraw       _SetPortLoc       Sets the current port's locInfo record to specified location information
+$04 $1E  QuickDraw       _GetPortLoc       Gets the current port's locInfo record and puts it at the specified location
+$04 $1F  QuickDraw       _SetPortRect      Sets the current GrafPort's port rectangle to the specified rectangle
+$04 $20  QuickDraw       _GetPortRect      Returns the current GrafPort's port rectangle
+$04 $21  QuickDraw       _SetPortSize      Changes the size of the current Grafport's port rectangle
+$04 $22  QuickDraw       _MovePortTo       Changes te location of the current GrafPort's port rectangle
+$04 $23  QuickDraw       _SetOrigin        Adjusts content of port & bounds rectangle so up/left corner of port rect is set @ spec pt
+$04 $24  QuickDraw       _SetClip          Copies a specified region into the clipping region
+$04 $25  QuickDraw       _GetClip          Copies the clipping region to a specified region
+$04 $26  QuickDraw       _ClipRect         Changes clipping region of current GrafPort to a rectangle equal to a spec. rectangle
+$04 $27  QuickDraw       _HidePen          Decrements the pen level
+$04 $28  QuickDraw       _ShowPen          Increments the pen level
+$04 $29  QuickDraw       _GetPen           Returns the pen location
+$04 $2A  QuickDraw       _SetPenState      Sets the pen state in the GrafPort to specified values
+$04 $2B  QuickDraw       _GetPenState      Returns the pen state from the GrafPort to a specified location
+$04 $2C  QuickDraw       _SetPenSize       Sets the current pen size to a specified pen size
+$04 $2D  QuickDraw       _GetPenSize       Returns the current pen size to a specified location
+$04 $2E  QuickDraw       _SetPenMode       Sets the current pen mode to a specified pen mode
+$04 $2F  QuickDraw       _GetPenMode       Returns the pen mode from the current GrafPort
+$04 $30  QuickDraw       _SetPenPat        Sets the current pen pattern to a specified pen pattern
+$04 $31  QuickDraw       _GetPenPat        Copies the current pen pattern from the current GrafPort to a specified location
+$04 $32  QuickDraw       _SetPenMask       Sets the pen mask to a specified mask
+$04 $33  QuickDraw       _GetPenMask       Returns the pen mask to a specified location
+$04 $34  QuickDraw       _SetBackPat       Sets the background pattern to a specified pattern
+$04 $35  QuickDraw       _GetBackPat       Copies current background pen pattern from current GrafPort to a specified location
+$04 $36  QuickDraw       _PenNormal        Sets the pen state to the standard state; pen location is not changed
+$04 $37  QuickDraw       _SetSolidPenPat   Sets the pen pattern to a solid pattern using the specified color
+$04 $38  QuickDraw       _SetSolidBackPa   Sets the background pattern to a solid pattern using a specified color
+$04 $39  QuickDraw       _SolidPattern     Sets a specified pattern to a solid pattern using a specified color
+$04 $3A  QuickDraw       _MoveTo           Moves the current pen location to a specified point
+$04 $3B  QuickDraw       _Move             Moves the current pen location by specified horizontal & vertical displacements
+$04 $3C  QuickDraw       _LineTo           Draws a line from the current pen location to a specified point
+$04 $3D  QuickDraw       _Line             Draws a line from current pen location to a new point spec by horiz & vert displacements
+$04 $3E  QuickDraw       _SetPicSave       Sets the picSave field in the GrafPort to a specified value
+$04 $3F  QuickDraw       _GetPicSave       Returns the value of the picSave field of the GrafPort
+$04 $40  QuickDraw       _SetRgnSave       Sets the rgnSave field in the GrafPort ot a specified value
+$04 $41  QuickDraw       _GetRgnSave       Returns the value of the rgnSave field of the GrafPort
+$04 $42  QuickDraw       _SetPolySave      Sets the polySave field in the GrafPort to a specified value
+$04 $43  QuickDraw       _GetPolySave      Returns the value of the polySave field of the GrafPort
+$04 $44  QuickDraw       _SetGrafProcs     Sets the grafProcs field of the current GrafPort to a specified value
+$04 $45  QuickDraw       _GetGrafProcs     Returns the pointer to the grafProcs record associated witht the GrafPort
+$04 $46  QuickDraw       _SetUserField     Sets the userField in the GrafPort to a specified value
+$04 $47  QuickDraw       _GetUserField     Returns the value of the userField field of the GrafPort
+$04 $48  QuickDraw       _SetSysField      Sets the sysField field in GrafPort to a spec value - not called by an application
+$04 $49  QuickDraw       _GetSysField      Returns the value of the sysField field of the GrafPort
+$04 $4A  QuickDraw       _SetRect          Sets a specified rectangle to specified values
+$04 $4B  QuickDraw       _OffsetRect       Offsets a specified rectangle by specified displacements
+$04 $4C  QuickDraw       _InsetRect        Insets a specified rectangle by specified displacements
+$04 $4D  QuickDraw       _SectRect         Calculates intersection of two rectangles & places intersection in destination rectangle
+$04 $4E  QuickDraw       _UnionRect        Calculates smallest rectangle that contains both src rect & places results in dest rect
+$04 $4F  QuickDraw       _PtInRect         Detects whether pixel below & to the right of spec point is in a specified rectangle
+$04 $50  QuickDraw       _Pt2Rect          Copies spec pt to uppr left corner of spec rect & another pt to lower right corner of rect
+$04 $51  QuickDraw       _EqualRect        Indicates whether two rectangles are equal
+$04 $52  QuickDraw       _NotEmptyRect     Indicates whether a specified rectangle is empty
+$04 $53  QuickDraw       _FrameRect        Draws the frame of a specified rectangle using the current pen mode, pattern, & size
+$04 $54  QuickDraw       _PaintRect        Paints the interior of spec rectangle using the current pen mode & pattern
+$04 $55  QuickDraw       _EraseRect        Erases the interior of a specified rectangle by filling it in with the backround pattern
+$04 $56  QuickDraw       _InvertRect       Inverts the pixels in the interior of a specified rectangle
+$04 $57  QuickDraw       _FillRect         Fills the interior of a specified rectangle with a specified pen pattern
+$04 $58  QuickDraw       _FrameOval        Draws the frame of a specified oval using the current pen mode, pattern, & size
+$04 $59  QuickDraw       _PaintOval        Paints the interior of spec oval using the current pen mode & pattern
+$04 $5A  QuickDraw       _EraseOval        Erases the interior of a specified oval by filling it in with the backround pattern
+$04 $5B  QuickDraw       _InvertOval       Inverts the pixels in the interior of a specified oval
+$04 $5C  QuickDraw       _FillOval         Fills the interior of a specified oval with a specified pen pattern
+$04 $5D  QuickDraw       _FrameRRect       Draws the frame of a spec round rectangle using the current pen mode, pattern & size
+$04 $5E  QuickDraw       _PaintRRect       Paints interior of spec round rectangle using the current pen mode & pattern
+$04 $5F  QuickDraw       _EraseRRect       Erases interior of a spec round rectangle by filling it in with the backround pattern
+$04 $60  QuickDraw       _InvertRRect      Inverts the pixels in the interior of a specified round rectangle
+$04 $61  QuickDraw       _FillRRect        Fills the interior of a specified round rectangle with a specified pen pattern
+$04 $62  QuickDraw       _FrameArc         Draws the frame of a specified arc using the current pen mode, pattern, & size
+$04 $63  QuickDraw       _PaintArc         Paints the interior of spec arc using the current pen mode & pattern
+$04 $64  QuickDraw       _EraseArc         Erases the interior of a specified arc by filling it in with the backround pattern
+$04 $65  QuickDraw       _InvertArc        Inverts the pixels in the interior of a specified arc
+$04 $66  QuickDraw       _FillArc          Fills the interior of a specified arc with a specified pen pattern
+$04 $67  QuickDraw       _NewRgn           Allocates space for a new region & initializes it to empty - only way to create new region
+$04 $68  QuickDraw       _DisposeRgn       Deallocates the memory for a specified region
+$04 $69  QuickDraw       _CopyRgn          Copies the region definition from one region to another
+$04 $6A  QuickDraw       _SetEmptyRgn      Destroys previous region information by setting a spec region to an empty region
+$04 $6B  QuickDraw       _SetRectRgn       Destroys previous region information by setting a spec region to a spec rectangle
+$04 $6C  QuickDraw       _RectRgn          Destroys previous region information by setting a spec region to a spec rectangle
+$04 $6D  QuickDraw       _OpenRgn          Allocates temp space & starts saving lines & framed shapes for latter process as rgn def
+$04 $6E  QuickDraw       _CloseRgn         Completes the region definition process started by an OpenRgn call
+$04 $6F  QuickDraw       _OffsetRgn        Moves a region on the coordinate plane a specified distance
+$04 $70  QuickDraw       _InsetRgn         Shrinks or expands a specified region
+$04 $71  QuickDraw       _SectRgn          Calculates intersection of two regions & places intersection in a destination region
+$04 $72  QuickDraw       _UnionRgn         Calcs smallst rgn that contains evry pt that's in either src rgn & puts result in dest rgn
+$04 $73  QuickDraw       _DiffRgn          Calcs the difference of two regions & places difference in a destination region
+$04 $74  QuickDraw       _XorRgn           Calcs diff between the union & the intersection of 2 regions & places result in dest rgn
+$04 $75  QuickDraw       _PtInRgn          Checks to see whether the pixel below & to right of a spec pt is within a spec region
+$04 $76  QuickDraw       _RectInRgn        Checks whether a specified rectangle intersects a specified region
+$04 $77  QuickDraw       _EqualRgn         Indicates whether two regions are equal
+$04 $78  QuickDraw       _EmptyRgn         Indicates whether a specified region is empty
+$04 $79  QuickDraw       _FrameRgn         Draws the frame of a specified region using current pen mode, pattern & size
+$04 $7A  QuickDraw       _PaintRgn         Paints the interior of a specified region using the current pen mode & pattern
+$04 $7B  QuickDraw       _EraseRgn         Erases the interior of a specified region by filling it with the background pattern
+$04 $7C  QuickDraw       _InvertRgn        Inverts the pixels in the interior of a specified region
+$04 $7D  QuickDraw       _FillRgn          Fills the interior of a specified region with a specified pen pattern
+$04 $7E  QuickDraw       _ScrollRect       Shifts pixels inside intersect of spec rect, visbl rgn, clip rgn, port rect, & bounds rect
+$04 $7F  QuickDraw       _PaintPixels      Transfers a region of pixels
+$04 $80  QuickDraw       _AddPt            Adds two specified points together and leaves result in destination point
+$04 $81  QuickDraw       _SubPt            Subtracts source point from destination point & leave result in the destination point
+$04 $82  QuickDraw       _SetPt            Sets a point to specified horizontal and vertical values
+$04 $83  QuickDraw       _EqualPt          Indicates whether two points are equal
+$04 $84  QuickDraw       _LocalToGlobal    Converts a point from local coordinates to global coordinates
+$04 $85  QuickDraw       _GlobalToLocal    Converts a point from global coordinates to local coordinates
+$04 $86  QuickDraw       _Random           Returns a pseudorandom number in the range -32768 to 32767
+$04 $87  QuickDraw       _SetRandSeed      Sets the seed value for the random number generator
+$04 $88  QuickDraw       _GetPixel         Returns the pixel below and to the right of a specified point
+$04 $89  QuickDraw       _ScalePt          Scales a specified point from a source rectangle to a destination rectangle
+$04 $8A  QuickDraw       _MapPt            Maps a specified point from a source rectangle to a destination rectangle
+$04 $8B  QuickDraw       _MapRect          Maps a specified rectangle from a source rectangle to a destination rectangle
+$04 $8C  QuickDraw       _MapRgn           Maps a specified region from a source rectangle to a destination rectangle
+$04 $8D  QuickDraw       _SetStdProcs      Sets up a specified record of pointers for customizing QuickDraw II operations
+$04 $8E  QuickDraw       _SetCursor        Sets the cursor to an image passed in a specified cursor record
+$04 $8F  QuickDraw       _GetCursorAdr     Returns a pointer to the current cursor record
+$04 $90  QuickDraw       _HideCursor       Hides the cursor by decrementing the cursor level
+$04 $91  QuickDraw       _ShowCursor       Shows the cursor by incrementing the cursor level
+$04 $92  QuickDraw       _ObscureCursor    Hides the cursor until the mouse moves
+$04 $94  QuickDraw       _SetFont          Sets the current font to a specified font
+$04 $95  QuickDraw       _GetFont          Returns a handle to the current font
+$04 $96  QuickDraw       _GetFontInfo      Returns information about the current font in a specified record
+$04 $97  QuickDraw       _GetFontGlobals   Returns information about the current font in a specified record
+$04 $98  QuickDraw       _SetFontFlags     Sets the font flags word to a specified value
+$04 $99  QuickDraw       _GetFontFlags     Returns the current font flags word
+$04 $9A  QuickDraw       _SetTextFace      Sets the text face to a specified value
+$04 $9B  QuickDraw       _GetTextFace      Returns the current text face
+$04 $9C  QuickDraw       _SetTextMode      Sets the text mode to a specified value
+$04 $9D  QuickDraw       _GetTextMode      Returns the current text mode
+$04 $9E  QuickDraw       _SetSpaceExtra    Sets the spExtra field in the GrafPort to a specified value
+$04 $9F  QuickDraw       _GetSpaceExtra    Returns the value of the spExtra field from the GrafPort
+$04 $A0  QuickDraw       _SetForeColor     Sets the fgColor field (foreground color) in the GrafPort to a specified value
+$04 $A1  QuickDraw       _GetForeColor     Returns the value of the current fgColor field (foreground color) from the GrafPort
+$04 $A2  QuickDraw       _SetBackColor     Sets the bgColor field (background color) in the GrafPort to a specified value
+$04 $A3  QuickDraw       _GetBackColor     Returns the value of the current bgColor field (background color) from the GrafPort
+$04 $A4  QuickDraw       _DrawChar         Draws a specified character at current pen location and updates pen location
+$04 $A5  QuickDraw       _DrawString       Draws spec Pascal-type string at current pen location and updates the pen location
+$04 $A6  QuickDraw       _DrawCString      Draws a specified C string at the current pen location and updates the pen location
+$04 $A7  QuickDraw       _DrawText         Draws specified text at the current pen location and updates pen location
+$04 $A8  QuickDraw       _CharWidth        Returns the character width, in pixels (pen displacement), of a specified character
+$04 $A9  QuickDraw       _StringWidth      Returns sum of all char widths, in pixels (pen displacements), of spec Pascal-type string
+$04 $AA  QuickDraw       _CStringWidth     Returns sum of all char widths, in pixels (pen displacements), of spec C string
+$04 $AB  QuickDraw       _TextWidth        Returns the character width, in pixels (pen displacements), of specified text
+$04 $AC  QuickDraw       _CharBounds       Puts the character bounds rectangle of a specified character into a specified buffer
+$04 $AD  QuickDraw       _StringBounds     Puts the character bounds rectangle of a spec Pascal-type string into spec buffer
+$04 $AE  QuickDraw       _CStringBounds    Puts char bounds rectangle of a spec C string into a specified buffer
+$04 $AF  QuickDraw       _TextBounds       Puts the character bounds rectangle of specified text into a specified buffer
+$04 $B0  QuickDraw       _SetArcRot        Sets the arcRot field in the GrafPort to a specified value
+$04 $B1  QuickDraw       _GetArcRot        Returns the value of the arcRot field in the current GrafPort
+$04 $B2  QuickDraw       _SetSysFont       Sets a specified font as the system font
+$04 $B3  QuickDraw       _GetSysFont       Returns a handle to the current system font
+$04 $B4  QuickDraw       _SetVisRgn        Copies spec region into visible region (but doesn't change visRgn field of GrafPort)
+$04 $B5  QuickDraw       _GetVisRgn        Copies the contents of the visible region into a specified region
+$04 $B6  QuickDraw       _SetIntUse        Indicates to the cursor drawing code whether the code should use scan line interrupts
+$04 $B7  QuickDraw       _OpenPicture      Allocates mem for recording of drawing commands into a pic defin. & returns handle to pic
+$04 $B8  QuickDraw       _PicComment       Inserts a specified comment into the currently open picture
+$04 $B9  QuickDraw       _ClosePicture     Completes the picture definition process begun by OpenPicture call (QD Aux)
+$04 $BA  QuickDraw       _DrawPicture      Takes drawing commands recorded in pic defin., maps them from pic frame into dest rect.
+$04 $BB  QuickDraw       _KillPicture      Releases all memory occupied by a specifed picture
+$04 $BC  QuickDraw       _FramePoly        Draws the frame of a specified polygon using the current pen mode, pattern, & size
+$04 $BD  QuickDraw       _PaintPoly        Paints the interior of a specified polygon using the current pen mode & pattern
+$04 $BE  QuickDraw       _ErasePoly        Erases the interior of a specified polygon by filling it with the background pattern
+$04 $BF  QuickDraw       _InvertPoly       Inverts the pixels in the interior of a specified polygon
+$04 $C0  QuickDraw       _FillPoly         Fills the interior of a specified polygon with a specified pen pattern
+$04 $C1  QuickDraw       _OpenPoly         Returns a handle to a polygon data structure that will be updated by future LineTo calls
+$04 $C2  QuickDraw       _ClosePoly        Completes the polygon definition process started with an OpenPoly call
+$04 $C3  QuickDraw       _KillPoly         Disposes of a specified polygon
+$04 $C4  QuickDraw       _OffsetPoly       Offsets a specified polygon by specified horizontal & vertical displacements
+$04 $C5  QuickDraw       _MapPoly          Maps a specified polygon from a source rectangle to a destination rectangle
+$04 $C6  QuickDraw       _SetClipHandle    Sets the clipRgn handle field in the GrafPort to a specified value
+$04 $C7  QuickDraw       _GetClipHandle    Returns a copy of the handle to the clipping region
+$04 $C8  QuickDraw       _SetVisHandle     Sets the visRgn field in the GrafPort to a specified value
+$04 $C9  QuickDraw       _GetVisHandle     Returns a copy of the handle to the visible region
+$04 $CA  QuickDraw       _InitCursor       Reinitializes the cursor
+$04 $CB  QuickDraw       _SetBufDims       Sets size of QD II clipping and text buffers, padding to allow mods to chExtra & spExtra
+$04 $CC  QuickDraw       _ForceBufDims     Sets size of QD II clipping and text buffers, but doesn't pad values in any way
+$04 $CD  QuickDraw       _SaveBufDims      Saves QD II's buffer-sizing information in eight-byte record
+$04 $CE  QuickDraw       _RestoreBufDims   Restores QD II's internal buffers to sizes desc. in 8-byte record created by SaveBufDims
+$04 $CF  QuickDraw       _GetFGSize        Returns the size of the font globals record
+$04 $D0  QuickDraw       _SetFontID        Sets the fontID field in the GrafPort
+$04 $D1  QuickDraw       _GetFontID        Returns the fontID field of the GrafPort
+$04 $D2  QuickDraw       _SetTextSize      Sets the txSize field of the GrafPort to a specified value
+$04 $D3  QuickDraw       _GetTextSize      Returns current value of the txSize field of the GrafPort
+$04 $D4  QuickDraw       _SetCharExtra     Sets the chExtra field in the GrafPort to a specified value
+$04 $D5  QuickDraw       _GetCharExtra     Returns the chExtra field from the GrafPort
+$04 $D6  QuickDraw       _PPToPort         Transfrs pixels from src pixel map to current port & clips to current visbl rgn & clip rgn
+$04 $D7  QuickDraw       _InflateTextBuf   Ensures that txt buff is big enough to hndle font w/spec width & height, increasing if nec
+$04 $D8  QuickDraw       _GetROMFont       Fills a specified buffer with information about the font in ROM
+$04 $D9  QuickDraw       _GetFontLore      Returns info, up to a spec number of bytes, about the current font in a spec buffer
+$04 $DA  QuickDraw       _Get640Colors     Returns a pointer to a 512-byte table of 32 $00s, 32 $11s, ..., 32 $FFs
+$05 $DB  QuickDraw       _Set640Color      Sets the current grafport’s pen pattern to a “solid” 640-mode dithered color
+
+
+Desk Manager ($05)
+
+$05 $01  Desk Manager    _DeskBootInit     Initializes the Desk Manager; called only by Tool Locator (not by application)
+$05 $02  Desk Manager    _DeskStartUp      Starts up the Desk Manager for use by an application
+$05 $03  Desk Manager    _DeskShutDown     Shuts down the Desk Manager when an application quits
+$05 $04  Desk Manager    _DeskVersion      Returns the version number of the Desk Manager
+$05 $05  Desk Manager    _DeskReset        Resets the Desk Manager; called only on reset - not by application
+$05 $06  Desk Manager    _DeskStatus       Indicates whether the Desk Manager is active
+$05 $09  Desk Manager    _SaveScrn         Saves the 80-column text screens in banks $00, $01, $E0, & $E1 - not called by application
+$05 $0A  Desk Manager    _RestScrn         Restores the screen area saved by the Desk Manager - not called by application
+$05 $0B  Desk Manager    _SaveAll          Saves all variables that Desk Manager preserves when CDA menu is activated - (not applic)
+$05 $0C  Desk Manager    _RestAll          Restores all variables that Desk Manager preserves when CDA menu is activated (not applic)
+$05 $0E  Desk Manager    _InstallNDA       Installs a specified NDA in the system
+$05 $0F  Desk Manager    _InstallCDA       Installs a specified CDA in the system
+$05 $11  Desk Manager    _ChooseCDA        Activates the Desk Manager and displays the CDA menu - not called by application
+$05 $13  Desk Manager    _SetDAStrPtr      Changes the names of the built-in CDA's
+$05 $14  Desk Manager    _GetDAStrPtr      Returns the pointer to the names of the built-in CDA's
+$05 $15  Desk Manager    _OpenNDA          Opens a specified NDA
+$05 $16  Desk Manager    _CloseNDA         Closes a specified NDA
+$05 $17  Desk Manager    _SystemClick      Handles mouse-down events in a system (that is, desk accessory) window
+$05 $18  Desk Manager    _SystemEdit       Passes standard menu edits to system windows
+$05 $19  Desk Manager    _SystemTask       Causes a desk accessory to perform its periodic action
+$05 $1A  Desk Manager    _SystemEvent      Previews all events returned to applic. & indicates if event was processed by a desk accs
+$05 $1B  Desk Manager    _GetNumNDAs       Returns the total number of NDAs currently installed
+$05 $1C  Desk Manager    _CloseNDAByWinP   Closes an NDA with a specified window pointer
+$05 $1D  Desk Manager    _CloseAllNDAs     Closes all open NDAs
+$05 $1E  Desk Manager    _FixAppleMenu     Adds the names of the NDAs to a specified menu
+$05 $1F  Desk Manager    _AddToRunQ        Adds the specified routine to the head of the run queue
+$05 $20  Desk Manager    _RemoveFromRunQ   Removes the specified run item from the run queue
+$05 $21  Desk Manager    _RemoveCDA        Removes the specified CDA from the Desk Manager CDA list
+$05 $22  Desk Manager    _RemoveNDA        Removes the specified NDA from the Desk Manager NDA list
+$05 $23  Desk Manager    _GetDeskAccInfo   Provides safe access to certain information about DAs currently installed in the system
+$05 $24  Desk Manager    _CallDeskAcc      Calls a New Desk Accessory’s Action or Init routine with the specified values
+$05 $25  Desk Manager    _GetDeskGlobal    GetDeskGlobal retrieves information from the Desk Manager
+
+
+Event Manager ($06)
+
+$06 $01  Event Manager   _EMBootInit       Initializes the Event Manager; called only by Tool Locator (not by application)
+$06 $02  Event Manager   _EMStartUp        Starts up the Event Manager for use by an application
+$06 $03  Event Manager   _EMShutDown       Shuts down the Event Manager when an application quits
+$06 $04  Event Manager   _EMVersion        Returns the version number of the Event Manager
+$06 $05  Event Manager   _EMReset          Resets the Event Manager; called only on reset - not by application
+$06 $06  Event Manager   _EMStatus         Indicates whether the Event Manager is active
+$06 $09  Event Manager   _DoWindows        Returns the address of the direct page used by the Event Manager
+$06 $0A  Event Manager   _GetNextEvent     Returns next avail event of spec type(s); if event is in queue, GetNextEvent removes it
+$06 $0B  Event Manager   _EventAvail       Allows an application to look at the next avaialble event of a spec type or types
+$06 $0C  Event Manager   _GetMouse         Returns the current mouse location
+$06 $0D  Event Manager   _Button           Returns the current status of a specified button on the mouse
+$06 $0E  Event Manager   _StillDown        Tests whether the specified mouse button is still down
+$06 $0F  Event Manager   _WaitMouseUp      Tests whether spec mouse button is still down &, if not, removes preceding mouse-up event
+$06 $10  Event Manager   _TickCount        Returns current number of ticks (in sixtieths of a second) since system was last started
+$06 $11  Event Manager   _GetDblTime       Returns max diff (in ticks) allowed for mouse clicks to be considered a double-click
+$06 $12  Event Manager   _GetCaretTime     Returns time (in ticks) between blicks of caret marking insertion pt in text to be edited
+$06 $13  Event Manager   _SetSwitch        Generates a switch event
+$06 $14  Event Manager   _PostEvent        Posts an event into the event queue
+$06 $15  Event Manager   _FlushEvents      Removes all queue events of type(s) spec by mask up to 1st event of type spec by stop mask
+$06 $16  Event Manager   _GetOSEvent       Returns next available queue event of a spec type(s) & removes it from the queue
+$06 $17  Event Manager   _OSEventAvail     Allows applic to look at next avail queue event of spec type(s), but leaves event in queue
+$06 $18  Event Manager   _SetEventMask     Specifies the system event mask
+$06 $19  Event Manager   _FakeMouse        Allows use of alternative pting device, like graphics tablet, in place/conjuction of mouse
+$06 $1A  Event Manager   _SetAutoKeyLimi   Controls how repeated keystrokes are inserted into the event queue
+$06 $1B  Event Manager   _GetKeyTranslat   Returns the identifier for the currently selected keystroke translation table
+$06 $1C  Event Manager   _SetKeyTranslat   Sets a new keystroke translation table
+
+
+Scheduler ($07)
+
+$07 $01  Scheduler       _SchBootInit      Initializes the Scheduler; called only by Tool Locator - not called by application
+$07 $02  Scheduler       _SchStartUp       Starts up the Scheduler for use by an application
+$07 $03  Scheduler       _SchShutDown      Shuts down the Scheduler when an application quits
+$07 $04  Scheduler       _SchVersion       Returns the version number of the Scheduler
+$07 $05  Scheduler       _SchReset         Resets the Scheduler; called only when system is reset - not by application
+$07 $06  Scheduler       _SchStatus        Indicates whether the Scheduler is active
+$07 $09  Scheduler       _SchAddTask       Adds a task to the Scheduler queue
+$07 $0A  Scheduler       _SchFlush         Flushes all tasks in the Scheduler queue - must not be called by an application
+
+
+Sound Tool Set ($08)
+
+$08 $01  Sound Tool Set  _SoundBootInit    Initializes the Sound Tool Set; called only by Tool Locator (not by application)
+$08 $02  Sound Tool Set  _SoundStartUp     Starts up the Sound Tool Set for use by an application
+$08 $03  Sound Tool Set  _SoundShutDown    Shuts down the Sound Tool Set when an application quits
+$08 $04  Sound Tool Set  _SoundVersion     Returns the version number of the Sound Tool Set
+$08 $05  Sound Tool Set  _SoundReset       Resets the Sound Tool Set; called only on reset - not by application
+$08 $06  Sound Tool Set  _SoundToolStatu   Indicates whether the Sound Tool Set is active
+$08 $09  Sound Tool Set  _WriteRamBlock    Writes a spec number of bytes from system RAM into DOC RAM
+$08 $0A  Sound Tool Set  _ReadRamBlock     Reads a specified number of bytes from DOC RAM into system RAM
+$08 $0B  Sound Tool Set  _GetTableAddres   Returns the jump table address for the low-level routines
+$08 $0C  Sound Tool Set  _GetSoundVolume   Reads the volume setting for a generator
+$08 $0D  Sound Tool Set  _SetSoundVolume   Changes volume setting for the volume registers in the DOC or changes system volume
+$08 $0E  Sound Tool Set  _FFStartSound     Enables the DOC to start generating sound on a particular generator
+$08 $0F  Sound Tool Set  _FFStopSound      Halts any specified sound generators that are generating sound
+$08 $10  Sound Tool Set  _FFSoundStatus    Returns the status of all 15 sound generators
+$08 $11  Sound Tool Set  _FFGeneratorSta   Reads the first two bytes of the generator control block corresponding to a spec generator
+$08 $12  Sound Tool Set  _SetSoundMIRQV    Sets up the entry point into the sound-interrupt handler
+$08 $13  Sound Tool Set  _SetUserSoundIR   Sets up the entry point for an application-defined synthesizer interrupt handler
+$08 $14  Sound Tool Set  _FFSoundDoneSta   Returns the current Free-Form Synthesizer playing status
+$08 $15  Sound Tool Set  _FFSetUpSound     Identical to the FFStartSound tool call but does not actually start playing the specified sound
+$08 $16  Sound Tool Set  _FFStartPlaying   Starts playing the sound specified by the FF s e t UpSound tool call on a specified set of generators
+$08 $17  Sound Tool Set  _SetDOCReg        Sets the DOC registers for a generator's oscillator from register contents stored in a special format
+$08 $18  Sound Tool Set  _ReadDOCReg       Reads the DOC registers for a generator's oscillator and stores them in the target memory location
+
+
+ADB Tools ($09)
+
+$09 $01  ADB Tools       _ADBBootInit      Initializes the ADB Tool Set; called only by Tool Locator (not by application)
+$09 $02  ADB Tools       _ADBStartUp       Starts up the ADB Tool Set
+$09 $03  ADB Tools       _ADBShutDown      Shuts down the ADB Tool Set
+$09 $04  ADB Tools       _ADBVersion       Returns the version number of the ADB Tool Set
+$09 $05  ADB Tools       _ADBReset         Resets the ADB Tool Set; called only on system reset - not by application
+$09 $06  ADB Tools       _ADBStatus        Indicates whether the ADB Tool Set is active
+$09 $09  ADB Tools       _SendInfo         Sends data to the keyboard microcontroller or to an ADB device
+$09 $0A  ADB Tools       _ReadKeyMicroDa   Receives data from the keyboard microcontroller
+$09 $0B  ADB Tools       _ReadKeyMicroMe   Reads a data byte from the keyboard microcontroller memory
+$09 $0D  ADB Tools       _AsyncADBReceiv   Receives data from an ADB device
+$09 $0E  ADB Tools       _SyncADBReceive   Receives data from an ADB device
+$09 $0F  ADB Tools       _AbsOn            Enables automatic polling of an absolute device (reserved for future use)
+$09 $10  ADB Tools       _AbsOff           Disables automatic polling of an absolute device (reserved for future use)
+$09 $11  ADB Tools       _ReadAbs          Determines whether automatic polling of an absolute device is on or off
+$09 $12  ADB Tools       _GetAbsScale      Reads absolute device scaling values (reserved for future use)
+$09 $13  ADB Tools       _SetAbsScale      Sets up scaling for absolute devices (reserved for future use)
+$09 $14  ADB Tools       _SRQPoll          Adds a device to the SRQ list
+$09 $15  ADB Tools       _SRQRemove        Removes a device previously installed by the SRQPoll routine from the SRQ list
+$09 $16  ADB Tools       _ClearSRQTable    Clears the SRQ list of all entries
+
+
+SANE ($0A)
+
+$0A $01  SANE            _SANEBootInit     Initializes the SANE Tool Set; called only by Tool Locator (not by application)
+$0A $02  SANE            _SANEStartup      Starts up the SANE Tool Set for use by an application
+$0A $03  SANE            _SANEShutDown     Shuts down the SANE Tool Set when application quits
+$0A $04  SANE            _SANEVersion      Returns the version number of the SANE Tool Set
+$0A $05  SANE            _SANEReset        Resets the SANE Tool Set; called only on system reset - not by application
+$0A $06  SANE            _SANEStatus       Indicates whether the SANE Tool Set is active
+$0A $09  SANE            _SANEFP816        Contains basic arithmetic ops, comparisions, conversions, environ. control, & IEEE ops
+$0A $0A  SANE            _SANEDecStr816    Contains numeric scanners and formatters
+$0A $0B  SANE            _SANEElems816     Contains elementary functions, financial functions, and a random-number generator
+
+
+Integer Math ($0B)
+
+$0B $01  Integer Math    _IMBootInit       Initializes the Integer Math Tool Set; called only by Tool Locator (not by application)
+$0B $02  Integer Math    _IMStartUp        Starts up the Integer Math Tool Set for use by an application
+$0B $03  Integer Math    _IMShutDown       Shuts down the Integer Math Tool Set when application quits
+$0B $04  Integer Math    _IMVersion        Returns the version number of the Integer Math Tool Set
+$0B $05  Integer Math    _IMReset          Resets the Integer Math Tool Set; called only on system reset - not by application
+$0B $06  Integer Math    _IMStatus         Indicates whether the Integer Math Tool Set is active
+$0B $09  Integer Math    _Multiply         Multiplies two Integer inputs and produces a Longint result
+$0B $0A  Integer Math    _SDivide          Divides two Integers & produces a signed Integer quotient & a signed Integer remainder
+$0B $0B  Integer Math    _UDivide          Divides two unsigned Integer inputs & produces an Int quotient & an unsigned int remainder
+$0B $0C  Integer Math    _LongMul          Multiplies two Longint values & produces a 64-bit result
+$0B $0D  Integer Math    _LongDivide       Divides two unsgn Longint inputs & produces a Longint unsgn quot & a Longint unsgn remain
+$0B $0E  Integer Math    _FixRatio         Takes 2 signed Integers & produces a Fixed number as ratio of the numerator & denominator
+$0B $0F  Integer Math    _FixMul           Multiplies two 32-bit Fixed inputs and produces a 32-bit Fixed result
+$0B $10  Integer Math    _FracMul          Multiplies two Frac inputs and returns a rounded Frac result
+$0B $11  Integer Math    _FixDiv           Divides two like inputs and returns a rounded Fixed result (no remainder)
+$0B $12  Integer Math    _FracDiv          Divides two like inputs and returns a rounded Frac result (no remainder)
+$0B $13  Integer Math    _FixRound         Takes a Fixed input and returns a rounded Integer result
+$0B $14  Integer Math    _FracSqrt         Takes a Frac input and returns a rounded Frac square root
+$0B $15  Integer Math    _FracCos          Takes a Fixed input (in radians) and returns its Frac cosine
+$0B $16  Integer Math    _FracSin          Takes a Fixed input (in radians) and returns its Frac sine
+$0B $17  Integer Math    _FixAtan2         Takes two like inputs & returns a Fixed arc tangent (in radians) of their coordinates
+$0B $18  Integer Math    _HiWord           Returns high-order word of a Long input
+$0B $19  Integer Math    _LoWord           Returns low-order word of a long inpuot
+$0B $1A  Integer Math    _Long2Fix         Converts a specified Longint value to its corresponding Fixed value
+$0B $1B  Integer Math    _Fix2Long         Converts a Fixed value to its corresponding Longint value
+$0B $1C  Integer Math    _Fix2Frac         Converts a Fixed value to its corresponding Frac value
+$0B $1D  Integer Math    _Frac2Fix         Converts a specifed Frac value to its corresponding Fixed value
+$0B $1E  Integer Math    _Fix2X            Converts a Fixed value to its corresponding Extended value
+$0B $1F  Integer Math    _Frac2X           Converts a specified Frac value to its corresponding Extended value
+$0B $20  Integer Math    _X2Fix            Converts an Extended value to its corresponding Fixed value
+$0B $21  Integer Math    _X2Frac           Converts an Extended value to its corresponding Frac value
+$0B $22  Integer Math    _Int2Hex          Takes unsigned int & produces an IM string representing the value in hexadecimal format
+$0B $23  Integer Math    _Long2Hex         Takes unsigned Longint value & produces an IM string representing the value in hex format
+$0B $24  Integer Math    _Hex2Int          Takes an Integer Math string representing a hex value & returns an unsigned integer
+$0B $25  Integer Math    _Hex2Long         Takes Integer Math string representing a hex value & returns an unsigned Longint
+$0B $26  Integer Math    _Int2Dec          Takes signed or unsigned integer & produces IM string representing value in decimal format
+$0B $27  Integer Math    _Long2Dec         Takes signed/unsigned Longint value & produces IM str representing val in decimal format
+$0B $28  Integer Math    _Dec2Int          Takes Integer Math string representing a decimal value & returns a signed/unsigned integer
+$0B $29  Integer Math    _Dec2Long         Takes Integer Math string representing a decimal value & produces a Longint value
+$0B $2A  Integer Math    _Hexit            Takes unsigned integer & returns a 4-byte Int Math string representing value in hex format
+
+
+Text Tools ($0C)
+
+$0C $01  Text Tools      _TextBootInit     Initializes the Text Tool Set; called only by Tool Locator
+$0C $02  Text Tools      _TextStartUp      Starts up the Text Tool Set for use by an application
+$0C $03  Text Tools      _TextShutDown     Shuts down the Text Tool Set when an application quits
+$0C $04  Text Tools      _TextVersion      Returns the version number of the Text Tool Set
+$0C $05  Text Tools      _TextReset        Resets the Text Tool Set; called only when the system is reset
+$0C $06  Text Tools      _TextStatus       Indicates whether the Text Tools Set is active
+$0C $09  Text Tools      _SetInGlobals     Sets the global parameters for the input device
+$0C $0A  Text Tools      _SetOutGlobals    Sets the global parameters for the output device
+$0C $0B  Text Tools      _SetErrGlobals    Sets the global parameters for the error output device
+$0C $0C  Text Tools      _GetInGlobals     Returns the current values for the input device global parameters
+$0C $0D  Text Tools      _GetOutGlobals    Returns the current values for the output device global parameters
+$0C $0E  Text Tools      _GetErrGlobals    Returns the current values for the error output device global parameters
+$0C $0F  Text Tools      _SetInputDevice   Sets the input device to a specified type and location
+$0C $10  Text Tools      _SetOutputDevic   Sets the output device to a specified type and location
+$0C $11  Text Tools      _SetErrorDevice   Sets the error output device to a specified type and location
+$0C $12  Text Tools      _GetInputDevice   Returns the type of driver installed as the input device
+$0C $13  Text Tools      _GetOutputDevic   Returns the type of driver installed as the output device
+$0C $14  Text Tools      _GetErrorDevice   Returns the type of driver installed as the error output device
+$0C $15  Text Tools      _InitTextDev      Initializes a specified text device
+$0C $16  Text Tools      _CtlTextDev       Passes a control code to a specified text device
+$0C $17  Text Tools      _StatusTextDev    Executes a status call to a specified text device
+$0C $18  Text Tools      _WriteChar        Combines a character with output global AND & OR mask & writes to output device
+$0C $19  Text Tools      _ErrWriteChar     Combines a character with output global AND & OR mask & writes to error output text device
+$0C $1A  Text Tools      _WriteLine        Combines pointed-to Pascal-type string with out global mask, + CR, then output
+$0C $1B  Text Tools      _ErrWriteLine     Combines pointed-to Pascal-type string with outpt global masks & write to err out
+$0C $1C  Text Tools      _WriteString      Combines a pointed-to Pascal-type string with outpt global masks & write to out device
+$0C $1D  Text Tools      _ErrWriteString   Combines a pointed-to Pascal-type string with outpt global masks & write to err out
+$0C $1E  Text Tools      _TextWriteBlock   Combines a char string with output global masks & writes to output text device
+$0C $1F  Text Tools      _ErrWriteBlock    Combines a char string with output global masks & write to err out
+$0C $20  Text Tools      _WriteCString     Combines a pointed-to C string with output global masks & write to output txt device
+$0C $21  Text Tools      _ErrWriteCStrin   Combines a pointed-to C string with output global masks & write to err output txt dvc
+$0C $22  Text Tools      _ReadChar         Reads a char from input text device, combines with input global mask, & puts char on stack
+$0C $23  Text Tools      _TextReadBlock    Reads char block from input txt device, combines w/input global mask & writes to mem loc
+$0C $24  Text Tools      _ReadLine         Reads char string from input txt device, combines w/input global mask, & writes to mem loc
+
+
+RAMDisk Tool ($0D)
+
+$0D $01  RAMDisk Tool    _RDBootInit       Initializes the RAMDisk Tool set; called only by Memory Manager - not by application
+$0D $01  RAMDisk Tool    _RDBootInit       Initializes the RAMDisk Tool set; called only by Memory Manager - not by application
+$0D $02  RAMDisk Tool    _RDStartUp        Starts up the RAMDisk Tool set
+$0D $03  RAMDisk Tool    _RDShutDown       Shuts down the RAMDisk Tool set
+$0D $04  RAMDisk Tool    _RDVersion        Returns the version of the RAMDisk Tool set
+$0D $05  RAMDisk Tool    _RDReset          Resets the RAMDisk Tool set - not by application
+$0D $06  RAMDisk Tool    _RDStatus         Indicates whether the RAMDisk Tool set is active
+$0D $09  RAMDisk Tool    _Kill             This routine does nothing
+$0D $0A  RAMDisk Tool    _RDExecPCCmd      This routine executes normal or extended SmartPort commands, using data from the zero page
+$0D $0B  RAMDisk Tool    _RDSetDiskSize    This routine does nothing
+$0D $0C  RAMDisk Tool    _RDGetDiskSize    This routine returns the current size of the RAMDisk in bytes
+
+
+Window Manager ($0E)
+
+$0E $01  Window Manager  _WindBootInit     Initializes the Window Manager; called only by Tool Locator - not by application
+$0E $02  Window Manager  _WindStartUp      Starts up the Window Manager for use by an application
+$0E $03  Window Manager  _WindShutDown     Shuts down the Window Manager when an application quits
+$0E $04  Window Manager  _WindVersion      Returns the version number of the Window Manager
+$0E $05  Window Manager  _WindReset        Resets the Window Manager; called only when system reset - not by application
+$0E $06  Window Manager  _WindStatus       Indicates whether the Window Manager is active
+$0E $09  Window Manager  _NewWindow        Creates spec window per its params, adds to window list, returns ptr to new wndw GrafPort
+$0E $0A  Window Manager  _CheckUpdate      Looks from top to bottom in window list for visible window that needs updating
+$0E $0B  Window Manager  _CloseWindow      Removes spec window from scrn, disposes all ctrls assoc w/window, deletes window from list
+$0E $0C  Window Manager  _DeskTop          Controls region addition to & subtraction from desktop & ctrls current desktop pattern
+$0E $0D  Window Manager  _SetWTitle        Changes the title of a specified window to a spec title and redraw the window
+$0E $0E  Window Manager  _GetWTitle        Returns the pointer to a specified window's title
+$0E $0F  Window Manager  _SetFrameColor    Sets the color of a specified window's frame
+$0E $10  Window Manager  _GetFrameColor    Returns the color of a specifed window's frame
+$0E $11  Window Manager  _SelectWindow     Makes a specified window the active window
+$0E $12  Window Manager  _HideWindow       Makes a specified window invisible
+$0E $13  Window Manager  _ShowWindow       Makes a specified window visible if it was invisible and then draws the window
+$0E $14  Window Manager  _SendBehind       Changes position of a specified window, redrawing any exposed windows
+$0E $15  Window Manager  _FrontWindow      Returns a ptr to the first visible window in the windows list (that is, the active window)
+$0E $16  Window Manager  _SetInfoDraw      Sets pointer to routine that draws information bar for specified window
+$0E $17  Window Manager  _FindWindow       Indicates which part of which window, if any, cursor was in when mouse button was pressed
+$0E $18  Window Manager  _TrackGoAway      Tracks mouse until bttn released, hi-lighting go-away region if mouse loc is inside it
+$0E $19  Window Manager  _MoveWindow       Moves a specified window to another part of the screen without affecting its size
+$0E $1A  Window Manager  _DragWindow       Pulls around dotted outln of spec window, following movements of mouse until bttn released
+$0E $1B  Window Manager  _GrowWindow       Pulls around grow image of spec window, following movements of mouse until bttn released
+$0E $1C  Window Manager  _SizeWindow       Enlarges or shrinks port rectangle of spec window's GrafPort to a spec width & height
+$0E $1D  Window Manager  _TaskMaster       Calls GetNextEvent & looks in event part of task record to see if it can handle the event
+$0E $1E  Window Manager  _BeginUpdate      Replaces visible region of window's GrafPort with intersection of visible & update region
+$0E $1F  Window Manager  _EndUpdate        Restores normal visible region of spec window's GrafPort that was changed by BeginUpdate
+$0E $20  Window Manager  _GetWMgrPort      Returns a pointer to the Window Manager's port
+$0E $21  Window Manager  _PinRect          Pins a specified point inside a specified rectangle
+$0E $22  Window Manager  _HiliteWindow     Highlights or unhighlights a specified window
+$0E $23  Window Manager  _ShowHide         Shows or hides a window
+$0E $24  Window Manager  _BringToFront     Brings spec window to front of all windows & redraws windows as necessary (no highlight)
+$0E $25  Window Manager  _WindNewRes       Closes Window Manager's GrafPort & opens new GrafPort in the other SHR resolution
+$0E $26  Window Manager  _TrackZoom        Tracks mouse until bttn released, hi-lighting zoom region if mouse location is inside it
+$0E $27  Window Manager  _ZoomWindow       Switches size & position of spec window between its current size & pos & its max size
+$0E $28  Window Manager  _SetWRefCon       Sets value that is inside spec window record & is reserved for the application's use
+$0E $29  Window Manager  _GetWRefCon       Returns value from spec window's record that was passed to either NewWindow or SetWRefCon
+$0E $2A  Window Manager  _GetNextWindow    Returns ptr to next window in window list after spec window; NIL if last window in list
+$0E $2B  Window Manager  _GetWKind         Indicates whether a spec window is a system window or an application window
+$0E $2C  Window Manager  _GetWFrame        Returns the bit flag that describes a specified window's frame type
+$0E $2D  Window Manager  _SetWFrame        Sets the bit flag that describes a specified window's frame type
+$0E $2E  Window Manager  _GetStructRgn     Returns a handle to a specified window's structure region
+$0E $2F  Window Manager  _GetContentRgn    Returns a handle to a specified window's content region
+$0E $30  Window Manager  _GetUpdateRgn     Returns a handle to a specified window's update region
+$0E $31  Window Manager  _GetDefProc       Returns ptr to routine that's called to draw, hit test, & define window's frame & behavior
+$0E $32  Window Manager  _SetDefProc       Sets ptr to routine that's called to draw, hit test, & define window's frame & behavior
+$0E $33  Window Manager  _GetWControls     Returns the handle to the first control in the window's control list
+$0E $34  Window Manager  _SetOriginMask    Specifies the mask used to put the horizontal origin on a grid
+$0E $35  Window Manager  _GetInfoRefCon    Returns value associated with the draw information bar routine for a spec window
+$0E $36  Window Manager  _SetInfoRefCon    Sets value associated with the draw information bar routine for a spec window
+$0E $37  Window Manager  _GetZoomRect      Returns ptr to rectangle used as content's zoomed or unzoomed size for a specified window
+$0E $38  Window Manager  _SetZoomRect      Sets rectangle to be used as content's zoomed or unzoomed size for a specified window
+$0E $39  Window Manager  _RefreshDesktop   Redraws the entire desktop and all the windows
+$0E $3A  Window Manager  _InvalRect        Accumulates spec rectangle into update region of window whose GrafPort is current port
+$0E $3B  Window Manager  _InvalRgn         Accumulates spec region into update region of window whose GrafPort is current port
+$0E $3C  Window Manager  _ValidRect        Removes spec rectangle from update region of current GrafPort window & cancels updates
+$0E $3D  Window Manager  _ValidRgn         Removes spec region from update region of current GrafPort window & cancels updates
+$0E $3E  Window Manager  _GetContentOrig   Returns value used by TaskMaster to set origin of window's GrafPort when update event
+$0E $3F  Window Manager  _SetContentOrig   Sets the origin of the window's GrafPort when handling an update event
+$0E $40  Window Manager  _GetDataSize      Returns the height and width of the data area of a specified window
+$0E $41  Window Manager  _SetDataSize      Sets the height and width of the data area of a specifed window
+$0E $42  Window Manager  _GetMaxGrow       Returns the maximum values to which a spec window's content region can grow
+$0E $43  Window Manager  _SetMaxGrow       Sets the maximum values to which a spec window's content region can grow
+$0E $44  Window Manager  _GetScroll        Returns # pixels that TaskMaster will scroll content region when arrow scroll bar selected
+$0E $45  Window Manager  _SetScroll        Sets # of pixels that TaskMaster will scroll content region when arrow scroll bar selected
+$0E $46  Window Manager  _GetPage          Returns # of pixels that TaskMaster will scroll content region when selected on scroll bar
+$0E $47  Window Manager  _SetPage          Sets # of pixels that TaskMaster will scroll content region when selected on scroll bar
+$0E $48  Window Manager  _GetContentDraw   Returns pointer to routine that draws content region of a specified window
+$0E $49  Window Manager  _SetContentDraw   Sets pointer to routine that draws content region of a specified window
+$0E $4A  Window Manager  _GetInfoDraw      Returns pointer to routine that draws information bar for specified window
+$0E $4B  Window Manager  _SetSysWindow     Marks a specified window as a system window
+$0E $4C  Window Manager  _GetSysWFlag      Indicate whether a specified window is a a system or an application window
+$0E $4D  Window Manager  _StartDrawing     Makes a specified window the current port and sets its origin
+$0E $4E  Window Manager  _SetWindowIcons   Sets the icon font for the Window Manager
+$0E $4F  Window Manager  _GetRectInfo      Sets information rectangle to coordinates of the information bar rectangle
+$0E $50  Window Manager  _StartInfoDrawi   Allows application to draw or hit test outside of information bar definition procedure
+$0E $51  Window Manager  _EndInfoDrawing   Puts the Window Manager back into a global coordinate system
+$0E $52  Window Manager  _GetFirstWindow   Returns pointer to first window in the window list (window may not be the active window)
+$0E $53  Window Manager  _WindDragRect     Pulls dotted outln of spec rectangle around scrn, follown mvmnts of mouse til btn released
+$0E $54  Window Manager  _GetDragRect      Returns the address of the internal DragRect routine
+$0E $55  Window Manager  _DrawInfoBar      Redraws the info bar of the window specified by grafPortPtr
+$0E $56  Window Manager  _WindowGlobal     Spec a mask that determines how Window Manager performs tasks & retuns windowGlobalFlag
+$0E $57  Window Manager  _SetContentOrig   Sets origin of windows GrafPort when hndlng updt event & ctrls scrolling of content region
+$0E $58  Window Manager  _GetWindowMgrGl   Returns a pointer to the Window Manager global data area - call not made by application
+$0E $59  Window Manager  _AlertWindow      Creates an alert window that displays a message pointed to by alertStrPtr
+$0E $5A  Window Manager  _StartFrameDraw   Sets up to draw a window frame - should be called only be window definition procedures
+$0E $5B  Window Manager  _EndFrameDrawin   Restores Window Manager variables after a call to StartFrameDrawing
+$0E $5C  Window Manager  _ResizeWindow     Moves, resizes, & draws the window specified by grafPortPtr
+$0E $5D  Window Manager  _TaskMasterCont   Internal routine that handles events inside the content region of a window
+$0E $5E  Window Manager  _TaskMasterKey    Internal routine that handles keystroke events inside the content region of a window
+$0E $5F  Window Manager  _TaskMaskerDA     This call is the TaskMaster entry point for desk accessories
+$0E $60  Window Manager  _CompileText      Combines source text with either custom or standard strings to compile a result text string
+$0E $61  Window Manager  _NewWindow2       Performs the same function as NewWindow but allows the input window template as a resource
+$0E $62  Window Manager  _ErrorWindow      Creates a dialog box displaying an error message for a specified error code
+$0E $63  Window Manager  _GetAuxWindInfo   Returns a pointer to a block of auxiliary data for a specified window
+$0E $64  Window Manager  _DoModalWindow    Handles user interaction in a window containing extended controls
+$0E $65  Window Manager  _MWGetCtlPart     Returns the part code from any TrackControl call made by the most recent DoModalWindow call
+$0E $66  Window Manager  _MWSetMenuProc    Informs DoModalWindow of the address of a routine to be called when the frontmost window changes inside a DoModalWindow call
+$0E $67  Window Manager  _MWStdDrawProc    MWStdDrawProc is what DoModalWindow calls to update a modal window if you do not supply your own update procedure
+$0E $68  Window Manager  _MWSetUpEditMen   Sets the sate of the standard emenu items based on the frontmost window
+$0E $69  Window Manager  _FindCursorCtl    Returns the handle for the control beneath a given point
+$0E $6A  Window Manager  _ResizeInfoBar    Sets the vertical size of a standard window’s information bar
+$0E $6B  Window Manager  _HandleDiskInse   Lets an application know about disks the user has inserted or ejected
+$0E $6C  Window Manager  _UpdateWindow     Updates the specified window
+
+
+Menu Manager ($0F)
+
+$0F $01  Menu Manager    _MenuBootInit     Initializes the Menu Manager; called only by Tool Locator - not by application
+$0F $02  Menu Manager    _MenuStartUp      Starts up the Menu Manager for use by an application
+$0F $03  Menu Manager    _MenuShutDown     Shuts down the Menu Manager when an application quits
+$0F $04  Menu Manager    _MenuVersion      Returns the version number of the Menu Manager
+$0F $05  Menu Manager    _MenuReset        Resets the Menu Manager; called only when system reset - not by application
+$0F $06  Menu Manager    _MenuStatus       Indicates whether the Menu Manager is active
+$0F $09  Menu Manager    _MenuKey          Maps a character to the associated menu and item for that character
+$0F $0A  Menu Manager    _GetMenuBar       Returns the handle of the current menu bar
+$0F $0B  Menu Manager    _MenuRefresh      Attempts to refresh the screen
+$0F $0C  Menu Manager    _FlashMenuBar     Flashes the entire current menu bar
+$0F $0D  Menu Manager    _InsertMenu       Inserts a specified menu into the menu list after a spec menu item or at front of list
+$0F $0E  Menu Manager    _DeleteMenu       Removes a specified menu from the menu list
+$0F $0F  Menu Manager    _InsertMItem      Inserts a menu item into a menu after a specified menu item or at the front of the list
+$0F $10  Menu Manager    _DeleteMItem      Removes a specified item from the current menu
+$0F $11  Menu Manager    _GetSysBar        Returns the handle of the current system menu bar
+$0F $12  Menu Manager    _SetSysBar        Sets a new system bar; the system menu bar becomes the current menu bar
+$0F $13  Menu Manager    _FixMenuBar       Computes standard sizes for the menu bar and menus
+$0F $14  Menu Manager    _CountMItems      Returns the number of items, including any dividing lines, in a specified menu
+$0F $15  Menu Manager    _NewMenuBar       Creates a default menu bar with no menus
+$0F $16  Menu Manager    _GetMHandle       Returns a handle to a menu record
+$0F $17  Menu Manager    _SetBarColors     Sets the normal, inverse, and outline colors of the current menu bar
+$0F $18  Menu Manager    _GetBarColors     Returns the colors for the current menu bar
+$0F $19  Menu Manager    _SetMTitleStart   Sets the starting position for the leftmost title within the current menu bar
+$0F $1A  Menu Manager    _GetMTitleStart   Returns the starting position of the leftmost title within the current menu bar
+$0F $1B  Menu Manager    _GetMenuMgrPort   Returns a pointer to the Menu Manager's port
+$0F $1C  Menu Manager    _CalcMenuSize     Sets menu dimensions, either manually or automatically
+$0F $1D  Menu Manager    _SetMTitleWidth   Sets the width of a title
+$0F $1E  Menu Manager    _GetMTitleWidth   Returns the width of a menu title
+$0F $1F  Menu Manager    _SetMenuFlag      Sets the menu to a specified state
+$0F $20  Menu Manager    _GetMenuFlag      Returns the menu flag for a specified menu
+$0F $21  Menu Manager    _SetMenuTitle     Specifies the title for a menu
+$0F $22  Menu Manager    _GetMenuTitle     Returns a pointer to the title of a menu
+$0F $23  Menu Manager    _MenuGlobal       Turns menu help on/off or returns state of menu help; help user know inactive to active
+$0F $24  Menu Manager    _SetMItem         Specifies the name for a menu item by pointing to an item line
+$0F $25  Menu Manager    _GetMItem         Returns a pointer to the name of an item
+$0F $26  Menu Manager    _SetMItemFlag     Sets spec item number to be underlined or not underlined & sets the highlighting style
+$0F $27  Menu Manager    _GetMItemFlag     Returns values for a spec item, such as whether it is disabled, underlined or highlighted
+$0F $28  Menu Manager    _SetMItemBlink    Determines how many times all menu items should blink when selected
+$0F $29  Menu Manager    _MenuNewRes       Adjusts screen resolution and redraws the current system menu bar
+$0F $2A  Menu Manager    _DrawMenuBar      Draws the current menu bar, along with any menu titles on the bar
+$0F $2B  Menu Manager    _MenuSelect       Draws hilighted titles, pulls down menus, & handles user interaction when mouse bttn click
+$0F $2C  Menu Manager    _HiliteMenu       Highlights or unhighlights the title of a specified menu
+$0F $2D  Menu Manager    _NewMenu          Allocates space for a menu list and its items
+$0F $2E  Menu Manager    _DisposeMenu      Frees the memory allocated by NewMenu
+$0F $2F  Menu Manager    _InitPalette      Reinitializes the palettes needed for the colored Apple logo in system menu bar
+$0F $30  Menu Manager    _EnableMItem      Sets a specified menu item to display normally and allows it to be selected
+$0F $31  Menu Manager    _DisableMItem     Sets spec menu item to display in dimmed characters & does not allow it to be selected
+$0F $32  Menu Manager    _CheckMItem       Sets spec menu item to display or to not display a check mark to the left of the item
+$0F $33  Menu Manager    _SetMItemMark     Sets a spec menu item to display or to not display a spec character to the left of item
+$0F $34  Menu Manager    _GetMItemMark     Returns the current character that is displayed to the left of a specified menu item
+$0F $35  Menu Manager    _SetMItemStyle    Sets the text style for a specified menu item
+$0F $36  Menu Manager    _GetMItemStyle    Returns the text style for a specified menu item
+$0F $37  Menu Manager    _SetMenuID        Specifies a new menu number
+$0F $38  Menu Manager    _SetMItemID       Specifies the ID number of a menu item
+$0F $39  Menu Manager    _SetMenuBar       Sets the current menu bar
+$0F $3A  Menu Manager    _SetMItemName     Specifies the aname of a menu item by pointing to a Pascal-type string
+$0F $3B  Menu Manager    _GetPopUpDefPro   Returns a pointer to the control definition procedure for pop-up menus
+$0F $3C  Menu Manager    _PopUpMenuSelec   Draws highlighted titles and handles user interaction when the user clicks on a pop-up menu
+$0F $3E  Menu Manager    _NewMenu2         Allocates space for a menu list and its items
+$0F $3F  Menu Manager    _InsertMitem2     Inserts an item into a menu after a specified menu item or at the top of the menu
+$0F $40  Menu Manager    _SetMenuTitle2    Specifies the title of a menu
+$0F $41  Menu Manager    _SetMitem2        Specifies the title of a menu item
+$0F $42  Menu Manager    _SetMitemName2    Specifies the name of a menu item
+$0F $43  Menu Manager    _NewMenuBar2      Creates a menu bar using a menu bar template as its input specification
+$0F $44  Menu Manager    _GetResMTitle     Returns pointer to the menu title
+$0F $45  Menu Manager    _HideMenuBar      Hides the system menu bar by adding the menu bar to the desktop region
+$0F $46  Menu Manager    _ShowMenuBar      Reveals the system menu bar by subtracting the menu bar from the desktop region
+$0F $47  Menu Manager    _SetItemIcon      ItemIconRef field in the itemStruct record for the menu item indicated
+$0F $48  Menu Manager    _GetItemIcon      Returns the reference to the icon associated with menu item indicated
+$0F $49  Menu Manager    _SetItemStruct    Sets the ItemTitleRef field of the item record to the reference for the itemStruct record passed
+$0F $4A  Menu Manager    _GetItemStruct    Returns the reference to the itemStruct record of the menu item specified
+$0F $4B  Menu Manager    _RemoveItemStru   Removes the itemStruct record from the item record
+$0F $4C  Menu Manager    _GetItemFlag2     Returns the itemfFag2 field for the itemStruct record associated with the menu item indicated
+$0F $4D  Menu Manager    _SetItemFlag2     Sets the itemFlag2 field for the itemStruct record of the indicated menu item to the value passed
+$0F $4E  Menu Manager    _GetItemWidth     Computes the default size of a specified menu item
+$0F $4F  Menu Manager    _GetMItemBlink    GetMItemBlink returns the current menu item blink setting, as set with SetMItemBlink
+$0F $50  Menu Manager    _InsertPathMIte   Takes a GS/OS pathname and inserts one menu item into the specified menu for each segment of the pathname
+
+
+Control Manager ($10)
+
+$10 $01  Control Manager _CtlBootInit      Initializes the Control Manager; called only by Tool Locator (not application)
+$10 $02  Control Manager _CtlStartUp       Starts up the Control Manager for use by an application
+$10 $03  Control Manager _CtlShutDown      Shuts down the Control Manager
+$10 $04  Control Manager _CtlVersion       Returns the version number of the Control Manager
+$10 $05  Control Manager _CtlReset         Resets the Control Manager; called only on reset (not by application)
+$10 $06  Control Manager _CtlStatus        Indicates whether the Control Manager is active
+$10 $09  Control Manager _NewControl       Creates a ctrl, adds it to begin of spec. window's ctrl list, & returns handle to new ctrl
+$10 $0A  Control Manager _DisposeControl   Deletes a spec. ctrl & releases mem occupied by ctrl record & any data struct. w/the ctrl
+$10 $0B  Control Manager _KillControls     Disposes of all controls associated with a specified window
+$10 $0C  Control Manager _SetCtlTitle      Sets a specified control's title to a given string and redraws the control
+$10 $0D  Control Manager _GetCtlTitle      Returns value in spec ctrl's ctlData field, which, for ctrls w/titles, is ptr to title str
+$10 $0E  Control Manager _HideControl      Makes spec ctrl invisible by fillng region the ctrl occupies w/bkground pattern of grafprt
+$10 $0F  Control Manager _ShowControl      Makes a specified control visible
+$10 $10  Control Manager _DrawControls     Draws all controls currently visible in a specified window
+$10 $11  Control Manager _HiliteControl    Changes the way a specified control is highlighted
+$10 $12  Control Manager _CtlNewRes        Reinitializes resolution and mode
+$10 $13  Control Manager _FindControl      Tells in which of window's ctrls, if any, the cursor was in when user pressed mouse button
+$10 $14  Control Manager _TestControl      Tests which part of a specified control contains a specified point
+$10 $15  Control Manager _TrackControl     Follows mouse movements and responds appropriately until mouse button is released
+$10 $16  Control Manager _MoveControl      Moves a specified control to a new location within its window
+$10 $17  Control Manager _DragControl      Pulls dotted outln of ctrl around screen, following mvments of mouse till button released
+$10 $18  Control Manager _SetCtlIcons      Provides a handle to a specified new icon font
+$10 $19  Control Manager _SetCtlValue      Sets spec ctrl's ctlValue field to a spec value & redraws ctrl to reflect new setting
+$10 $1A  Control Manager _GetCtlValue      Returns a specified control's current ctlValue field
+$10 $1B  Control Manager _SetCtlParams     Sets new params in ctrl's def procedure, which will set values & redraw ctrl if necessary
+$10 $1C  Control Manager _GetCtlParams     Returns a specified control's additional parameters
+$10 $1D  Control Manager _DragRect         Pulls dotted outln of rectangle around screen, follown mvments of mouse till bttn released
+$10 $1E  Control Manager _GrowSize         Returns the height & width of size box ctrl, using Control Manager's current icon font
+$10 $1F  Control Manager _GetCtlDpage      Returns the value of the Control Manager's direct page
+$10 $20  Control Manager _SetCtlAction     Sets a specified control's ctrlAction field to a new action
+$10 $21  Control Manager _GetCtlAction     Returns the current value of a specified control's ctlAction field
+$10 $22  Control Manager _SetCtlRefCon     Sets a specified control's ctlRefCon field to a new value
+$10 $23  Control Manager _GetCtlRefCon     Returns the current value of a specified control's ctlRefCon field
+$10 $24  Control Manager _EraseControl     Makes spec ctrl invisible but doesn't add ctrl's enclosing rectangle to wndw update region
+$10 $25  Control Manager _DrawOneCtl       Draws a specified control
+$10 $26  Control Manager _FindTargetCtl    Returns the handle of the target control within the control list for the active window
+$10 $27  Control Manager _MakeNextCtlTar   Makes the next eligible control the target control
+$10 $28  Control Manager _MakeThisCtlTar   Makes the specified control the target
+$10 $29  Control Manager _SendEventToCtl   Passes a specified extended task record to the appropriate control or controls
+$10 $2A  Control Manager _GetCtlID         Returns the ctlID field from the control record of a specified control
+$10 $2B  Control Manager _SetCtliD         Sets the ctliD field in the control record of a specified control
+$10 $2C  Control Manager _CallDefProc      Calls a controls defproc with the specified inputs
+$10 $2D  Control Manager _NotifyCtls       Calls the control definition procedures for extended controls in a specified window
+$10 $2E  Control Manager _GetCtlMoreFlag   Gets the contents of the ctlMoreFlags field of the control record for a specified control
+$10 $2F  Control Manager _SetCtlMoreFlag   Sets the contents of the ctlMoreFlags field of the control record for a specified control
+$10 $30  Control Manager _GetCtlHandleFr   Retrieves the control handle to the control record with a specified ctlID field value
+$10 $31  Control Manager _NewControl2      Creates one or more new controls.
+$10 $32  Control Manager _CMLoadResource   This is an entry point to the internal Control Manager routine that loads resources
+$10 $33  Control Manager _CMReleaseResou   This is an entry point to the internal Control Manager routine that releases resources
+$10 $34  Control Manager _SetCtlParamPtr   Sets the pointer to the current text substitution array for the Control Manager
+$10 $35  Control Manager _GetCtlParamPtr   Retrieves the pointer to the current text substitution array for the Control Manager
+$10 $36  Control Manager _FutzCtls         Invalidates bound rects of a window's normal controls and tells other controls that window state has changed
+$10 $37  Control Manager _InvalCtls        Invalidates all rectangles for all controls in a specified window
+$10 $38  Control Manager _CMUnloadSegmen   Unloads any dynamic segments that have been loaded in the course of using the tool
+$10 $39  Control Manager _FindRadioButto   Returns a value indicating which radio button is selected in a given family
+$10 $3A  Control Manager _SetLETextByID    Sets the text of an Edit Line control to a string supplied by the caller
+$10 $3B  Control Manager _GetLETextByID    Returns the text of an Edit Line control into a buffer supplied by the caller
+$10 $3C  Control Manager _SetCtlValueByI   Sets the value of the control that has the specified control ID in the specified window
+$10 $3D  Control Manager _GetCtlValueByI   Returns the current value of the control that has the specified control ID in the specified window
+$10 $3E  Control Manager _InvalOneCtlByI   Invalidates a control's rectangle, just as if you called InvalRect on the control's rectangle
+$10 $3F  Control Manager _HiliteCtlByID    Changes the way a specified control is highlighted, just as if you called HiliteControl
+
+
+System Loader ($11)
+
+$11 $01  System Loader   _LoaderInit       Initializes System Loader Toolset; called only by the Tool Locator - not by application
+$11 $02  System Loader   _LoaderStartUp    Starts up System Loader - This function does nothing - Do not use
+$11 $03  System Loader   _LoaderShutDown   Shuts down System Loader - This function does nothing - Do not use
+$11 $04  System Loader   _LoaderVersion    Returns the version number of System Loader
+$11 $05  System Loader   _LoaderReset      Resets System Loader Toolset - This function does nothing - Do not use
+$11 $06  System Loader   _LoaderStatus     Indicates whether System Loader Toolset is active
+$11 $09  System Loader   _InitialLoad      Called to ask the System Loader to perform an initial load of a program
+$11 $0A  System Loader   _Restart          Restarts a dormant application that was shut down, but is still in memory
+$11 $0B  System Loader   _LoadSegNum       Loads a load segment specified by load-file number, seg number, & user ID, into memory
+$11 $0C  System Loader   _UnloadSegNum     Unloads a specific load segment from memory
+$11 $0D  System Loader   _LoadSegName      Loads a named segment into memory (named by its load file's pathname & segment name)
+$11 $0E  System Loader   _UnloadSeg        Unloads the load segment containing the specified address
+$11 $0F  System Loader   _GetLoadSegInfo   Returns the Memory Segment Table entry corresponding to the spec (by #) load segment
+$11 $10  System Loader   _GetUserID        Returns the User ID associated with the specified pathname
+$11 $11  System Loader   _LGetPathname     Returns the pathname associated with the specified User ID
+$11 $12  System Loader   _UserShutdown     Closes down an application that has just terminated
+
+
+QuickDraw Aux ($12)
+
+$12 $01  QuickDraw Aux   _QDAuxBootInit    Initializes QuickDraw II Auxiliary; called only by the Tool Locator - not by application
+$12 $02  QuickDraw Aux   _QDAuxStartUp     Starts up QuickDraw II Auxiliary for use by an application
+$12 $03  QuickDraw Aux   _QDAuxShutDown    Shuts down QuickDraw II Auxiliary when an application quits
+$12 $04  QuickDraw Aux   _QDAuxVersion     Returns the version number of QuickDraw II Auxiliary
+$12 $05  QuickDraw Aux   _QDAuxReset       Resets QuickDraw II Auxiliary; called only when the system is reset - not by applicaiton
+$12 $06  QuickDraw Aux   _QDAuxStatus      Indicates whether QuickDraw II Auxiliary is active
+$12 $09  QuickDraw Aux   _CopyPixels       Copies pixel image from 1 place to another, w/stretch or compress to make source fit dest
+$12 $0A  QuickDraw Aux   _WaitCursor       Changes the cursor to a predefined cursor that looks like a watch
+$12 $0B  QuickDraw Aux   _DrawIcon         Draws a spec icon in a spec mode at a spec location & clips to current visible region
+$12 $0C  QuickDraw Aux   _SpecialRect      Frames & fills a rectangle in a single call
+$12 $0D  QuickDraw Aux   _SeedFill         Generates a mask from a specified source image and pattern by filling outward from a starting point
+$12 $0E  QuickDraw Aux   _CalcMask         Generates a mask from a specified source image and pattern by filling inward from the boundary rectangle
+$12 $0F  QuickDraw Aux   _GetSysIcon       Returns small icons representing files, devices, and other miscellaneous icons
+$12 $10  QuickDraw Aux   _PixelMap2Rgn     Transforms a pixel map into a QuickDraw II region
+$12 $13  QuickDraw Aux   _IBeamCursor      Sets the QuickDraw II cursor to an I-beam cursor
+$12 $14  QuickDraw Aux   _WhooshRect       Animates a “zooming” effect from one rectangle to another
+$12 $15  QuickDraw Aux   _DrawStringWidt   Draws a string in a specified horizontal width on a single line
+$12 $16  QuickDraw Aux   _UseColorTable    Preserves Scanline Control Bytes (SCBs) and sets them to use a color table you specify
+$12 $17  QuickDraw Aux   _RestoreColorTa   Undoes the effects of UseColorTable
+$12 $B7  QuickDraw Aux   _OpenPicture      Allocates mem for recording of drawing commands into a pic defin. & returns handle to pic
+$12 $B8  QuickDraw Aux   _PicComment       Inserts a specified comment into the currently open picture
+$12 $BA  QuickDraw Aux   _DrawPicture      Takes drawing commands recorded in pic defin., maps them from pic frame into dest rect.
+$12 $BB  QuickDraw Aux   _KillPicture      Releases all memory occupied by a specifed picture
+
+
+Print Manager ($13)
+
+$13 $01  Print Manager   _PMBootInit       Initializes the Print Manager; called only by Tool Locator - not by application
+$13 $02  Print Manager   _PMStartUp        Starts up the Print Manager for use by an application
+$13 $03  Print Manager   _PMShutDown       Shuts down the Print Manager when an application quits
+$13 $04  Print Manager   _PMVersion        Returns the version number of the Print Manager
+$13 $05  Print Manager   _PMReset          Resets the Print Manager; called only when system reset - not by application
+$13 $06  Print Manager   _PMStatus         Indicates whether the Print Manager is active
+$13 $09  Print Manager   _PrDefault        Fills the fields of a spec print record with default values for the appropriate printer
+$13 $0A  Print Manager   _PrValidate       Checks print record for compatibility w/current version # of Print Mgr & installed printer
+$13 $0B  Print Manager   _PrStlDialog      Conducts a style dialog w/user to determine page dimens & other info needed for page setup
+$13 $0C  Print Manager   _PrJobDialog      Conducts a job dialog w/user to determine print quality, range of pages to print, etc.
+$13 $0D  Print Manager   _PrPixelMap       Prints all or part of a specified pixel map
+$13 $0E  Print Manager   _PrOpenDoc        Inits GrafPort for use in printing a document, makes it current port & returns ptr to port
+$13 $0F  Print Manager   _PrCloseDoc       Closes the GrafPort being used for printing
+$13 $10  Print Manager   _PrOpenPage       Begins a new page
+$13 $11  Print Manager   _PrClosePage      Ends the printing of the current page
+$13 $12  Print Manager   _PrPicFile        Prints a spooled document
+$13 $14  Print Manager   _PrError          Returns last printer error code left during printing loop by Print Manager routines
+$13 $15  Print Manager   _PrSetError       Stores spec value into global variable where Print Manager keeps its printer err codes
+$13 $16  Print Manager   _PrChoosePrinte   Conducts a Choose Printer dialog w/user to determine printer and port driver to use
+$13 $18  Print Manager   _PrGetPrinterSp   Returns information about the currently selected printer
+$13 $23  Print Manager   _PrDriverVer      Returns the version number of the currently installed printer driver
+$13 $24  Print Manager   _PrPortVer        Returns the version number of the currently installed port driver
+$13 $25  Print Manager   _PrGetZoneName    Returns the name string for the currently selected AppleTalk print zone
+$13 $28  Print Manager   _PrGetPrinterDv   Returns the name string for the currently selected printer driver
+$13 $29  Print Manager   _PrGetPortDvrNa   Returns the name string for the currently selected port driver
+$13 $2A  Print Manager   _PrGetUserName    Returns the user name as entered in the Control Panel
+$13 $2B  Print Manager   _PrGetNetworkNa   Returns the AppleTalk network name for the currently selected printer
+$13 $34  Print Manager   _PMUnloadDriver   Unloads current port driver, printer driver, or both, depending on input parameter
+$13 $35  Print Manager   _PMLoadDriver     Loads current printer driver, port driver, or both, depending on the input parameter
+$13 $36  Print Manager   _PrGetDocName     Returns a pointer to the current document name string for your document
+$13 $37  Print Manager   _PrSetDocName     Sets the document name for use with AppleTalk printers
+$13 $38  Print Manager   _PrGetPgOrienta   Returns a value indicating the current page orientation for the specified document
+
+
+Line Edit ($14)
+
+$14 $01  Line Edit       _LEBootInit       Initializes the LineEdit Tool Set; called only by Tool Locator
+$14 $02  Line Edit       _LEStartUp        Starts up the LineEdit Tool Set for use by an application
+$14 $03  Line Edit       _LEShutDown       Shuts down the LineEdit Tool Set when an application quits
+$14 $04  Line Edit       _LEVersion        Returns the version number of the LineEdit Tool Set
+$14 $05  Line Edit       _LEReset          Resets the LineEdit Tool Set; called only when the system is reset
+$14 $06  Line Edit       _LEStatus         Indicates whether the LineEdit Tool Set is active
+$14 $09  Line Edit       _LENew            Allocates space for text, creates & inits edit record, & returns handle to new edit record
+$14 $0A  Line Edit       _LEDispose        Releases the memory allocated for a specified edit record
+$14 $0B  Line Edit       _LESetText        Incorporates a copy of the specified text into a specified edit record
+$14 $0C  Line Edit       _LEIdle           Causes the caret at the insertion point (if any) in specified text to blink
+$14 $0D  Line Edit       _LEClick          Controls placement & highlighting of selection range as determined by mouse events
+$14 $0E  Line Edit       _LESetSelect      Sets the selection range of a specified edit record
+$14 $0F  Line Edit       _LEActivate       Highlights the selection range or caret of a specified edit record
+$14 $10  Line Edit       _LEDeactivate     Unhighlights the selection range or caret of a specified edit record
+$14 $11  Line Edit       _LEKey            Replaces select range/caret in text of spec edit record w/spec char & leaves insert pnt
+$14 $12  Line Edit       _LECut            Removes selection range from text of spec edit record & places it in LineEdit scrap
+$14 $13  Line Edit       _LECopy           Copies selection range from text of a spec edit record to the LineEdit scrap
+$14 $14  Line Edit       _LEPaste          Replaces selec range/caret in text of spec edit record w/contents of LineEdit scrap
+$14 $15  Line Edit       _LEDelete         Removes selec range from text of spec edit record without placing it in LineEdit scrap
+$14 $16  Line Edit       _LEInsert         Takes spec text & inserts it just before selection range/caret in text of spec edit record
+$14 $17  Line Edit       _LEUpdate         Redraws the text of a specified edit record
+$14 $18  Line Edit       _LETextBox        Draws specified text in a specified rectangle, justifying the text as specified
+$14 $19  Line Edit       _LEFromScrap      Copies the desk scrap to the LineEdit scrap
+$14 $1A  Line Edit       _LEToScrap        Copies the LineEdit scrap to the desk scrap
+$14 $1B  Line Edit       _LEScrapHandle    Returns a handle to the LineEdit scrap
+$14 $1C  Line Edit       _LEGetScrapLen    Returns the size of the LineEdit scrap in bytes
+$14 $1D  Line Edit       _LESetScrapLen    Sets the size of the LineEdit scrap to a specified number of bytes
+$14 $1E  Line Edit       _LESetHilite      Sets the leHiliteHook field of a psecified edit record to a specified address
+$14 $1F  Line Edit       _LESetCaret       Sets the leCaretHook field of a specified edit record to a specified address
+$14 $20  Line Edit       _LETextBox2       Draws spec txt in spec rectangle, justify text as spec, w/word wrap, & handle embed chges
+$14 $21  Line Edit       _LESetJust        Sets the style of justification for the text of a specified edit record
+$14 $22  Line Edit       _LEGetTextHand    Returns a handle to the text of a specified edit record
+$14 $23  Line Edit       _LEGetTextLen     Returns the length of the text of a specified edit record in bytes
+$14 $24  Line Edit       _GetLEDefProc     Returns the address of the current LineEdit control definition procedure
+$14 $25  Line Edit       _LEClassifyKey    Returns a word with bits indicating what categories a specified event falls into
+
+
+Dialog Manager ($15)
+
+$15 $01  Dialog Manager  _DialogBootInit   Initializes the Dialog Manager; called only by Tool Locator (not application)
+$15 $02  Dialog Manager  _DialogStartUp    Starts up the Dialog Manager for use by an application
+$15 $03  Dialog Manager  _DialogShutDown   Shuts down the Dialog Manager
+$15 $04  Dialog Manager  _DialogVersion    Returns the version number of the Dialog Manager
+$15 $05  Dialog Manager  _DialogReset      Resets the Dialog Manager; called only on reset (not by application)
+$15 $06  Dialog Manager  _DialogStatus     Indicates whether the Dialog Manager is active
+$15 $09  Dialog Manager  _ErrorSound       Establishes the sound procedure for alerts
+$15 $0A  Dialog Manager  _NewModalDialog   Creates a specified modal dialog & returns a pointer to the GrafPort of the new dialog
+$15 $0B  Dialog Manager  _NewModelessDia   Creates a specified modeless dialog & returns a pointer to the GrafPort of the new dialog
+$15 $0C  Dialog Manager  _CloseDialog      Removes a specified dialog window from the screen and deletes it from the window list
+$15 $0D  Dialog Manager  _NewDItem         Adds a new item to the dialog's item list
+$15 $0E  Dialog Manager  _RemoveDItem      Removes a specified item from a specified dialog and erases it from the screen
+$15 $0F  Dialog Manager  _ModalDialog      If frontmost window is modal dialog box, then repeatedly gets events in dialog's window
+$15 $10  Dialog Manager  _IsDialogEvent    Determines whether a specified event needs to be handled as part of modeless dialog
+$15 $11  Dialog Manager  _DialogSelect     Handles an event as part of a specified modeless dialog
+$15 $12  Dialog Manager  _DlgCut           Checks if spec dialog has any editLine items, if so applies LEcut proc to selected item
+$15 $13  Dialog Manager  _DlgCopy          Checks if spec dialog has any editLine items, if so applies LEcopy proc to selected item
+$15 $14  Dialog Manager  _DlgPaste         Checks if spec dialog has any editLine items, if so applies LEPaste proc to selected item
+$15 $15  Dialog Manager  _DlgDelete        Checks if spec dialog has any editLine items, if so applies LEDelete proc to selected item
+$15 $16  Dialog Manager  _DrawDialog       Draws the contents of a specified dialog box
+$15 $17  Dialog Manager  _Alert            Invokes an alert defined by a specified alert template
+$15 $18  Dialog Manager  _StopAlert        Invokes an alert defined by alert template & draws stop icon in upper-left corner of box
+$15 $19  Dialog Manager  _NoteAlert        Invokes an alert defined by alert template & draws note icon in upper-left corner of box
+$15 $1A  Dialog Manager  _CautionAlert     Invokes an alert defined by alert template & draws caution icon in uppr-left corner of box
+$15 $1B  Dialog Manager  _ParamText        Specifies text for 1-4 special strings in statText, longStatText, & longStatText2 items
+$15 $1C  Dialog Manager  _SetDAFont        Specifies the font for the dialog or alert window's GrafPort
+$15 $1E  Dialog Manager  _GetControlDIte   Returns a handle to the control for a specified item
+$15 $1F  Dialog Manager  _GetIText         Returns the text of a specified statText or editLine item in a psecified dialog box
+$15 $20  Dialog Manager  _SetIText         Provides text for spec statText or editLine item in a spec dialog box & draws the item
+$15 $21  Dialog Manager  _SelectIText      Sets selection range or insertion point for a spec editLine item in a spec dialog box
+$15 $22  Dialog Manager  _HideDItem        Erases a specified item from a specified dialog
+$15 $23  Dialog Manager  _ShowDItem        Makes visible a specified item from a specified dialog
+$15 $24  Dialog Manager  _FindDItem        Returns the ID of the item located at a specified point in a specified dialog
+$15 $25  Dialog Manager  _UpdateDialog     Redraws the part of a specified dialog that is in a specifed update region
+$15 $26  Dialog Manager  _GetDItemType     Returns type of a specified item (buttonItem, radioItem, statText, etc.)
+$15 $27  Dialog Manager  _SetDItemType     Changes a specified item to a new specified item type
+$15 $28  Dialog Manager  _GetDItemBox      Returns the display rectangle of a specified item
+$15 $29  Dialog Manager  _SetDItemBox      Changes the display rectangle of a spec item to a new display rectangle
+$15 $2A  Dialog Manager  _GetFirstDItem    Returns the ID of the first item in a specified dialog
+$15 $2B  Dialog Manager  _GetNextDItem     Returns the ID of the next item in a specified dialog after a specified item
+$15 $2C  Dialog Manager  _ModalDialog2     If frontmost wndow is modal, then handles events in window; returns code if emabled item
+$15 $2E  Dialog Manager  _GetDItemValue    Returns the current value of a specified item
+$15 $2F  Dialog Manager  _SetDItemValue    Sets the value of a specified item to a new desired value & redraws the item
+$15 $32  Dialog Manager  _GetNewModalDia   Creates a modal dialog & returns a pointer to the port of the new dialog
+$15 $33  Dialog Manager  _GetNewDItem      Adds a new item to a specified dialog's item list using a template
+$15 $34  Dialog Manager  _GetAlertStage    Returns the stage of the last occurence of an alert as a number from 0 to 3
+$15 $35  Dialog Manager  _ResetAlertStag   Resets stage of last occurrence of alert so next occurence of same alert will be as first
+$15 $36  Dialog Manager  _DefaultFilter    Calls standard default filter used by ModalDialog or Alert when no user filter is spec
+$15 $37  Dialog Manager  _GetDefButton     Returns the ID of the default button item in a specified dialog
+$15 $38  Dialog Manager  _SetDefButton     Sets the ID of the default button to a specified ID
+$15 $39  Dialog Manager  _DisableDItem     Disables a specified item in a specified dialog
+$15 $3A  Dialog Manager  _EnableDItem      Enables a specified item in a specified dialog
+
+
+Scrap Manager ($16)
+
+$16 $01  Scrap Manager   _ScrapBootInit    Initializes the Scrap Manager; called only by Tool Locator (not application)
+$16 $02  Scrap Manager   _ScrapStartUp     Starts up the Scrap Manager for use by an application
+$16 $03  Scrap Manager   _ScrapShutDown    Shuts down the Scrap Manager
+$16 $04  Scrap Manager   _ScrapVersion     Returns the version number of the Scrap Manager
+$16 $05  Scrap Manager   _ScrapReset       Resets the Scrap Manager; called only on reset (not by application)
+$16 $06  Scrap Manager   _ScrapStatus      Indicates whether the Scrap Manager is active
+$16 $09  Scrap Manager   _UnloadScrap      Writes desk scrap from memory to the scrap file & releases the memory it occupied
+$16 $0A  Scrap Manager   _LoadScrap        Reads the desk scrap from the scrap file into memory
+$16 $0B  Scrap Manager   _ZeroScrap        Clears the contents of the scrap and increments the scrap count
+$16 $0C  Scrap Manager   _PutScrap         Appends specified data to the scrap that has the same scrap type as the data
+$16 $0D  Scrap Manager   _GetScrap         Copies scrap info of appropriate type to spec handle, setting handle to correct size
+$16 $0E  Scrap Manager   _GetScrapHandle   Returns a copy of the handle for the scrap of a specified type
+$16 $0F  Scrap Manager   _GetScrapSize     Returns the size of the specified scrap
+$16 $10  Scrap Manager   _GetScrapPath     Returns a pointer to the pathname used for the Clipboard file
+$16 $11  Scrap Manager   _SetScrapPath     Sets a pointer to the pathname used for the Clipboard file
+$16 $12  Scrap Manager   _GetScrapCount    Returns the current scrap count
+$16 $13  Scrap Manager   _GetScrapState    Returns a flag indicating the current state of the scrap
+$16 $14  Scrap Manager   _GetIndScrap      This call is useful for utilities that want to read all scrap types
+$16 $15  Scrap Manager   _ShowClipboard    Creates a System window that takes care of the clipboard display for you
+
+
+Std File Ops ($17)
+
+$17 $01  Std File Ops    _SFBootInit       Initializes the Std File Ops Tool Set; called only by Tool Locator (not by application)
+$17 $02  Std File Ops    _SFStartUp        Starts up the Std File Ops Tool Set for use by an application
+$17 $03  Std File Ops    _SFShutDown       Shuts down the Standard File Operations Tool Set when application quits
+$17 $04  Std File Ops    _SFVersion        Returns the version number of the Standard File Operations Tool Set
+$17 $05  Std File Ops    _SFReset          Resets the Std File Ops Tool Set; called only on system reset - not by application
+$17 $06  Std File Ops    _SFStatus         Indicates whether the Std File Ops Tool Set is active
+$17 $09  Std File Ops    _SFGetFile        Displays the standard Open FIle dialog box & returns info about the file selected by user
+$17 $0A  Std File Ops    _SFPutFile        Displays standard Save File dialog box & returns info about the name of file to be saved
+$17 $0B  Std File Ops    _SFPGetFile       Displays custom Open File dialog box & returns info about file selected by user
+$17 $0C  Std File Ops    _SFPPutFile       Displays custom Save File dialog box & returns info about the name of file to be saved
+$17 $0D  Std File Ops    _SFAllCaps        Allows applicat. to decide if filenames will be displayed in all upper or upper/lowercase
+$17 $0E  Std File Ops    _SFGetFile2       Displays the standard Open File dialog box and returns information about the file selected by the user
+$17 $0F  Std File Ops    _SFPutFile2       Displays the standard Save File dialog box and returns the file specification entered by the user
+$17 $10  Std File Ops    _SFPGetFile2      Displays a custom Open File dialog box and returns information about the file selected by the user
+$17 $11  Std File Ops    _SFPPutFile2      Displays a custom Save File dialog box and returns information about the file specification entered by the user
+$17 $12  Std File Ops    _SFShowinvisibl   Controls the display of invisible files
+$17 $13  Std File Ops    _SFReScan         Forces the system to rebuild and redisplay the current list of files
+$17 $14  Std File Ops    _SFMultiGet2      Displays the standard Open Multifile dialog box and returns information about the file or files selected by the user
+$17 $15  Std File Ops    _SFPMultiGet2     Displays a custom Open Multifile dialog box and returns information about the file or files selected by the user
+
+
+Note Synthesize ($19)
+
+$19 $01  Note Synthesize _NSBootInit       Initializes the Note Synthesizer; called only by Tool Locator (not application)
+$19 $02  Note Synthesize _NSStartUp        Starts up the Note Synthesizer for use by an application
+$19 $03  Note Synthesize _NSShutDown       Shuts down the Note Synthesizer
+$19 $04  Note Synthesize _NSVersion        Returns the version number of the Note Synthesizer
+$19 $05  Note Synthesize _NSReset          Resets the Note Synthesizer; called only on reset (not by application)
+$19 $06  Note Synthesize _NSStatus         Indicates whether the Note Synthesizer is active
+$19 $09  Note Synthesize _AllocGen         Requests allocation of a sound generator - returns a generator number from 0 to 13
+$19 $0A  Note Synthesize _DeallocGen       Sets the named generator's allocation priority to zero
+$19 $0B  Note Synthesize _NoteOn           Initiates generation of a note on a specified generator
+$19 $0C  Note Synthesize _NoteOff          Switches the spec generator to release mode, which causes note being generated to die out
+$19 $0D  Note Synthesize _AllNotesOff      Turns off all Note Synthesizer generators & sets their priorities to zero
+$19 $0E  Note Synthesize _NSSetUpdateRat   Sets the Note Synthesizer's updateRate parameter
+$19 $0F  Note Synthesize _NSSetUserUpdat   Sets the user update routine
+
+
+Note Sequencer ($1A)
+
+$1A $01  Note Sequencer  _SeqBootInit      Initializes the Note Sequencer; called only by Tool Locator (not application)
+$1A $02  Note Sequencer  _SeqStartUp       Starts up the Note Sequencer for use by an application
+$1A $03  Note Sequencer  _SeqShutDown      Shuts down the Note Sequencer
+$1A $04  Note Sequencer  _SeqVersion       Returns the version number of the Note Sequencer
+$1A $05  Note Sequencer  _SeqReset         Resets the Note Sequencer; called only on reset (not by application)
+$1A $06  Note Sequencer  _SeqStatus        Indicates whether the Note Sequencer is active
+$1A $09  Note Sequencer  _SetIncr          Sets the Note Sequencer's increment value - used for temp control of a sequence
+$1A $0A  Note Sequencer  _ClearIncr        Sets NS's increment value to zero, halting current sequence, & returns previous inc value
+$1A $0B  Note Sequencer  _GetTimer         Returns the value of the Note Sequencer's tick counter
+$1A $0C  Note Sequencer  _GetLoc           Returns certain info about the sequence that is playing
+$1A $0D  Note Sequencer  _SeqAllNotesOff   Switches off all notes that are playing but doesn't stop the sequence
+$1A $0E  Note Sequencer  _SetTrkInfo       Assigns instruments in current instrument table to logical tracks, & determines priority
+$1A $0F  Note Sequencer  _StartSeq         Starts interpretation of a series of seqItems stored at address specified by 'sequence'
+$1A $10  Note Sequencer  _StepSeq          Advances Note Sequencer to next seqItem in current sequence, executing current seqItems
+$1A $11  Note Sequencer  _StopSeq          Halts interpretation of a series of seqItems
+$1A $12  Note Sequencer  _SetInstTable     Sets the current instrument table to the one specified in instTable
+$1A $13  Note Sequencer  _StartInts        Enables interrupts - Restores normal functioning after call to StopInts
+$1A $14  Note Sequencer  _StopInts         Disables Note Synthesizer & Note Sequencer interrupts
+$1A $15  Note Sequencer  _StartSeqRel      This call differs from StartSeq in that it uses relative addressing from the beginning of the sequence
+
+
+Font Manager ($1B)
+
+$1B $01  Font Manager    _FMBootInit       Initializes the Font Manager; called only by Tool Locator (not application)
+$1B $02  Font Manager    _FMStartUp        Starts up the Font Manager for use by an application
+$1B $03  Font Manager    _FMShutDown       Shuts down the Font Manager
+$1B $04  Font Manager    _FMVersion        Returns the version number of the Font Manager
+$1B $05  Font Manager    _FMReset          Resets the Font Manager; called only on reset (not by application)
+$1B $06  Font Manager    _FMStatus         Indicates whether the Font Manager is active
+$1B $09  Font Manager    _CountFamilies    Returns total # of distinct font families currently available to FM that match given spec
+$1B $0A  Font Manager    _FindFamily       Returns the number and name of a particular font family
+$1B $0B  Font Manager    _GetFamInfo       Returns family name & characteristics of a font family with a spec family number
+$1B $0C  Font Manager    _GetFamNum        Returns the family number corresponding to a specified font family name
+$1B $0D  Font Manager    _AddFamily        Enables application to add a family number & name to Font Manager's list of known fonts
+$1B $0E  Font Manager    _InstallFont      Finds spec font or best fit if spec font isn't available; loads or scales; makes current
+$1B $0F  Font Manager    _SetPurgeStat     Makes a specified font in memory purgeable or unpurgeable
+$1B $10  Font Manager    _CountFonts       Returns number of fonts currently available to Font Manager that fit a spec description
+$1B $11  Font Manager    _FindFontStats    Returns the font ID and the characteristics of a particular font
+$1B $12  Font Manager    _LoadFont         Loads a spec font into memory (if not already there) & make it current & unpurgeable
+$1B $13  Font Manager    _LoadSysFont      Makes the system font the current font
+$1B $14  Font Manager    _AddFontVar       Enables application to add variation of preexisting font family to FM's available fonts
+$1B $15  Font Manager    _FixFontMenu      Appends the names of available font families to a specified menu
+$1B $16  Font Manager    _ChooseFont       Displays a dialog box enabling the user to select a new font, size, and style
+$1B $17  Font Manager    _ItemID2FamNum    Translates the menu item ID into a font family number
+$1B $18  Font Manager    _FMSetSysFont     Makes a specified font the system font
+$1B $19  Font Manager    _FMGetSysFID      Returns the font ID of the system font
+$1B $1A  Font Manager    _FMGetCurFID      Returns the font ID of the current font
+$1B $1B  Font Manager    _FamNum2ItemID    Translates a font family number into a menu item ID
+$1B $1C  Font Manager    _InstallWithSta   Installs a font & returns info about that font
+
+
+List Manager ($1C)
+
+$1C $01  List Manager    _ListBootInit     Initializes the List Manager; called only by Tool Locater - not by application
+$1C $02  List Manager    _ListStartup      Starts up the List Manager for use by an application
+$1C $03  List Manager    _ListShutDown     Shuts down the List Manager when an application quits
+$1C $04  List Manager    _ListVersion      Returns the version number of the List Manager
+$1C $05  List Manager    _ListReset        Resets the List Manager; called only on system reset - not by application
+$1C $06  List Manager    _ListStatus       Indicates whether the List Manager is active
+$1C $09  List Manager    _CreateList       Creates a list control using a specified list record
+$1C $0A  List Manager    _SortList         Alphabetizes a specified list by rearranging the array of member records
+$1C $0B  List Manager    _NextMember       Searches spec list record, start w/spec member, & return ptr to member of nxt member found
+$1C $0C  List Manager    _DrawMember       Draws one or all members of a specified list
+$1C $0D  List Manager    _SelectMember     Select spec member, deselects other select members in list, scrolls list & put spec on top
+$1C $0E  List Manager    _GetListDefProc   Returns a pointer to the list control's definition procedure
+$1C $0F  List Manager    _ResetMember      Search spec list record, start w/first member, & returns ptr to member record, & deselects
+$1C $10  List Manager    _NewList          Resets the list control according to a specified list record
+$1C $11  List Manager    _DrawMember2      Draws one or all members of a specified list
+$1C $12  List Manager    _NextMember2      Searches a specified list record, returns the item number corresponding to the next selected item
+$1C $13  List Manager    _ResetMember2     Searches a specified list control, returns the item number of the first selected member in the list
+$1C $14  List Manager    _SelectMember2    Selects a specified member, deselects any other selected members of the list, scrolls the list display
+$1C $15  List Manager    _SortList2        Alphabetizes a specified list by rearranging the array of member records
+$1C $16  List Manager    _NewList2         Resets the list control according to a specified list record
+$1C $17  List Manager    _ListKey          Accepts keystrokes and jumps the selection around in the specified list appropriately
+$1C $18  List Manager    _CompareStrings   CompareStrings compares two Pascal strings
+
+
+ACE Tool Set ($1D)
+
+$1D $01  ACE Tool Set    _ACEBootInit      Initializes the ACE Tool Set; called only by Tool Locator (not by application)
+$1D $02  ACE Tool Set    _ACEStartUp       Starts up the ACE Tool Set for use by an application
+$1D $03  ACE Tool Set    _ACEShutDown      Shuts down the ACE Tool Set when an application quits
+$1D $04  ACE Tool Set    _ACEVersion       Returns the version number of the ACE Tool Set
+$1D $05  ACE Tool Set    _ACEReset         Resets the ACE Tool Set; called only on reset - not by application
+$1D $06  ACE Tool Set    _ACEStatus        Indicates whether the ACE Tool Set is active
+$1D $07  ACE Tool Set    _ACEInfo          Returns certain information about currently installed version of the ACE tools
+$1D $09  ACE Tool Set    _ACECompress      Compresses equivalent of NBlks of blocks of digital audio data & stores at spec location
+$1D $0A  ACE Tool Set    _ACEExpand        Decompresses a previously compressed Audio Sample, using spec method, & stores at spec loc
+$1D $0B  ACE Tool Set    _ACECompBegin     Prepares the ACE tools to compress a new audio sequence
+$1D $0C  ACE Tool Set    _ACEExpBegin      Prepares ACE to expand a new sequence
+$1D $0D  ACE Tool Set    _ACEGetExpState   Gets the first 16 bytes of the expansion buffer
+$1D $0E  ACE Tool Set    _ACESetExpState   Copies the first 16 bytes to the expansion buffer
+
+
+Resource Manage ($1E)
+
+$1E $01  Resource Manage _ResourceBootIn   Initializes the Resource Manager
+$1E $02  Resource Manage _ResourceStartU   Notifies the Resource Manager that an application wishes to open and use its own resource files
+$1E $03  Resource Manage _ResourceShutDo   Notifies the Resource Manager that an application is finished using its own resource files
+$1E $04  Resource Manage _ResourceVersio   Retrieves the Resource Manager version number
+$1E $05  Resource Manage _ResourceReset    Resets the Resource Manager; issued only when the system is reset
+$1E $06  Resource Manage _ResourceStatus   Returns a flag indicating whether the Resource Manager is active
+$1E $09  Resource Manage _CreateResource   Initializes a resource fork with no resources
+$1E $0A  Resource Manage _OpenResourceFi   Opens a specified reso1..1rce file, making it the current file, and returns a unique file ID to the calling program
+$1E $0B  Resource Manage _CloseResourceF   Updates a specified resource file, frees any memory used by the resource map and resources and closes the file
+$1E $0C  Resource Manage _AddResource      Adds a resource to the current resource file
+$1E $0D  Resource Manage _UpdateResource   Transfers modifications made to resources in memory to the appropriate resource file
+$1E $0E  Resource Manage _LoadResource     Loads a resource into memory and returns a handle to that location
+$1E $0F  Resource Manage _RemoveResource   Deletes a resource from its resource file and releases any memory used by the resource
+$1E $10  Resource Manage _MarkResourceCh   Instructs the Resource Manager to write the specified resource to disk the next time its resource file is updated
+$1E $11  Resource Manage _SetCurResource   Makes a specified resource file the current file
+$1E $12  Resource Manage _GetCurResource   Returns the file ID of the current resource file
+$1E $13  Resource Manage _SetCurResource   Tells the Resource Manager that another application will now be issuing Resource Manager calls
+$1E $14  Resource Manage _GetCurResource   Returns the user ID for the application that is currently using the Resource Manager
+$1E $15  Resource Manage _HomeResourceFi   Returns the file ID of the resource file that contains a specified resource
+$1E $16  Resource Manage _WriteResource    Directs the Resource Manager to write a modified resource to its resource file
+$1E $17  Resource Manage _ReleaseResourc   Sets the purge level of the memory used by a resource
+$1E $18  Resource Manage _DetachResource   Instructs the Resource Manager to dispose of its control blocks for a specified resource
+$1E $19  Resource Manage _UniqueResource   Returns a unique resource ID for a specified resource type
+$1E $1A  Resource Manage _SetResourceID    Changes the ID of a resource to a new value
+$1E $1B  Resource Manage _GetResourceAtt   Returns the attributes word for a specified resource
+$1E $1C  Resource Manage _SetResourceAtt   Sets the attributes of a resource
+$1E $1D  Resource Manage _GetResourceSiz   Returns the size of the specified resource
+$1E $1E  Resource Manage _MatchResourceH   Returns the type and ID of a resource, given ahandle to that resource
+$1E $1F  Resource Manage _GetOpenFileRef   Returns the GS/OS file reference number associated with the resource fork of an open resource file
+$1E $20  Resource Manage _CountTypes       Counts the number of different resource types in all resource files available to the calling program
+$1E $21  Resource Manage _GetIndType       Finds a resource type value by means of its index
+$1E $22  Resource Manage _CountResources   Counts the number of resources of a specified type in all resource files available to the calling program
+$1E $23  Resource Manage _GetIndResource   Finds a resource of a specified type by means of its index and returns the resource ID for that resource
+$1E $24  Resource Manage _SetResourceLoa   Controls Resource Manager access to the disk when resources are loaded
+$1E $25  Resource Manage _SetResourceFil   Sets the number of files the Resource Manager is to search during a search operation
+$1E $26  Resource Manage _GetMapHandle     Returns a handle to the resource map for a specified resource file
+$1E $27  Resource Manage _LoadAbsResourc   Loads a resource into a specified absolute memory location
+$1E $28  Resource Manage _ResourceConver   Installs or removes a converter routine from either the application or system converter list
+$1E $29  Resource Manage _LoadResource2    It is like LoadResource expect that it returns information about the previous state of the returned handle
+$1E $2A  Resource Manage _RMFindeNamedRe   Takes a resource type and a resource name and finds the resource ID of the corresponding resource
+$1E $2B  Resource Manage _RMGetResourceN   Returns the Pascal string name of the specified resource
+$1E $2C  Resource Manage _RMLoadNamedRes   Takes a resource type and a resource name and loads the corresponding resource
+$1E $2D  Resource Manage _RMSetResourceN   Sets the name of the specified resource, first removing any existing name
+$1E $2E  Resource Manage _OpenResourceFi   Starts the Resource Manager for you if it isn't already started under the specified user ID
+$1E $2F  Resource Manage _CompactResourc   Consolidates all free blocks in an open resource file into a single free block at the end
+
+
+MIDI Tool Set ($20)
+
+$20 $01  MIDI Tool Set   _MIDIBootInit     Initializes the MIDI Tool Set; called only by Tool Locator (not by application)
+$20 $02  MIDI Tool Set   _MIDIStartUp      Starts up the MIDI Tool Set for use by an application
+$20 $03  MIDI Tool Set   _MIDIShutDown     Shuts down the MIDI Tool Set when an application quits
+$20 $04  MIDI Tool Set   _MIDIVersion      Returns the version number of the MIDI Tool Set
+$20 $05  MIDI Tool Set   _MIDIReset        Resets the MIDI Tool Set; called only on reset - not by application
+$20 $06  MIDI Tool Set   _MIDIStatus       Indicates whether the MIDI Tool Set is active
+$20 $09  MIDI Tool Set   _MIDIControl      Performs 18 different control functions required by the MIDI Tool Set
+$20 $0A  MIDI Tool Set   _MIDIDevice       Allows an application to select, load, & unload device drivers for use with the tools
+$20 $0B  MIDI Tool Set   _MIDIClock        Controls operation of optional time-stamp clock - allows precise timing of events
+$20 $0C  MIDI Tool Set   _MIDIInfo         Returns certain information about the state of the MIDI Tools
+$20 $0D  MIDI Tool Set   _MIDIReadPacket   Returns length of a packet of MIDI data that was transferred from input buffer to array
+$20 $0E  MIDI Tool Set   _MIDIWritePacke   Queues spec MIDI packet into output buffer - returns # of bytes written, if successful
+
+
+Text Edit Tool ($22)
+
+$22 $01  Text Edit Tool  _TEBootInit       Initializes TextEdit; called only by the Tool Locator
+$22 $02  Text Edit Tool  _TEStartUp        Starts up the TextEdit Tool Set and prepares TextEdit for application use
+$22 $03  Text Edit Tool  _TEShutDown       Frees memory used by TextEdit, not including memory used by individual TextEdit records
+$22 $04  Text Edit Tool  _TEVersion        Retrieves the TextEdit version number
+$22 $05  Text Edit Tool  _TEReset          Resets TextEdit; called only when the system is reset
+$22 $06  Text Edit Tool  _TEStatus         Returns a flag indicating whether TextEdit is active
+$22 $09  Text Edit Tool  _TENew            Allocates a new TextEdit record in the current port and returns the TERecord defining that record
+$22 $0A  Text Edit Tool  _TEKill           Deallocates a TERecord and all associated memory
+$22 $0B  Text Edit Tool  _TESetText        Replaces the text in a TextEdit record, including style information, with supplied text and style data
+$22 $0C  Text Edit Tool  _TEGetText        Returns the text from a TextEdit record, including the style information associated with that text
+$22 $0D  Text Edit Tool  _TEGetTextInfo    Returns an information record, of variable size, describing a TextEdit record
+$22 $0E  Text Edit Tool  _TEIdle           Provides processor time so that TextEdit can cause the cursor to blink and can perform other background tasks
+$22 $0F  Text Edit Tool  _TEActivate       Makes the specified TextEdit record active-that is, makes that record the target of user keystrokes
+$22 $10  Text Edit Tool  _TEDeactivate     Deactivates a TextEdit record
+$22 $11  Text Edit Tool  _TEClick          Tracks the pointer within a TextEdit record, selecting all text that it passes over until the user releases the mouse button
+$22 $12  Text Edit Tool  _TEUpdate         Redraws the screen for a TextEdit record
+$22 $13  Text Edit Tool  _TEPaintText      Prints the text from a TextEdit record
+$22 $14  Text Edit Tool  _TEKey            Processes a keystroke for a TextEdit record
+$22 $15  Text Edit Tool  _TEUndo           This routine does nothing
+$22 $16  Text Edit Tool  _TECut            Copies the current selection from the active TextEdit record to the Clipboard, destroying its previous contents
+$22 $17  Text Edit Tool  _TECopy           Copies the current selection from the active TextEdit record to the Clipboard, destroying its previous contents
+$22 $18  Text Edit Tool  _TEPaste          Replaces the current selection with the contents of the Clipboard, including both text and style information
+$22 $19  Text Edit Tool  _TEClear          Clears the current selection in the active TextEdit record and redraws the screen
+$22 $1A  Text Edit Tool  _TEInsert         Inserts a block of text before the current selection in a TextEdit record and redraws the text screen
+$22 $1B  Text Edit Tool  _TEReplace        Replaces the current selection in a TextEdit record with a specified block of text and redraws the text screen
+$22 $1C  Text Edit Tool  _TEGetSelection   Returns information defining the current selection for a TextEdit record
+$22 $1D  Text Edit Tool  _TESetSelection   Sets the current selection for a TextEdit record
+$22 $1E  Text Edit Tool  _TEGetSelection   Returns all style information for the text in the current selection in a TextEdit record.
+$22 $1F  Text Edit Tool  _TEStyleChange    Changes the style information for the current selection in a TextEdit record
+$22 $20  Text Edit Tool  _TEOffsetToPoin   Converts a text byte offset into a pixel position expressed in the local coordinates of the GrafPort
+$22 $21  Text Edit Tool  _TEPointToOffse   Converts a pixel position into a text byte offset to the text for the record
+$22 $22  Text Edit Tool  _TEGetDefProc     Returns the address of the TextEdit control definition procedure
+$22 $23  Text Edit Tool  _TEGetRuler       Returns the ruler definition for a TextEdit record
+$22 $24  Text Edit Tool  _TESetRuler       Sets the ruler for a TextEdit record
+$22 $25  Text Edit Tool  _TEScroll         Causes the text in a TextEdit record to scroll
+$22 $26  Text Edit Tool  _TEGetInternalP   Returns a pointer to the low-level procedure routine for TextEdit
+$22 $27  Text Edit Tool  _TEGetLastError   Returns the last error code generated for a TextEdit record
+$22 $28  Text Edit Tool  _TECompactRecor   Compresses all the TextEdit data structures in a specified TextEdit record
+
+
+ProDOS 16 (%00)
+
+%00 $01  ProDOS 16       CREATE            Creates a standard file, extended file, or subdirectory file on a volume
+%00 $02  ProDOS 16       DESTROY           Deletes a spec standard, extended, or subdir file & updates file system to show deletion
+%00 $04  ProDOS 16       CHANGE_PATH       Changes a file's pathname to another pathname on the same volume, or renames a volume
+%00 $05  ProDOS 16       SET_FILE_INFO     Sets certain file attributes of existing block file & immediately modifies directory entry
+%00 $06  ProDOS 16       GET_FILE_INFO     Returns certain file attributes of existing block file
+%00 $08  ProDOS 16       VOLUME            Returns name of volume mounted in specified device along with other info about volume
+%00 $09  ProDOS 16       SET_PREFIX        Sets one of the number pathname prefixes to a specified value
+%00 $0A  ProDOS 16       GET_PREFIX        Returns current value of any one of the numbered prefixes
+%00 $0B  ProDOS 16       CLEAR_BACKUP_BI   Alters a file's state info to indicate file has been backed up & not altered since backup
+%00 $10  ProDOS 16       OPEN              Causes GS/OS to establish an access path to a file & allows subsequent reads & writes
+%00 $11  ProDOS 16       NEWLINE           Enables or disables the newline read mode for an open file & spec enable mask & character
+%00 $12  ProDOS 16       READ              Attempts to transfer # of bytes requested, starting at current mark, into file buffer
+%00 $13  ProDOS 16       WRITE             Attempts to transfer # bytes spec from applications buffer to the spec file, at mark
+%00 $14  ProDOS 16       CLOSE             Closes access path to specified file, releasing all resources & buffered data for file
+%00 $15  ProDOS 16       FLUSH             Writes to volume all file state info that's buffered in mem but not yet written to volume
+%00 $16  ProDOS 16       SET_MARK          Sets the file mark to a specified value (position where next byte will be accessed)
+%00 $17  ProDOS 16       GET_MARK          Returns the current file mark for the specified file
+%00 $18  ProDOS 16       SET_EOF           Sets logical size of oepn file to spec value which may be larger or smaller than current
+%00 $19  ProDOS 16       GET_EOF           Returns current logical size of a specified file
+%00 $1A  ProDOS 16       SET_LEVEL         Sets current value of the system file level
+%00 $1B  ProDOS 16       GET_LEVEL         Returns current value of system file level
+%00 $1C  ProDOS 16       GET_DIR_ENTRY     Returns info about a directory entry in the volume directory or a subdirectory
+%00 $20  ProDOS 16       GET_DEV_NUMBER    Returns device number of a device identifed by device name or volume name
+%00 $21  ProDOS 16       GET_LAST_DEV      Returns the device number of the last accessed device (use with caution)
+%00 $22  ProDOS 16       READ_BLOCK        Reads one 512-byte block of information from disk specified by device number
+%00 $23  ProDOS 16       WRITE_BLOCK       Writes one 512-byte block of information to disk specified by device number
+%00 $24  ProDOS 16       FORMAT            Puts up dialog box that allows user to physically format a volume & chose file system
+%00 $25  ProDOS 16       ERASE_DISK        Puts up dialog box that allows user to erase a spec volume (does not physically format)
+%00 $27  ProDOS 16       GET_NAME          Returns the filename (not complete pathname) of currently running application program
+%00 $28  ProDOS 16       GET_BOOT_VOL      Returns volume name of volume from wich the file GS/OS was last loaded & executed (*/)
+%00 $29  ProDOS 16       QUIT              Terminates the running application, closes all open files, then launches next application
+%00 $2A  ProDOS 16       GET_VERSION       Returns the version number of the GS/OS operating system
+%00 $2C  ProDOS 16       D_INFO            Returns general information about a device attached to the system (devNum & devName)
+%00 $31  ProDOS 16       ALLOC_INTERRUPT   Places address of an interrupt handler into GS/OS interrupt vector table
+%00 $32  ProDOS 16       DEALLOC_INTERRU   Removes a specified interrupt handler from the interrupt vector table
+
+
+GS/OS (%20)
+
+%20 $01  GS/OS           CreateGS          Creates a standard file, extended file, or subdirectory file on a volume
+%20 $02  GS/OS           DestroyGS         Deletes a spec standard, extended, or subdir file & updates file system to show deletion
+%20 $03  GS/OS           OSShutdownGS      Allows application to shut down OS in prep for power down or cold reboot of machine
+%20 $04  GS/OS           Change_PathGS     Changes a file's pathname to another pathname on the same volume, or change name of volume
+%20 $05  GS/OS           Set_File_InfoGS   Sets certain file attributes of existing block file & immediately modifies directory entry
+%20 $06  GS/OS           Get_File_InfoGS   Returns certain file attributes of existing block file
+%20 $07  GS/OS           JudgeNameGS       Allows the caller to verify the syntax of a file name, directory name or volume name
+%20 $08  GS/OS           VolumeGS          Returns name of volume mounted in specified device along with other info about volume
+%20 $09  GS/OS           Set_PrefixGS      Sets one of the number pathname prefixes to a specified value
+%20 $0A  GS/OS           Get_PrefixGS      Returns current value of any one of the numbered prefixes
+%20 $0B  GS/OS           Clear_BackupGS    Sets file's state info to indicate that file has been backed up & not altered since backup
+%20 $0C  GS/OS           Set_Sys_PrefsGS   Sets value of current global system preferences - values affect behavior of sys calls
+%20 $0D  GS/OS           NullGS            Executes any pending events in Scheduler & GS/OS event queue - flushes queues
+%20 $0E  GS/OS           Expand_PathGS     Converts input pathname into full pathname with ':' as separators, optionally changin case
+%20 $0F  GS/OS           Get_Sys_PrefsGS   Returns value of current global system preferences - values affect behavior of sys calls
+%20 $10  GS/OS           OpenGS            Causes GS/OS to establish an access path to a file & allows subsequent reads & writes
+%20 $11  GS/OS           NewLineGS         Enables or disables newline read mode for an open file, & spec enable mask & character
+%20 $12  GS/OS           ReadGS            Attempts to transfer # of bytes requested, starting at current mark, into file buffer
+%20 $13  GS/OS           WriteGS           Attempts to transfer # bytes spec from applications buffer to the spec file, at mark
+%20 $14  GS/OS           CloseGS           Closes access path to specified file, releasing all resources & buffered data for file
+%20 $15  GS/OS           FlushGS           Writes to volume all file state info that's buffered in mem but not yet written to volume
+%20 $16  GS/OS           Set_MarkGS        Sets the file mark to a specified value (position where next byte will be accessed)
+%20 $17  GS/OS           Get_MarkGS        Returns the current file mark for the specified file
+%20 $18  GS/OS           Set_EOFGS         Sets logical size of oepn file to spec value which may be larger or smaller than current
+%20 $19  GS/OS           Get_EOFGS         Returns current logical size of a specified file
+%20 $1A  GS/OS           Set_LevelGS       Sets current value of the system file level
+%20 $1B  GS/OS           Get_LevelGS       Returns the current value of the system file level
+%20 $1C  GS/OS           Get_Dir_EntryGS   Returns info about a directory entry in the volume directory or a subdirectory
+%20 $1D  GS/OS           Begin_SessionGS   Tells GS/OS to begin deferring block writes to disk - block cache until EndSession
+%20 $1E  GS/OS           End_SessionGS     Flushes any deferred block writes occuring during write-deferral session & resume norm
+%20 $1F  GS/OS           Session_StatusG   Returns a value that tells if a write-deferral session is in progress
+%20 $20  GS/OS           Get_Dev_NumberG   Returns device number of a device identifed by device name or volume name
+%20 $21  GS/OS           Get_Last_DevGS    Returns the device number of the last accessed device (use with caution)
+%20 $24  GS/OS           FormatGS          Puts up dialog box that allows user to physically format a volume & chose file system
+%20 $25  GS/OS           Erase_DiskGS      Puts up dialog box that allows user to erase a spec volume (does not physically format)
+%20 $26  GS/OS           ResetCacheGS      Provides a way to resize the GS/OS cache and be able to use the resized cache immediately
+%20 $27  GS/OS           Get_NameGS        Returns the filename (not complete pathname) of currently running application program
+%20 $28  GS/OS           Get_Boot_VolGS    Returns volume name of volume from wich the file GS/OS was last loaded & executed (*/)
+%20 $29  GS/OS           QuitGS            Terminates the running application, closes all open files, then launches next application
+%20 $2A  GS/OS           Get_VersionGS     Returns the version number of the GS/OS operating system
+%20 $2B  GS/OS           Get_FST_InfoGS    Returns general information about a specified File System Translator
+%20 $2C  GS/OS           D_InfoGS          Returns general information about a device attached to the system
+%20 $2D  GS/OS           D_StatusGS        Returns status information about a specified device
+%20 $2E  GS/OS           D_ControlGS       Sends control info to a specified device
+%20 $2F  GS/OS           D_ReadGS          Performs a device-level read on a specified device
+%20 $30  GS/OS           D_WriteGS         Performs a device-level write to a specified device
+%20 $31  GS/OS           Bind_IntGS        Places address of an interrupt handler into GS/OS's interrupt vector table
+%20 $32  GS/OS           Unbind_IntGS      Removes a specified interrupt handler from the interrupt vector table
+%20 $33  GS/OS           FSTSpecificGS     Call that can be defined individually for any file system translator
+%20 $34  GS/OS           AddNotifyProcGS   Adds a notification queue to the notification queue
+%20 $35  GS/OS           DelNotifyProcGS   Removes a notification procedure from the notification queue
+%20 $36  GS/OS           D_RenameGS        Replaces a device name as specificed in a device information block
+%20 $39  GS/OS           GetRefInfoGS      Returns the access attributes and full pathname for an open file when the reference number is given as input
+%20 $3A  GS/OS           SetStdRefNumGS    Allows the caller to explicitly set the reference number associated with one of the standard I/O channels
+
