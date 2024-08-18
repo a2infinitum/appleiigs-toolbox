@@ -3,9 +3,14 @@
 <head>
   <link rel="stylesheet" href="{{ "css/gstoolbox.css" | relURL }}">
 </head>
-
+<script> function changeBg(color) { document.body.style.background = color; } </script>
 <body>
 <h1>Apple IIgs Toolbox Reference</h1>
+Display Mode: 
+<button onclick="changeBg('#e5eaf5')">Freeze Purple</button>
+<button onclick="changeBg('lightgrey')">Light Grey</button>
+<button onclick="changeBg('#edf7f6')">Dusty White</button>
+<button onclick="changeBg('white')">White</button>
 
 <ul>
 <li>Additional project information at: <a href="https://github.com/a2infinitum/appleiigs-toolbox">https://github.com/a2infinitum/appleiigs-toolbox</a> </li>
@@ -178,7 +183,7 @@
     </div>
     {{ end }}
     
-
+ 
 
 
     {{ if  .errors }}    
@@ -188,9 +193,14 @@
       {{ range $k := .errors }}
         {{ if eq $k "none" }}
           <p>None</p>
+        {{ else if eq $k "sl_unchanged" }}
+          <p>System Loader errors: &nbsp; Return unchanged</p>
+        {{ else if eq $k "pro_unchanged" }}
+          <p>ProDOS errors: &nbsp; Return unchanged</p>
         {{ else }}
           {{ $err := index $errors $k }}
-          <pre>${{ $err.code }}   {{ $err.name }}   {{ $err.description }}</pre>
+          {{ $paddedErr := printf "%-22s" $err.name }}
+          <pre>${{ $err.code }}   {{ $paddedErr }}  {{ $err.description }}</pre>
         {{ end }}
       {{ end }}
     </div>

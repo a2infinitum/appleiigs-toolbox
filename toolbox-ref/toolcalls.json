@@ -139,7 +139,7 @@
         ]
       },
       "errors": ["tl0001"],
-      "c": { "call": "extern pascal void GetWAP(userOrSystem,tsNum)" }
+      "c": { "call": "extern pascal Pointer GetWAP(userOrSystem,tsNum)" }
     },
     {
       "toolcall": "0D",
@@ -162,28 +162,62 @@
       "toolnum": "01",
       "toolname": "Tool Locator",
       "callname": "_LoadTools",
-      "description": "Ensures that spec system tool sets are available & have specified minimum version numbers"
+      "description": "Ensures that spec system tool sets are available & have specified minimum version numbers",
+      "parameters": {
+        "input": [{ "size": "long", "name": "toolTablePtr", "description": "POINTER to table of tool set numbers" }]
+      },
+      "errors": ["tl0001", "tl0010", "sl_unchanged", "pro_unchanged"],
+      "c": { "call": "extern pascal void LoadTools(toolTablePtr)" }
     },
     {
       "toolcall": "0F",
       "toolnum": "01",
       "toolname": "Tool Locator",
       "callname": "_LoadOneTool",
-      "description": "Ensures that spec system tool set is available & has a spec minimum version number"
+      "description": "Ensures that spec system tool set is available & has a spec minimum version number",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "toolNumber", "description": "INTEGER; tool set number of tool set to load" },
+          { "size": "word", "name": "minVersion", "description": "Minimum version number of tool set needed" }
+        ]
+      },
+      "errors": ["tl0001", "tl0010", "sl_unchanged", "pro_unchanged"],
+      "c": { "call": "extern pascal void LoadOneTool(toolNumber,minVersion)" }
     },
     {
       "toolcall": "10",
       "toolnum": "01",
       "toolname": "Tool Locator",
       "callname": "_UnloadOneTool",
-      "description": "Unloads a specified tool set from memory"
+      "description": "Unloads a specified tool set from memory",
+      "parameters": {
+        "input": [ { "size": "word", "name": "toolNumber", "description": "INTEGER; tool set number of tool set to load" } ]
+      },
+      "errors": ["tl0001"],
+      "c": { "call": "extern pascal void UnLoadOneTool(toolNumber)" }
     },
     {
       "toolcall": "11",
       "toolnum": "01",
       "toolname": "Tool Locator",
       "callname": "_TLMountVolume",
-      "description": "Displays on SHR screen a simulated dialog box to prompt user to mount a volume"
+      "description": "Displays on SHR screen a simulated dialog box to prompt user to mount a volume",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "whereX", "description": "INTEGER; upper lext X coordinate for box" },
+          { "size": "word", "name": "whereY", "description": "INTEGER; upper lext Y coordinate for box" },
+          { "size": "long", "name": "line1Ptr", "description": "POINTER to Pascal-type string to appear at top of box" },
+          { "size": "long", "name": "line2Ptr", "description": "POINTER to Pascal-type string to appear just below line 1" },
+          { "size": "long", "name": "but1Ptr", "description": "POINTER to Pascal-type string to appear inside button 1" },
+          { "size": "long", "name": "but2Ptr", "description": "POINTER to Pascal-type string to appear inside button 2" }
+        ],
+        "output": [
+          { "size": "word", "name": "whichButton", "description": "Button number chosen; Return = 1, Esc = 2"}
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word TLMountVolume(whereX,whereY,line1Ptr,line2Ptr,but1Ptr,but2Ptr)" }
     },
     {
       "toolcall": "12",
@@ -8876,7 +8910,7 @@
   "errors": {
     "tl0001": { "source": "Tool Locator", "code": "0001", "name": "toolNotFoundErr", "description": "Specified tool set not found" },
     "tl0002": { "source": "Tool Locator", "code": "0002", "name": "funcNotFoundErr", "description": "Specified routine not found" },
-    "tl0110": { "source": "Tool Locator", "code": "0110", "name": "toolVersionErr", "description": "Specified minimum version not found" },
+    "tl0010": { "source": "Tool Locator", "code": "0110", "name": "toolVersionErr", "description": "Specified minimum version not found" },
     "tl0111": { "source": "Tool Locator", "code": "0111", "name": "messNotFoundErr", "description": "Specified message not found" }
   }
 }
