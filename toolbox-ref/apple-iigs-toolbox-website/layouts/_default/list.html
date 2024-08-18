@@ -1,0 +1,42 @@
+{{ $toolcalls := getJSON "../toolcalls.json" }}
+<html>
+<head>
+  <link rel="stylesheet" href="{{ "css/gstoolbox.css" | relURL }}">
+</head>
+
+<body>
+<h1>Apple IIgs Toolbox Reference</h1>
+
+
+<h2>Contents - By Tool Set </h2>
+<ul>
+  {{ $currentToolName := "" }}
+  {{ range $toolcalls }}
+    {{ if ne $currentToolName .toolname }}
+      {{ if ne $currentToolName "" }}
+        </ul>
+      {{ end }}
+      <li>
+        <strong><a href="#{{ .toolname | urlize }}">{{ .toolname }}</a></strong>
+        <ul>
+      {{ end }}
+      {{ $currentToolName = .toolname }}
+    {{ end }}
+</ul>
+
+<h1>Toolbox Reference - By Tool Set</h1>
+
+
+
+{{ range $toolcalls }}
+  <div class="api">
+  <h4 class="tn">${{ .toolcall }}{{ .toolnum }}</h4>
+  <h4 id="{{ .toolcall | urlize }}">{{ .callname }}</h4>
+  <p>{{ .description }}</p>
+
+  </div>
+{{ end }}
+
+  
+</body>
+</html>

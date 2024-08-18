@@ -1,0 +1,3 @@
+[submodule "toolbox-ref/apple-iigs-toolbox-website/themes/ananke"]
+	path = toolbox-ref/apple-iigs-toolbox-website/themes/ananke
+	url = https://github.com/theNewDynamic/gohugo-theme-ananke.git
