@@ -1,4 +1,4 @@
-{{ $toolcalls := getJSON "../toolcalls.json" }}
+{{ $tooldata := getJSON "../toolcalls.json" }}
 <html>
 <head>
   <link rel="stylesheet" href="{{ "css/gstoolbox.css" | relURL }}">
@@ -7,34 +7,212 @@
 <body>
 <h1>Apple IIgs Toolbox Reference</h1>
 
+<ul>
+<li>Additional project information at: <a href="https://github.com/a2infinitum/appleiigs-toolbox">https://github.com/a2infinitum/appleiigs-toolbox</a> </li>
+<li><em>Status:</em> {{ $tooldata.datastatus }}</li>
+</ul>
+
+{{ $toolcalls := $tooldata.toolcalls }}
+{{ $errors := $tooldata.errors }}
+
+<!-- I MADE A SUPER COMPLICATED TOC RENDERER BECAUSE I DON'T KNOW WHAT I'M DOING -->
+<!-- Create an empty map to store unique values -->
+{{ $uniqueTools := dict }}
+
+<!-- Iterate over toolcalls and store unique toolname and toolnum in the map -->
+{{ range $toolcalls }}
+  {{ $key := printf "%s-%s" .toolname .toolnum }}
+  {{ if not (index $uniqueTools $key) }}
+    {{ $uniqueTools = merge $uniqueTools (dict $key (dict "toolname" .toolname "toolnum" .toolnum)) }}
+  {{ end }}
+{{ end }}
+
+<!-- Convert the map to a slice manually -->
+{{ $uniqueToolsSlice := slice }}
+{{ range $uniqueTools }}
+  {{ $uniqueToolsSlice = $uniqueToolsSlice | append . }}
+{{ end }}
+
+
+<!-- Calculate the total number of toolcalls and midpoint -->
+{{ $total := len $uniqueToolsSlice }}
+{{ $midpoint := div (add $total 1) 2 }}
 
 <h2>Contents - By Tool Set </h2>
-<ul>
-  {{ $currentToolName := "" }}
-  {{ range $toolcalls }}
-    {{ if ne $currentToolName .toolname }}
-      {{ if ne $currentToolName "" }}
-        </ul>
+
+{{ $currentToolName := "" }}
+
+<!-- Split into two parts for two columns -->
+<table>
+  <tr>
+    <td>
+  <ul>
+  {{ range $i, $e := $uniqueToolsSlice }}
+    {{ if lt $i $midpoint }}
+      {{ if ne $currentToolName $e.toolname }}
+        {{ if ne $currentToolName "" }}
+          </ul>
+        {{ end }}
+        <li>
+          <strong><a href="#{{ $e.toolname | urlize }}">{{ .toolname }} &mdash; ${{ .toolnum }}</a></strong>
+          <ul>
       {{ end }}
-      <li>
-        <strong><a href="#{{ .toolname | urlize }}">{{ .toolname }}</a></strong>
-        <ul>
-      {{ end }}
-      {{ $currentToolName = .toolname }}
+      {{ $currentToolName = $e.toolname }}
     {{ end }}
-</ul>
+  {{ end }}
+  </ul>
+  </td>
+  {{ $currentToolName := "" }}
+  <td>
+  <ul>
+  {{ range $i, $e := $uniqueToolsSlice }}
+    {{ if ge $i $midpoint }}
+      {{ if ne $currentToolName $e.toolname }}
+        {{ if ne $currentToolName "" }}
+          </ul>
+        {{ end }}
+        <li>
+          <strong><a href="#{{ $e.toolname | urlize }}">{{ .toolname }} &mdash; ${{ .toolnum }}</a></strong>
+          <ul>
+      {{ end }}
+      {{ $currentToolName = $e.toolname }}
+    {{ end }}
+  {{ end }}
+  </ul>
+  </td>
+  </tr>
+</table>
+<!--  END TOC, NO SERIOUSLY.  I'M BAD AT THIS. -->
+
+
+
+
+<br/><br/>
 
 <h1>Toolbox Reference - By Tool Set</h1>
 
 
+{{ $currentToolName := "" }}
+{{ $inTr := false }}
+{{ $prevObj := false }}
 
 {{ range $toolcalls }}
+
+{{ if ne $currentToolName .toolname }}
+<br/>
+<h2 id="{{ .toolname | urlize }}">{{ .toolname }}</h2>
+{{ $currentToolName = .toolname }}
+{{ end }}
   <div class="api">
+  <br/>
   <h4 class="tn">${{ .toolcall }}{{ .toolnum }}</h4>
   <h4 id="{{ .toolcall | urlize }}">{{ .callname }}</h4>
   <p>{{ .description }}</p>
 
+    {{ if .parameters }}
+    <div class="section">
+    <h5>Parameters</h5> 
+
+    {{ if (.parameters.none) }}
+      <p>The stack is not affected by this call.  There are no input or output parameters.</p>
+    {{ else }}
+
+
+      <table class="stack">
+      <tr><th>Stack before call</th></tr>
+      <tr><td class="top">previous contents</td></tr>
+      {{ range .parameters.input }}
+      {{ if in .size "word" }}
+      <tr><td class="bot">{{ .name }}</td><td></td><td><em>{{ title .size }}</em> &mdash; {{ .description}}</td></tr>
+      {{ else if in .size "long" }}
+      <tr><td rowspan="2" class="bot">{{ .name }}</td><td>&nbsp;</td><td rowspan="2"><em>{{ title .size }}</em> &mdash; {{ .description}}</td></tr>
+      <tr><td>&nbsp;</td><td></td><td></td></tr>
+      {{ else if in .size "byte" }}
+        {{ if not $inTr}}
+          {{ $inTr = true}}
+              {{ $prevObj = . }}
+        {{ else }}
+          {{ $inTr = false}}
+          <tr>
+            <td class="bot">{{ $prevObj.name }} | {{ .name }}</td>
+            <td></td><td><em>{{ title $prevObj.size }}</em> &mdash; {{ $prevObj.description}} &nbsp; | <em>{{ title .size }}</em> &mdash; {{ .description}}</td></tr>
+
+          </tr>
+        {{ end }}
+      {{ else }}
+         <tr><td>{{ .name }} <em>{{ title .size }} </em> &mdash; {{ .description}}</td></tr>
+      {{ end }}
+      {{ end }}
+      <tr><td class="bot"></td><td><em>&larr;</em></td><td><em>SP</em></td></tr>
+      </table>
+   
+      <table class="stack">
+        <tr><th>Stack after call</th></tr>
+        <tr><td class="top">previous contents</td></tr>
+        {{ range .parameters.output }}
+        {{ if in .size "word" }}
+        <tr><td class="bot">{{ .name }}</td><td></td><td><em>{{ title .size }}</em> &mdash; {{ .description}}</td></tr>
+        {{ else if in .size "long" }}
+        <tr><td rowspan="2" class="bot">{{ .name }}</td><td>&nbsp;</td><td rowspan="2"><em>{{ title .size }}</em> &mdash; {{ .description}}</td></tr>
+        <tr><td>&nbsp;</td><td></td><td></td></tr>
+        {{ else if in .size "byte" }}
+          {{ if not $inTr}}
+            {{ $inTr = true}}
+                {{ $prevObj = . }}
+          {{ else }}
+            {{ $inTr = false}}
+            <tr>
+              <td class="bot">{{ $prevObj.name }} | {{ .name }}</td>
+              <td></td><td><em>{{ title $prevObj.size }}</em> &mdash; {{ $prevObj.description}} &nbsp; | <em>{{ title .size }}</em> &mdash; {{ .description}}</td></tr>
+  
+            </tr>
+          {{ end }}
+        {{ else }}
+           <tr><td>{{ .name }} <em>{{ title .size }} </em> &mdash; {{ .description}}</td></tr>
+        {{ end }}
+        {{ end }}
+        <tr><td class="bot"></td><td><em>&larr;</em></td><td><em>SP</em></td></tr>
+        </table>
+    
+    {{ end }}
+    </div>
+    {{ end }}
+    
+
+
+
+    {{ if  .errors }}    
+    <div class="section">
+      <h5>Errors</h5> 
+  
+      {{ range $k := .errors }}
+        {{ if eq $k "none" }}
+          <p>None</p>
+        {{ else }}
+          {{ $err := index $errors $k }}
+          <pre>${{ $err.code }}   {{ $err.name }}   {{ $err.description }}</pre>
+        {{ end }}
+      {{ end }}
+    </div>
+    {{ end }}
+    
+
+    {{ if .c }}
+    <div class="section">
+    <h5>C</h5> 
+
+    {{ if not .c.call }}
+      <p>Call must not be made by an application.</p>
+    {{ else }}
+      <pre>{{ .c.call }} </pre>
+    
+    {{ end }}
+    </div>
+    {{ end }}
+    
+    <br/><br/>
   </div>
+
 {{ end }}
 
   
