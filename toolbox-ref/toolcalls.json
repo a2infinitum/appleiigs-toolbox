@@ -194,7 +194,7 @@
         "input": [ { "size": "word", "name": "toolNumber", "description": "INTEGER; tool set number of tool set to load" } ]
       },
       "errors": ["tl0001"],
-      "c": { "call": "extern pascal void UnLoadOneTool(toolNumber)" }
+      "c": { "call": "extern pascal void UnloadOneTool(toolNumber)" }
     },
     {
       "toolcall": "11",
@@ -224,77 +224,190 @@
       "toolnum": "01",
       "toolname": "Tool Locator",
       "callname": "_TLTextMountVol",
-      "description": "Displays on 40-column text screen a simulated dialog box to prompt user to mount volume"
+      "description": "Displays on 40-column text screen a simulated dialog box to prompt user to mount volume",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "line1Ptr", "description": "POINTER to Pascal-type string to appear at top of box" },
+          { "size": "long", "name": "line2Ptr", "description": "POINTER to Pascal-type string to appear just below line 1" },
+          { "size": "long", "name": "but1Ptr", "description": "POINTER to Pascal-type string to appear inside button 1" },
+          { "size": "long", "name": "but2Ptr", "description": "POINTER to Pascal-type string to appear inside button 2" }
+        ],
+        "output": [
+          { "size": "word", "name": "whichButton", "description": "Button number chosen; Return = 1, Esc = 2"}
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word TLTextMountVolume(line1Ptr,line2Ptr,but1Ptr,but2Ptr)" }
     },
     {
       "toolcall": "13",
       "toolnum": "01",
       "toolname": "Tool Locator",
       "callname": "_SaveTextState",
-      "description": "Saves state of text scrn & forces hardware to display text scrn regardless of current mode"
+      "description": "Saves state of text scrn & forces hardware to display text scrn regardless of current mode",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "stateHandle", "description": "HANDLE to state record (see Toolbox Ref V2, Table 24-4)"}
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Handle SaveTextState()" }
     },
     {
       "toolcall": "14",
       "toolnum": "01",
       "toolname": "Tool Locator",
-      "callname": "_RestoreTextSta",
-      "description": "Restores state of text screen from a specified handle and disposes of the handle"
+      "callname": "_RestoreTextState",
+      "description": "Restores state of text screen from a specified handle and disposes of the handle",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "stateHandle", "description": "HANDLE to state record to restore" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void RestoreTextState(stateHandle)" }
     },
     {
       "toolcall": "15",
       "toolnum": "01",
       "toolname": "Tool Locator",
       "callname": "_MessageCenter",
-      "description": "Allows applications to communicate with each other"
+      "description": "Allows applications to communicate with each other (Tool Locator version >= 2.1)",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "action", "description": "1 = add, 2 = get, 3 = delete (see Toolbox Ref V2, Table 24-3)" },
+          { "size": "word", "name": "type", "description": "Message ID number" },
+          { "size": "long", "name": "messageHandle", "description": "HANDLE to message" }
+        ]
+      },
+      "errors": ["tl0111"],
+      "c": { "call": "extern pascal void MessageCenter(action,type,messageHandle)" }
     },
     {
       "toolcall": "16",
       "toolnum": "01",
       "toolname": "Tool Locator",
       "callname": "_SetDefaultTPT",
-      "description": "Sets default Tool Pointer Table to current TPT - permanently installs tool patch (no appl)"
+      "description": "Sets default Tool Pointer Table (TPT) to current TPT - Used to install a tool patch - not called by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetDefaultTPT()" }
     },
     {
       "toolcall": "17",
       "toolnum": "01",
       "toolname": "Tool Locator",
       "callname": "_MessageByName",
-      "description": "Creates and associates a name with a new message"
+      "description": "Creates and associates a name with a new message, providing a mechanism for passing messages between programs",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "createItFlag", "description": "BOOLEAN; indicates whether or not to create the message" },
+          { "size": "long", "name": "recordPointer", "description": "POINTER to input record" }
+        ],
+        "output": [
+          { "size": "long", "name": "responseRecord", "description": "Response record from call"}
+        ]
+      },
+      "errors": ["tl0111", "tl0112", "tl0113"],
+      "c": { "call": "extern pascal responseRecord MessageByName(createItFlag,recordPointer)" }
     },
     {
       "toolcall": "18",
       "toolnum": "01",
       "toolname": "Tool Locator",
       "callname": "_StartUpTools",
-      "description": "Starts and loads the tools specified in the input StartStop record"
+      "description": "Starts and loads the tools specified in the input StartStop record",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "userID", "description": "Application user ID for system calls" },
+          { "size": "word", "name": "startStopRefDesc", "description": "Type of reference stored in startStopRef" },
+          { "size": "long", "name": "startStopRef", "description": "Reference to the StartStop record" }
+        ],
+        "output": [
+          { "size": "long", "name": "startStopRefRet", "description": "Reference to resulting StartStop record"}
+        ]
+      },
+      "errors": ["tl0103", "tl0104"],
+      "c": { "call": "extern pascal long StartUpTools(userID,startStopRefDesc,startStopRef)" },
+      "docs": { "ref": "tbv3", "page": "51-18" }
     },
     {
       "toolcall": "19",
       "toolnum": "01",
       "toolname": "Tool Locator",
       "callname": "_ShutDownTools",
-      "description": "Shuts down the tools specified in the input StartStop record"
+      "description": "Shuts down the tools specified in the input StartStop record",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "startStopRefDesc", "description": "Type of reference stored in startStopRef" },
+          { "size": "long", "name": "startStopRef", "description": "Reference to the StartStop record" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ShutDownTools(startStopRefDesc,startStopRef)" },
+      "docs": { "ref": "tbv3", "page": "51-17" }
     },
     {
       "toolcall": "1A",
       "toolnum": "01",
       "toolname": "Tool Locator",
       "callname": "_GetMsgHandle",
-      "description": "Returns the handle to a messsage in the Message Center"
+      "description": "Returns the handle to a messsage in the Message Center",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "flags", "description": "Command flags" },
+          { "size": "long", "name": "messageRef", "description": "Specifies which message to fetch" }
+        ],
+        "output": [
+          { "size": "long", "name": "theHandle", "description": "Handle of the specified message"}
+        ]
+      },
+      "errors": ["tl0111"],
+      "c": { "call": "extern pascal Handle GetMsgHandle(flags, messageRef)" },
+      "docs": { "ref": "gs16pr60", "page": "242" }
     },
     {
       "toolcall": "1B",
       "toolnum": "01",
       "toolname": "Tool Locator",
       "callname": "_AcceptRequests",
-      "description": "Call AcceptRequests to notify the system that you can receive requests"
+      "description": "Call AcceptRequests to notify the system that you can receive requests",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "nameString", "description": "Pointer to Pascal name string" },
+          { "size": "word", "name": "userID", "description": "User ID associated with this request procedure" },
+          { "size": "long", "name": "requestProc", "description": "Address of the request procedure to install" }
+        ]
+      },
+      "errors": ["tl0113","tl0121"],
+      "c": { "call": "extern pascal void AcceptRequests(nameString, userID, requestProc)" },
+      "docs": { "ref": "gs16pr60", "page": "235" }
     },
     {
       "toolcall": "1C",
       "toolnum": "01",
       "toolname": "Tool Locator",
       "callname": "_SendRequest",
-      "description": "Sends the specified request to zero or more qualifying registered request procedures"
+      "description": "Sends the specified request to zero or more qualifying registered request procedures (IPC)",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "reqCode", "description": "Request code" },
+          { "size": "word", "name": "sendHow", "description": "Specifies how to send the request" },
+          { "size": "long", "name": "target", "description": "Specifies recipient of request" },
+          { "size": "long", "name": "dataIn", "description": "Input data or pointer to input data" },
+          { "size": "long", "name": "dataOut", "description": "POINTER to output buffer" }
+        ]
+      },
+      "errors": ["tl0120","tl0122"],
+      "c": { "call": "extern pascal void SendRequest(reqCode, sendHow, target, dataIn, dataOut)" },
+      "docs": { "ref": "gs16pr60", "page": "235" }
     },
     {
       "toolcall": "01",
@@ -8910,7 +9023,15 @@
   "errors": {
     "tl0001": { "source": "Tool Locator", "code": "0001", "name": "toolNotFoundErr", "description": "Specified tool set not found" },
     "tl0002": { "source": "Tool Locator", "code": "0002", "name": "funcNotFoundErr", "description": "Specified routine not found" },
-    "tl0010": { "source": "Tool Locator", "code": "0110", "name": "toolVersionErr", "description": "Specified minimum version not found" },
-    "tl0111": { "source": "Tool Locator", "code": "0111", "name": "messNotFoundErr", "description": "Specified message not found" }
+    "tl0010": { "source": "Tool Locator", "code": "0010", "name": "toolVersionErr", "description": "Specified minimum version not found" },
+    "tl0103": { "source": "Tool Locator", "code": "0103", "name": "tlBadRecFlag", "description": "StartStop record invalid" },
+    "tl0104": { "source": "Tool Locator", "code": "0104", "name": "tlCantLoad", "description": "A tool can't be loaded - check StartStop input record for valid tool numbers and versions and numTools value" },
+    "tl0111": { "source": "Tool Locator", "code": "0111", "name": "messNotFoundErr", "description": "Specified message not found" },
+    "tl0112": { "source": "Tool Locator", "code": "0112", "name": "messageOvfl", "description": "No message numbers available" },
+    "tl0113": { "source": "Tool Locator", "code": "0113", "name": "srqNameTooLong", "description": "Message name too long; it must be <= 62 characters." },
+    "tl0120": { "source": "Tool Locator", "code": "0120", "name": "reqNotAccepted", "description": "Nobody accepted the request" },
+    "tl0121": { "source": "Tool Locator", "code": "0121", "name": "srqDuplicateName", "description": "The name has already been used" },
+    "tl0122": { "source": "Tool Locator", "code": "0122", "name": "invalidSendRequest", "description": "Bad combination of reqCode and target" }
+
   }
 }
