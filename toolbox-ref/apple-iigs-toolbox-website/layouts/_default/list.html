@@ -104,8 +104,16 @@ Display Mode:
 {{ range $toolcalls }}
 
 {{ if ne $currentToolName .toolname }}
+
 <br/>
+<hr class="uncentered-hr">
+<hr class="uncentered-hr">
+<hr class="uncentered-hr">
+<hr class="uncentered-hr">
 <h2 id="{{ .toolname | urlize }}">{{ .toolname }}</h2>
+<hr class="uncentered-hr">
+<hr class="uncentered-hr">
+<hr class="uncentered-hr">
 {{ $currentToolName = .toolname }}
 {{ end }}
   <div class="api">

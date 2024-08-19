@@ -291,3 +291,10 @@ table.stack em
     padding-right: 1em;  
 }
 
+
+.uncentered-hr {
+    width: 200px;
+    margin: 2px; 
+    border: none;
+    border-top: 2px solid black; 
+}
