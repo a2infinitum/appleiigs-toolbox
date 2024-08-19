@@ -7734,315 +7734,315 @@
     {
       "toolcall": "01",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "ResourceBootIn",
       "description": "Initializes the Resource Manager"
     },
     {
       "toolcall": "02",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
-      "callname": "ResourceStartU",
+      "toolname": "ResourceManager",
+      "callname": "ResourceStartUp",
       "description": "Notifies the Resource Manager that an application wishes to open and use its own resource files"
     },
     {
       "toolcall": "03",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
-      "callname": "ResourceShutDo",
+      "toolname": "ResourceManager",
+      "callname": "ResourceShutDown",
       "description": "Notifies the Resource Manager that an application is finished using its own resource files"
     },
     {
       "toolcall": "04",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
-      "callname": "ResourceVersio",
+      "toolname": "ResourceManager",
+      "callname": "ResourceVersion",
       "description": "Retrieves the Resource Manager version number"
     },
     {
       "toolcall": "05",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "ResourceReset",
       "description": "Resets the Resource Manager; issued only when the system is reset"
     },
     {
       "toolcall": "06",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "ResourceStatus",
       "description": "Returns a flag indicating whether the Resource Manager is active"
     },
     {
       "toolcall": "09",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "CreateResource",
       "description": "Initializes a resource fork with no resources"
     },
     {
       "toolcall": "0A",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
-      "callname": "OpenResourceFi",
-      "description": "Opens a specified reso1..1rce file, making it the current file, and returns a unique file ID to the calling program"
+      "toolname": "ResourceManager",
+      "callname": "OpenResourceFile",
+      "description": "Opens a specified resource file, making it the current file, and returns a unique file ID to the calling program"
     },
     {
       "toolcall": "0B",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
-      "callname": "CloseResourceF",
+      "toolname": "ResourceManager",
+      "callname": "CloseResourceFile",
       "description": "Updates a specified resource file, frees any memory used by the resource map and resources and closes the file"
     },
     {
       "toolcall": "0C",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "AddResource",
       "description": "Adds a resource to the current resource file"
     },
     {
       "toolcall": "0D",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "UpdateResource",
       "description": "Transfers modifications made to resources in memory to the appropriate resource file"
     },
     {
       "toolcall": "0E",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "LoadResource",
       "description": "Loads a resource into memory and returns a handle to that location"
     },
     {
       "toolcall": "0F",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "RemoveResource",
       "description": "Deletes a resource from its resource file and releases any memory used by the resource"
     },
     {
       "toolcall": "10",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "MarkResourceCh",
       "description": "Instructs the Resource Manager to write the specified resource to disk the next time its resource file is updated"
     },
     {
       "toolcall": "11",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "SetCurResource",
       "description": "Makes a specified resource file the current file"
     },
     {
       "toolcall": "12",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "GetCurResource",
       "description": "Returns the file ID of the current resource file"
     },
     {
       "toolcall": "13",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "SetCurResource",
       "description": "Tells the Resource Manager that another application will now be issuing Resource Manager calls"
     },
     {
       "toolcall": "14",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "GetCurResource",
       "description": "Returns the user ID for the application that is currently using the Resource Manager"
     },
     {
       "toolcall": "15",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
-      "callname": "HomeResourceFi",
+      "toolname": "ResourceManager",
+      "callname": "HomeResourceFile",
       "description": "Returns the file ID of the resource file that contains a specified resource"
     },
     {
       "toolcall": "16",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "WriteResource",
       "description": "Directs the Resource Manager to write a modified resource to its resource file"
     },
     {
       "toolcall": "17",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
-      "callname": "ReleaseResourc",
+      "toolname": "ResourceManager",
+      "callname": "ReleaseResource",
       "description": "Sets the purge level of the memory used by a resource"
     },
     {
       "toolcall": "18",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "DetachResource",
       "description": "Instructs the Resource Manager to dispose of its control blocks for a specified resource"
     },
     {
       "toolcall": "19",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "UniqueResource",
       "description": "Returns a unique resource ID for a specified resource type"
     },
     {
       "toolcall": "1A",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "SetResourceID",
       "description": "Changes the ID of a resource to a new value"
     },
     {
       "toolcall": "1B",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "GetResourceAtt",
       "description": "Returns the attributes word for a specified resource"
     },
     {
       "toolcall": "1C",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "SetResourceAtt",
       "description": "Sets the attributes of a resource"
     },
     {
       "toolcall": "1D",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "GetResourceSiz",
       "description": "Returns the size of the specified resource"
     },
     {
       "toolcall": "1E",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "MatchResourceH",
       "description": "Returns the type and ID of a resource, given ahandle to that resource"
     },
     {
       "toolcall": "1F",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "GetOpenFileRef",
       "description": "Returns the GS/OS file reference number associated with the resource fork of an open resource file"
     },
     {
       "toolcall": "20",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "CountTypes",
       "description": "Counts the number of different resource types in all resource files available to the calling program"
     },
     {
       "toolcall": "21",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "GetIndType",
       "description": "Finds a resource type value by means of its index"
     },
     {
       "toolcall": "22",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "CountResources",
       "description": "Counts the number of resources of a specified type in all resource files available to the calling program"
     },
     {
       "toolcall": "23",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "GetIndResource",
       "description": "Finds a resource of a specified type by means of its index and returns the resource ID for that resource"
     },
     {
       "toolcall": "24",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "SetResourceLoa",
       "description": "Controls Resource Manager access to the disk when resources are loaded"
     },
     {
       "toolcall": "25",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "SetResourceFil",
       "description": "Sets the number of files the Resource Manager is to search during a search operation"
     },
     {
       "toolcall": "26",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "GetMapHandle",
       "description": "Returns a handle to the resource map for a specified resource file"
     },
     {
       "toolcall": "27",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "LoadAbsResourc",
       "description": "Loads a resource into a specified absolute memory location"
     },
     {
       "toolcall": "28",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "ResourceConver",
       "description": "Installs or removes a converter routine from either the application or system converter list"
     },
     {
       "toolcall": "29",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "LoadResource2",
       "description": "It is like LoadResource expect that it returns information about the previous state of the returned handle"
     },
     {
       "toolcall": "2A",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "RMFindeNamedRe",
       "description": "Takes a resource type and a resource name and finds the resource ID of the corresponding resource"
     },
     {
       "toolcall": "2B",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "RMGetResourceN",
       "description": "Returns the Pascal string name of the specified resource"
     },
     {
       "toolcall": "2C",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "RMLoadNamedRes",
       "description": "Takes a resource type and a resource name and loads the corresponding resource"
     },
     {
       "toolcall": "2D",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "RMSetResourceN",
       "description": "Sets the name of the specified resource, first removing any existing name"
     },
     {
       "toolcall": "2E",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "OpenResourceFi",
       "description": "Starts the Resource Manager for you if it isn't already started under the specified user ID"
     },
     {
       "toolcall": "2F",
       "toolnum": "1E",
-      "toolname": "Resource Manage",
+      "toolname": "ResourceManager",
       "callname": "CompactResourc",
       "description": "Consolidates all free blocks in an open resource file into a single free block at the end"
     },

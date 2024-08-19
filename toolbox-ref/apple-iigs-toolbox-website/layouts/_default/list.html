@@ -121,7 +121,8 @@ Display Mode:
   <tr class="intro_header"><th>Routine</th><th>#</th><th>Description</th></tr>
   {{ range $tctmp := $toolcalls }}
   {{ if eq $tctmp.toolname $currentToolName }}
-  <tr><td><a href="#{{ .toolcall | urlize }}">{{ .callname }}</a></td><td>${{ .toolcall }}{{ .toolnum }}</td><td>{{ .description }}</td></tr>
+  {{ $toolcallnum := printf "%s%s" .toolcall  .toolnum }}
+  <tr><td><a href="#{{ $toolcallnum | urlize }}">{{ .callname }}</a></td><td>${{ .toolcall }}{{ .toolnum }}</td><td>{{ .description }}</td></tr>
   {{end}}
   {{end}}
 </table>
@@ -132,7 +133,9 @@ Display Mode:
   <div class="api">
   <br/>
   <h4 class="tn">${{ .toolcall }}{{ .toolnum }}</h4>
-  <h4 id="{{ .toolcall | urlize }}">{{ .callname }}</h4>
+  {{ $toolcallnum := printf "%s%s" .toolcall  .toolnum }}
+
+  <h4 id="{{ $toolcallnum | urlize }}">{{ .callname }}</h4>
   <p>{{ .description }}</p>
 
     {{ if .parameters }}
