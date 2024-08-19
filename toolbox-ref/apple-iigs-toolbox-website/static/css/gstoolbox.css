@@ -1,111 +1,112 @@
-html, body {
-margin  : 2;
-padding : 2;
+html,
+body {
+    margin: 2;
+    padding: 2;
 }
 
 body {
-/*background : #aaf;*/
-width : 100%;
+    /*background : #aaf;*/
+    width: 100%;
 }
 
-span.sc { font-size: 80%; }
-span.title 
-{ 
-    font-family: monospace; 
-    font-size:   2em;
+span.sc {
+    font-size: 80%;
+}
+
+span.title {
+    font-family: monospace;
+    font-size: 2em;
 }
 
 img {
-border : none;
+    border: none;
 }
 
 #header {
-height  : 25px;  
-padding : 1em;
+    height: 25px;
+    padding: 1em;
 
-          background-color : blue;
-color : white;
+    background-color: blue;
+    color: white;
 }
 
-div#navbar a img 
-{ 
-height:   0; 
-width:    0; 
-          border-width: 0px;
+div#navbar a img {
+    height: 0;
+    width: 0;
+    border-width: 0px;
 }
 
-div#navbar a:hover img 
-{ 
-position: absolute;
-top:      284px;
-left:     75px;
-height:   75px;
-width:    75px;
-border:   2px dashed gray;
+div#navbar a:hover img {
+    position: absolute;
+    top: 284px;
+    left: 75px;
+    height: 75px;
+    width: 75px;
+    border: 2px dashed gray;
 }
 
-div#navbar a
-{
-color:           white;
-                 text-decoration: none;
+div#navbar a {
+    color: white;
+    text-decoration: none;
 }
 
-div#navbar a:hover
-{
+div#navbar a:hover {
     font-weight: bold;
 }
 
-div#navbar ul
-{
-    list-style-type:  none;
+div#navbar ul {
+    list-style-type: none;
 }
 
-div#navbar li
-{
-padding : 0;
-margin  : 0;
+div#navbar li {
+    padding: 0;
+    margin: 0;
 }
 
 #navbar {
-float   : left;
-width   : 225px;
-height  : 768px;
-margin  : 0;
-padding : 0;
+    float: left;
+    width: 225px;
+    height: 768px;
+    margin: 0;
+    padding: 0;
 
-          border-right:  2px solid white;
-          border-bottom: 2px solid white;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
 
-color : white;
-        background-color : blue;
+    color: white;
+    background-color: blue;
 }
 
 #mainbody {
-margin : 0;
-padding : 0;
+    margin: 0;
+    padding: 0;
 }
 
 #content {
     background-color: #ccf;
-padding : 1em;
-          margin-left: 227px;
-          border-top : 2px solid white;
+    padding: 1em;
+    margin-left: 227px;
+    border-top: 2px solid white;
 }
 
 #footer {
-clear : both;
-color : gray;
-        text-align: right;
+    clear: both;
+    color: gray;
+    text-align: right;
 
-padding : .5em 0 1em 0;
+    padding: .5em 0 1em 0;
 }
 
 #leftnav p {
-margin : 0 0 1em 0;
+    margin: 0 0 1em 0;
 }
 
 /* Style for the fancy API documentation */
-div.api_intro h1, h2, h3, h4, h5 {
+div.api_intro h1,
+h2,
+h3,
+h4,
+h5 {
     font-family: helvetica, sans-serif;
 }
 
@@ -115,75 +116,74 @@ div.api_intro h1 {
 
 div.api_intro h2 {
     border-top: 3px double red;
-margin: 1em 0;
-        padding-top: 5px;
+    margin: 1em 0;
+    padding-top: 5px;
 }
 
-div.api h1, h2, h3, h4, h5 {
+div.api h1,
+h2,
+h3,
+h4,
+h5 {
     font-family: helvetica, sans-serif;
 }
 
-div.api
-{
+div.api {
     padding-left: 100px;
     border-top: 3px double red;
-margin: 1em 0;
+    margin: 1em 0;
 }
+
 div.api ul {
-    margin-left:0px; padding-left:20px;
+    margin-left: 0px;
+    padding-left: 20px;
     list-style-type: square;
 }
 
-div.api h4
-{
-margin: 0.5em 0px 0px 0px;
+div.api h4 {
+    margin: 0.5em 0px 0px 0px;
 }
 
-div.api .tn
-{
-clear: both;
-float: left;
-       margin-left: -100px;
+div.api .tn {
+    clear: both;
+    float: left;
+    margin-left: -100px;
 }
 
-div.section 
-{
+div.section {
     margin-top: 2em;
 }
 
 div.transition {
-width: 90%;  
-height:2em; 
-text:  black; 
-       font-weight: bold; 
-       background-color: red; 
-       padding-left: 100px; 
-       font-size: smaller; 
-       font-family: helvetica; 
-       padding-top:1em;
+    width: 90%;
+    height: 2em;
+    text: black;
+    font-weight: bold;
+    background-color: red;
+    padding-left: 100px;
+    font-size: smaller;
+    font-family: helvetica;
+    padding-top: 1em;
 }
 
-div.api div.section h5
-{
-clear: both;
-float: left;
-margin: 0px 0px 0px -100px;
-color: red;
-       font-size: 0.9em;
+div.api div.section h5 {
+    clear: both;
+    float: left;
+    margin: 0px 0px 0px -100px;
+    color: red;
+    font-size: 0.9em;
 }
 
-table.bits
-{
-    text-align: center;  
+table.bits {
+    text-align: center;
     border-spacing: 0;
     border-collapse: collapse;
 }
 
-table.bits td
-{
-padding: 5px;
-width: 1em;
-border: 1px solid black;
+table.bits td {
+    padding: 5px;
+    width: 1em;
+    border: 1px solid black;
 }
 
 .intro {
@@ -198,7 +198,7 @@ border: 1px solid black;
 }
 
 .intro_header th {
-    border-top:   1px solid black;
+    border-top: 1px solid black;
     border-bottom: 1px solid black;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
@@ -208,8 +208,8 @@ border: 1px solid black;
     padding-right: 1em;
 }
 
-div.warning, div.important
-{
+div.warning,
+div.important {
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     font-family: helvetica;
@@ -217,56 +217,50 @@ div.warning, div.important
     margin-top: 2em;
 }
 
-div.warning:before 
-{
-display: block;
-content: "Warning";
-         font-weight: bold;
-         margin-top: 1em;
-color: red;
+div.warning:before {
+    display: block;
+    content: "Warning";
+    font-weight: bold;
+    margin-top: 1em;
+    color: red;
 }
 
-div.important:before
-{
-display: block;
-content: "Important";
-         font-weight: bold;
-         margin-top: 1em;
+div.important:before {
+    display: block;
+    content: "Important";
+    font-weight: bold;
+    margin-top: 1em;
 }
 
 .parameters h5 {
     font-family: helvetica;
-color: red;
+    color: red;
 }
 
-table.errors 
-{
+table.errors {
     border-spacing: 0;
 }
 
 table.errors th {
     font-family: helvetica;
     font-size: smaller;
-color: red;
-       text-align: left;
-width: 100px;
-height: 4em;
-}
-
-table.stack
-{
-    border-spacing: 0;
-margin: 1em 0;
-}
-
-table.stack th
-{
+    color: red;
     text-align: left;
-height: 2em;
+    width: 100px;
+    height: 4em;
 }
 
-table.stack em
-{
+table.stack {
+    border-spacing: 0;
+    margin: 1em 0;
+}
+
+table.stack th {
+    text-align: left;
+    height: 2em;
+}
+
+table.stack em {
     font-weight: bold;
     font-style: normal;
     margin-left: .5em;
@@ -282,19 +276,19 @@ table.stack em
 }
 
 .stack .bot {
-    border-top: 1px solid black;  
+    border-top: 1px solid black;
     border-left: 2px solid black;
     border-right: 2px solid black;
     font-style: italic;
-    text-align: center;  
+    text-align: center;
     padding-left: 1em;
-    padding-right: 1em;  
+    padding-right: 1em;
 }
 
 
 .uncentered-hr {
     width: 200px;
-    margin: 2px; 
+    margin: 2px;
     border: none;
-    border-top: 2px solid black; 
+    border-top: 2px solid black;
 }
