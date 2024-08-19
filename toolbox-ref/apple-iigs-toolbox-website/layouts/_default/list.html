@@ -130,12 +130,18 @@ Display Mode:
 <br/>
 <h3>{{ .toolname }} Calls</h3>
 {{ end }}
-  <div class="api">
+    
+
+
+
+<!-- TOOLCALL  -->
+  {{ $toolcallnum := printf "%s%s" .toolcall  .toolnum }}
+  <div class="api" id="{{ $toolcallnum | urlize }}">
   <br/>
   <h4 class="tn">${{ .toolcall }}{{ .toolnum }}</h4>
-  {{ $toolcallnum := printf "%s%s" .toolcall  .toolnum }}
 
-  <h4 id="{{ $toolcallnum | urlize }}">{{ .callname }}</h4>
+
+  <h4 >{{ .callname }}</h4>
   <p>{{ .description }}</p>
 
     {{ if .parameters }}
