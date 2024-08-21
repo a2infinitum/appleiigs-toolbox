@@ -414,49 +414,98 @@
       "toolnum": "02",
       "toolname": "Memory Manager",
       "callname": "MMBootInit",
-      "description": "Called ONLY by the Tool Locator when Memory Manager is initialized"
+      "description": "Called ONLY by the Tool Locator when Memory Manager is initialized - not called by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": { "ref": "tbv1", "page": "12-16" }
     },
     {
       "toolcall": "02",
       "toolnum": "02",
       "toolname": "Memory Manager",
       "callname": "MMStartUp",
-      "description": "Starts up the Memory Manager for use by an application"
+      "description": "Starts up the Memory Manager for use by an application",
+      "parameters": {
+        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ]
+      },
+      "errors": ["mm0207"],
+      "c": { "call": "extern pascal void MMStartUp()" },
+      "docs": { "ref": "tbv1", "page": "12-17" }
     },
     {
       "toolcall": "03",
       "toolnum": "02",
       "toolname": "Memory Manager",
       "callname": "MMShutDown",
-      "description": "Shuts down the Memory Manager when the application quits"
+      "description": "Shuts down the Memory Manager when the application quits",
+      "parameters": {
+        "input": [ { "size": "word", "name": "userID", "description": "User ID of the application to be shut down" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void MMShutDown(userID)" },
+      "docs": { "ref": "tbv1", "page": "12-18" }
     },
     {
       "toolcall": "04",
       "toolnum": "02",
       "toolname": "Memory Manager",
       "callname": "MMVersion",
-      "description": "Returns the version number of the Memory Manager"
+      "description": "Returns the version number of the Memory Manager",
+      "parameters": {
+        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ],
+        "output": [ { "size": "word", "name": "versionInfo", "description": "Version number of the Memory Manager" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word MMVersion()" },
+      "docs": { "ref": "tbv1", "page": "12-19" }
     },
     {
       "toolcall": "05",
       "toolnum": "02",
       "toolname": "Memory Manager",
       "callname": "MMReset",
-      "description": "Called ONLY when the system is Reset"
+      "description": "Called ONLY when the system is Reset - not called by application",
+      "parameters": { "none": true },
+      "errors": ["mm0201"],
+      "c": { "call": false },
+      "docs": { "ref": "tbv1", "page": "12-19" }
     },
     {
       "toolcall": "06",
       "toolnum": "02",
       "toolname": "Memory Manager",
       "callname": "MMStatus",
-      "description": "Indicates whether or not the Memory Manager is active"
+      "description": "Indicates whether or not the Memory Manager is active",
+      "parameters": {
+        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ],
+        "output": [ { "size": "word", "name": "activeFlag", "description": "BOOLEAN; TRUE if Memory Manager is active, FALSE if inactive" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean MMStatus()" },
+      "docs": { "ref": "tbv1", "page": "12-20" }
     },
     {
       "toolcall": "09",
       "toolnum": "02",
       "toolname": "Memory Manager",
       "callname": "NewHandle",
-      "description": "Creates a new block and returns the handle to the block"
+      "description": "Creates a new block and returns the handle to the block",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "blockSize", "description": "Size in bytes of block to create" },
+          { "size": "word", "name": "userID", "description": "User ID to be associated with the block" },
+          { "size": "word", "name": "attributes", "description": "Attributes (see Toolbox Ref Vol1 Figure 12-9)" },
+          { "size": "long", "name": "locationPtr", "description": "POINTER to where in memory the block is to begin" } 
+        ],
+        "output": [ 
+          { "size": "long", "name": "theHandle", "description": "HANDLE of new block; empty if block of 0 bytes created" }
+        ]
+      },
+      "errors": ["mm0201","mm0204","mm0207"],
+      "c": { "call": "extern pascal Handle NewHandle(blockSize,userID,attributes,locationPtr)" },
+      "docs": { "ref": "tbv1", "page": "12-35" }
     },
     {
       "toolcall": "0A",
@@ -1261,7 +1310,18 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetPort",
-      "description": "Returns a pointer to the current GrafPort"
+      "description": "Returns a pointer to the current GrafPort",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "resultPtr", "description": "POINTER to GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal GrafPortPtr GetPort()" },
+      "docs": { "ref": "tbv2", "page": "16-137" }
     },
     {
       "toolcall": "1D",
@@ -4607,7 +4667,22 @@
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "AlertWindow",
-      "description": "Creates an alert window that displays a message pointed to by alertStrPtr"
+      "description": "Creates an alert window that displays a message pointed to by alertStrPtr",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "alertFlags", "description": "Flag word for call" },
+          { "size": "long", "name": "subStrPtr", "description": "POINTER to substitution array" },
+          { "size": "long", "name": "alertStrRef", "description": "Reference to alert string; alertFlags indicates type" }
+
+        ],
+        "output": [
+          { "size": "word", "name": "result", "description": "Button number selected (0 relative, in order created" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word AlertWindow(alertFlags, subStrPtr, alertStrRef)" },
+      "docs": { "ref": "tbv3", "page": "52-21" }
     },
     {
       "toolcall": "5A",
@@ -9031,7 +9106,16 @@
     "tl0113": { "source": "Tool Locator", "code": "0113", "name": "srqNameTooLong", "description": "Message name too long; it must be <= 62 characters." },
     "tl0120": { "source": "Tool Locator", "code": "0120", "name": "reqNotAccepted", "description": "Nobody accepted the request" },
     "tl0121": { "source": "Tool Locator", "code": "0121", "name": "srqDuplicateName", "description": "The name has already been used" },
-    "tl0122": { "source": "Tool Locator", "code": "0122", "name": "invalidSendRequest", "description": "Bad combination of reqCode and target" }
+    "tl0122": { "source": "Tool Locator", "code": "0122", "name": "invalidSendRequest", "description": "Bad combination of reqCode and target" },
 
+
+    "mm0201": { "source": "Memory Manager", "code": "0201", "name": "memErr", "description": "Unable to allocate memory" },
+    "mm0202": { "source": "Memory Manager", "code": "0202", "name": "emptyErr", "description": "Illegal operation on an empty handle" },
+    "mm0203": { "source": "Memory Manager", "code": "0203", "name": "notEmptyErr", "description": "Illegal operation on a handle that is not empty" },
+    "mm0204": { "source": "Memory Manager", "code": "0204", "name": "lockErr", "description": "Illegal operation on a locked or immovable block" },
+    "mm0205": { "source": "Memory Manager", "code": "0205", "name": "purgeErr", "description": "Attempt to purge an unpurgeable block" },
+    "mm0206": { "source": "Memory Manager", "code": "0206", "name": "handleErr", "description": "Invalid handle" },
+    "mm0207": { "source": "Memory Manager", "code": "0207", "name": "idErr", "description": "Invalid user ID" },
+    "mm0208": { "source": "Memory Manager", "code": "0208", "name": "attrErr", "description": "Illegal operation for the specified attributes" }
   }
 }
