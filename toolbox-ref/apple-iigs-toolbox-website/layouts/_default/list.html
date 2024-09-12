@@ -5,17 +5,7 @@
 </head>
 <script> function changeBg(color) { document.body.style.background = color; } </script>
 <body>
-<h1>Apple IIgs Toolbox Reference</h1>
-Display Mode: 
-<button onclick="changeBg('#e5eaf5')">Freeze Purple</button>
-<button onclick="changeBg('lightgrey')">Light Grey</button>
-<button onclick="changeBg('#edf7f6')">Dusty White</button>
-<button onclick="changeBg('white')">White</button>
 
-<ul>
-<li>Additional project information at: <a href="https://github.com/a2infinitum/appleiigs-toolbox">https://github.com/a2infinitum/appleiigs-toolbox</a> </li>
-<li><em>Status:</em> {{ $tooldata.datastatus }}</li>
-</ul>
 
 {{ $toolcalls := $tooldata.toolcalls }}
 {{ $errors := $tooldata.errors }}
@@ -23,9 +13,16 @@ Display Mode:
 <!-- I MADE A SUPER COMPLICATED TOC RENDERER BECAUSE I DON'T KNOW WHAT I'M DOING -->
 <!-- Create an empty map to store unique values -->
 {{ $uniqueTools := dict }}
+{{ $uniqueToolCnt := 0 }}
+{{ $documentedToolCnt := 0 }}
 
 <!-- Iterate over toolcalls and store unique toolname and toolnum in the map -->
 {{ range $toolcalls }}
+  {{ $uniqueToolCnt = add $uniqueToolCnt 1 }}
+  {{ if .docs }}
+    {{ $documentedToolCnt = add $documentedToolCnt 1 }}
+  {{ end }}
+
   {{ $key := printf "%s-%s" .toolname .toolnum }}
   {{ if not (index $uniqueTools $key) }}
     {{ $uniqueTools = merge $uniqueTools (dict $key (dict "toolname" .toolname "toolnum" .toolnum)) }}
@@ -43,6 +40,29 @@ Display Mode:
 {{ $total := len $uniqueToolsSlice }}
 {{ $midpoint := div (add $total 1) 2 }}
 
+
+<h1>Apple IIgs Toolbox Reference</h1>
+
+<h3>Documented Parameters Status:  {{div (mul $documentedToolCnt 100) $uniqueToolCnt }}%  ({{$documentedToolCnt}}/{{$uniqueToolCnt}}) </h3>
+<ul>
+  <li>Additional project information at: <a href="https://github.com/a2infinitum/appleiigs-toolbox">https://github.com/a2infinitum/appleiigs-toolbox</a> </li>
+  <li><em>Status:</em></li>
+    {{ range $tooldata.datastatus }}
+    <ul><li>{{ . }}</li></ul>
+    {{ end }}
+
+</ul>
+  
+Display Mode: 
+<button onclick="changeBg('#e5eaf5')">Freeze Purple</button>
+<button onclick="changeBg('lightgrey')">Light Grey</button>
+<button onclick="changeBg('#edf7f6')">Dusty White</button>
+<button onclick="changeBg('white')">White</button>
+
+
+
+
+<hr/>
 <h2>Contents - By Tool Set </h2>
 
 {{ $currentToolName := "" }}

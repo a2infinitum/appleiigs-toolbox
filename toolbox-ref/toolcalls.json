@@ -1,5 +1,8 @@
 {
-  "datastatus": "2024-08-18  Only the first few Tool Locator calls have additional information like parameters, errors, c calls",
+  "datastatus": [
+    "2024-09-12  ToolLocator and MemoryManager are complete, working on Misc Tools",
+    "2024-08-18  Only the first few Tool Locator calls have additional information like parameters, errors, c calls"
+  ],
   "toolcalls": [
     {
       "toolcall": "01",
@@ -9,7 +12,8 @@
       "description": "Initializes Tool Locator and all other ROM-based tools sets - not called by application",
       "parameters": { "none": true },
       "errors": ["none"],
-      "c": { "call": false }
+      "c": { "call": false },
+      "docs": { "ref": "tbv2", "page": "24-4" }
     },
     {
       "toolcall": "02",
@@ -19,7 +23,8 @@
       "description": "Starts up the Tool Locator for use by an application",
       "parameters": { "none": true },
       "errors": ["none"],
-      "c": { "call": "extern pascal void TLStartUp()" }
+      "c": { "call": "extern pascal void TLStartUp()" },
+      "docs": { "ref": "tbv2", "page": "24-4" }
     },
     {
       "toolcall": "03",
@@ -29,7 +34,8 @@
       "description": "Shuts down the Tool Locator when an application quits",
       "parameters": { "none": true },
       "errors": ["none"],
-      "c": { "call": "extern pascal void TLShutDown()" }
+      "c": { "call": "extern pascal void TLShutDown()" },
+      "docs": { "ref": "tbv2", "page": "24-5" }
     },
     {
       "toolcall": "04",
@@ -42,7 +48,8 @@
         "output": [ { "size": "word", "name": "versionInfo", "description": "Version number of Tool Locator" } ]
       },
       "errors": ["none"],
-      "c": { "call": "extern pascal Word TLVersion()" }
+      "c": { "call": "extern pascal Word TLVersion()" },
+      "docs": { "ref": "tbv2", "page": "24-5" }
     },
     {
       "toolcall": "05",
@@ -52,7 +59,8 @@
       "description": "Resets the Tool Locator & all other ROM-based tool sets on system reset - not by appl.",
       "parameters": { "none": true },
       "errors": ["none"],
-      "c": { "call": false }
+      "c": { "call": false },
+      "docs": { "ref": "tbv2", "page": "24-6" }
     },
     {
       "toolcall": "06",
@@ -65,7 +73,8 @@
         "output": [ { "size": "word", "name": "activeFlag", "description": "BOOLEAN; TRUE (Tool Locator is always active)" } ]
       },
       "errors": ["none"],
-      "c": { "call": "extern pascal Boolean TLStatus()" }
+      "c": { "call": "extern pascal Boolean TLStatus()" },
+      "docs": { "ref": "tbv2", "page": "24-6" }
     },
     {
       "toolcall": "09",
@@ -84,7 +93,8 @@
         ]
       },
       "errors": ["tl0001"],
-      "c": { "call": "extern pascal Boolean GetTSPtr(userOrSystem,tsNum)" }
+      "c": { "call": "extern pascal Boolean GetTSPtr(userOrSystem,tsNum)" },
+      "docs": { "ref": "tbv2", "page": "24-8" }
     },
     {
       "toolcall": "0A",
@@ -100,7 +110,8 @@
         ]
       },
       "errors": ["tl0001"],
-      "c": { "call": "extern pascal void SetTSPtr(userOrSystem,tsNum, fptPtr)" }
+      "c": { "call": "extern pascal void SetTSPtr(userOrSystem,tsNum, fptPtr)" },
+      "docs": { "ref": "tbv2", "page": "24-19" }
     },
     {
       "toolcall": "0B",
@@ -120,7 +131,8 @@
         ]
       },
       "errors": ["tl0001", "tl0002"],
-      "c": { "call": "extern pascal void GetFuncPtr(userOrSystem,funcTsNum)" }
+      "c": { "call": "extern pascal void GetFuncPtr(userOrSystem,funcTsNum)" },
+      "docs": { "ref": "tbv2", "page": "24-7" }
     },
     {
       "toolcall": "0C",
@@ -139,7 +151,8 @@
         ]
       },
       "errors": ["tl0001"],
-      "c": { "call": "extern pascal Pointer GetWAP(userOrSystem,tsNum)" }
+      "c": { "call": "extern pascal Pointer GetWAP(userOrSystem,tsNum)" },
+      "docs": { "ref": "tbv2", "page": "24-9" }
     },
     {
       "toolcall": "0D",
@@ -155,7 +168,8 @@
         ]
       },
       "errors": ["tl0001"],
-      "c": { "call": "extern pascal void SetWAP(userOrSystem,tsNum,waptPtr)" }
+      "c": { "call": "extern pascal void SetWAP(userOrSystem,tsNum,waptPtr)" },
+      "docs": { "ref": "tbv2", "page": "24-20" }
     },
     {
       "toolcall": "0E",
@@ -167,7 +181,8 @@
         "input": [{ "size": "long", "name": "toolTablePtr", "description": "POINTER to table of tool set numbers" }]
       },
       "errors": ["tl0001", "tl0010", "sl_unchanged", "pro_unchanged"],
-      "c": { "call": "extern pascal void LoadTools(toolTablePtr)" }
+      "c": { "call": "extern pascal void LoadTools(toolTablePtr)" },
+      "docs": { "ref": "tbv2", "page": "24-11" }
     },
     {
       "toolcall": "0F",
@@ -182,7 +197,8 @@
         ]
       },
       "errors": ["tl0001", "tl0010", "sl_unchanged", "pro_unchanged"],
-      "c": { "call": "extern pascal void LoadOneTool(toolNumber,minVersion)" }
+      "c": { "call": "extern pascal void LoadOneTool(toolNumber,minVersion)" },
+      "docs": { "ref": "tbv2", "page": "24-10" }
     },
     {
       "toolcall": "10",
@@ -194,7 +210,8 @@
         "input": [ { "size": "word", "name": "toolNumber", "description": "INTEGER; tool set number of tool set to load" } ]
       },
       "errors": ["tl0001"],
-      "c": { "call": "extern pascal void UnloadOneTool(toolNumber)" }
+      "c": { "call": "extern pascal void UnloadOneTool(toolNumber)" },
+      "docs": { "ref": "tbv2", "page": "24-25" }
     },
     {
       "toolcall": "11",
@@ -217,7 +234,8 @@
         ]
       },
       "errors": ["none"],
-      "c": { "call": "extern pascal Word TLMountVolume(whereX,whereY,line1Ptr,line2Ptr,but1Ptr,but2Ptr)" }
+      "c": { "call": "extern pascal Word TLMountVolume(whereX,whereY,line1Ptr,line2Ptr,but1Ptr,but2Ptr)" },
+      "docs": { "ref": "tbv2", "page": "24-21" }
     },
     {
       "toolcall": "12",
@@ -238,7 +256,8 @@
         ]
       },
       "errors": ["none"],
-      "c": { "call": "extern pascal Word TLTextMountVolume(line1Ptr,line2Ptr,but1Ptr,but2Ptr)" }
+      "c": { "call": "extern pascal Word TLTextMountVolume(line1Ptr,line2Ptr,but1Ptr,but2Ptr)" },
+      "docs": { "ref": "tbv2", "page": "24-23" }
     },
     {
       "toolcall": "13",
@@ -255,7 +274,8 @@
         ]
       },
       "errors": ["none"],
-      "c": { "call": "extern pascal Handle SaveTextState()" }
+      "c": { "call": "extern pascal Handle SaveTextState()" },
+      "docs": { "ref": "tbv2", "page": "24-17" }
     },
     {
       "toolcall": "14",
@@ -269,7 +289,8 @@
         ]
       },
       "errors": ["none"],
-      "c": { "call": "extern pascal void RestoreTextState(stateHandle)" }
+      "c": { "call": "extern pascal void RestoreTextState(stateHandle)" },
+      "docs": { "ref": "tbv2", "page": "24-16" }
     },
     {
       "toolcall": "15",
@@ -285,7 +306,8 @@
         ]
       },
       "errors": ["tl0111"],
-      "c": { "call": "extern pascal void MessageCenter(action,type,messageHandle)" }
+      "c": { "call": "extern pascal void MessageCenter(action,type,messageHandle)" },
+      "docs": { "ref": "tbv3", "page": "51-13" }
     },
     {
       "toolcall": "16",
@@ -295,7 +317,8 @@
       "description": "Sets default Tool Pointer Table (TPT) to current TPT - Used to install a tool patch - not called by application",
       "parameters": { "none": true },
       "errors": ["none"],
-      "c": { "call": "extern pascal void SetDefaultTPT()" }
+      "c": { "call": "extern pascal void SetDefaultTPT()" },
+      "docs": { "ref": "tbv3", "page": "51-16" }
     },
     {
       "toolcall": "17",
@@ -314,7 +337,8 @@
         ]
       },
       "errors": ["tl0111", "tl0112", "tl0113"],
-      "c": { "call": "extern pascal responseRecord MessageByName(createItFlag,recordPointer)" }
+      "c": { "call": "extern pascal responseRecord MessageByName(createItFlag,recordPointer)" },
+      "docs": { "ref": "tbv3", "page": "51-13" }
     },
     {
       "toolcall": "18",
@@ -940,63 +964,114 @@
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "MTBootInit",
-      "description": "Initializes the Miscellaneous Tools Set; called only by Tool Locator"
+      "description": "Initializes the Miscellaneous Tools Set; called only by Tool Locator",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": { "ref": "tbv1", "page": "14-6" }
     },
     {
       "toolcall": "02",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "MTStartUp",
-      "description": "Starts up the Miscellaneous Tool Set for use by an application"
+      "description": "Starts up the Miscellaneous Tool Set for use by an application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void MTStartUp()" },
+      "docs": { "ref": "tbv1", "page": "14-6" }
     },
     {
       "toolcall": "03",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "MTShutDown",
-      "description": "Shuts down the Miscellaneous Tool Set when an application quits"
+      "description": "Shuts down the Miscellaneous Tool Set when an application quits",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void MTShutDown()" },
+      "docs": { "ref": "tbv1", "page": "14-7" }
     },
     {
       "toolcall": "04",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "MTVersion",
-      "description": "Returns the version number of the Miscellaneous Tool Set"
+      "description": "Returns the version number of the Miscellaneous Tool Set",
+      "parameters": {
+        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ],
+        "output": [ { "size": "word", "name": "versionInfo", "description": "Version number of the Miscellaneous Tool Set" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word MTVersion()" },
+      "docs": { "ref": "tbv1", "page": "14-7" }
     },
     {
       "toolcall": "05",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "MTReset",
-      "description": "Resets the Miscellaneous Tool Set; called only when the system is reset"
+      "description": "Resets the Miscellaneous Tool Set; called only when the system is reset",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": { "ref": "tbv1", "page": "14-8" }
     },
     {
       "toolcall": "06",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "MTStatus",
-      "description": "Indicates whether the Miscellaneous Tools Set is active"
+      "description": "Indicates whether the Miscellaneous Tools Set is active",
+      "parameters": {
+        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ],
+        "output": [ { "size": "word", "name": "activeFlag", "description": "BOOLEAN; TRUE if Miscellaneous Tool Set is active, FALSE if not" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean MTStatus()" },
+      "docs": { "ref": "tbv1", "page": "14-8" }
     },
     {
       "toolcall": "09",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "WriteBRam",
-      "description": "Writes 252 bytes of data from a spec mem loc, plus 4 checksum bytes, to Battery RAM"
+      "description": "Writes 252 bytes of data from a spec mem loc, plus 4 checksum bytes, to Battery RAM",
+      "parameters": {
+        "input": [ { "size": "long", "name": "bufferPtr", "description": "POINTER to the 252 bytes to be written to Battery RAM" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void WriteBRam(bufferPtr)" },
+      "docs": { "ref": "tbv1", "page": "14-9" }
     },
     {
       "toolcall": "0A",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "ReadBRam",
-      "description": "Reads 252 bytes of data from Battery RAM, plus 4 checksum bytes, & writes to spec mem loc"
+      "description": "Reads 252 bytes of data from Battery RAM, plus 4 checksum bytes, & writes to spec mem loc",
+      "parameters": {
+        "input": [ { "size": "long", "name": "bufferPtr", "description": "POINTER to the 256 bytes to be written to application" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ReadBRam(bufferPtr)" },
+      "docs": { "ref": "tbv1", "page": "14-10" }
     },
     {
       "toolcall": "0B",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "WriteBParam",
-      "description": "Writes data to a specified paramameter in Battery RAM"
+      "description": "Writes data to a specified paramameter in Battery RAM",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "theData", "description": "Data to be written (low-order byte only)on" },
+          { "size": "word", "name": "paramRefNum", "description": "Parameter reference number (see Toolbox Ref V1, Table 14-3)" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void WriteBParam(theData,paramRefNum)" },
+      "docs": { "ref": "tbv1", "page": "14-11" }
     },
     {
       "toolcall": "0C",
