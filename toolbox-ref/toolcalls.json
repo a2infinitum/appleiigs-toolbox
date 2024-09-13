@@ -1,6 +1,6 @@
 {
   "datastatus": [
-    "2024-09-12  ToolLocator and MemoryManager are complete, working on Misc Tools",
+    "2024-09-12  ToolLocator and MemoryManager are complete, working on Misc Tools.  Adds doc refs.",
     "2024-08-18  Only the first few Tool Locator calls have additional information like parameters, errors, c calls"
   ],
   "toolcalls": [
@@ -13,7 +13,7 @@
       "parameters": { "none": true },
       "errors": ["none"],
       "c": { "call": false },
-      "docs": { "ref": "tbv2", "page": "24-4" }
+      "docs": [{ "ref": "tbv2", "page": "24-4" }]
     },
     {
       "toolcall": "02",
@@ -24,7 +24,7 @@
       "parameters": { "none": true },
       "errors": ["none"],
       "c": { "call": "extern pascal void TLStartUp()" },
-      "docs": { "ref": "tbv2", "page": "24-4" }
+      "docs": [{ "ref": "tbv2", "page": "24-4" }]
     },
     {
       "toolcall": "03",
@@ -35,7 +35,10 @@
       "parameters": { "none": true },
       "errors": ["none"],
       "c": { "call": "extern pascal void TLShutDown()" },
-      "docs": { "ref": "tbv2", "page": "24-5" }
+      "docs": [
+        { "ref": "tbv2", "page": "24-5" },
+        { "ref": "tbv3", "page": "51-2" }
+      ]
     },
     {
       "toolcall": "04",
@@ -49,7 +52,7 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal Word TLVersion()" },
-      "docs": { "ref": "tbv2", "page": "24-5" }
+      "docs": [{ "ref": "tbv2", "page": "24-5" }]
     },
     {
       "toolcall": "05",
@@ -60,7 +63,7 @@
       "parameters": { "none": true },
       "errors": ["none"],
       "c": { "call": false },
-      "docs": { "ref": "tbv2", "page": "24-6" }
+      "docs": [{ "ref": "tbv2", "page": "24-6" }]
     },
     {
       "toolcall": "06",
@@ -74,7 +77,7 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal Boolean TLStatus()" },
-      "docs": { "ref": "tbv2", "page": "24-6" }
+      "docs": [{ "ref": "tbv2", "page": "24-6" }]
     },
     {
       "toolcall": "09",
@@ -94,7 +97,7 @@
       },
       "errors": ["tl0001"],
       "c": { "call": "extern pascal Boolean GetTSPtr(userOrSystem,tsNum)" },
-      "docs": { "ref": "tbv2", "page": "24-8" }
+      "docs": [{ "ref": "tbv2", "page": "24-8" }]
     },
     {
       "toolcall": "0A",
@@ -111,7 +114,7 @@
       },
       "errors": ["tl0001"],
       "c": { "call": "extern pascal void SetTSPtr(userOrSystem,tsNum, fptPtr)" },
-      "docs": { "ref": "tbv2", "page": "24-19" }
+      "docs": [{ "ref": "tbv2", "page": "24-19" }]
     },
     {
       "toolcall": "0B",
@@ -132,7 +135,7 @@
       },
       "errors": ["tl0001", "tl0002"],
       "c": { "call": "extern pascal void GetFuncPtr(userOrSystem,funcTsNum)" },
-      "docs": { "ref": "tbv2", "page": "24-7" }
+      "docs": [{ "ref": "tbv2", "page": "24-7" }]
     },
     {
       "toolcall": "0C",
@@ -152,7 +155,7 @@
       },
       "errors": ["tl0001"],
       "c": { "call": "extern pascal Pointer GetWAP(userOrSystem,tsNum)" },
-      "docs": { "ref": "tbv2", "page": "24-9" }
+      "docs": [{ "ref": "tbv2", "page": "24-9" }]
     },
     {
       "toolcall": "0D",
@@ -169,7 +172,7 @@
       },
       "errors": ["tl0001"],
       "c": { "call": "extern pascal void SetWAP(userOrSystem,tsNum,waptPtr)" },
-      "docs": { "ref": "tbv2", "page": "24-20" }
+      "docs": [{ "ref": "tbv2", "page": "24-20" }]
     },
     {
       "toolcall": "0E",
@@ -182,7 +185,11 @@
       },
       "errors": ["tl0001", "tl0010", "sl_unchanged", "pro_unchanged"],
       "c": { "call": "extern pascal void LoadTools(toolTablePtr)" },
-      "docs": { "ref": "tbv2", "page": "24-11" }
+      "docs": [
+        { "ref": "tbv2", "page": "24-11" },
+        { "ref": "gs16pr60", "page": "234" },
+        { "ref": "tn.iigs.100" }
+      ]
     },
     {
       "toolcall": "0F",
@@ -198,7 +205,11 @@
       },
       "errors": ["tl0001", "tl0010", "sl_unchanged", "pro_unchanged"],
       "c": { "call": "extern pascal void LoadOneTool(toolNumber,minVersion)" },
-      "docs": { "ref": "tbv2", "page": "24-10" }
+      "docs": [
+        { "ref": "tbv2", "page": "24-10" },
+        { "ref": "gs16pr60", "page": "234" },
+        { "ref": "tn.iigs.100" }
+      ]
     },
     {
       "toolcall": "10",
@@ -211,7 +222,10 @@
       },
       "errors": ["tl0001"],
       "c": { "call": "extern pascal void UnloadOneTool(toolNumber)" },
-      "docs": { "ref": "tbv2", "page": "24-25" }
+      "docs": [
+        { "ref": "tbv2", "page": "24-25" },
+        { "ref": "gs16pr60", "page": "234" }
+      ]
     },
     {
       "toolcall": "11",
@@ -235,7 +249,10 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal Word TLMountVolume(whereX,whereY,line1Ptr,line2Ptr,but1Ptr,but2Ptr)" },
-      "docs": { "ref": "tbv2", "page": "24-21" }
+      "docs": [
+        { "ref": "tbv2", "page": "24-21" },
+        { "ref": "gs16pr60", "page": "234" }
+      ]
     },
     {
       "toolcall": "12",
@@ -257,7 +274,7 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal Word TLTextMountVolume(line1Ptr,line2Ptr,but1Ptr,but2Ptr)" },
-      "docs": { "ref": "tbv2", "page": "24-23" }
+      "docs": [{ "ref": "tbv2", "page": "24-23" }]
     },
     {
       "toolcall": "13",
@@ -275,7 +292,11 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal Handle SaveTextState()" },
-      "docs": { "ref": "tbv2", "page": "24-17" }
+      "docs": [
+        { "ref": "tbv2", "page": "24-17" },
+        { "ref": "tbv3", "page": "51-2" },
+        { "ref": "gs16pr60", "page": "234"}
+      ]
     },
     {
       "toolcall": "14",
@@ -290,7 +311,10 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal void RestoreTextState(stateHandle)" },
-      "docs": { "ref": "tbv2", "page": "24-16" }
+      "docs": [
+        { "ref": "tbv2", "page": "24-16" },
+        { "ref": "gs16pr60", "page": "234"}
+    ]
     },
     {
       "toolcall": "15",
@@ -307,7 +331,11 @@
       },
       "errors": ["tl0111"],
       "c": { "call": "extern pascal void MessageCenter(action,type,messageHandle)" },
-      "docs": { "ref": "tbv3", "page": "51-13" }
+      "docs": [
+        { "ref": "tbv2", "page": "24-14" },
+        { "ref": "tbv3", "page": "51-2" },
+        { "ref": "gs16pr60", "page": "234"}
+      ]
     },
     {
       "toolcall": "16",
@@ -318,7 +346,7 @@
       "parameters": { "none": true },
       "errors": ["none"],
       "c": { "call": "extern pascal void SetDefaultTPT()" },
-      "docs": { "ref": "tbv3", "page": "51-16" }
+      "docs": [{ "ref": "tbv3", "page": "51-16" }]
     },
     {
       "toolcall": "17",
@@ -338,7 +366,7 @@
       },
       "errors": ["tl0111", "tl0112", "tl0113"],
       "c": { "call": "extern pascal responseRecord MessageByName(createItFlag,recordPointer)" },
-      "docs": { "ref": "tbv3", "page": "51-13" }
+      "docs": [{ "ref": "tbv3", "page": "51-13" }]
     },
     {
       "toolcall": "18",
@@ -359,7 +387,10 @@
       },
       "errors": ["tl0103", "tl0104"],
       "c": { "call": "extern pascal long StartUpTools(userID,startStopRefDesc,startStopRef)" },
-      "docs": { "ref": "tbv3", "page": "51-18" }
+      "docs": [
+        { "ref": "tbv3", "page": "51-18" },
+        { "ref": "gs16pr60", "page": "233" }
+      ]
     },
     {
       "toolcall": "19",
@@ -375,14 +406,17 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal void ShutDownTools(startStopRefDesc,startStopRef)" },
-      "docs": { "ref": "tbv3", "page": "51-17" }
+      "docs": [
+        { "ref": "tbv3", "page": "51-17" },
+        { "ref": "gs16pr60", "page": "233" }
+      ]
     },
     {
       "toolcall": "1A",
       "toolnum": "01",
       "toolname": "Tool Locator",
       "callname": "GetMsgHandle",
-      "description": "Returns the handle to a messsage in the Message Center",
+      "description": "Returns the handle to a message in the Message Center",
       "parameters": {
         "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
@@ -395,7 +429,7 @@
       },
       "errors": ["tl0111"],
       "c": { "call": "extern pascal Handle GetMsgHandle(flags, messageRef)" },
-      "docs": { "ref": "gs16pr60", "page": "242" }
+      "docs": [{ "ref": "gs16pr60", "page": "242" }]
     },
     {
       "toolcall": "1B",
@@ -412,7 +446,7 @@
       },
       "errors": ["tl0113","tl0121"],
       "c": { "call": "extern pascal void AcceptRequests(nameString, userID, requestProc)" },
-      "docs": { "ref": "gs16pr60", "page": "235" }
+      "docs": [{ "ref": "gs16pr60", "page": "235" }]
     },
     {
       "toolcall": "1C",
@@ -431,7 +465,7 @@
       },
       "errors": ["tl0120","tl0122"],
       "c": { "call": "extern pascal void SendRequest(reqCode, sendHow, target, dataIn, dataOut)" },
-      "docs": { "ref": "gs16pr60", "page": "235" }
+      "docs": [{ "ref": "gs16pr60", "page": "244" }]
     },
     {
       "toolcall": "01",
@@ -442,7 +476,7 @@
       "parameters": { "none": true },
       "errors": ["none"],
       "c": { "call": false },
-      "docs": { "ref": "tbv1", "page": "12-16" }
+      "docs": [{ "ref": "tbv1", "page": "12-16" }]
     },
     {
       "toolcall": "02",
@@ -455,7 +489,7 @@
       },
       "errors": ["mm0207"],
       "c": { "call": "extern pascal void MMStartUp()" },
-      "docs": { "ref": "tbv1", "page": "12-17" }
+      "docs": [{ "ref": "tbv1", "page": "12-17" }]
     },
     {
       "toolcall": "03",
@@ -468,7 +502,7 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal void MMShutDown(userID)" },
-      "docs": { "ref": "tbv1", "page": "12-18" }
+      "docs": [{ "ref": "tbv1", "page": "12-18" }]
     },
     {
       "toolcall": "04",
@@ -482,7 +516,7 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal Word MMVersion()" },
-      "docs": { "ref": "tbv1", "page": "12-19" }
+      "docs": [{ "ref": "tbv1", "page": "12-19" }]
     },
     {
       "toolcall": "05",
@@ -493,7 +527,7 @@
       "parameters": { "none": true },
       "errors": ["mm0201"],
       "c": { "call": false },
-      "docs": { "ref": "tbv1", "page": "12-19" }
+      "docs": [{ "ref": "tbv1", "page": "12-19" }]
     },
     {
       "toolcall": "06",
@@ -507,7 +541,7 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal Boolean MMStatus()" },
-      "docs": { "ref": "tbv1", "page": "12-20" }
+      "docs": [{ "ref": "tbv1", "page": "12-20" }]
     },
     {
       "toolcall": "09",
@@ -529,7 +563,7 @@
       },
       "errors": ["mm0201","mm0204","mm0207"],
       "c": { "call": "extern pascal Handle NewHandle(blockSize,userID,attributes,locationPtr)" },
-      "docs": { "ref": "tbv1", "page": "12-35" }
+      "docs": [{ "ref": "tbv1", "page": "12-35" }]
     },
     {
       "toolcall": "0A",
@@ -548,7 +582,7 @@
       },
       "errors": ["mm0201","mm0203","mm0204","mm0206","mm0207"],
       "c": { "call": "extern pascal void ReallocHandle(blockSize,userID,attributes,locationPtr,theHandle)" },
-      "docs": { "ref": "tbv1", "page": "12-41" }
+      "docs": [{ "ref": "tbv1", "page": "12-41" }]
     },
     {
       "toolcall": "0B",
@@ -563,7 +597,7 @@
       },
       "errors": ["mm0201","mm0203","mm0206","mm0208"],
       "c": { "call": "extern pascal void RestoreHandle(theHandle)" },
-      "docs": { "ref": "tbv1", "page": "12-42" }
+      "docs": [{ "ref": "tbv1", "page": "12-42" }]
     },
     {
       "toolcall": "0C",
@@ -578,7 +612,7 @@
       },
       "errors": ["mt0381"],
       "c": { "call": "extern pascal void AddToOOMQueue(headerPtr)" },
-      "docs": { "ref": "tbv3", "page": "36-9" }
+      "docs": [{ "ref": "tbv3", "page": "36-9" }]
     },
     {
       "toolcall": "0D",
@@ -593,7 +627,7 @@
       },
       "errors": ["mt0380","mt0381"],
       "c": { "call": "extern pascal void RemoveFromOOMQueue(headerPtr)" },
-      "docs": { "ref": "tbv3", "page": "36-11" }
+      "docs": [{ "ref": "tbv3", "page": "36-11" }]
     },
     {
       "toolcall": "10",
@@ -608,7 +642,7 @@
       },
       "errors": ["mm0206"],
       "c": { "call": "extern pascal void DisposeHandle(theHandle)" },
-      "docs": { "ref": "tbv1", "page": "12-24" }
+      "docs": [{ "ref": "tbv1", "page": "12-24" }]
     },
     {
       "toolcall": "11",
@@ -623,7 +657,7 @@
       },
       "errors": ["mm0207"],
       "c": { "call": "extern pascal void DisposeAll(userID)" },
-      "docs": { "ref": "tbv1", "page": "12-23" }
+      "docs": [{ "ref": "tbv1", "page": "12-23" }]
     },
     {
       "toolcall": "12",
@@ -638,7 +672,7 @@
       },
       "errors": ["mm0204", "mm0205", "mm0206"],
       "c": { "call": "extern pascal void PurgeHandle(theHandle)" },
-      "docs": { "ref": "tbv1", "page": "12-40" }
+      "docs": [{ "ref": "tbv1", "page": "12-40" }]
     },
     {
       "toolcall": "13",
@@ -653,7 +687,7 @@
       },
       "errors": ["mm0202", "mm0206"],
       "c": { "call": "extern pascal void PurgeAll(userID)" },
-      "docs": { "ref": "tbv1", "page": "12-39" }
+      "docs": [{ "ref": "tbv1", "page": "12-39" }]
     },
     {
       "toolcall": "18",
@@ -668,7 +702,7 @@
       },
       "errors": ["mm0206"],
       "c": { "call": "extern pascal LongWord GetHandleSize(theHandle)" },
-      "docs": { "ref": "tbv1", "page": "12-27" }
+      "docs": [{ "ref": "tbv1", "page": "12-27" }]
     },
     {
       "toolcall": "19",
@@ -684,7 +718,10 @@
       },
       "errors": ["mm0201","mm0202","mm0204","mm0206"],
       "c": { "call": "extern pascal void SetHandleSize(newSize,theHandle)" },
-      "docs": { "ref": "tbv1", "page": "12-43" }
+      "docs": [
+        { "ref": "tbv1", "page": "12-43" },
+        { "ref": "tbv3", "page": "36-2" }
+      ]
     },
     {
       "toolcall": "1A",
@@ -703,7 +740,7 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal Handle FindHandle(locationPtr)" },
-      "docs": { "ref": "tbv1", "page": "12-25" }
+      "docs": [{ "ref": "tbv1", "page": "12-25" }]
     },
     {
       "toolcall": "1B",
@@ -718,7 +755,7 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal LongWord FreeMem()" },
-      "docs": { "ref": "tbv1", "page": "12-26" }
+      "docs": [{ "ref": "tbv1", "page": "12-26" }]
     },
     {
       "toolcall": "1C",
@@ -733,7 +770,7 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal LongWord MaxBlock()" },
-      "docs": { "ref": "tbv1", "page": "12-34" }
+      "docs": [{ "ref": "tbv1", "page": "12-34" }]
     },
     {
       "toolcall": "1D",
@@ -747,7 +784,7 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal LongWord TotalMem()" },
-      "docs": { "ref": "tbv1", "page": "12-46" }
+      "docs": [{ "ref": "tbv1", "page": "12-46" }]
     },
     {
       "toolcall": "1E",
@@ -760,7 +797,7 @@
       },
       "errors": ["mm0206"],
       "c": { "call": "extern pascal void CheckHandle(theHandle)" },
-      "docs": { "ref": "tbv1", "page": "12-22" }
+      "docs": [{ "ref": "tbv1", "page": "12-22" }]
     },
     {
       "toolcall": "1F",
@@ -771,7 +808,7 @@
       "parameters": { "none": true },
       "errors": ["none"],
       "c": { "call": "extern pascal void CompactMem()" },
-      "docs": { "ref": "tbv1", "page": "12-22" }
+      "docs": [{ "ref": "tbv1", "page": "12-22" }]
     },
     {
       "toolcall": "20",
@@ -784,7 +821,7 @@
       },
       "errors": ["mm0206"],
       "c": { "call": "extern pascal void HLock(theHandle)" },
-      "docs": { "ref": "tbv1", "page": "12-30" }
+      "docs": [{ "ref": "tbv1", "page": "12-30" }]
     },
     {
       "toolcall": "21",
@@ -797,7 +834,7 @@
       },
       "errors": ["mm0207"],
       "c": { "call": "extern pascal void HLockAll(userID)" },
-      "docs": { "ref": "tbv1", "page": "12-31" }
+      "docs": [{ "ref": "tbv1", "page": "12-31" }]
     },
     {
       "toolcall": "22",
@@ -810,7 +847,7 @@
       },
       "errors": ["mm0206"],
       "c": { "call": "extern pascal void HUnlock(theHandle)" },
-      "docs": { "ref": "tbv1", "page": "12-32" }
+      "docs": [{ "ref": "tbv1", "page": "12-32" }]
     },
     {
       "toolcall": "23",
@@ -823,7 +860,7 @@
       },
       "errors": ["mm0207"],
       "c": { "call": "extern pascal void HUnlockAll(userID)" },
-      "docs": { "ref": "tbv1", "page": "12-33" }
+      "docs": [{ "ref": "tbv1", "page": "12-33" }]
     },
     {
       "toolcall": "24",
@@ -839,7 +876,7 @@
       },
       "errors": ["mm0206"],
       "c": { "call": "extern pascal void SetPurge(newPurgeLevel,theHandle)" },
-      "docs": { "ref": "tbv1", "page": "12-44" }
+      "docs": [{ "ref": "tbv1", "page": "12-44" }]
     },
     {
       "toolcall": "25",
@@ -855,7 +892,7 @@
       },
       "errors": ["mm0207"],
       "c": { "call": "extern pascal void SetPurgeAll(newPurgeLevel,userID)" },
-      "docs": { "ref": "tbv1", "page": "12-44" }
+      "docs": [{ "ref": "tbv1", "page": "12-45" }]
     },
     {
       "toolcall": "28",
@@ -872,7 +909,7 @@
       },
       "errors": ["mm0202","mm0206"],
       "c": { "call": "extern pascal void PtrToHand(sourcePtr,destHandle,count)" },
-      "docs": { "ref": "tbv1", "page": "12-38" }
+      "docs": [{ "ref": "tbv1", "page": "12-38" }]
     },
     {
       "toolcall": "29",
@@ -889,7 +926,7 @@
       },
       "errors": ["mm0202","mm0206"],
       "c": { "call": "extern pascal void HandToPtr(sourceHandle,destPtr,count)" },
-      "docs": { "ref": "tbv1", "page": "12-29" }
+      "docs": [{ "ref": "tbv1", "page": "12-29" }]
     },
     {
       "toolcall": "2A",
@@ -906,7 +943,7 @@
       },
       "errors": ["mm0202","mm0206"],
       "c": { "call": "extern pascal void HandToHand(sourceHandle,destHandle,count)" },
-      "docs": { "ref": "tbv1", "page": "12-28" }
+      "docs": [{ "ref": "tbv1", "page": "12-28" }]
     },
     {
       "toolcall": "2B",
@@ -923,7 +960,7 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal void BlockMove(sourcePtr,destPtr,count)" },
-      "docs": { "ref": "tbv1", "page": "12-21" }
+      "docs": [{ "ref": "tbv1", "page": "12-21" }]
     },
     {
       "toolcall": "2F",
@@ -937,7 +974,7 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal Long RealFreeMem()" },
-      "docs": { "ref": "tbv3", "page": "36-10" }
+      "docs": [{ "ref": "tbv3", "page": "36-10" }]
     },
     {
       "toolcall": "30",
@@ -957,7 +994,7 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal word SetHandleID(newID,theHandle)" },
-      "docs": { "ref": "gs16pr60", "page": "100" }
+      "docs": [{ "ref": "gs16pr60", "page": "100" }]
     },
     {
       "toolcall": "01",
@@ -968,7 +1005,7 @@
       "parameters": { "none": true },
       "errors": ["none"],
       "c": { "call": false },
-      "docs": { "ref": "tbv1", "page": "14-6" }
+      "docs": [{ "ref": "tbv1", "page": "14-6" }]
     },
     {
       "toolcall": "02",
@@ -979,7 +1016,7 @@
       "parameters": { "none": true },
       "errors": ["none"],
       "c": { "call": "extern pascal void MTStartUp()" },
-      "docs": { "ref": "tbv1", "page": "14-6" }
+      "docs": [{ "ref": "tbv1", "page": "14-6" }]
     },
     {
       "toolcall": "03",
@@ -990,7 +1027,7 @@
       "parameters": { "none": true },
       "errors": ["none"],
       "c": { "call": "extern pascal void MTShutDown()" },
-      "docs": { "ref": "tbv1", "page": "14-7" }
+      "docs": [{ "ref": "tbv1", "page": "14-7" }]
     },
     {
       "toolcall": "04",
@@ -1004,7 +1041,7 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal Word MTVersion()" },
-      "docs": { "ref": "tbv1", "page": "14-7" }
+      "docs": [{ "ref": "tbv1", "page": "14-7" }]
     },
     {
       "toolcall": "05",
@@ -1015,7 +1052,7 @@
       "parameters": { "none": true },
       "errors": ["none"],
       "c": { "call": false },
-      "docs": { "ref": "tbv1", "page": "14-8" }
+      "docs": [{ "ref": "tbv1", "page": "14-8" }]
     },
     {
       "toolcall": "06",
@@ -1029,7 +1066,7 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal Boolean MTStatus()" },
-      "docs": { "ref": "tbv1", "page": "14-8" }
+      "docs": [{ "ref": "tbv1", "page": "14-8" }]
     },
     {
       "toolcall": "09",
@@ -1042,7 +1079,7 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal void WriteBRam(bufferPtr)" },
-      "docs": { "ref": "tbv1", "page": "14-9" }
+      "docs": [{ "ref": "tbv1", "page": "14-9" }]
     },
     {
       "toolcall": "0A",
@@ -1055,7 +1092,7 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal void ReadBRam(bufferPtr)" },
-      "docs": { "ref": "tbv1", "page": "14-10" }
+      "docs": [{ "ref": "tbv1", "page": "14-10" }]
     },
     {
       "toolcall": "0B",
@@ -1071,28 +1108,72 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal void WriteBParam(theData,paramRefNum)" },
-      "docs": { "ref": "tbv1", "page": "14-11" }
+      "docs": [{ "ref": "tbv1", "page": "14-11" }]
     },
     {
       "toolcall": "0C",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "ReadBParam",
-      "description": "Reads data from a specified parameter in Battery RAM"
+      "description": "Reads data from a specified parameter in Battery RAM",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "paramRefNum", "description": "Parameter reference number (see Toolbox Ref V1, Table 14-3)" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ReadBParam(paramRefNum)" },
+      "docs": [{ "ref": "tbv1", "page": "14-13" }]
     },
     {
       "toolcall": "0D",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "ReadTimeHex",
-      "description": "Returns current time in hexadecimal format"
+      "description": "Returns current time in hexadecimal format",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "byte", "name": "weekDay", "description": "Day of week (1-7, with 1=Sunday...)" },
+          { "size": "byte", "name": "null", "description": "Padding the word" },
+          { "size": "byte", "name": "month", "description": "Month (0-11, with 1=January...)" },
+          { "size": "byte", "name": "day", "description": "Date (0-30)" },
+          { "size": "byte", "name": "curYear", "description": "Current year minus 1900" },
+          { "size": "byte", "name": "hour", "description": "Hour (0-23)" },
+          { "size": "byte", "name": "minute", "description": "Minute (0-59)" },
+          { "size": "byte", "name": "second", "description": "Second (0-59)" }
+
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal TimeRec ReadTimeHex()" },
+      "docs": [{ "ref": "tbv1", "page": "14-14" }]
     },
     {
       "toolcall": "0E",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "WriteTimeHex",
-      "description": "Sets the current time in hexadecimal format"
+      "description": "Sets the current time in hexadecimal format",
+      "parameters": {
+        "input": [
+          { "size": "byte", "name": "month", "description": "Month (0-11, with 1=January...)" },
+          { "size": "byte", "name": "day", "description": "Date (0-30)" },
+          { "size": "byte", "name": "curYear", "description": "Current year minus 1900" },
+          { "size": "byte", "name": "hour", "description": "Hour (0-23)" },
+          { "size": "byte", "name": "minute", "description": "Minute (0-59)" },
+          { "size": "byte", "name": "second", "description": "Second (0-59)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void WriteTimeHex(month,day,curYear,hour,minute, second)" },
+      "docs": [{ "ref": "tbv1", "page": "14-15" }]
     },
     {
       "toolcall": "0F",
@@ -1628,7 +1709,7 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal GrafPortPtr GetPort()" },
-      "docs": { "ref": "tbv2", "page": "16-137" }
+      "docs": [{ "ref": "tbv2", "page": "16-137" }]
     },
     {
       "toolcall": "1D",
@@ -4989,7 +5070,7 @@
       },
       "errors": ["none"],
       "c": { "call": "extern pascal Word AlertWindow(alertFlags, subStrPtr, alertStrRef)" },
-      "docs": { "ref": "tbv3", "page": "52-21" }
+      "docs": [{ "ref": "tbv3", "page": "52-21" }]
     },
     {
       "toolcall": "5A",
@@ -9437,5 +9518,37 @@
     "mt030B": { "source": "Miscellaneous Tool Set", "code": "030B", "name": "idTagNtAvlErr ", "description": "No ID tag available" },
     "mt0380": { "source": "Miscellaneous Tool Set", "code": "0380", "name": "notInList", "description": "Specified routine not found in queue" },
     "mt0381": { "source": "Miscellaneous Tool Set", "code": "0381", "name": "invalidTag", "description": "The correct signature value was not found in the header" }
-  }
+  },
+  "references": {
+    "tbv1": {
+      "title": "Apple IIgs Toolbox Reference: Volume 1",
+      "url": "https://archive.org/details/AppleIIGSToolboxReferenceVolume1",
+      "emoji": "1️⃣"
+    },
+    "tbv2": {
+      "title": "Apple IIgs Toolbox Reference: Volume 2",
+      "url": "https://archive.org/details/AppleIIGSToolboxReferenceVolume2",
+      "emoji": "2️⃣"
+    },
+    "tbv3": {
+      "title": "Apple IIgs Toolbox Reference: Volume 3",
+      "url": "https://archive.org/details/apple_iigs_toolbox_reference_volume_3",
+      "emoji": "3️⃣"
+    },
+    "gs16pr60": {
+      "title": "Programmer's Reference for System 6.0",
+      "url": "https://juiced.gs/store/opus-ii-software/",
+      "emoji": "📕"
+    },
+    "gs16pr601": {
+      "title": "Programmer's Reference for System 6.0.1",
+      "url": "https://juiced.gs/store/opus-ii-software/",
+      "emoji": "📕"
+    },
+    "tn.iigs.100": {
+      "title": "Apple IIgs Technical Note #100: VersionVille",
+      "url": "https://apple2.gs/technotes/tn/iigs/TN.IIGS.100.txt",
+      "emoji": "🗒️"
+    }
+  } 
 }

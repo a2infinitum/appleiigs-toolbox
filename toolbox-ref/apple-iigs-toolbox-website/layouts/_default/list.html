@@ -2,6 +2,7 @@
 <html>
 <head>
   <link rel="stylesheet" href="{{ "css/gstoolbox.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/hint.base.min.css" | relURL }}">
 </head>
 <script> function changeBg(color) { document.body.style.background = color; } </script>
 <body>
@@ -9,6 +10,8 @@
 
 {{ $toolcalls := $tooldata.toolcalls }}
 {{ $errors := $tooldata.errors }}
+{{ $references := $tooldata.references }}
+
 
 <!-- I MADE A SUPER COMPLICATED TOC RENDERER BECAUSE I DON'T KNOW WHAT I'M DOING -->
 <!-- Create an empty map to store unique values -->
@@ -269,9 +272,29 @@ Display Mode:
     {{ end }}
     </div>
     {{ end }}
+
+  {{ if .docs }} 
+  <div class="section">
+    <h5>Docs</h5> 
+    <p>
+    {{ range .docs }}
+    {{ $reference := index $references .ref }}
     
+    {{ $pagestr := "" }}
+    {{ if .page }}
+      {{ $pagestr = printf ", page %s" .page }}
+    {{ end }}
+    <a href="{{ $reference.url }}" target="_blank" class="hint--top-right" aria-label="{{ $reference.title }}{{ $pagestr }}">
+      {{ $reference.emoji }}
+    </a>
+    {{ end }}
+    </p>
+    </div>
+  {{ else }}
     <br/><br/>
-  </div>
+  {{ end }}
+
+</div>
 
 {{ end }}
 
