@@ -1180,63 +1180,160 @@
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "ReadAsciiTime",
-      "description": "Reads elapsed time since 00:00:00, Jan 1, 1904, converts it to ASCII output, & puts @ addr"
+      "description": "Reads elapsed time since 00:00:00, Jan 1, 1904, converts it to ASCII output at specified address",
+      "parameters": {
+        "input": [ { "size": "long", "name": "bufferPtr", "description": "POINTER to start of buffer" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ReadAsciiTime(bufferPtr)" },
+      "docs": [{ "ref": "tbv1", "page": "14-16" }]
     },
     {
       "toolcall": "10",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "SetVector",
-      "description": "Sets the vector address for a specified interrupt manager or handler"
+      "description": "Sets the vector address for a specified interrupt manager or handler",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "vectorRefNum", "description": "Vector to be set (see Toolbox Ref Vol1 Figure 14-9)" },
+          { "size": "long", "name": "vectorPtr", "description": "POINTER to the manager or handle" } 
+       ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetVector(vectorRefNum,vectorAddrPtr)" },
+      "docs":  [
+        { "ref": "tbv1", "page": "14-61" },
+        { "ref": "tbv3", "page": "39-3" }
+      ]
     },
     {
       "toolcall": "11",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "GetVector",
-      "description": "Returns the vector address for a specified interrupt manager or handler"
+      "description": "Returns the vector address for a specified interrupt manager or handler",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "vectorRefNum", "description": "Vector reference number of manager or handler" } 
+       ],
+       "output":[
+          { "size": "long", "name": "vectorPtr", "description": "POINTER to the manager or handle" }
+       ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Pointer GetVector(vectorRefNum)" },
+      "docs": [
+        { "ref": "tbv1", "page": "14-63" },
+        { "ref": "tbv3", "page": "39-3" }
+      ]
     },
     {
       "toolcall": "12",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "SetHeartBeat",
-      "description": "Installs a specified task into the HeartBeat Interrupt Task queue"
+      "description": "Installs a specified task into the HeartBeat Interrupt Task queue",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "taskPtr", "description": "POINTER to task header" }
+       ]
+      },
+      "errors": ["mt0303","mt0304","mt0305"],
+      "c": { "call": "extern pascal void SetHeartBeat(taskPtr)" },
+      "docs": [{ "ref": "tbv1", "page": "14-48" }]
     },
     {
       "toolcall": "13",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "DelHeartBeat",
-      "description": "Deletes a specified task from the HeartBeat Interrupt Task queue"
+      "description": "Deletes a specified task from the HeartBeat Interrupt Task queue",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "taskPtr", "description": "POINTER to task header" }
+       ]
+      },
+      "errors": ["mt0305","mt0306"],
+      "c": { "call": "extern pascal void DelHeartBeat(taskPtr)" },
+      "docs": [
+        { "ref": "tbv1", "page": "14-52" },
+        { "ref": "tbv3", "page": "39-3" }
+      ]
     },
     {
       "toolcall": "14",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "ClrHeartBeat",
-      "description": "Removes all tasks from the Heartbeat Interrupt Task queue by clearing Heartbeat Task ptr"
+      "description": "Removes all tasks from the Heartbeat Interrupt Task queue by clearing Heartbeat Task pointer",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ClrHeartBeat()" },
+      "docs": [
+        { "ref": "tbv1", "page": "14-53" },
+        { "ref": "tbv3", "page": "39-2" },
+        { "ref": "tbv3", "page": "39-3" }
+      ]
     },
     {
       "toolcall": "15",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "SysFailMgr",
-      "description": "Displays system failure message and halts program execution"
+      "description": "Displays system failure message and halts program execution",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "errorCode", "description": "Error code (see Toolbox Ref Vol1 Figure 14-8)" },
+          { "size": "long", "name": "strPtr", "description": "POINTER to ASCII string to be displayed as system failure message" }
+       ]
+      },      
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SysFailMgr(errorCode,strPtr)" },
+      "docs": [{ "ref": "tbv1", "page": "14-54" }]
     },
     {
       "toolcall": "16",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "GetAddr",
-      "description": "Returns an address of a byte, word, or long parameter referenced by the firmware"
+      "description": "Returns an address of a byte, word, or long parameter referenced by the firmware",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "refNum", "description": "Parameter reference number (see Toolbox Ref V1, Table 14-5)" }
+        ],
+        "output": [ 
+          { "size": "long", "name": "paramPtr", "description": "POINTER to parameter" }
+        ]
+      },      
+      "errors": ["mt0301"],
+      "c": { "call": "extern pascal void GetAddr(refNum)" },
+      "docs": [{ "ref": "tbv1", "page": "14-19" }]
     },
     {
       "toolcall": "17",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "ReadMouse",
-      "description": "Returns mouse position, status, and mode"
+      "description": "Returns mouse position, status, and mode",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [ 
+          { "size": "word", "name": "xPosition", "description": "X position of the mouse" },
+          { "size": "word", "name": "xPosition", "description": "Y position of the mouse" },
+          { "size": "byte", "name": "status", "description": "Mouse status" },
+          { "size": "byte", "name": "mode", "description": "Mouse mode" }
+        ]
+      },      
+      "errors": ["mt0309"],
+      "c": { "call": "extern pascal MouseRec ReadMouse()" },
+      "docs": [{ "ref": "tbv1", "page": "14-34" }]
     },
     {
       "toolcall": "18",
