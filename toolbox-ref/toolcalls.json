@@ -1506,154 +1506,423 @@
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "StatusID",
-      "description": "Indicates whether a specified user ID is active"
+      "description": "Indicates whether a specified user ID is active",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "idTag", "description": "The type and mainID fields of the desired user ID" }
+
+        ]
+      },      
+      "errors": ["mt030B"],
+      "c": { "call": "extern pascal void StatusID(idTag)" },
+      "docs": [
+        { "ref": "tbv1", "page": "14-60" }
+      ]
     },
     {
       "toolcall": "23",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "IntSource",
-      "description": "Enables or disables certain interrupt sources"
+      "description": "Enables or disables certain interrupt sources",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "srcRefNum", "description": "Source reference number of interrupt (see Toolbox Ref Vol1 Figure 14-6)" }
+
+        ]
+      },      
+      "errors": ["none"],
+      "c": { "call": "extern pascal void IntSource(srcRefNum)" },
+      "docs": [
+        { "ref": "tbv1", "page": "14-25" }
+      ]
     },
     {
       "toolcall": "24",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "FWentry",
-      "description": "Allows some Apple II emulation-mode entry points to be supported from full native mode"
+      "description": "Allows some Apple II emulation-mode entry points to be supported from full native mode",
+      "parameters": { 
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "aRegValue", "description": "Accumulator at entry (low-order byte only)" },
+          { "size": "word", "name": "xRegValue", "description": "X register at entry (low-order byte only)" },
+          { "size": "word", "name": "yRegValue", "description": "Y register at entry (low-order byte only)" },
+          { "size": "word", "name": "eModeEntryPt", "description": "Emulation mode entry point" }
+        ],
+        "output": [ 
+          { "size": "word", "name": "status", "description": "Processor status at exit (low-order byte only)" },
+          { "size": "word", "name": "aRegValue", "description": "Accumulator at exit (low-order byte only)" },
+          { "size": "word", "name": "xRegValue", "description": "X register at exit (low-order byte only)" },
+          { "size": "word", "name": "yRegValue", "description": "Y register at exit (low-order byte only)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal FWRec FWEntry(aRegValue, xRegValue, yRegValue, eModeEntryPt)" },
+      "docs": [{ "ref": "tbv1", "page": "14-17" }]
     },
     {
       "toolcall": "25",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "GetTick",
-      "description": "Returns the current value of the tick counter"
+      "description": "Returns the current value of the tick counter",
+      "parameters": { 
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [ 
+          { "size": "long", "name": "tickCounter", "description": "Current value of the tick counter" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal LongWork GetTick()" },
+      "docs": [{ "ref": "tbv1", "page": "14-22" }]
     },
     {
       "toolcall": "26",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "PackBytes",
-      "description": "Packs bytes into a special format that uses less storage space"
+      "description": "Packs bytes into a special format that uses less storage space",
+      "parameters": { 
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "startHandle", "description": "POINTER to POINTER to start of area to be packed" },
+          { "size": "long", "name": "sizePtr", "description": "POINTER to Word containing size of the area" },
+          { "size": "long", "name": "bufferPtr", "description": "POINTER to the start of the output buffer area" },
+          { "size": "word", "name": "bufferSize", "description": "Size of the out buffer area" }
+        ],
+        "output": [ 
+          { "size": "word", "name": "numPackbytes", "description": "Number of packed bytes generated" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word PackBytes(startHandle,sizePtr,bufferPtr,bufferSize)" },
+      "docs": [
+        { "ref": "tbv1", "page": "14-39" },
+        { "ref": "tbv3", "page": "39-2" }
+      ]
     },
     {
       "toolcall": "27",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "UnPackBytes",
-      "description": "Umpacks data from the packed format used by PackBytes"
+      "description": "Umpacks data from the packed format used by PackBytes",
+      "parameters": { 
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "bufferPtr", "description": "POINTER to the buffer containing the packed data" },
+          { "size": "word", "name": "bufferSize", "description": "Size of the packed data buffer" },
+          { "size": "long", "name": "startHandle", "description": "POINTER to POINTER to area where the data will be unpacked" },
+          { "size": "long", "name": "sizePtr", "description": "POINTER to Word containing size of area for unpacked data" }
+        ],
+        "output": [ 
+          { "size": "word", "name": "numUnpackbytes", "description": "Number of source bytes unpacked" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word UnPackBytes(bufferPtr,bufferSize,startHandle,sizePtr)" },
+      "docs": [
+        { "ref": "tbv1", "page": "14-39" },
+        { "ref": "tbv3", "page": "39-2" },
+        { "ref": "gs16pr60", "page": "175" }
+      ]
     },
     {
       "toolcall": "28",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "Munger",
-      "description": "Manipulates bytes in a string of bytes"
+      "description": "Manipulates bytes in a string of bytes (like find and replace)",
+      "parameters": { 
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "destPtr", "description": "POINTER to the tect to be manipulated" },
+          { "size": "long", "name": "destLenPtr", "description": "POINTER to number of bytes to manipulate" },
+          { "size": "long", "name": "targPtr", "description": "POINTER to be searched for from destPtr" },
+          { "size": "word", "name": "targLen", "description": "Number of bytes for targPtr" },
+          { "size": "long", "name": "replPtr", "description": "POINTER to string to replace when targPtr found" },
+          { "size": "word", "name": "replLen", "description": "Number of bytes for replPtr" },
+          { "size": "long", "name": "padPtr", "description": "POINTER to character value to be added to short input" }
+        ],
+        "output": [ 
+          { "size": "word", "name": "padBytesFound", "description": "Number of bytes padded or truncated; 0 if target found; negative if not found" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word Munger (destPtr,destLenPtr,targPtr,targLen,replPtr,replLen,padPtr)" },
+      "docs": [
+        { "ref": "tbv1", "page": "14-45" }
+      ]
     },
     {
       "toolcall": "29",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "GetIRQEnable",
-      "description": "Returns w/hardware interrupt enable states for interrupt srces that Misc.Tool can control"
+      "description": "Returns w/hardware interrupt enable states for interrupt srces that Misc.Tool can control",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [ 
+          { "size": "word", "name": "hdIntStatus", "description": "Status of hardware interrupts (see Toolbox Ref Vol1 Figure 14-1)" }
+        ]
+      },      
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word GetIRQEnable()" },
+      "docs": [
+        { "ref": "tbv1", "page": "14-23" }
+      ]
     },
     {
       "toolcall": "2A",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "SetAbsClamp",
-      "description": "Sets the clamp values for an absolute device to new values"
+      "description": "Sets the clamp values for an absolute device to new values",
+      "parameters": { 
+        "input": [ 
+          { "size": "word", "name": "xMinClamp", "description": "Minimum clamp value for the X axis" },
+          { "size": "word", "name": "xMaxClamp", "description": "Maximum clamp value for the X axis" },
+          { "size": "word", "name": "yMinClamp", "description": "Minimum clamp value for the Y axis" },
+          { "size": "word", "name": "yMaxClamp", "description": "Maximum clamp value for the Y axis" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetAbsClamp(xMinClamp,xMaxClamp,yMinClamp,yMaxClamp)" },
+      "docs": [{ "ref": "tbv1", "page": "14-37" }]
     },
     {
       "toolcall": "2B",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "GetAbsClamp",
-      "description": "Returns the current values of the absolute device clamps"
+      "description": "Returns the current values of the absolute device clamps",
+      "parameters": { 
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [ 
+          { "size": "word", "name": "xMinClamp", "description": "Minimum clamp value for the X axis" },
+          { "size": "word", "name": "xMaxClamp", "description": "Maximum clamp value for the X axis" },
+          { "size": "word", "name": "yMinClamp", "description": "Minimum clamp value for the Y axis" },
+          { "size": "word", "name": "yMaxClamp", "description": "Maximum clamp value for the Y axis" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal ClampRec GetAbsClamp()" },
+      "docs": [{ "ref": "tbv1", "page": "14-17" }]
     },
     {
       "toolcall": "2C",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "SysBeep",
-      "description": "Calls the Apple II monitor entry point BELL1"
+      "description": "Calls the Apple II monitor entry point BELL1",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SysBeep()" },
+      "docs": [{ "ref": "tbv1", "page": "14-53" }]
     },
     {
       "toolcall": "2D",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "BasicInit",
-      "description": "Unofficial call to set up the clamp flags when calling from BASICMOUSE"
+      "description": "Unofficial call to set up the clamp flags when calling from BASICMOUSE",
+      "what": "???????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????"
     },
     {
       "toolcall": "2E",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "AddToQueue",
-      "description": "Adds the specified entry to a queue"
+      "description": "Adds the specified entry to a queue",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "newEntryPtr", "description": "POINTER to element to add to queue" },
+          { "size": "long", "name": "headerPtr", "description": "POINTER to first queue element" } 
+        ]
+      },      
+      "errors": ["mt0381","mt0382"],
+      "c": { "call": "extern pascal void AddToQueue(newEntryPtr,headerPtr)" },
+      "docs": [
+        { "ref": "tbv3", "page": "39-6" }
+      ]
     },
     {
       "toolcall": "2F",
       "toolnum": "03",
       "toolname": "Misc Tools",
-      "callname": "DeleteFromQueu",
-      "description": "Deletes a specified element from a queue"
+      "callname": "DeleteFromQueue",
+      "description": "Deletes a specified element from a queue",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "entryPtr", "description": "POINTER to element to delete from queue" },
+          { "size": "long", "name": "headerPtr", "description": "POINTER to first queue element" } 
+        ]
+      },      
+      "errors": ["mt0380","mt0381"],
+      "c": { "call": "extern pascal void DeleteFromQueue(entryPtr,headerPtr)" },
+      "docs": [
+        { "ref": "tbv3", "page": "39-7" }
+      ]
     },
     {
       "toolcall": "30",
       "toolnum": "03",
       "toolname": "Misc Tools",
-      "callname": "SetInterruptSt",
-      "description": "Copies the specified number of bytes from the input interrupt state record into the system interrupt variables"
+      "callname": "SetInterruptState",
+      "description": "Copies the specified number of bytes from the input interrupt state record into the system interrupt variables",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "intStateRcdPtr", "description": "POINTER to interrupt state record" },
+          { "size": "word", "name": "bytesDesired", "description": "Number of bytes to copy from record to system" } 
+        ]
+      },      
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetlnterruptState(intStateRcdPtr,bytesDesired)" },
+      "docs": [
+        { "ref": "tbv3", "page": "39-12" }
+      ]
     },
     {
       "toolcall": "31",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "GetInterruptSt",
-      "description": "Copies the specified number of bytes into an input interrupt record from the system interrupt variables"
+      "description": "Copies the specified number of bytes into an input interrupt record from the system interrupt variables",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "intStateRcdPtr", "description": "POINTER to interrupt state record" },
+          { "size": "word", "name": "bytesDesired", "description": "Number of bytes to copy from system to record" } 
+        ]
+      },      
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GetlnterruptState(intStateRcdPtr,bytesDesired)" },
+      "docs": [
+        { "ref": "tbv3", "page": "39-9" }
+      ]
     },
     {
       "toolcall": "32",
       "toolnum": "03",
       "toolname": "Misc Tools",
-      "callname": "GetIntStateRec",
-      "description": "Returns the size (in bytes) of the interrupt state record"
+      "callname": "GetIntStateRecSize",
+      "description": "Returns the size (in bytes) of the interrupt state record",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [ 
+          { "size": "word", "name": "sizeOfRecord", "description": "Length of interrupt state record, in bytes" }
+        ]
+      },      
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GetIntStateRecSize()" },
+      "docs": [
+        { "ref": "tbv3", "page": "39-10" }
+      ]
     },
     {
       "toolcall": "33",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "ReadMouse2",
-      "description": "Returns the mouse position, status, and mode"
+      "description": "Returns the mouse position, status, and mode",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [ 
+          { "size": "word", "name": "xPosition", "description": "X position of the mouse" },
+          { "size": "word", "name": "yPosition", "description": "Y position of the mouse" },
+          { "size": "word", "name": "statusMode", "description": "Status and mode bytes" }
+        ]
+      },      
+      "errors": ["mt0309"],
+      "c": { "call": "extern pascal MouseRec ReadMouse2()" },
+      "docs": [
+        { "ref": "tbv3", "page": "39-11" }
+      ]
     },
     {
       "toolcall": "34",
       "toolnum": "03",
       "toolname": "Misc Tools",
-      "callname": "GetCodeResConv",
-      "description": "Returns the address of a routine that loads code resources"
+      "callname": "GetCodeResConverter",
+      "description": "Returns the address of a routine that loads code resources",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [ 
+          { "size": "long", "name": "pointer", "description": "POINTER to code resource converter routine" }
+        ]
+      },      
+      "errors": ["none"],
+      "c": { "call": "extern pascal Pointer GetCodeResConverter()" },
+      "docs": [
+        { "ref": "tbv3", "page": "39-8" }
+      ]
     },
     {
       "toolcall": "35",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "GetROMResource",
-      "description": "This call is for use only by system firmware"
+      "description": "This call is for use only by system firmware",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv3", "page": "39-10" }]
     },
     {
       "toolcall": "36",
       "toolnum": "03",
       "toolname": "Misc Tools",
-      "callname": "ReleaseROMReso",
-      "description": "This call is for use only by system firmware"
+      "callname": "ReleaseROMResource",
+      "description": "This call is for use only by system firmware",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv3", "page": "39-12" }]
     },
     {
       "toolcall": "37",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "ConvSeconds",
-      "description": "Allows conversion to and from a long integer containing the number of seconds since January 1, 1904"
+      "description": "Allows conversion to and from a long integer containing the number of seconds since January 1, 1904",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "convVerb", "description": "Direction and type of conversion" },
+          { "size": "long", "name": "seconds", "description": "Number of seconds since January 1, 1904" },
+          { "size": "long", "name": "datePtr", "description": "POINTER to buffer for converted date" }
+        ],
+        "output": [ 
+          { "size": "long", "name": "secondsOut", "description": "Resulting number of seconds" }
+        ]
+      },      
+      "errors": ["mt0390","mt0391"],
+      "c": { "call": "extern pascal unsigned long ConvSeconds(convVerb,seconds,datePtr)" },
+      "docs": [
+        { "ref": "gs16pr60", "page": "176" }
+      ]
     },
     {
       "toolcall": "38",
@@ -9710,7 +9979,10 @@
     "mt0309": { "source": "Miscellaneous Tool Set", "code": "0309", "name": "unCnctdDevErr ", "description": "Dispatch attempted to unconnected device" },
     "mt030B": { "source": "Miscellaneous Tool Set", "code": "030B", "name": "idTagNtAvlErr ", "description": "No ID tag available" },
     "mt0380": { "source": "Miscellaneous Tool Set", "code": "0380", "name": "notInList", "description": "Specified routine not found in queue" },
-    "mt0381": { "source": "Miscellaneous Tool Set", "code": "0381", "name": "invalidTag", "description": "The correct signature value was not found in the header" }
+    "mt0381": { "source": "Miscellaneous Tool Set", "code": "0381", "name": "invalidTag", "description": "The correct signature value was not found in the header" },
+    "mt0382": { "source": "Miscellaneous Tool Set", "code": "0382", "name": "alreadyInQueue", "description": "Specified element already in queue" },
+    "mt0390": { "source": "Miscellaneous Tool Set", "code": "0390", "name": "badTimeVerb", "description": "Invalid convVerb value" },
+    "mt0391": { "source": "Miscellaneous Tool Set", "code": "0391", "name": "badTimeData", "description": "Invalid date or time to be converted" }
   },
   "references": {
     "tbv1": {
