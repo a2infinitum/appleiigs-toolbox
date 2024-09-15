@@ -1929,91 +1929,239 @@
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "SysBeep2",
-      "description": "SysBeep2 takes an integer parameter indicating what sound to make"
+      "description": "SysBeep2 takes an integer parameter indicating what sound to make",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "beepType", "description": "Beep type" }
+        ]
+      },      
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SysBeep2(beepType)" },
+      "docs": [
+        { "ref": "gs16pr60", "page": "186" }
+      ]
     },
     {
       "toolcall": "39",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "VersionString",
-      "description": "Converts a 32-bit Version number into a Pascal string"
+      "description": "Converts a 32-bit Version number into a Pascal string",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "flags", "description": "Reserved (pass 0)" },
+          { "size": "long", "name": "theVersion", "description": "The version number to convert" },
+          { "size": "long", "name": "stringPtr", "description": "POINTER to a 10-byte buffer" }
+        ]
+      },      
+      "errors": ["none"],
+      "c": { "call": "extern pascal void VersionString(flags,theVersion,stringPtr)" },
+      "docs": [
+        { "ref": "gs16pr60", "page": "189" }
+      ]
     },
     {
       "toolcall": "3A",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "WaitUntil",
-      "description": "Provides an upper limit on the frequency of repeating actions"
+      "description": "Provides an upper limit on the frequency of repeating actions",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "space", "description": "Space for result" },
+          { "size": "word", "name": "delayFrom", "description": "Anchor point to delay from" },
+          { "size": "word", "name": "delayAmount", "description": "Specifies how long to wait for anchor" }
+        ],
+        "output": [
+          { "size": "word", "name": "newTime", "description": "New anchor point for next call" }
+        ]
+      },      
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word WaitUntil(delayFrom,delayAmount)" },
+      "docs": [
+        { "ref": "gs16pr60", "page": "190" }
+      ]
     },
     {
       "toolcall": "3B",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "StringToText",
-      "description": "StringToText translates 8-bit-character text into similar text that can be displayed on the Apple IIGS text screen"
+      "description": "StringToText translates 8-bit-character text into similar text that can be displayed on the Apple IIGS text screen",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "space", "description": "Space for result" },
+          { "size": "word", "name": "space", "description": "Space for result" },
+          { "size": "word", "name": "flags", "description": "Flags" },
+          { "size": "long", "name": "textPtr", "description": "POINTER to source text" },
+          { "size": "word", "name": "textLen", "description": "Length of text" },
+          { "size": "long", "name": "resultPtr", "description": "POINTER to result buffer" }
+        ],
+        "output": [
+          { "size": "word", "name": "resultFlags", "description": "Result flags" },
+          { "size": "word", "name": "printableLength", "description": "Number of printing charachters in result" }
+        ]
+      },      
+      "errors": ["mt034F"],
+      "c": { "call": "extern pascal Long StringToText(flags,textPtr,textLen,resultPtr)" },
+      "docs": [
+        { "ref": "gs16pr60", "page": "181" }
+      ]
     },
     {
       "toolcall": "3C",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "ShowBootInfo",
-      "description": "Provides a way for special system extensions to make their presence known while the system is starting up"
+      "description": "Provides a way for special system extensions to make their presence known while the system is starting up",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "cStringPtr", "description": "POINTER to zero-terminated string (or NIL)" },
+          { "size": "long", "name": "iconPtr", "description": "POINTER to DrawIcon-style icon (or NIL)" }
+        ]
+      },      
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ShowBootInfo(cStringPtr,iconPtr)" },
+      "docs": [
+        { "ref": "gs16pr60", "page": "179" }
+      ]
     },
     {
       "toolcall": "3D",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "ScanDevices",
-      "description": "Provides easy access to a GS/OS system service vector which checks for disk insertions"
+      "description": "Provides easy access to a GS/OS system service vector which checks for disk insertions",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "space", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "deviceNumber", "description": "Device number" }
+        ]
+      },      
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word ScanDevices()" },
+      "docs": [
+        { "ref": "gs16pr60", "page": "178" }
+      ]
     },
     {
       "toolcall": "3E",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "AlertMessage",
-      "description": "Displays a message on either the text screen or the Super Hi-Res screen and makes the user choose 1 of up to 3 buttons"
+      "description": "Displays a message on either the text screen or the Super Hi-Res screen and makes the user choose 1 of up to 3 buttons",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "space", "description": "Space for result" },
+          { "size": "long", "name": "tablePtr", "description": "POINTER to the message table" },
+          { "size": "word", "name": "msgNumber", "description": "Message index number (0, 1, 2...)" },
+          { "size": "long", "name": "substitutions", "description": "POINTER to the string substitution table" }
+        ],
+        "output": [
+          { "size": "word", "name": "buttonNum", "description": "Button chosen by the user" }
+        ]
+      },      
+      "errors": ["mt0377"],
+      "c": { "call": "extern pascal Long AlertMessage(tablePtr,msgNumber,substitutions)" },
+      "docs": [
+        { "ref": "gs16pr601", "page": "14" }
+      ]
     },
     {
       "toolcall": "3F",
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "DoSysPrefs",
-      "description": "Clears and then sets specified bits in the GS/OS system preferences word"
+      "description": "Clears and then sets specified bits in the GS/OS system preferences word",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "space", "description": "Space for result" },
+          { "size": "word", "name": "bitsToClear", "description": "System preference bits to clear" },
+          { "size": "word", "name": "bitsToSet", "description": "System preference bits to set" }
+        ],
+        "output": [
+          { "size": "word", "name": "oldSysPrefs", "description": "Previous system preference word" }
+        ]
+      },      
+      "errors": ["mt0301"],
+      "c": { "call": "extern pascal Word DoSysPrefs(bitsToClear,bitsToSet)" },
+      "docs": [
+        { "ref": "gs16pr601", "page": "16" }
+      ]
     },
     {
       "toolcall": "01",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "QDBootInit",
-      "description": "Initializes QuickDraw II; called only by the Tool Locator - not by application"
+      "description": "Initializes QuickDraw II; called only by the Tool Locator - not by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv2", "page": "16-63" }]
     },
     {
       "toolcall": "02",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "QDStartUp",
-      "description": "Starts up QuickDraw II for use by an application"
+      "description": "Starts up QuickDraw II for use by an application",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "dPageAddr", "description": "Bank $0 starting address for 3 pages of direct-page space" },
+          { "size": "word", "name": "masterSCB", "description": "Master SCB for super Hi-Res graphics" },
+          { "size": "word", "name": "maxWidth", "description": "INTEGER; size in bytes of largest pixel map, 0 for screen width" },
+          { "size": "word", "name": "userID", "description": "User ID of application" }
+        ]
+      },      
+      "errors": ["qd0401","qd0410"],
+      "c": { "call": "extern pascal void QDStartUp(dPageAddr,masterSCB,maxWidth,userID)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-64" },
+        { "ref": "tbv3", "page": "43-5" },
+        { "ref": "gs16pr60", "page": "199" }
+      ]
     },
     {
       "toolcall": "03",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "QDShutDown",
-      "description": "Shuts down QuickDraw II when an application quits"
+      "description": "Shuts down QuickDraw II when an application quits",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void QDShutDown()" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-66" },
+        { "ref": "gs16pr60", "page": "199" }
+      ]
     },
     {
       "toolcall": "04",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "QDVersion",
-      "description": "Returns the version number of QuickDraw II"
+      "description": "Returns the version number of QuickDraw II",
+      "parameters": {
+        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ],
+        "output": [ { "size": "word", "name": "versionInfo", "description": "Version number of QuickDraw II" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word QDVersion()" },
+      "docs": [{ "ref": "tbv2", "page": "16-66" }]
     },
     {
       "toolcall": "05",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "QDReset",
-      "description": "Resets QuickDraw II; called only when the system is reset - not by applicaiton"
+      "description": "Resets QuickDraw II; called only when the system is reset - not by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv2", "page": "16-67" }]
     },
     {
       "toolcall": "06",
@@ -9982,7 +10130,30 @@
     "mt0381": { "source": "Miscellaneous Tool Set", "code": "0381", "name": "invalidTag", "description": "The correct signature value was not found in the header" },
     "mt0382": { "source": "Miscellaneous Tool Set", "code": "0382", "name": "alreadyInQueue", "description": "Specified element already in queue" },
     "mt0390": { "source": "Miscellaneous Tool Set", "code": "0390", "name": "badTimeVerb", "description": "Invalid convVerb value" },
-    "mt0391": { "source": "Miscellaneous Tool Set", "code": "0391", "name": "badTimeData", "description": "Invalid date or time to be converted" }
+    "mt0391": { "source": "Miscellaneous Tool Set", "code": "0391", "name": "badTimeData", "description": "Invalid date or time to be converted" },
+    "mt034F": { "source": "Miscellaneous Tool Set", "code": "034F", "name": "mtBufferTooSmall", "description": "The buffer is too small" },
+    "mt0377": { "source": "Miscellaneous Tool Set", "code": "0377", "name": "onlyFromGSOS", "description": "You called AlertMessage from ProDOS 8" },
+
+    "qd0401": { "source": "QuickDraw II", "code": "0401", "name": "alreadyInitialized", "description":"QuickDraw II is already initialized" },
+    "qd0402": { "source": "QuickDraw II", "code": "0402", "name": "cannotReset", "description":"Never used" },
+    "qd0403": { "source": "QuickDraw II", "code": "0403", "name": "notinitialized", "description":"QuickDraw II not initialized" },
+    "qd0410": { "source": "QuickDraw II", "code": "0410", "name": "screenReserved", "description":"Screen reserved" },
+    "qd0411": { "source": "QuickDraw II", "code": "0411", "name": "badRect", "description":"Invalid rectangle specified" },
+    "qd0420": { "source": "QuickDraw II", "code": "0420", "name": "notEqualChunkiness", "description":"Chunkiness not equal" },
+    "qd0430": { "source": "QuickDraw II", "code": "0430", "name": "rgnAlreadyOpen", "description":"Region already open" },
+    "qd0431": { "source": "QuickDraw II", "code": "0431", "name": "rgnNotOpen", "description":"Region not open" },
+    "qd0432": { "source": "QuickDraw II", "code": "0432", "name": "rgnScanOverflow", "description":"Region scan overflow" },
+    "qd0433": { "source": "QuickDraw II", "code": "0433", "name": "rgnFull", "description":"Region full" },
+    "qd0440": { "source": "QuickDraw II", "code": "0440", "name": "polyAlreadyOpen", "description":"Polygon already open" },
+    "qd0441": { "source": "QuickDraw II", "code": "0441", "name": "polyNotOpen", "description":"Polygon not open" },
+    "qd0442": { "source": "QuickDraw II", "code": "0442", "name": "polyTooBig", "description":"Polygon too big" },
+    "qd0450": { "source": "QuickDraw II", "code": "0450", "name": "badTableNum", "description":"Invalid color table number" },
+    "qd0451": { "source": "QuickDraw II", "code": "0451", "name": "badColorNum", "description":"Invalid color number" },
+    "qd0452": { "source": "QuickDraw II", "code": "0452", "name": "badScanLine", "description":"Invalid scan line number" },
+    "qd04FF": { "source": "QuickDraw II", "code": "04FF", "name": "", "description":"Not implemented" }
+    
+
+
   },
   "references": {
     "tbv1": {
