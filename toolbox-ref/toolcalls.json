@@ -2168,140 +2168,289 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "QDStatus",
-      "description": "Indicates whether QuickDraw II is active"
+      "description": "Indicates whether QuickDraw II is active",
+      "parameters": {
+        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ],
+        "output": [ { "size": "word", "name": "activeFlag", "description": "BOOLEAN; TRUE if QuickDraw II is active, FALSE if not" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean QDStatus()" },
+      "docs": [{ "ref": "tbv1", "page": "16-67" }]
     },
     {
       "toolcall": "09",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetAddress",
-      "description": "Returns a pointer to a specified table"
+      "description": "Returns a pointer to a specified table",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "tableID", "description": "ID of table whose pointer will be retrieved" } 
+        ],
+        "output": [ { "size": "long", "name": "tablePtr", "description": "POINTER to table in ROM" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Pointer GetAddress(tableID)" },
+      "docs": [{ "ref": "tbv1", "page": "16-107" }]
     },
     {
       "toolcall": "0A",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GrafOn",
-      "description": "Turns on Super Hi-Res graphics mode"
+      "description": "Turns on Super Hi-Res graphics mode",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GrafOn()" },
+      "docs": [{ "ref": "tbv2", "page": "16-155" }]
     },
     {
       "toolcall": "0B",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GrafOff",
-      "description": "Turns off Super Hi-Res graphics mode"
+      "description": "Turns off Super Hi-Res graphics mode",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GrafOff()" },
+      "docs": [{ "ref": "tbv2", "page": "16-155" }]
     },
     {
       "toolcall": "0C",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetStandardSCB",
-      "description": "Returns a copy of the standard scan line control byte (SCB)"
+      "description": "Returns a copy of the standard scan line control byte (SCB)",
+      "parameters": {
+        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ],
+        "output": [ { "size": "word", "name": "scb", "description": "Standard SCB (see Toolbox Ref Vol2 Figure 16-34)" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word GetStandardSCB()" },
+      "docs": [{ "ref": "tbv2", "page": "16-34" }]
     },
     {
       "toolcall": "0D",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "InitColorTable",
-      "description": "Returns a copy of the standard color table for the current mode"
+      "description": "Returns a copy of the standard color table for the current mode",
+      "parameters": {
+        "input": [ { "size": "long", "name": "tablePtr", "description": "POINTER to space for standard color table (see Toolbox Ref Vol2 Figure 16-7)" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void InitColorTable(tablePtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-158" }]
     },
     {
       "toolcall": "0E",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetColorTable",
-      "description": "Sets a specified color table to specified values"
+      "description": "Sets a specified color table to specified values",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "tableNumber", "description": "INTEGER; number of table whose color values will be set" },
+          { "size": "long", "name": "srcTablePtr", "description": "POINTER to color table" } 
+        ]
+      },
+      "errors": ["qd0450"],
+      "c": { "call": "extern pascal void SetColorTable(tableNumber,srcTablePtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-221" }]
     },
     {
       "toolcall": "0F",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetColorTable",
-      "description": "Fills a specified color table with the contents of another color table"
+      "description": "Fills a specified color table with the contents of another color table",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "tableNumber", "description": "INTEGER; color table to be copied" },
+          { "size": "long", "name": "destTablePtr", "description": "POINTER to color table to receive new values" } 
+        ]
+      },
+      "errors": ["qd0450"],
+      "c": { "call": "extern pascal void GetColorTable(tableNumber,destTablePtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-116" }]
     },
     {
       "toolcall": "10",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetColorEntry",
-      "description": "Sets the value of a color in a specified color table"
+      "description": "Sets the value of a color in a specified color table",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "tableNumber", "description": "INTEGER; number of color table" },
+          { "size": "word", "name": "entryNumber", "description": "INTEGER; number of color to be changed" },
+          { "size": "word", "name": "newColor", "description": "INTEGER; master color value for color" } 
+        ]
+      },
+      "errors": ["qd0450","qd0451"],
+      "c": { "call": "extern pascal void SetColorEntry(tableNumber,entryNumber,newColor)" },
+      "docs": [{ "ref": "tbv2", "page": "16-220" }]
     },
     {
       "toolcall": "11",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetColorEntry",
-      "description": "Returns the value of a specified color in a specified color table"
+      "description": "Returns the value of a specified color in a specified color table",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "tableNumber", "description": "INTEGER; number of color table" },
+          { "size": "word", "name": "entryNumber", "description": "INTEGER; number of color to be examined" } 
+        ]
+      },
+      "errors": ["qd0450","qd0451"],
+      "c": { "call": "extern pascal void GetColorEntry(tableNumber,entryNumber)" },
+      "docs": [{ "ref": "tbv2", "page": "16-115" }]
     },
     {
       "toolcall": "12",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetSCB",
-      "description": "Sets the SCB to a specified value"
+      "description": "Sets the SCB to a specified value",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "scanLine", "description": "INTEGER; scan line whose SCB is to be set" },
+          { "size": "word", "name": "newSCB", "description": "INTEGER; new value for SCB" }
+        ]
+      },
+      "errors": ["qd0452"],
+      "c": { "call": "extern pascal void SetSCB(scanLine,newSCB)" },
+      "docs": [{ "ref": "tbv2", "page": "16-250" }]
     },
     {
       "toolcall": "13",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetSCB",
-      "description": "Returns the value of a specified SCB"
+      "description": "Returns the value of a specified SCB",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "scanLine", "description": "INTEGER; new value for SCB" }
+        ]
+      },
+      "errors": ["qd0452"],
+      "c": { "call": "extern pascal Word GetSCB(scanLine)" },
+      "docs": [{ "ref": "tbv2", "page": "16-143" }]
     },
     {
       "toolcall": "14",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetAllSCBs",
-      "description": "Sets all SCBs to a specified value"
+      "description": "Sets all SCBs to a specified value",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "newSCB", "description": "new value for SCB" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetAllSCBs(newSCB)" },
+      "docs": [{ "ref": "tbv2", "page": "16-211" }]
     },
     {
       "toolcall": "15",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "ClearScreen",
-      "description": "Sets the words in screen memory to a specified value"
+      "description": "Sets the words in screen memory to a specified value",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "colorWord", "description": "Color as offset into current color table" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ClearScreen(colorWord)" },
+      "docs": [{ "ref": "tbv2", "page": "16-71" }]
     },
     {
       "toolcall": "16",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetMasterSCB",
-      "description": "Sets the master SCB to a specified value"
+      "description": "Sets the master SCB to a specified value",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "masterSCB", "description": "Value for master SCB low-order byte only; high-order byte=0)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetMasterSCB(masterSCB)" },
+      "docs": [{ "ref": "tbv2", "page": "16-231" }]
     },
     {
       "toolcall": "17",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetMasterSCB",
-      "description": "Returns a copy of the master SCB"
+      "description": "Returns a copy of the master SCB",
+      "parameters": {
+        "input": [{ "size": "word", "name": "wordspace", "description": "Space for result" }],
+        "output": [{ "size": "word", "name": "masterSCB", "description": "Master SCB value" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GetMasterSCB()" },
+      "docs": [{ "ref": "tbv2", "page": "16-127" }]
     },
     {
       "toolcall": "18",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "OpenPort",
-      "description": "Init spec mem loc as a std Grafport, allocate new visbl & clip regn & make GrafPrt current"
+      "description": "Initializes specified memory as a standard GrafPort, allocate a new visible region and clipping region, and set as current GrafPort.",
+      "parameters": {
+        "input": [{ "size": "long", "name": "portPtr", "description": "POINTER to space for GrafPort record" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void OpenPort(portPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-187" }]
     },
     {
       "toolcall": "19",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "InitPort",
-      "description": "Initializes specified memory locations as a standard port"
+      "description": "Initializes specified memory locations as a standard port",
+      "parameters": {
+        "input": [{ "size": "long", "name": "portPtr", "description": "POINTER to port" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void InitPort(portPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-161" }]
     },
     {
       "toolcall": "1A",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "ClosePort",
-      "description": "Deallocates the clipping and visible regions in a port"
+      "description": "Deallocates the clipping and visible regions in a port",
+      "parameters": {
+        "input": [{ "size": "long", "name": "portPtr", "description": "POINTER to port" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ClosePort(portPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-73" }]
     },
     {
       "toolcall": "1B",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetPort",
-      "description": "Makes a specified port the current GrafPort"
+      "description": "Makes a specified port the current GrafPort",
+      "parameters": {
+        "input": [{ "size": "long", "name": "portPtr", "description": "POINTER to port" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetPort(portPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-241" }]
     },
     {
       "toolcall": "1C",
@@ -2326,371 +2475,762 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetPortLoc",
-      "description": "Sets the current port's locInfo record to specified location information"
+      "description": "Sets the current port's locInfo record to specified location information",
+      "parameters": {
+        "input": [{ "size": "long", "name": "locInfoPtr", "description": "POINTER to location information" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetPortLoc(locInfoPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-242" }]
     },
     {
       "toolcall": "1E",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetPortLoc",
-      "description": "Gets the current port's locInfo record and puts it at the specified location"
+      "description": "Gets the current port's locInfo record and puts it at the specified location",
+      "parameters": {
+        "input": [{ "size": "long", "name": "locInfoPtr", "description": "POINTER to space for locInfo record" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GetPortLoc(locInfoPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-242" }]
     },
     {
       "toolcall": "1F",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetPortRect",
-      "description": "Sets the current GrafPort's port rectangle to the specified rectangle"
+      "description": "Sets the current GrafPort's port rectangle to the specified rectangle",
+      "parameters": {
+        "input": [{ "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining rectangle" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetPortRect(rectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-243" }]
     },
     {
       "toolcall": "20",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetPortRect",
-      "description": "Returns the current GrafPort's port rectangle"
+      "description": "Returns the current GrafPort's port rectangle",
+      "parameters": {
+        "input": [{ "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining rectangle" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GetPortRect(rectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-139" }]
     },
     {
       "toolcall": "21",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetPortSize",
-      "description": "Changes the size of the current Grafport's port rectangle"
+      "description": "Changes the size of the current Grafport's port rectangle",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "portWidth", "description": "INTEGER; width of active area in pixels" },
+          { "size": "word", "name": "portHeight", "description": "INTEGER; height of active area in pixels" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetPortSize(portWidth,portHeight)" },
+      "docs": [{ "ref": "tbv2", "page": "16-244" }]
     },
     {
       "toolcall": "22",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "MovePortTo",
-      "description": "Changes te location of the current GrafPort's port rectangle"
+      "description": "Changes the location of the current GrafPort's port rectangle",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "h", "description": "INTEGER; horizontal coordinate of upper left corner" },
+          { "size": "word", "name": "v", "description": "INTEGER; vertical coordinate of upper left corner" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void MovePortTo(h,v)" },
+      "docs": [{ "ref": "tbv2", "page": "16-179" }]
     },
     {
       "toolcall": "23",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetOrigin",
-      "description": "Adjusts content of port & bounds rectangle so up/left corner of port rect is set @ spec pt"
+      "description": "Adjust contents of port & bounds rectangles so up/left corner of port rect is set at specified point",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "h", "description": "INTEGER; horizontal coordinate of upper left corner" },
+          { "size": "word", "name": "v", "description": "INTEGER; vertical coordinate of upper left corner" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetOrigin(h,v)" },
+      "docs": [{ "ref": "tbv2", "page": "16-232" }]
     },
     {
       "toolcall": "24",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetClip",
-      "description": "Copies a specified region into the clipping region"
+      "description": "Copies a specified region into the clipping region",
+      "parameters": {
+        "input": [{ "size": "long", "name": "rgnHandle", "description": "HANDLE to region" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetClip(rgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-218" }]
     },
     {
       "toolcall": "25",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetClip",
-      "description": "Copies the clipping region to a specified region"
+      "description": "Copies the clipping region to a specified region",
+      "parameters": {
+        "input": [{ "size": "long", "name": "rgnHandle", "description": "HANDLE to region" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GetClip(rgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-113" }]
     },
     {
       "toolcall": "26",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "ClipRect",
-      "description": "Changes clipping region of current GrafPort to a rectangle equal to a spec. rectangle"
+      "description": "Changes clipping region of current GrafPort to a rectangle equal to a specified rectangle",
+      "parameters": {
+        "input": [{ "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining rectangle" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ClipRect(rectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-72" }]
     },
     {
       "toolcall": "27",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "HidePen",
-      "description": "Decrements the pen level"
+      "description": "Decrements the pen level",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void HidePen()" },
+      "docs": [{ "ref": "tbv2", "page": "16-156" }]
     },
     {
       "toolcall": "28",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "ShowPen",
-      "description": "Increments the pen level"
+      "description": "Increments the pen level",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ShowPen()" },
+      "docs": [{ "ref": "tbv2", "page": "16-265" }]
     },
     {
       "toolcall": "29",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetPen",
-      "description": "Returns the pen location"
+      "description": "Returns the pen location",
+      "parameters": {
+        "input": [{ "size": "long", "name": "pointPtr", "description": "POINTER to POINT" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GetPen(pointPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-128" }]
     },
     {
       "toolcall": "2A",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetPenState",
-      "description": "Sets the pen state in the GrafPort to specified values"
+      "description": "Sets the pen state in the GrafPort to specified values",
+      "parameters": {
+        "input": [{ "size": "long", "name": "penStatePtr", "description": "POINTER to pen state record (see Toolbox Ref Vol2 Figure 16-38)" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetPenState(penStatePtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-238" }]
     },
     {
       "toolcall": "2B",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetPenState",
-      "description": "Returns the pen state from the GrafPort to a specified location"
+      "description": "Returns the pen state from the GrafPort to a specified location",
+      "parameters": {
+        "input": [{ "size": "long", "name": "penStatePtr", "description": "POINTER to space for pen state record" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GetPenState(penStatePtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-133" }]
     },
     {
       "toolcall": "2C",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetPenSize",
-      "description": "Sets the current pen size to a specified pen size"
+      "description": "Sets the current pen size to a specified pen size",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "penWidth", "description": "INTEGER; width of pen in pixels" },
+          { "size": "word", "name": "penHeight", "description": "INTEGER; height of pen in pixels" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetPenSize(penWidth,penHeight )" },
+      "docs": [{ "ref": "tbv2", "page": "16-237" }]
     },
     {
       "toolcall": "2D",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetPenSize",
-      "description": "Returns the current pen size to a specified location"
+      "description": "Returns the current pen size to a specified location",
+      "parameters": {
+        "input": [{ "size": "long", "name": "penStatePtr", "description": "POINTER to space POINT" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GetPenSize(pointPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-132" }]
     },
     {
       "toolcall": "2E",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetPenMode",
-      "description": "Sets the current pen mode to a specified pen mode"
+      "description": "Sets the current pen mode to a specified pen mode",
+      "parameters": {
+        "input": [{ "size": "word", "name": "penMode", "description": "INTEGER; new pen mode (see Toolbox Ref Vol2 Figure 16-9)" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetPenMode(penMode)" },
+      "docs": [{ "ref": "tbv2", "page": "16-234" }]
     },
     {
       "toolcall": "2F",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetPenMode",
-      "description": "Returns the pen mode from the current GrafPort"
+      "description": "Returns the pen mode from the current GrafPort",
+      "parameters": {
+        "input": [{ "size": "word", "name": "wordspace", "description": "Space for result" }],
+        "output": [{ "size": "word", "name": "penMode", "description": "INTEGER; pen mode value (see Toolbox Ref Vol2 Figure 16-9)" }]
+
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word GetPenMode()" },
+      "docs": [{ "ref": "tbv2", "page": "16-130" }]
     },
     {
       "toolcall": "30",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetPenPat",
-      "description": "Sets the current pen pattern to a specified pen pattern"
+      "description": "Sets the current pen pattern to a specified pen pattern",
+      "parameters": {
+        "input": [{ "size": "long", "name": "patternPtr", "description": "POINTER to pattern" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetPenPat(patternPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-236" }]
     },
     {
       "toolcall": "31",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetPenPat",
-      "description": "Copies the current pen pattern from the current GrafPort to a specified location"
+      "description": "Copies the current pen pattern from the current GrafPort to a specified location",
+      "parameters": {
+        "input": [{ "size": "long", "name": "patternPtr", "description": "POINTER to space for pattern" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GetPenPat(patternPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-131" }]
     },
     {
       "toolcall": "32",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetPenMask",
-      "description": "Sets the pen mask to a specified mask"
+      "description": "Sets the pen mask to a specified mask",
+      "parameters": {
+        "input": [{ "size": "long", "name": "maskPtr", "description": "POINTER to pen mask" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetPenMask(maskPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-233" }]
     },
     {
       "toolcall": "33",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetPenMask",
-      "description": "Returns the pen mask to a specified location"
+      "description": "Returns the pen mask to a specified location",
+      "parameters": {
+        "input": [{ "size": "long", "name": "maskPtr", "description": "POINTER to space for mask" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GetPenMask(maskPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-129" }]
     },
     {
       "toolcall": "34",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetBackPat",
-      "description": "Sets the background pattern to a specified pattern"
+      "description": "Sets the background pattern to a specified pattern",
+      "parameters": {
+        "input": [{ "size": "long", "name": "patternPtr", "description": "POINTER to pattern" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetBackPat(patternPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-214" }]
     },
     {
       "toolcall": "35",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetBackPat",
-      "description": "Copies current background pen pattern from current GrafPort to a specified location"
+      "description": "Copies current background pen pattern from current GrafPort to a specified location",
+      "parameters": {
+        "input": [{ "size": "long", "name": "patternPtr", "description": "POINTER to location for pattern" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GetBackPat(patternPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-111" }]
     },
     {
       "toolcall": "36",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "PenNormal",
-      "description": "Sets the pen state to the standard state; pen location is not changed"
+      "description": "Sets the pen state to the standard state; pen location is not changed",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void PenNormal()" },
+      "docs": [{ "ref": "tbv2", "page": "16-196" }]
     },
     {
       "toolcall": "37",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetSolidPenPat",
-      "description": "Sets the pen pattern to a solid pattern using the specified color"
+      "description": "Sets the pen pattern to a solid pattern using the specified color",
+      "parameters": {
+        "input": [{ "size": "word", "name": "colorNum", "description": "INTEGER; new color value" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetSolidPenPat(colorNum)" },
+      "docs": [{ "ref": "tbv2", "page": "16-252" }]
     },
     {
       "toolcall": "38",
       "toolnum": "04",
       "toolname": "QuickDraw",
-      "callname": "SetSolidBackPa",
-      "description": "Sets the background pattern to a solid pattern using a specified color"
+      "callname": "SetSolidBackPat",
+      "description": "Sets the background pattern to a solid pattern using a specified color",
+      "parameters": {
+        "input": [{ "size": "word", "name": "colorNum", "description": "INTEGER; new color value" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetSolidBackPat(colorNum)" },
+      "docs": [{ "ref": "tbv2", "page": "16-251" }]
     },
     {
       "toolcall": "39",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SolidPattern",
-      "description": "Sets a specified pattern to a solid pattern using a specified color"
+      "description": "Sets a specified pattern to a solid pattern using a specified color",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "colorNum", "description": "INTEGER; new color value" },
+          { "size": "long", "name": "patternPtr", "description": "POINTER to pattern" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SolidPattern(colorNum,patternPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-265" }]
     },
     {
       "toolcall": "3A",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "MoveTo",
-      "description": "Moves the current pen location to a specified point"
+      "description": "Moves the current pen location to a specified point",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "h", "description": "INTEGER; horizontal point in local coordinates" },
+          { "size": "word", "name": "v", "description": "INTEGER; vertical point in local coordinates" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void MoveTo(h,v)" },
+      "docs": [{ "ref": "tbv2", "page": "16-180" }]
     },
     {
       "toolcall": "3B",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "Move",
-      "description": "Moves the current pen location by specified horizontal & vertical displacements"
+      "description": "Moves the current pen location by specified horizontal & vertical displacements",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "dH", "description": "INTEGER; horizontal displacement" },
+          { "size": "word", "name": "dV", "description": "INTEGER; vertical displacement" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void Move(dH,dV)" },
+      "docs": [{ "ref": "tbv2", "page": "16-178" }]
     },
     {
       "toolcall": "3C",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "LineTo",
-      "description": "Draws a line from the current pen location to a specified point"
+      "description": "Draws a line from the current pen location to a specified point",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "h", "description": "INTEGER; horizontal point to which line will be drawn" },
+          { "size": "word", "name": "v", "description": "INTEGER; vertical point to which line will be drawn" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void LineTo(h,v)" },
+      "docs": [{ "ref": "tbv2", "page": "16-172" }]
     },
     {
       "toolcall": "3D",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "Line",
-      "description": "Draws a line from current pen location to a new point spec by horiz & vert displacements"
+      "description": "Draws a line from current pen location to a new point spec by horiz & vert displacements",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "dH", "description": "INTEGER; horizontal displacement in points" },
+          { "size": "word", "name": "dV", "description": "INTEGER; vertical displacement in points" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void Line(dH,dV)" },
+      "docs": [{ "ref": "tbv2", "page": "16-171" }]
     },
     {
       "toolcall": "3E",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetPicSave",
-      "description": "Sets the picSave field in the GrafPort to a specified value"
+      "description": "Sets the picSave field in the GrafPort to a specified value",
+      "parameters": {
+        "input": [{ "size": "long", "name": "picSaveValue", "description": "New value for picSave field" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetPicSave(picSaveValue)" },
+      "docs": [{ "ref": "tbv2", "page": "16-239" }]
     },
     {
       "toolcall": "3F",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetPicSave",
-      "description": "Returns the value of the picSave field of the GrafPort"
+      "description": "Returns the value of the picSave field of the GrafPort",
+      "parameters": {
+        "input": [{ "size": "long", "name": "longspace", "description": "Space for result" }],
+        "output": [{ "size": "long", "name": "picSaveValue", "description": "Current picSave value" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Longint GetPicSave()" },
+      "docs": [{ "ref": "tbv2", "page": "16-134" }]
     },
     {
       "toolcall": "40",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetRgnSave",
-      "description": "Sets the rgnSave field in the GrafPort ot a specified value"
+      "description": "Sets the rgnSave field in the GrafPort ot a specified value",
+      "parameters": {
+        "input": [{ "size": "long", "name": "rgnSaveValue", "description": "HANDLE; new value of rgnSave field" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetRgnSave(rgnSaveValue)" },
+      "docs": [{ "ref": "tbv2", "page": "16-249" }]
     },
     {
       "toolcall": "41",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetRgnSave",
-      "description": "Returns the value of the rgnSave field of the GrafPort"
+      "description": "Returns the value of the rgnSave field of the GrafPort",
+      "parameters": {
+        "input": [{ "size": "long", "name": "longspace", "description": "Space for result" }],
+        "output": [{ "size": "long", "name": "rgnSaveValue", "description": "Current rgnSave value" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal LongWord GetRgnSave()" },
+      "docs": [{ "ref": "tbv2", "page": "16-140" }]
     },
     {
       "toolcall": "42",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetPolySave",
-      "description": "Sets the polySave field in the GrafPort to a specified value"
+      "description": "Sets the polySave field in the GrafPort to a specified value",
+      "parameters": {
+        "input": [{ "size": "long", "name": "polySaveValue", "description": "New value for polySave field" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetPolySave(polySaveValue)" },
+      "docs": [{ "ref": "tbv2", "page": "16-240" }]
     },
     {
       "toolcall": "43",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetPolySave",
-      "description": "Returns the value of the polySave field of the GrafPort"
+      "description": "Returns the value of the polySave field of the GrafPort",
+      "parameters": {
+        "input": [{ "size": "long", "name": "longspace", "description": "Space for result" }],
+        "output": [{ "size": "long", "name": "polySaveValue", "description": "Current polySave value" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal LongWord GetPolySave()" },
+      "docs": [{ "ref": "tbv2", "page": "16-136" }]
     },
     {
       "toolcall": "44",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetGrafProcs",
-      "description": "Sets the grafProcs field of the current GrafPort to a specified value"
+      "description": "Sets the grafProcs field of the current GrafPort to a specified value",
+      "parameters": {
+        "input": [{ "size": "long", "name": "grafProcsPtr", "description": "POINTER to grafProcs record" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetGrafProcs(grafProcsPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-229" }]
     },
     {
       "toolcall": "45",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetGrafProcs",
-      "description": "Returns the pointer to the grafProcs record associated witht the GrafPort"
+      "description": "Returns the pointer to the grafProcs record associated witht the GrafPort",
+      "parameters": {
+        "input": [{ "size": "long", "name": "longspace", "description": "Space for result" }],
+        "output": [{ "size": "long", "name": "grafProcsPtr", "description": "POINTER to grafProcs record" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal QDProcsPtr GetGraphProcs()" },
+      "docs": [{ "ref": "tbv2", "page": "16-126" }]
     },
     {
       "toolcall": "46",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetUserField",
-      "description": "Sets the userField in the GrafPort to a specified value"
+      "description": "Sets the userField in the GrafPort to a specified value",
+      "parameters": {
+        "input": [{ "size": "long", "name": "userFieldValue", "description": "New value for userField field" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetUserField(userFieldValue)" },
+      "docs": [{ "ref": "tbv2", "page": "16-262" }]
     },
     {
       "toolcall": "47",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetUserField",
-      "description": "Returns the value of the userField field of the GrafPort"
+      "description": "Returns the value of the userField field of the GrafPort",
+      "parameters": {
+        "input": [{ "size": "long", "name": "longspace", "description": "Space for result" }],
+        "output": [{ "size": "long", "name": "userField", "description": "Current userField value" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Longint GetUserField()" },
+      "docs": [{ "ref": "tbv2", "page": "16-151" }]
     },
     {
       "toolcall": "48",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetSysField",
-      "description": "Sets the sysField field in GrafPort to a spec value - not called by an application"
+      "description": "Sets the sysField field in GrafPort to a spec value - not called by an application",
+      "parameters": {
+        "input": [{ "size": "long", "name": "sysFieldValue", "description": "New value for sysField field" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetSysField(sysFieldValue)" },
+      "docs": [{ "ref": "tbv2", "page": "16-255" }]
     },
     {
       "toolcall": "49",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetSysField",
-      "description": "Returns the value of the sysField field of the GrafPort"
+      "description": "Returns the value of the sysField field of the GrafPort",
+      "parameters": {
+        "input": [{ "size": "long", "name": "longspace", "description": "Space for result" }],
+        "output": [{ "size": "long", "name": "sysField", "description": "Current sysField value" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Longint GetSysField()" },
+      "docs": [{ "ref": "tbv2", "page": "16-146" }]
     },
     {
       "toolcall": "4A",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetRect",
-      "description": "Sets a specified rectangle to specified values"
+      "description": "Sets a specified rectangle to specified values",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rectPtr", "description": "POINTER to space for RECT defining rectangle to be set" },
+          { "size": "word", "name": "left", "description": "INTEGER; left X coordinate for rectangle" },
+          { "size": "word", "name": "top", "description": "INTEGER; top Y coordinate for rectangle" },
+          { "size": "word", "name": "right", "description": "INTEGER; right X coordinate for rectangle" },
+          { "size": "word", "name": "bottom", "description": "INTEGER; bottom Y coordinate for rectangle" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetRect(rectPtr,left,top,right,bottom)" },
+      "docs": [{ "ref": "tbv2", "page": "16-247" }]
     },
     {
       "toolcall": "4B",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "OffsetRect",
-      "description": "Offsets a specified rectangle by specified displacements"
+      "description": "Offsets a specified rectangle by specified displacements",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rectPtr", "description": "POINTER to rectangle" },
+          { "size": "word", "name": "dH", "description": "INTEGER; horizontal displacement in pixels" },
+          { "size": "word", "name": "dV", "description": "INTEGER; vertical displacement in pixels" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void OffsetRect(rectPtr,dH,dV)" },
+      "docs": [{ "ref": "tbv2", "page": "16-184" }]
     },
     {
       "toolcall": "4C",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "InsetRect",
-      "description": "Insets a specified rectangle by specified displacements"
+      "description": "Insets a specified rectangle by specified displacements",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rectPtr", "description": "POINTER to rectangle" },
+          { "size": "word", "name": "dH", "description": "INTEGER; horizontal displacement" },
+          { "size": "word", "name": "dV", "description": "INTEGER; vertical displacement" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void InsetRect(rectPtr,dH,dV)" },
+      "docs": [{ "ref": "tbv2", "page": "16-162" }]
     },
     {
       "toolcall": "4D",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SectRect",
-      "description": "Calculates intersection of two rectangles & places intersection in destination rectangle"
+      "description": "Calculates intersection of two rectangles & places intersection in destination rectangle",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "rect1Ptr", "description": "POINTER to RECT defining first source rectangle" },
+          { "size": "long", "name": "rect2Ptr", "description": "POINTER to RECT defining second source rectangle" },
+          { "size": "long", "name": "intersectRectPtr", "description": "POINTER to RECT defining destination rectangle" }
+        ],
+        "output": [
+          { "size": "word", "name": "notEmptyFlag", "description": "BOOLEAN; TRUE if rectangle not empty, FALSE if empty" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean SectRect(rect1Ptr,rect2Ptr,intersectRectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-209" }]
     },
     {
       "toolcall": "4E",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "UnionRect",
-      "description": "Calculates smallest rectangle that contains both src rect & places results in dest rect"
+      "description": "Calculates smallest rectangle that contains both src rect & places results in dest rect",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rect1Ptr", "description": "POINTER to first source rectangle" },
+          { "size": "long", "name": "rect2Ptr", "description": "POINTER to second source rectangle" },
+          { "size": "long", "name": "unionRectPtr", "description": "POINTER to destination rectangle" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void UnionRect(rect1Ptr,rect2Ptr,unionRectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-271" }]
     },
     {
       "toolcall": "4F",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "PtInRect",
-      "description": "Detects whether pixel below & to the right of spec point is in a specified rectangle"
+      "description": "Detects whether pixel below & to the right of spec point is in a specified rectangle",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "pointPtr", "description": "POINTER to POINT" },
+          { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining rectangle" }
+        ],
+        "output": [
+          { "size": "word", "name": "pointFlag", "description": "BOOLEAN; TRUE if pixel in rectangle, FALSE if not" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean PtInRect(pointPtr,rectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-200" }]
     },
     {
       "toolcall": "50",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "Pt2Rect",
-      "description": "Copies spec pt to uppr left corner of spec rect & another pt to lower right corner of rect"
+      "description": "Copies spec pt to uppr left corner of spec rect & another pt to lower right corner of rect",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "point1Ptr", "description": "POINTER to first source POINT" },
+          { "size": "long", "name": "point2Ptr", "description": "POINTER to second source POINT" },
+          { "size": "long", "name": "rectPtr", "description": "POINTER to destination rectangle" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void Pt2Rect(point1Ptr,point2Ptr,rectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-199" }]
     },
     {
       "toolcall": "51",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "EqualRect",
-      "description": "Indicates whether two rectangles are equal"
+      "description": "Indicates whether two rectangles are equal",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "rect1Ptr", "description": "POINTER to RECT defining one rectangle" },
+          { "size": "long", "name": "rect2Ptr", "description": "POINTER to RECT defining other rectangle" }
+        ],
+        "output": [
+          { "size": "word", "name": "equalFlag", "description": "BOOLEAN; TRUE if rectangles are equal, FALSE if not" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean EqualRect(rect1Ptr,rect2Ptr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-86" }]
     },
     {
       "toolcall": "52",
@@ -10147,8 +10687,8 @@
     "qd0440": { "source": "QuickDraw II", "code": "0440", "name": "polyAlreadyOpen", "description":"Polygon already open" },
     "qd0441": { "source": "QuickDraw II", "code": "0441", "name": "polyNotOpen", "description":"Polygon not open" },
     "qd0442": { "source": "QuickDraw II", "code": "0442", "name": "polyTooBig", "description":"Polygon too big" },
-    "qd0450": { "source": "QuickDraw II", "code": "0450", "name": "badTableNum", "description":"Invalid color table number" },
-    "qd0451": { "source": "QuickDraw II", "code": "0451", "name": "badColorNum", "description":"Invalid color number" },
+    "qd0450": { "source": "QuickDraw II", "code": "0450", "name": "badTableNum", "description":"Invalid color table number; 0 to 15 are valid" },
+    "qd0451": { "source": "QuickDraw II", "code": "0451", "name": "badColorNum", "description":"Invalid color number; 0 to 15 are valid" },
     "qd0452": { "source": "QuickDraw II", "code": "0452", "name": "badScanLine", "description":"Invalid scan line number" },
     "qd04FF": { "source": "QuickDraw II", "code": "04FF", "name": "", "description":"Not implemented" }
     
