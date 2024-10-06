@@ -2314,7 +2314,7 @@
         ]
       },
       "errors": ["qd0450","qd0451"],
-      "c": { "call": "extern pascal void GetColorEntry(tableNumber,entryNumber)" },
+      "c": { "call": "extern pascal Word GetColorEntry(tableNumber,entryNumber)" },
       "docs": [{ "ref": "tbv2", "page": "16-115" }]
     },
     {
@@ -2343,6 +2343,9 @@
         "input": [ 
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "scanLine", "description": "INTEGER; new value for SCB" }
+        ],
+        "output": [ 
+          { "size": "word", "name": "scb", "description": "Value of SCB" }
         ]
       },
       "errors": ["qd0452"],
@@ -2387,7 +2390,7 @@
       "description": "Sets the master SCB to a specified value",
       "parameters": {
         "input": [ 
-          { "size": "word", "name": "masterSCB", "description": "Value for master SCB low-order byte only; high-order byte=0)" }
+          { "size": "word", "name": "masterSCB", "description": "Value for master SCB (low-order byte only; high-order byte=0)" }
         ]
       },
       "errors": ["none"],
@@ -2405,7 +2408,7 @@
         "output": [{ "size": "word", "name": "masterSCB", "description": "Master SCB value" }]
       },
       "errors": ["none"],
-      "c": { "call": "extern pascal void GetMasterSCB()" },
+      "c": { "call": "extern pascal Word GetMasterSCB()" },
       "docs": [{ "ref": "tbv2", "page": "16-127" }]
     },
     {
@@ -2443,7 +2446,7 @@
       "parameters": {
         "input": [{ "size": "long", "name": "portPtr", "description": "POINTER to port" }]
       },
-      "errors": ["none"],
+      "errors": ["mmUnch"],
       "c": { "call": "extern pascal void ClosePort(portPtr)" },
       "docs": [{ "ref": "tbv2", "page": "16-73" }]
     },
@@ -2574,7 +2577,7 @@
           { "size": "word", "name": "v", "description": "INTEGER; vertical coordinate of upper left corner" }
         ]
       },
-      "errors": ["none"],
+      "errors": ["mmUnch"],
       "c": { "call": "extern pascal void SetOrigin(h,v)" },
       "docs": [{ "ref": "tbv2", "page": "16-232" }]
     },
@@ -2587,7 +2590,7 @@
       "parameters": {
         "input": [{ "size": "long", "name": "rgnHandle", "description": "HANDLE to region" }]
       },
-      "errors": ["none"],
+      "errors": ["mmUnch"],
       "c": { "call": "extern pascal void SetClip(rgnHandle)" },
       "docs": [{ "ref": "tbv2", "page": "16-218" }]
     },
@@ -2600,7 +2603,7 @@
       "parameters": {
         "input": [{ "size": "long", "name": "rgnHandle", "description": "HANDLE to region" }]
       },
-      "errors": ["none"],
+      "errors": ["mmUnch"],
       "c": { "call": "extern pascal void GetClip(rgnHandle)" },
       "docs": [{ "ref": "tbv2", "page": "16-113" }]
     },
@@ -2613,7 +2616,7 @@
       "parameters": {
         "input": [{ "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining rectangle" }]
       },
-      "errors": ["none"],
+      "errors": ["mmUnch"],
       "c": { "call": "extern pascal void ClipRect(rectPtr)" },
       "docs": [{ "ref": "tbv2", "page": "16-72" }]
     },
@@ -2691,7 +2694,7 @@
         ]
       },
       "errors": ["none"],
-      "c": { "call": "extern pascal void SetPenSize(penWidth,penHeight )" },
+      "c": { "call": "extern pascal void SetPenSize(penWidth,penHeight)" },
       "docs": [{ "ref": "tbv2", "page": "16-237" }]
     },
     {
@@ -2701,7 +2704,7 @@
       "callname": "GetPenSize",
       "description": "Returns the current pen size to a specified location",
       "parameters": {
-        "input": [{ "size": "long", "name": "penStatePtr", "description": "POINTER to space POINT" }]
+        "input": [{ "size": "long", "name": "penStatePtr", "description": "POINTER to space for POINT" }]
       },
       "errors": ["none"],
       "c": { "call": "extern pascal void GetPenSize(pointPtr)" },
@@ -2818,7 +2821,7 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "PenNormal",
-      "description": "Sets the pen state to the standard state; pen location is not changed",
+      "description": "Sets the pen state to the standard state; pen location and visibility are not changed",
       "parameters": { "none": true },
       "errors": ["none"],
       "c": { "call": "extern pascal void PenNormal()" },
@@ -2910,7 +2913,7 @@
           { "size": "word", "name": "v", "description": "INTEGER; vertical point to which line will be drawn" }
         ]
       },
-      "errors": ["none"],
+      "errors": ["mmUnch"],
       "c": { "call": "extern pascal void LineTo(h,v)" },
       "docs": [{ "ref": "tbv2", "page": "16-172" }]
     },
@@ -2919,14 +2922,14 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "Line",
-      "description": "Draws a line from current pen location to a new point spec by horiz & vert displacements",
+      "description": "Draws a line from current pen location to a new point specified by the horizontal and vertical displacements",
       "parameters": {
         "input": [
           { "size": "word", "name": "dH", "description": "INTEGER; horizontal displacement in points" },
           { "size": "word", "name": "dV", "description": "INTEGER; vertical displacement in points" }
         ]
       },
-      "errors": ["none"],
+      "errors": ["mmUnch"],
       "c": { "call": "extern pascal void Line(dH,dV)" },
       "docs": [{ "ref": "tbv2", "page": "16-171" }]
     },
@@ -2989,7 +2992,7 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetPolySave",
-      "description": "Sets the polySave field in the GrafPort to a specified value",
+      "description": "Sets the polySave field in the GrafPort to a specified value - not called by an application",
       "parameters": {
         "input": [{ "size": "long", "name": "polySaveValue", "description": "New value for polySave field" }]
       },
@@ -3188,7 +3191,7 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "PtInRect",
-      "description": "Detects whether pixel below & to the right of spec point is in a specified rectangle",
+      "description": "Detects whether the pixel below and to the right of specified point is in a specified rectangle",
       "parameters": {
         "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
@@ -3252,7 +3255,7 @@
           { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining rectangle" }
         ],
         "output": [
-          { "size": "word", "name": "equalFlag", "description": "BOOLEAN; TRUE if rectangle not empty, FALSE if empty" }
+          { "size": "word", "name": "notEmptyFlag", "description": "BOOLEAN; TRUE if rectangle not empty, FALSE if empty" }
         ]
       },
       "errors": ["none"],
@@ -3268,7 +3271,7 @@
       "parameters": {
         "input": [{ "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining rectangle" }]
       },
-      "errors": ["none"],
+      "errors": ["mmUnch"],
       "c": { "call": "extern pascal void FrameRect(rectPtr)" },
       "docs": [{ "ref": "tbv2", "page": "16-104" }]
     },
@@ -3338,7 +3341,7 @@
           { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" }
         ]
       },
-      "errors": ["none"],
+      "errors": ["mmUnch"],
       "c": { "call": "extern pascal void FrameOval(rectPtr)" },
       "docs": [{ "ref": "tbv2", "page": "16-102" }]
     },
@@ -3347,7 +3350,7 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "PaintOval",
-      "description": "Paints the interior of spec oval using the current pen mode & pattern",
+      "description": "Paints the interior of a specified oval using the current pen mode & pattern",
       "parameters": {
         "input": [
           { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" }
@@ -3384,7 +3387,7 @@
         ]
       },
       "errors": ["none"],
-      "c": { "call": "extern pascal void FrameOval(rectPtr)" },
+      "c": { "call": "extern pascal void InvertOval(rectPtr)" },
       "docs": [{ "ref": "tbv2", "page": "16-165" }]
     },
     {
@@ -3416,7 +3419,7 @@
           { "size": "word", "name": "ovalHeight", "description": "INTEGER; height, in pixels, of oval defining rounded corners" }
         ]
       },
-      "errors": ["none"],
+      "errors": ["mmUnch"],
       "c": { "call": "extern pascal void FrameRRect(rectPtr,ovalWidth,ovalHeight)" },
       "docs": [{ "ref": "tbv2", "page": "16-106" }]
     },
@@ -3589,7 +3592,7 @@
           { "size": "long", "name": "rgnHandle", "description": "HANDLE to new region" }
         ]
       },
-      "errors": ["none"],
+      "errors": ["mmUnch"],
       "c": { "call": "extern pascal RgnHandle NewRgn()" },
       "docs": [{ "ref": "tbv2", "page": "16-181" }]
     },
@@ -3604,7 +3607,7 @@
           { "size": "long", "name": "rgnHandle", "description": "HANDLE of region being disposed" }
         ]
       },
-      "errors": ["none"],
+      "errors": ["mmUnch"],
       "c": { "call": "extern pascal void DisposeRgn(rgnHandle)" },
       "docs": [{ "ref": "tbv2", "page": "16-79" }]
     },
@@ -3663,203 +3666,467 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "RectRgn",
-      "description": "Destroys previous region information by setting a spec region to a spec rectangle"
+      "description": "Destroys previous region information by setting a spec region to a spec rectangle",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rgnHandle", "description": "HANDLE to region being set" },
+          { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining rectangle used as source" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void RectRgn(rgnHandle,rectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-204" }]
     },
     {
       "toolcall": "6D",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "OpenRgn",
-      "description": "Allocates temp space & starts saving lines & framed shapes for latter process as rgn def"
+      "description": "Allocates temp space & starts saving lines & framed shapes for later processing as a region definition.",
+      "parameters": { "none": true },
+      "errors": ["qd0430", "mmUnch"],
+      "c": { "call": "extern pascal void openRgn()" },
+      "docs": [{ "ref": "tbv2", "page": "16-187" }]
     },
     {
       "toolcall": "6E",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "CloseRgn",
-      "description": "Completes the region definition process started by an OpenRgn call"
+      "description": "Completes the region definition process started by an OpenRgn call",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rgnHandle", "description": "HANDLE to region being set to a collection of points" }        ]
+      },
+      "errors": ["qd0431","mmUnch"],
+      "c": { "call": "extern pascal void CloseRgn(rgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-74" }]
     },
     {
       "toolcall": "6F",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "OffsetRgn",
-      "description": "Moves a region on the coordinate plane a specified distance"
+      "description": "Moves a region on the coordinate plane a specified distance",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rgnHandle", "description": "HANDLE to region being offset" },
+          { "size": "word", "name": "dH", "description": "INTEGER; horizontal displacement in pixels" },
+          { "size": "word", "name": "dV", "description": "INTEGER; vertical displacement in pixels" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void OffsetRgn(rgnHandle,dH,dV)" },
+      "docs": [{ "ref": "tbv2", "page": "16-185" }]
     },
     {
       "toolcall": "70",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "InsetRgn",
-      "description": "Shrinks or expands a specified region"
+      "description": "Shrinks or expands a specified region",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rgnHandle", "description": "HANDLE to region being inset" },
+          { "size": "word", "name": "dH", "description": "INTEGER; horizontal displacement in pixels" },
+          { "size": "word", "name": "dV", "description": "INTEGER; vertical displacement in pixels" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void InsetRgn(rgnHandle,dH,dV)" },
+      "docs": [{ "ref": "tbv2", "page": "16-163" }]
     },
     {
       "toolcall": "71",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SectRgn",
-      "description": "Calculates intersection of two regions & places intersection in a destination region"
+      "description": "Calculates intersection of two regions & places intersection in a destination region",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rgn1Handle", "description": "HANDLE to one source region" },
+          { "size": "long", "name": "rgn2Handle", "description": "HANDLE to another source region" },
+          { "size": "long", "name": "destRgnHandle", "description": "HANDLE to destination region" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void SectRgn(rgn1Handle,rgn2Handle,destRgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-210" }]
     },
     {
       "toolcall": "72",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "UnionRgn",
-      "description": "Calcs smallst rgn that contains evry pt that's in either src rgn & puts result in dest rgn"
+      "description": "Calculates smallest region that contains every point that's in either source region and places result in destination region",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rgn1Handle", "description": "HANDLE to one source region" },
+          { "size": "long", "name": "rgn2Handle", "description": "HANDLE to another source region" },
+          { "size": "long", "name": "unionRgnHandle", "description": "HANDLE to destination region" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void UnionRgn(rgn1Handle,rgn2Handle,unionRgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-272" }]
     },
     {
       "toolcall": "73",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "DiffRgn",
-      "description": "Calcs the difference of two regions & places difference in a destination region"
+      "description": "Calculates the difference of two regions and places difference in a destination region",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rgn1Handle", "description": "HANDLE to one source region" },
+          { "size": "long", "name": "rgn2Handle", "description": "HANDLE to another source region" },
+          { "size": "long", "name": "diffRgnHandle", "description": "HANDLE to destination region" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void DiffRgn(rgn1Handle,rgn2Handle,diffRgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-78" }]
     },
     {
       "toolcall": "74",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "XorRgn",
-      "description": "Calcs diff between the union & the intersection of 2 regions & places result in dest rgn"
+      "description": "Calculates the difference between the union and the intersection of two regions and places result in a destination region",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rgn1Handle", "description": "HANDLE to one source region" },
+          { "size": "long", "name": "rgn2Handle", "description": "HANDLE to another source region" },
+          { "size": "long", "name": "xorRgnHandle", "description": "HANDLE to destination region" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void XorRgn(rgn1Handle,rgn2Handle,xorRgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-273" }]
     },
     {
       "toolcall": "75",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "PtInRgn",
-      "description": "Checks to see whether the pixel below & to right of a spec pt is within a spec region"
+      "description": "Checks to see whether the pixel below & to right of a specified point1 is within a specified region",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "pointPtr", "description": "POINTER to POINT" },
+          { "size": "long", "name": "rgnHandle", "description": "HANDLE to region" }
+        ],
+        "output": [
+          { "size": "word", "name": "pixelFlag", "description": "BOOLEAN; TRUE if pixel in region, FALSE if not" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal Boolean PtInRgn(pointPtr,rgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-201" }]
     },
     {
       "toolcall": "76",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "RectInRgn",
-      "description": "Checks whether a specified rectangle intersects a specified region"
+      "description": "Checks whether a specified rectangle intersects a specified region",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining rectangle" },
+          { "size": "long", "name": "rgnHandle", "description": "HANDLE to region" }
+        ],
+        "output": [
+          { "size": "word", "name": "encloseFlag", "description": "BOOLEAN; TRUE if intersection encloses at least a pixel, FALSE if not" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal Boolean RectInRgn(rectPtr,rgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-203" }]
     },
     {
       "toolcall": "77",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "EqualRgn",
-      "description": "Indicates whether two regions are equal"
+      "description": "Indicates whether two regions are equal",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "rgn1Handle", "description": "HANDLE to one region" },
+          { "size": "long", "name": "rgn2Handle", "description": "HANDLE to other region" }
+        ],
+        "output": [
+          { "size": "word", "name": "equalFlag", "description": "BOOLEAN; TRUE if regions are equal, FALSE if not" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal Boolean EqualRgn(rgn1Handle,rgn2Handle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-87" }]
     },
     {
       "toolcall": "78",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "EmptyRgn",
-      "description": "Indicates whether a specified region is empty"
+      "description": "Indicates whether a specified region is empty",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "rgnHandle", "description": "HANDLE to region" }
+        ],
+        "output": [
+          { "size": "word", "name": "emptyFlag", "description": "BOOLEAN; TRUE if regions is empty, FALSE if not" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean EmptyRgn(rgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-84" }]
     },
     {
       "toolcall": "79",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "FrameRgn",
-      "description": "Draws the frame of a specified region using current pen mode, pattern & size"
+      "description": "Draws the frame of a specified region using current pen mode, pattern & size",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rgnHandle", "description": "HANDLE to region" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void FrameRgn(rgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-105" }]
     },
     {
       "toolcall": "7A",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "PaintRgn",
-      "description": "Paints the interior of a specified region using the current pen mode & pattern"
+      "description": "Paints the interior of a specified region using the current pen mode & pattern",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rgnHandle", "description": "HANDLE to region" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void PaintRgn(rgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-194" }]
     },
     {
       "toolcall": "7B",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "EraseRgn",
-      "description": "Erases the interior of a specified region by filling it with the background pattern"
+      "description": "Erases the interior of a specified region by filling it with the background pattern",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rgnHandle", "description": "HANDLE to region" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void EraseRgn(rgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-92" }]
     },
     {
       "toolcall": "7C",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "InvertRgn",
-      "description": "Inverts the pixels in the interior of a specified region"
+      "description": "Inverts the pixels in the interior of a specified region",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rgnHandle", "description": "HANDLE to region" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void InvertRgn(rgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-168" }]
     },
     {
       "toolcall": "7D",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "FillRgn",
-      "description": "Fills the interior of a specified region with a specified pen pattern"
+      "description": "Fills the interior of a specified region with a specified pen pattern",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rgnHandle", "description": "HANDLE to region" },
+          { "size": "long", "name": "patternPtr", "description": "POINTER to pattern" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void FillRgn(rgnHandle,patternPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-98" }]
     },
     {
       "toolcall": "7E",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "ScrollRect",
-      "description": "Shifts pixels inside intersect of spec rect, visbl rgn, clip rgn, port rect, & bounds rect"
+      "description": "Shifts pixels inside intersect of specified rect, visble region, clip region, port rect, and bounds rect",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining rectangle" },
+          { "size": "word", "name": "dH", "description": "INTEGER; horizontal distance to scroll in pixels" },
+          { "size": "word", "name": "dV", "description": "INTEGER; vertical distance to scroll in pixels" },
+          { "size": "long", "name": "updateRgnHandle", "description": "HANDLE to region" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void ScrollRect(rectPtr,dH,dV,updateRgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-208" }]
     },
     {
       "toolcall": "7F",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "PaintPixels",
-      "description": "Transfers a region of pixels"
+      "description": "Transfers a region of pixels",
+      "parameters": {
+        "input": [{ "size": "long", "name": "paintParamPtr", "description": "POINTER to parameter block (see Toolbox Ref Vol2, Table 16-35)" }]
+      },
+      "errors": ["qd0420"],
+      "c": { "call": "extern pascal void PaintPixels(paintParamPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-190" }]
     },
     {
       "toolcall": "80",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "AddPt",
-      "description": "Adds two specified points together and leaves result in destination point"
+      "description": "Adds two specified points together and leaves result in destination point",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "srcPtPtr", "description": "POINTER to POINT" },
+          { "size": "long", "name": "destPtPtr", "description": "POINTER to POINT used as source and destination" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void AddPt(srcPtPtr,destPtPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-68" }]
     },
     {
       "toolcall": "81",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SubPt",
-      "description": "Subtracts source point from destination point & leave result in the destination point"
+      "description": "Subtracts source point from destination point and leaves result in the destination point",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "srcPtPtr", "description": "POINTER to POINT" },
+          { "size": "long", "name": "destPtPtr", "description": "POINTER to POINT used as source and destination" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SubPt(srcPtPtr,destPtPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-268" }]
     },
     {
       "toolcall": "82",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetPt",
-      "description": "Sets a point to specified horizontal and vertical values"
+      "description": "Sets a point to specified horizontal and vertical values",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "srcPtPtr", "description": "POINTER to POINT" },
+          { "size": "word", "name": "h", "description": "INTEGER; horizontal value of point" },
+          { "size": "word", "name": "v", "description": "INTEGER; vertical value of point" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetPt(srcPtPtr,h,v)" },
+      "docs": [{ "ref": "tbv2", "page": "16-245" }]
     },
     {
       "toolcall": "83",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "EqualPt",
-      "description": "Indicates whether two points are equal"
+      "description": "Indicates whether two points are equal",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "point1Ptr", "description": "POINTER to first POINT" },
+          { "size": "long", "name": "point2Ptr", "description": "POINTER to second POINT" }
+        ],
+        "output": [
+          { "size": "word", "name": "equalFlag", "description": "BOOLEAN; TRUE if points are equal, FALSE if not" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean EqualPt(point1Ptr,point2Ptr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-85" }]
     },
     {
       "toolcall": "84",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "LocalToGlobal",
-      "description": "Converts a point from local coordinates to global coordinates"
+      "description": "Converts a point from local coordinates to global coordinates",
+      "parameters": {
+        "input": [{ "size": "long", "name": "point1Ptr", "description": "POINTER to POINT to be converted" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void LocalToGlobal(pointPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-173" }]
     },
     {
       "toolcall": "85",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GlobalToLocal",
-      "description": "Converts a point from global coordinates to local coordinates"
+      "description": "Converts a point from global coordinates to local coordinates",
+      "parameters": {
+        "input": [{ "size": "long", "name": "pointPtr", "description": "POINTER to POINT to be converted" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GlobalToLocal(pointPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-173" }]
     },
     {
       "toolcall": "86",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "Random",
-      "description": "Returns a pseudorandom number in the range -32768 to 32767"
+      "description": "Returns a pseudorandom number in the range -32768 to 32767",
+      "parameters": {
+        "input": [{ "size": "word", "name": "wordspace", "description": "Space for result" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Integer Random()" },
+      "docs": [{ "ref": "tbv2", "page": "16-202" }]
     },
     {
       "toolcall": "87",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetRandSeed",
-      "description": "Sets the seed value for the random number generator"
+      "description": "Sets the seed value for the random number generator",
+      "parameters": {
+        "input": [{ "size": "long", "name": "randomSeed", "description": "LONGINT; seed value" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetRandSeed(randomSeed)" },
+      "docs": [{ "ref": "tbv2", "page": "16-246" }]
     },
     {
       "toolcall": "88",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetPixel",
-      "description": "Returns the pixel below and to the right of a specified point"
+      "description": "Returns the pixel below and to the right of a specified point",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "h", "description": "Horizontal value of point, in global coordinates" },
+          { "size": "word", "name": "v", "description": "Vertical value of point, in global coordinates" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word GetPixel(h,v)" },
+      "docs": [{ "ref": "tbv2", "page": "16-135" }]
     },
     {
       "toolcall": "89",
@@ -10933,7 +11200,7 @@
     "qd0442": { "source": "QuickDraw II", "code": "0442", "name": "polyTooBig", "description":"Polygon too big" },
     "qd0450": { "source": "QuickDraw II", "code": "0450", "name": "badTableNum", "description":"Invalid color table number; 0 to 15 are valid" },
     "qd0451": { "source": "QuickDraw II", "code": "0451", "name": "badColorNum", "description":"Invalid color number; 0 to 15 are valid" },
-    "qd0452": { "source": "QuickDraw II", "code": "0452", "name": "badScanLine", "description":"Invalid scan line number" },
+    "qd0452": { "source": "QuickDraw II", "code": "0452", "name": "badScanLine", "description":"Invalid scan line number; 0 to 199 are valid" },
     "qd04FF": { "source": "QuickDraw II", "code": "04FF", "name": "", "description":"Not implemented" },
 
 
