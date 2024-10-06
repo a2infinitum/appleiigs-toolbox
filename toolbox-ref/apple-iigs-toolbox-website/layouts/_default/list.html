@@ -246,14 +246,15 @@ Display Mode:
       {{ range $k := .errors }}
         {{ if eq $k "none" }}
           <p>None</p>
-        {{ else if eq $k "sl_unchanged" }}
-          <p>System Loader errors: &nbsp; Return unchanged</p>
-        {{ else if eq $k "pro_unchanged" }}
-          <p>ProDOS errors: &nbsp; Return unchanged</p>
         {{ else }}
           {{ $err := index $errors $k }}
-          {{ $paddedErr := printf "%-22s" $err.name }}
-          <pre>${{ $err.code }}   {{ $paddedErr }}  {{ $err.description }}</pre>
+          {{ $ecode := "" }}
+          {{ $paddedErr := printf "%-31s" $err.name }}
+          {{ if $err.code }}
+            {{ $ecode = printf "$%s    " $err.code }}
+            {{ $paddedErr = printf "%-22s" $err.name }}
+          {{ end }}
+          <pre>{{ $ecode }}{{ $paddedErr }}  {{ $err.description }}</pre>
         {{ end }}
       {{ end }}
     </div>

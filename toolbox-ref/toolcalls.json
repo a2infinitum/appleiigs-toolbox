@@ -96,7 +96,7 @@
         ]
       },
       "errors": ["tl0001"],
-      "c": { "call": "extern pascal Boolean GetTSPtr(userOrSystem,tsNum)" },
+      "c": { "call": "extern pascal Pointer GetTSPtr(userOrSystem,tsNum)" },
       "docs": [{ "ref": "tbv2", "page": "24-8" }]
     },
     {
@@ -134,7 +134,7 @@
         ]
       },
       "errors": ["tl0001", "tl0002"],
-      "c": { "call": "extern pascal void GetFuncPtr(userOrSystem,funcTsNum)" },
+      "c": { "call": "extern pascal Pointer GetFuncPtr(userOrSystem,funcTsNum)" },
       "docs": [{ "ref": "tbv2", "page": "24-7" }]
     },
     {
@@ -183,7 +183,7 @@
       "parameters": {
         "input": [{ "size": "long", "name": "toolTablePtr", "description": "POINTER to table of tool set numbers" }]
       },
-      "errors": ["tl0001", "tl0010", "sl_unchanged", "pro_unchanged"],
+      "errors": ["tl0001", "tl0010", "slUnch", "proUnch"],
       "c": { "call": "extern pascal void LoadTools(toolTablePtr)" },
       "docs": [
         { "ref": "tbv2", "page": "24-11" },
@@ -203,7 +203,7 @@
           { "size": "word", "name": "minVersion", "description": "Minimum version number of tool set needed" }
         ]
       },
-      "errors": ["tl0001", "tl0010", "sl_unchanged", "pro_unchanged"],
+      "errors": ["tl0001", "tl0010", "slUnch", "proUnch"],
       "c": { "call": "extern pascal void LoadOneTool(toolNumber,minVersion)" },
       "docs": [
         { "ref": "tbv2", "page": "24-10" },
@@ -287,7 +287,7 @@
           { "size": "long", "name": "longspace", "description": "Space for result" }
         ],
         "output": [
-          { "size": "long", "name": "stateHandle", "description": "HANDLE to state record (see Toolbox Ref V2, Table 24-4)"}
+          { "size": "long", "name": "stateHandle", "description": "HANDLE to state record (see Toolbox Ref Vol2, Table 24-4)"}
         ]
       },
       "errors": ["none"],
@@ -324,7 +324,7 @@
       "description": "Allows applications to communicate with each other (Tool Locator version >= 2.1)",
       "parameters": {
         "input": [
-          { "size": "word", "name": "action", "description": "1 = add, 2 = get, 3 = delete (see Toolbox Ref V2, Table 24-3)" },
+          { "size": "word", "name": "action", "description": "1 = add, 2 = get, 3 = delete (see Toolbox Ref Vol2, Table 24-3)" },
           { "size": "word", "name": "type", "description": "Message ID number" },
           { "size": "long", "name": "messageHandle", "description": "HANDLE to message" }
         ]
@@ -364,7 +364,7 @@
           { "size": "long", "name": "responseRecord", "description": "Response record from call"}
         ]
       },
-      "errors": ["tl0111", "tl0112", "tl0113"],
+      "errors": ["tl0111", "tl0112", "tl0113", "mmUnch"],
       "c": { "call": "extern pascal responseRecord MessageByName(createItFlag,recordPointer)" },
       "docs": [{ "ref": "tbv3", "page": "51-13" }]
     },
@@ -385,7 +385,7 @@
           { "size": "long", "name": "startStopRefRet", "description": "Reference to resulting StartStop record"}
         ]
       },
-      "errors": ["tl0103", "tl0104"],
+      "errors": ["tl0103", "tl0104", "slUnch", "mmUnch", "gsosUnch"],
       "c": { "call": "extern pascal long StartUpTools(userID,startStopRefDesc,startStopRef)" },
       "docs": [
         { "ref": "tbv3", "page": "51-18" },
@@ -428,7 +428,7 @@
         ]
       },
       "errors": ["tl0111"],
-      "c": { "call": "extern pascal Handle GetMsgHandle(flags, messageRef)" },
+      "c": { "call": "extern pascal Handle GetMsgHandle(flags,messageRef)" },
       "docs": [{ "ref": "gs16pr60", "page": "242" }]
     },
     {
@@ -445,7 +445,7 @@
         ]
       },
       "errors": ["tl0113","tl0121"],
-      "c": { "call": "extern pascal void AcceptRequests(nameString, userID, requestProc)" },
+      "c": { "call": "extern pascal void AcceptRequests(nameString,userID,requestProc)" },
       "docs": [{ "ref": "gs16pr60", "page": "235" }]
     },
     {
@@ -464,7 +464,7 @@
         ]
       },
       "errors": ["tl0120","tl0122"],
-      "c": { "call": "extern pascal void SendRequest(reqCode, sendHow, target, dataIn, dataOut)" },
+      "c": { "call": "extern pascal void SendRequest(reqCode,sendHow,target,dataIn,dataOut)" },
       "docs": [{ "ref": "gs16pr60", "page": "244" }]
     },
     {
@@ -485,10 +485,12 @@
       "callname": "MMStartUp",
       "description": "Starts up the Memory Manager for use by an application",
       "parameters": {
-        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ]
+        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ],
+        "output": [ { "size": "word", "name": "userID", "description": "User ID assigned to the application by the operating system" } ]
+
       },
       "errors": ["mm0207"],
-      "c": { "call": "extern pascal void MMStartUp()" },
+      "c": { "call": "extern pascal Word MMStartUp()" },
       "docs": [{ "ref": "tbv1", "page": "12-17" }]
     },
     {
@@ -634,7 +636,7 @@
       "toolnum": "02",
       "toolname": "Memory Manager",
       "callname": "DisposeHandle",
-      "description": "Discards a specified block and deallocates its handle",
+      "description": "Discards a specified block and deallocates its handle. The block is purged regardless of locked status and purge level.",
       "parameters": {
         "input": [
           { "size": "long", "name": "theHandle", "description": "HANDLE of the block to be discarded" }
@@ -685,7 +687,7 @@
           { "size": "word", "name": "userID", "description": "User ID whose blocks will be purged" }
         ]
       },
-      "errors": ["mm0202", "mm0206"],
+      "errors": ["mm0202", "mm0206", "mm0207"],
       "c": { "call": "extern pascal void PurgeAll(userID)" },
       "docs": [{ "ref": "tbv1", "page": "12-39" }]
     },
@@ -696,7 +698,10 @@
       "callname": "GetHandleSize",
       "description": "Returns the size of a block",
       "parameters": {
-        "input": [{ "size": "long", "name": "longspace", "description": "Space for result" }],
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theHandle", "description": "HANDLE of block whose size is to be retrieved" }
+        ],
         "output": [ { "size": "long", "name": "blockSize", "description": "Size of block, in bytes" } ]
 
       },
@@ -728,7 +733,7 @@
       "toolnum": "02",
       "toolname": "Memory Manager",
       "callname": "FindHandle",
-      "description": "Returns the handle of a block containing a specified address",
+      "description": "Returns the handle of a block containing a specified address. If the block is not locked, it may later move.",
       "parameters": {
         "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
@@ -867,7 +872,7 @@
       "toolnum": "02",
       "toolname": "Memory Manager",
       "callname": "SetPurge",
-      "description": "Sets the purge level of a specified block",
+      "description": "Sets the purge level of a specified block. 0=Not, 1=Least, 2=Next Most, 3=Most (3 is only for System Loader, use levels 0-2)",
       "parameters": {
         "input": [
           { "size": "word", "name": "newPurgeLevel", "description": "New purge level of block (bits 1-0 only; set others to 0)" },
@@ -1103,7 +1108,7 @@
       "parameters": {
         "input": [
           { "size": "word", "name": "theData", "description": "Data to be written (low-order byte only)on" },
-          { "size": "word", "name": "paramRefNum", "description": "Parameter reference number (see Toolbox Ref V1, Table 14-3)" } 
+          { "size": "word", "name": "paramRefNum", "description": "Parameter reference number (see Toolbox Ref Vol1, Table 14-3)" } 
         ]
       },
       "errors": ["none"],
@@ -1119,11 +1124,14 @@
       "parameters": {
         "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
-          { "size": "word", "name": "paramRefNum", "description": "Parameter reference number (see Toolbox Ref V1, Table 14-3)" } 
+          { "size": "word", "name": "paramRefNum", "description": "Parameter reference number (see Toolbox Ref Vol1, Table 14-3)" } 
+        ],
+        "output": [
+          { "size": "word", "name": "theData", "description": "Data that was read (low-order byte only)" }
         ]
       },
       "errors": ["none"],
-      "c": { "call": "extern pascal void ReadBParam(paramRefNum)" },
+      "c": { "call": "extern pascal word ReadBParam(paramRefNum)" },
       "docs": [{ "ref": "tbv1", "page": "14-13" }]
     },
     {
@@ -1172,7 +1180,7 @@
         ]
       },
       "errors": ["none"],
-      "c": { "call": "extern pascal void WriteTimeHex(month,day,curYear,hour,minute, second)" },
+      "c": { "call": "extern pascal void WriteTimeHex(month,day,curYear,hour,minute,second)" },
       "docs": [{ "ref": "tbv1", "page": "14-15" }]
     },
     {
@@ -1302,14 +1310,14 @@
       "parameters": {
         "input": [ 
           { "size": "long", "name": "longspace", "description": "Space for result" },
-          { "size": "word", "name": "refNum", "description": "Parameter reference number (see Toolbox Ref V1, Table 14-5)" }
+          { "size": "word", "name": "refNum", "description": "Parameter reference number (see Toolbox Ref Vol1, Table 14-5)" }
         ],
         "output": [ 
           { "size": "long", "name": "paramPtr", "description": "POINTER to parameter" }
         ]
       },      
       "errors": ["mt0301"],
-      "c": { "call": "extern pascal void GetAddr(refNum)" },
+      "c": { "call": "extern pascal Pointer GetAddr(refNum)" },
       "docs": [{ "ref": "tbv1", "page": "14-19" }]
     },
     {
@@ -1326,7 +1334,7 @@
         ],
         "output": [ 
           { "size": "word", "name": "xPosition", "description": "X position of the mouse" },
-          { "size": "word", "name": "xPosition", "description": "Y position of the mouse" },
+          { "size": "word", "name": "yPosition", "description": "Y position of the mouse" },
           { "size": "byte", "name": "status", "description": "Mouse status" },
           { "size": "byte", "name": "mode", "description": "Mouse mode" }
         ]
@@ -1347,7 +1355,7 @@
         ]
       },      
       "errors": ["mt0302"],
-      "c": { "call": "extern pascal void InitMouse()" },
+      "c": { "call": "extern pascal void InitMouse(mouseSlot)" },
       "docs": [{ "ref": "tbv1", "page": "14-32" }]
     },
     {
@@ -1373,7 +1381,7 @@
       "description": "Positions the mouse at the minimum clamp position",
       "parameters": { "none": true },
       "errors": ["none"],
-      "c": { "call": false },
+      "c": {  "call": "extern pascal void HomeMouse()" },
       "docs": [{ "ref": "tbv1", "page": "14-32" }]
     },
     {
@@ -1402,7 +1410,7 @@
         ]
       },
       "errors": ["none"],
-      "c": { "call": "extern pascal void ClampMouse(xMinClamp, xMaxClamp, yMinClamp, yMaxClamp)" },
+      "c": { "call": "extern pascal void ClampMouse(xMinClamp,xMaxClamp,yMinClamp,yMaxClamp)" },
       "docs": [{ "ref": "tbv1", "page": "14-30" }]
     },
     {
@@ -1555,14 +1563,14 @@
           { "size": "word", "name": "eModeEntryPt", "description": "Emulation mode entry point" }
         ],
         "output": [ 
-          { "size": "word", "name": "status", "description": "Processor status at exit (low-order byte only)" },
-          { "size": "word", "name": "aRegValue", "description": "Accumulator at exit (low-order byte only)" },
-          { "size": "word", "name": "xRegValue", "description": "X register at exit (low-order byte only)" },
-          { "size": "word", "name": "yRegValue", "description": "Y register at exit (low-order byte only)" }
+          { "size": "word", "name": "status", "description": "Processor status at exit (high-order byte only)" },
+          { "size": "word", "name": "aRegExit", "description": "Accumulator at exit (low-order byte only)" },
+          { "size": "word", "name": "xRegExit", "description": "X register at exit (low-order byte only)" },
+          { "size": "word", "name": "yRegExit", "description": "Y register at exit (low-order byte only)" }
         ]
       },
       "errors": ["none"],
-      "c": { "call": "extern pascal FWRec FWEntry(aRegValue, xRegValue, yRegValue, eModeEntryPt)" },
+      "c": { "call": "extern pascal FWRec FWEntry(aRegValue,xRegValue,yRegValue,eModeEntryPt)" },
       "docs": [{ "ref": "tbv1", "page": "14-17" }]
     },
     {
@@ -1580,7 +1588,7 @@
         ]
       },
       "errors": ["none"],
-      "c": { "call": "extern pascal LongWork GetTick()" },
+      "c": { "call": "extern pascal LongWord GetTick()" },
       "docs": [{ "ref": "tbv1", "page": "14-22" }]
     },
     {
@@ -1595,7 +1603,7 @@
           { "size": "long", "name": "startHandle", "description": "POINTER to POINTER to start of area to be packed" },
           { "size": "long", "name": "sizePtr", "description": "POINTER to Word containing size of the area" },
           { "size": "long", "name": "bufferPtr", "description": "POINTER to the start of the output buffer area" },
-          { "size": "word", "name": "bufferSize", "description": "Size of the out buffer area" }
+          { "size": "word", "name": "bufferSize", "description": "Size of the output buffer area" }
         ],
         "output": [ 
           { "size": "word", "name": "numPackbytes", "description": "Number of packed bytes generated" }
@@ -1656,7 +1664,7 @@
         ]
       },
       "errors": ["none"],
-      "c": { "call": "extern pascal Word Munger (destPtr,destLenPtr,targPtr,targLen,replPtr,replLen,padPtr)" },
+      "c": { "call": "extern pascal Word Munger(destPtr,destLenPtr,targPtr,targLen,replPtr,replLen,padPtr)" },
       "docs": [
         { "ref": "tbv1", "page": "14-45" }
       ]
@@ -1666,7 +1674,7 @@
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "GetIRQEnable",
-      "description": "Returns w/hardware interrupt enable states for interrupt srces that Misc.Tool can control",
+      "description": "Returns w/hardware interrupt enable states for interrupt sources that Misc.Tool can control",
       "parameters": {
         "input": [ 
           { "size": "word", "name": "wordspace", "description": "Space for result" }
@@ -1791,7 +1799,7 @@
         ]
       },      
       "errors": ["none"],
-      "c": { "call": "extern pascal void SetlnterruptState(intStateRcdPtr,bytesDesired)" },
+      "c": { "call": "extern pascal void SetInterruptState(intStateRcdPtr,bytesDesired)" },
       "docs": [
         { "ref": "tbv3", "page": "39-12" }
       ]
@@ -1800,7 +1808,7 @@
       "toolcall": "31",
       "toolnum": "03",
       "toolname": "Misc Tools",
-      "callname": "GetInterruptSt",
+      "callname": "GetInterruptState",
       "description": "Copies the specified number of bytes into an input interrupt record from the system interrupt variables",
       "parameters": {
         "input": [ 
@@ -1829,7 +1837,7 @@
         ]
       },      
       "errors": ["none"],
-      "c": { "call": "extern pascal void GetIntStateRecSize()" },
+      "c": { "call": "extern pascal Word GetIntStateRecSize()" },
       "docs": [
         { "ref": "tbv3", "page": "39-10" }
       ]
@@ -1842,7 +1850,6 @@
       "description": "Returns the mouse position, status, and mode",
       "parameters": {
         "input": [ 
-          { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "wordspace", "description": "Space for result" }
@@ -2064,7 +2071,7 @@
         ]
       },      
       "errors": ["mt0377"],
-      "c": { "call": "extern pascal Long AlertMessage(tablePtr,msgNumber,substitutions)" },
+      "c": { "call": "extern pascal Word AlertMessage(tablePtr,msgNumber,substitutions)" },
       "docs": [
         { "ref": "gs16pr601", "page": "14" }
       ]
@@ -2116,7 +2123,7 @@
           { "size": "word", "name": "userID", "description": "User ID of application" }
         ]
       },      
-      "errors": ["qd0401","qd0410"],
+      "errors": ["qd0401","qd0410","mmUnch"],
       "c": { "call": "extern pascal void QDStartUp(dPageAddr,masterSCB,maxWidth,userID)" },
       "docs": [
         { "ref": "tbv2", "page": "16-64" },
@@ -2131,7 +2138,7 @@
       "callname": "QDShutDown",
       "description": "Shuts down QuickDraw II when an application quits",
       "parameters": { "none": true },
-      "errors": ["none"],
+      "errors": ["mmUnch"],
       "c": { "call": "extern pascal void QDShutDown()" },
       "docs": [
         { "ref": "tbv2", "page": "16-66" },
@@ -3133,7 +3140,7 @@
           { "size": "word", "name": "dV", "description": "INTEGER; vertical displacement" }
         ]
       },
-      "errors": ["none"],
+      "errors": ["mmUnch"],
       "c": { "call": "extern pascal void InsetRect(rectPtr,dH,dV)" },
       "docs": [{ "ref": "tbv2", "page": "16-162" }]
     },
@@ -3237,182 +3244,418 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "NotEmptyRect",
-      "description": "Indicates whether a specified rectangle is empty"
+      "description": "Indicates whether a specified rectangle is empty",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining rectangle" }
+        ],
+        "output": [
+          { "size": "word", "name": "equalFlag", "description": "BOOLEAN; TRUE if rectangle not empty, FALSE if empty" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean NotEmptyRect(rectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-182" }]
     },
     {
       "toolcall": "53",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "FrameRect",
-      "description": "Draws the frame of a specified rectangle using the current pen mode, pattern, & size"
+      "description": "Draws the frame of a specified rectangle using the current pen mode, pattern, & size",
+      "parameters": {
+        "input": [{ "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining rectangle" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void FrameRect(rectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-104" }]
     },
     {
       "toolcall": "54",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "PaintRect",
-      "description": "Paints the interior of spec rectangle using the current pen mode & pattern"
+      "description": "Paints the interior of spec rectangle using the current pen mode & pattern",
+      "parameters": {
+        "input": [{ "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void PaintRect(rectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-193" }]
     },
     {
       "toolcall": "55",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "EraseRect",
-      "description": "Erases the interior of a specified rectangle by filling it in with the backround pattern"
+      "description": "Erases the interior of a specified rectangle by filling it in with the background pattern",
+      "parameters": {
+        "input": [{ "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining rectangle" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void EraseRect(rectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-91" }]
     },
     {
       "toolcall": "56",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "InvertRect",
-      "description": "Inverts the pixels in the interior of a specified rectangle"
+      "description": "Inverts the pixels in the interior of a specified rectangle",
+      "parameters": {
+        "input": [{ "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining rectangle" }]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void InvertRect(rectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-167" }]
     },
     {
       "toolcall": "57",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "FillRect",
-      "description": "Fills the interior of a specified rectangle with a specified pen pattern"
+      "description": "Fills the interior of a specified rectangle with a specified pen pattern",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rectPtr", "description": "POINTER to rectangle" },
+          { "size": "long", "name": "patternPtr", "description": "POINTER to pattern" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void FillRect(rectPtr,patternPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-97" }]
     },
     {
       "toolcall": "58",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "FrameOval",
-      "description": "Draws the frame of a specified oval using the current pen mode, pattern, & size"
+      "description": "Draws the frame of a specified oval using the current pen mode, pattern, & size",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void FrameOval(rectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-102" }]
     },
     {
       "toolcall": "59",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "PaintOval",
-      "description": "Paints the interior of spec oval using the current pen mode & pattern"
+      "description": "Paints the interior of spec oval using the current pen mode & pattern",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void PaintOval(rectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-189" }]
     },
     {
       "toolcall": "5A",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "EraseOval",
-      "description": "Erases the interior of a specified oval by filling it in with the backround pattern"
+      "description": "Erases the interior of a specified oval by filling it in with the backround pattern",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void EraseOval(rectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-89" }]
     },
     {
       "toolcall": "5B",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "InvertOval",
-      "description": "Inverts the pixels in the interior of a specified oval"
+      "description": "Inverts the pixels in the interior of a specified oval",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void FrameOval(rectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-165" }]
     },
     {
       "toolcall": "5C",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "FillOval",
-      "description": "Fills the interior of a specified oval with a specified pen pattern"
+      "description": "Fills the interior of a specified oval with a specified pen pattern",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" },
+          { "size": "long", "name": "patternPtr", "description": "POINTER to pattern" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void FillOval(rectPtr,patternPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-95" }]
     },
     {
       "toolcall": "5D",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "FrameRRect",
-      "description": "Draws the frame of a spec round rectangle using the current pen mode, pattern & size"
+      "description": "Draws the frame of a spec round rectangle using the current pen mode, pattern & size",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" },
+          { "size": "word", "name": "ovalWidth", "description": "INTEGER; width, in pixels, of oval defining rounded corners" },
+          { "size": "word", "name": "ovalHeight", "description": "INTEGER; height, in pixels, of oval defining rounded corners" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void FrameRRect(rectPtr,ovalWidth,ovalHeight)" },
+      "docs": [{ "ref": "tbv2", "page": "16-106" }]
     },
     {
       "toolcall": "5E",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "PaintRRect",
-      "description": "Paints interior of spec round rectangle using the current pen mode & pattern"
+      "description": "Paints interior of spec round rectangle using the current pen mode & pattern",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" },
+          { "size": "word", "name": "ovalWidth", "description": "INTEGER; width, in pixels, of oval defining rounded corners" },
+          { "size": "word", "name": "ovalHeight", "description": "INTEGER; height, in pixels, of oval defining rounded corners" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void PaintRRect(rectPtr,ovalWidth,ovalHeight)" },
+      "docs": [{ "ref": "tbv2", "page": "16-195" }]
     },
     {
       "toolcall": "5F",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "EraseRRect",
-      "description": "Erases interior of a spec round rectangle by filling it in with the backround pattern"
+      "description": "Erases interior of a spec round rectangle by filling it in with the backround pattern",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" },
+          { "size": "word", "name": "ovalWidth", "description": "INTEGER; width, in pixels, of oval defining rounded corners" },
+          { "size": "word", "name": "ovalHeight", "description": "INTEGER; height, in pixels, of oval defining rounded corners" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void EraseRRect(rectPtr,ovalWidth,ovalHeight)" },
+      "docs": [{ "ref": "tbv2", "page": "16-93" }]
     },
     {
       "toolcall": "60",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "InvertRRect",
-      "description": "Inverts the pixels in the interior of a specified round rectangle"
+      "description": "Inverts the pixels in the interior of a specified round rectangle",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" },
+          { "size": "word", "name": "ovalWidth", "description": "INTEGER; width, in pixels, of oval defining rounded corners" },
+          { "size": "word", "name": "ovalHeight", "description": "INTEGER; height, in pixels, of oval defining rounded corners" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void InvertRRect(rectPtr,ovalWidth,ovalHeight)" },
+      "docs": [{ "ref": "tbv2", "page": "16-169" }]
     },
     {
       "toolcall": "61",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "FillRRect",
-      "description": "Fills the interior of a specified round rectangle with a specified pen pattern"
+      "description": "Fills the interior of a specified round rectangle with a specified pen pattern",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" },
+          { "size": "word", "name": "ovalWidth", "description": "INTEGER; width, in pixels, of oval defining rounded corners" },
+          { "size": "word", "name": "ovalHeight", "description": "INTEGER; height, in pixels, of oval defining rounded corners" },
+          { "size": "long", "name": "patternPtr", "description": "POINTER to pattern" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void FillRRect(rectPtr,ovalWidth,ovalHeight,patternPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-99" }]
     },
     {
       "toolcall": "62",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "FrameArc",
-      "description": "Draws the frame of a specified arc using the current pen mode, pattern, & size"
+      "description": "Draws the frame of a specified arc using the current pen mode, pattern, & size",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" },
+          { "size": "word", "name": "startAngle", "description": "INTEGER; starting angle in degrees" },
+          { "size": "word", "name": "arcAngle", "description": "INTEGER; arc angle in degrees" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void FrameArc(rectPtr,startAngle,arcAngle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-101" }]
     },
     {
       "toolcall": "63",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "PaintArc",
-      "description": "Paints the interior of spec arc using the current pen mode & pattern"
+      "description": "Paints the interior of spec arc using the current pen mode & pattern",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" },
+          { "size": "word", "name": "startAngle", "description": "INTEGER; starting angle in degrees" },
+          { "size": "word", "name": "arcAngle", "description": "INTEGER; arc angle in degrees" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void PaintArc(rectPtr,startAngle,arcAngle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-188" }]
     },
     {
       "toolcall": "64",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "EraseArc",
-      "description": "Erases the interior of a specified arc by filling it in with the backround pattern"
+      "description": "Erases the interior of a specified arc by filling it in with the backround pattern",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" },
+          { "size": "word", "name": "startAngle", "description": "INTEGER; starting angle in degrees" },
+          { "size": "word", "name": "arcAngle", "description": "INTEGER; arc angle in degrees" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void EraseArc(rectPtr,startAngle,arcAngle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-88" }]
     },
     {
       "toolcall": "65",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "InvertArc",
-      "description": "Inverts the pixels in the interior of a specified arc"
+      "description": "Inverts the pixels in the interior of a specified arc",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" },
+          { "size": "word", "name": "startAngle", "description": "INTEGER; starting angle in degrees" },
+          { "size": "word", "name": "arcAngle", "description": "INTEGER; arc angle in degrees" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void InvertArc(rectPtr,startAngle,arcAngle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-164" }]
     },
     {
       "toolcall": "66",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "FillArc",
-      "description": "Fills the interior of a specified arc with a specified pen pattern"
+      "description": "Fills the interior of a specified arc with a specified pen pattern",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" },
+          { "size": "word", "name": "startAngle", "description": "INTEGER; starting angle in degrees" },
+          { "size": "word", "name": "arcAngle", "description": "INTEGER; arc angle in degrees" },
+          { "size": "long", "name": "patternPtr", "description": "POINTER to pattern" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void FillArc(rectPtr,startAngle,arcAngle,patternPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-94" }]
     },
     {
       "toolcall": "67",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "NewRgn",
-      "description": "Allocates space for a new region & initializes it to empty - only way to create new region"
+      "description": "Allocates space for a new region & initializes it to empty - only way to create new region",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "rgnHandle", "description": "HANDLE to new region" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal RgnHandle NewRgn()" },
+      "docs": [{ "ref": "tbv2", "page": "16-181" }]
     },
     {
       "toolcall": "68",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "DisposeRgn",
-      "description": "Deallocates the memory for a specified region"
+      "description": "Deallocates the memory for a specified region",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rgnHandle", "description": "HANDLE of region being disposed" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void DisposeRgn(rgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-79" }]
     },
     {
       "toolcall": "69",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "CopyRgn",
-      "description": "Copies the region definition from one region to another"
+      "description": "Copies the region definition from one region to another",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "srcRgnHandle", "description": "HANDLE to source region" },
+          { "size": "long", "name": "destRgnHandle", "description": "HANDLE to destination region" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void CopyRgn(srcRgnHandle,destRgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-75" }]
     },
     {
       "toolcall": "6A",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetEmptyRgn",
-      "description": "Destroys previous region information by setting a spec region to an empty region"
+      "description": "Destroys previous region information by setting a spec region to an empty region",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rgnHandle", "description": "HANDLE to region being modified" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void SetEmptyRgn(rgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-223" }]
     },
     {
       "toolcall": "6B",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetRectRgn",
-      "description": "Destroys previous region information by setting a spec region to a spec rectangle"
+      "description": "Destroys previous region information by setting a spec region to a spec rectangle",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rgnHandle", "description": "HANDLE to region being set" }, 
+          { "size": "word", "name": "left", "description": "INTEGER; left X coordinate for rectangle" },
+          { "size": "word", "name": "top", "description": "INTEGER; top Y coordinate for rectangle" },
+          { "size": "word", "name": "right", "description": "INTEGER; right X coordinate for rectangle" },
+          { "size": "word", "name": "bottom", "description": "INTEGER; bottom Y coordinate for rectangle" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void SetRectRgn(rgnHandle,left,top,right,bottom)" },
+      "docs": [{ "ref": "tbv2", "page": "16-248" }]
     },
     {
       "toolcall": "6C",
@@ -10690,8 +10933,14 @@
     "qd0450": { "source": "QuickDraw II", "code": "0450", "name": "badTableNum", "description":"Invalid color table number; 0 to 15 are valid" },
     "qd0451": { "source": "QuickDraw II", "code": "0451", "name": "badColorNum", "description":"Invalid color number; 0 to 15 are valid" },
     "qd0452": { "source": "QuickDraw II", "code": "0452", "name": "badScanLine", "description":"Invalid scan line number" },
-    "qd04FF": { "source": "QuickDraw II", "code": "04FF", "name": "", "description":"Not implemented" }
-    
+    "qd04FF": { "source": "QuickDraw II", "code": "04FF", "name": "", "description":"Not implemented" },
+
+
+
+    "mmUnch": { "source": "Memory Manager", "code": "", "name": "Memory Manager errors", "description": "Returned unchanged" },
+    "slUnch": { "source": "System Loader", "code": "", "name": "System Loader errors", "description": "Returned unchanged" },
+    "proUnch": { "source": "ProDOS 16", "code": "", "name": "ProDOS errors", "description": "Returned unchanged" },
+    "gsosUnch": { "source": "GS/OS", "code": "", "name": "GS/OS errors", "description": "Returned unchanged" }
 
 
   },
