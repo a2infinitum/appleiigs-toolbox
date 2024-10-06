@@ -1,5 +1,6 @@
 {
   "datastatus": [
+    "2024-10-06  QuickDraw II about 50% complete.",
     "2024-09-12  ToolLocator and MemoryManager are complete, working on Misc Tools.  Adds doc refs.",
     "2024-08-18  Only the first few Tool Locator calls have additional information like parameters, errors, c calls"
   ],
