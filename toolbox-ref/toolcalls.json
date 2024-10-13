@@ -4133,182 +4133,410 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "ScalePt",
-      "description": "Scales a specified point from a source rectangle to a destination rectangle"
+      "description": "Scales a specified point from a source rectangle to a destination rectangle",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "pointPtr", "description": "POINTER to POINT to be scaled" },
+          { "size": "long", "name": "srcRectPtr", "description": "POINTER to RECT defining source rectangle" },
+          { "size": "long", "name": "destRectPtr", "description": "POINTER to RECT defining destination rectangle" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ScalePt(pointPtr,srcRectPtr,destRectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-207" }]
     },
     {
       "toolcall": "8A",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "MapPt",
-      "description": "Maps a specified point from a source rectangle to a destination rectangle"
+      "description": "Maps a specified point from a source rectangle to a destination rectangle",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "pointPtr", "description": "POINTER to POINT" },
+          { "size": "long", "name": "srcRectPtr", "description": "POINTER to RECT defining source rectangle" },
+          { "size": "long", "name": "destRectPtr", "description": "POINTER to RECT defining destination rectangle" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void MapPt(pointPtr,srcRectPtr,destRectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-175" }]
     },
     {
       "toolcall": "8B",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "MapRect",
-      "description": "Maps a specified rectangle from a source rectangle to a destination rectangle"
+      "description": "Maps a specified rectangle from a source rectangle to a destination rectangle",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "pointPtr", "description": "POINTER to RECT defining rectangle to be mapped" },
+          { "size": "long", "name": "srcRectPtr", "description": "POINTER to RECT defining source rectangle" },
+          { "size": "long", "name": "destRectPtr", "description": "POINTER to RECT defining destination rectangle" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void MapRect(rectPtr,srcRectPtr,destRectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-176" }]
     },
     {
       "toolcall": "8C",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "MapRgn",
-      "description": "Maps a specified region from a source rectangle to a destination rectangle"
+      "description": "Maps a specified region from a source rectangle to a destination rectangle",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "mapRgnHandle", "description": "HANDLE to region to be mapped" },
+          { "size": "long", "name": "srcRectPtr", "description": "POINTER to RECT defining source rectangle" },
+          { "size": "long", "name": "destRectPtr", "description": "POINTER to RECT defining destination rectangle" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void MapRgn(mapRgnHandle,srcRectPtr,destRectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-177" }]
     },
     {
       "toolcall": "8D",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetStdProcs",
-      "description": "Sets up a specified record of pointers for customizing QuickDraw II operations"
+      "description": "Sets up a specified record of pointers for customizing QuickDraw II operations",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "stdProcRecPtr", "description": "POINTER to stdProcs record" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetStdProcs(stdProcRecPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-254" }]
     },
     {
       "toolcall": "8E",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetCursor",
-      "description": "Sets the cursor to an image passed in a specified cursor record"
+      "description": "Sets the cursor to an image passed in a specified cursor record",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "cursorPtr", "description": "POINTER to cursor record" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void SetCursor(cursorPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-222" }]
     },
     {
       "toolcall": "8F",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetCursorAdr",
-      "description": "Returns a pointer to the current cursor record"
+      "description": "Returns a pointer to the current cursor record",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "cursorPtr", "description": "POINTER to current cursor record" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Pointer GetCursorAdr()" },
+      "docs": [{ "ref": "tbv2", "page": "16-117" }]
     },
     {
       "toolcall": "90",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "HideCursor",
-      "description": "Hides the cursor by decrementing the cursor level"
+      "description": "Hides the cursor by decrementing the cursor level",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void HideCursor()" },
+      "docs": [{ "ref": "tbv2", "page": "16-156" }]
     },
     {
       "toolcall": "91",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "ShowCursor",
-      "description": "Shows the cursor by incrementing the cursor level"
+      "description": "Shows the cursor by incrementing the cursor level",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ShowCursor()" },
+      "docs": [{ "ref": "tbv2", "page": "16-264" }]
     },
     {
       "toolcall": "92",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "ObscureCursor",
-      "description": "Hides the cursor until the mouse moves"
+      "description": "Hides the cursor until the mouse moves",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ObscureCursor()" },
+      "docs": [{ "ref": "tbv2", "page": "16-182" }]
     },
     {
       "toolcall": "94",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetFont",
-      "description": "Sets the current font to a specified font"
+      "description": "Sets the current font to a specified font",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "newFontHandle", "description": "HANDLE to font" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetFont(newFontHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-224" }]
     },
     {
       "toolcall": "95",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetFont",
-      "description": "Returns a handle to the current font"
+      "description": "Returns a handle to the current font",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "fontHandle", "description": "HANDLE to font" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal FontHndl GetFont()" },
+      "docs": [{ "ref": "tbv2", "page": "16-119" }]
     },
     {
       "toolcall": "96",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetFontInfo",
-      "description": "Returns information about the current font in a specified record"
+      "description": "Returns information about the current font in a specified record",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "fontInfoRecPtr", "description": "POINTER to space for fontInfo record" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GetFontInfo(fontInfoRecPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-123" }]
     },
     {
       "toolcall": "97",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetFontGlobals",
-      "description": "Returns information about the current font in a specified record"
+      "description": "Returns information about the current font in a specified record",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "fgRecPtr", "description": "POINTER to space for font globals record" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GetFontGlobals(fgRecPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-121" }]
     },
     {
       "toolcall": "98",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetFontFlags",
-      "description": "Sets the font flags word to a specified value"
+      "description": "Sets the font flags word to a specified value",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "fontFlags", "description": "INTEGER; font flags (see Toolbox Ref Vol2 Figure 16-37)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetFontFlags(fontFlags)" },
+      "docs": [{ "ref": "tbv2", "page": "16-225" }]
     },
     {
       "toolcall": "99",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetFontFlags",
-      "description": "Returns the current font flags word"
+      "description": "Returns the current font flags word",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "fontFlags", "description": "INTEGER; font flags (see Toolbox Ref Vol2 Figure 16-37)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word GetFontFlags()" },
+      "docs": [{ "ref": "tbv2", "page": "16-120" }]
     },
     {
       "toolcall": "9A",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetTextFace",
-      "description": "Sets the text face to a specified value"
+      "description": "Sets the text face to a specified value",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "textFace", "description": "INTEGER; text face (see Toolbox Ref Vol2 Figure 16-39)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetTextFace(textFace)" },
+      "docs": [{ "ref": "tbv2", "page": "16-257" }]
     },
     {
       "toolcall": "9B",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetTextFace",
-      "description": "Returns the current text face"
+      "description": "Returns the current text face",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "textFace", "description": "INTEGER; text face (see Toolbox Ref Vol2 Figure 16-39)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal TextStyle GetTextFace()" },
+      "docs": [{ "ref": "tbv2", "page": "16-148" }]
     },
     {
       "toolcall": "9C",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetTextMode",
-      "description": "Sets the text mode to a specified value"
+      "description": "Sets the text mode to a specified value",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "textMode", "description": "INTEGER; text mode (see Toolbox Ref Vol2 Figure 16-10)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetTextMode(textMode)" },
+      "docs": [{ "ref": "tbv2", "page": "16-259" }]
     },
     {
       "toolcall": "9D",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetTextMode",
-      "description": "Returns the current text mode"
+      "description": "Returns the current text mode",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "textMode", "description": "INTEGER; text mode (see Toolbox Ref Vol2 Figure 16-10)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word GetTextMode()" },
+      "docs": [{ "ref": "tbv2", "page": "16-149" }]
     },
     {
       "toolcall": "9E",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetSpaceExtra",
-      "description": "Sets the spExtra field in the GrafPort to a specified value"
+      "description": "Sets the spExtra field in the GrafPort to a specified value",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "spaceExtra", "description": "FIXED; new value for spExtra field" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetSpaceExtra(spaceExtra)" },
+      "docs": [{ "ref": "tbv2", "page": "16-253" }]
     },
     {
       "toolcall": "9F",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetSpaceExtra",
-      "description": "Returns the value of the spExtra field from the GrafPort"
+      "description": "Returns the value of the spExtra field from the GrafPort",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "spaceExtra", "description": "FIXED; value of spExtra field" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Fixed GetSpaceExtra()" },
+      "docs": [{ "ref": "tbv2", "page": "16-144" }]
     },
     {
       "toolcall": "A0",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetForeColor",
-      "description": "Sets the fgColor field (foreground color) in the GrafPort to a specified value"
+      "description": "Sets the fgColor field (foreground color) in the GrafPort to a specified value",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "foreColor", "description": "INTEGER; foreground color" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetForeColor(foreColor)" },
+      "docs": [{ "ref": "tbv2", "page": "16-228" }]
     },
     {
       "toolcall": "A1",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetForeColor",
-      "description": "Returns the value of the current fgColor field (foreground color) from the GrafPort"
+      "description": "Returns the value of the current fgColor field (foreground color) from the GrafPort",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "foreColor", "description": "INTEGER; value of fgColor field" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word GetForeColor()" },
+      "docs": [{ "ref": "tbv2", "page": "16-125" }]
     },
     {
       "toolcall": "A2",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetBackColor",
-      "description": "Sets the bgColor field (background color) in the GrafPort to a specified value"
+      "description": "Sets the bgColor field (background color) in the GrafPort to a specified value",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "backColor", "description": "INTEGER; background color" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetBackColor(backColor)" },
+      "docs": [{ "ref": "tbv2", "page": "16-213" }]
     },
     {
       "toolcall": "A3",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetBackColor",
-      "description": "Returns the value of the current bgColor field (background color) from the GrafPort"
+      "description": "Returns the value of the current bgColor field (background color) from the GrafPort",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "backColor", "description": "INTEGER; value of bgColor field" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word GetBackColor()" },
+      "docs": [{ "ref": "tbv2", "page": "16-110" }]
     },
     {
       "toolcall": "A4",
