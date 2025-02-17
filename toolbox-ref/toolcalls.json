@@ -4543,392 +4543,978 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "DrawChar",
-      "description": "Draws a specified character at current pen location and updates pen location"
+      "description": "Draws a specified character at current pen location and updates pen location",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "theChar", "description": "ASCII code of character to be drawn (0-255)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void DrawChar(theChar)" },
+      "docs": [{ "ref": "tbv2", "page": "16-80" }]
     },
     {
       "toolcall": "A5",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "DrawString",
-      "description": "Draws spec Pascal-type string at current pen location and updates the pen location"
+      "description": "Draws a specified Pascal-type string at the current pen location and updates the pen location.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "stringPtr", "description": "POINTER to Pascal-type string to be drawn" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void DrawString(stringPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-82" }]
     },
     {
       "toolcall": "A6",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "DrawCString",
-      "description": "Draws a specified C string at the current pen location and updates the pen location"
+      "description": "Draws a specified C string at the current pen location and updates the pen location",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "cStringPtr", "description": "POINTER to C string to be drawn" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void DrawCString(cStringPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-81" }]
     },
     {
       "toolcall": "A7",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "DrawText",
-      "description": "Draws specified text at the current pen location and updates pen location"
+      "description": "Draws specified text at the current pen location and updates pen location",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "textPtr", "description": "POINTER to text to be drawn" },
+          { "size": "word", "name": "textLength", "description": "INTEGER; number of bytes in text to be drawn" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void DrawText(textPtr,textLength)" },
+      "docs": [{ "ref": "tbv2", "page": "16-83" }]
     },
     {
       "toolcall": "A8",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "CharWidth",
-      "description": "Returns the character width, in pixels (pen displacement), of a specified character"
+      "description": "Returns the character width, in pixels (pen displacement), of a specified character",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "theChar", "description": "Character to be measured" }
+        ],
+        "output": [
+          { "size": "word", "name": "charWidth", "description": "INTEGER; width of character in pixels" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Integer CharWidth(theChar)" },
+      "docs": [{ "ref": "tbv2", "page": "16-70" }]
     },
     {
       "toolcall": "A9",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "StringWidth",
-      "description": "Returns sum of all char widths, in pixels (pen displacements), of spec Pascal-type string"
+      "description": "Returns sum of all char widths, in pixels (pen displacements), of specified Pascal-type string.",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "stringPtr", "description": "POINTER to Pascal-type string" }
+        ],
+        "output": [
+          { "size": "word", "name": "stringWidth", "description": "INTEGER; width of string in pixels" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Integer StringWidth(stringPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-267" }]
     },
     {
       "toolcall": "AA",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "CStringWidth",
-      "description": "Returns sum of all char widths, in pixels (pen displacements), of spec C string"
+      "description": "Returns sum of all char widths, in pixels (pen displacements), of specified C string",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "cStringPtr", "description": "POINTER to C string" }
+        ],
+        "output": [
+          { "size": "word", "name": "cStringWidth", "description": "INTEGER; width of C string in pixels" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Integer CStringWidth(cStringPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-77" }]
     },
     {
       "toolcall": "AB",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "TextWidth",
-      "description": "Returns the character width, in pixels (pen displacements), of specified text"
+      "description": "Returns the character width, in pixels (pen displacements), of specified text",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "textPtr", "description": "POINTER to text" },
+          { "size": "word", "name": "textLength", "description": "INTEGER; length of text in bytes" }
+        ],
+        "output": [
+          { "size": "word", "name": "textWidth", "description": "INTEGER; width of text in pixels" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Integer TextWidth(textPtr,textLength)" },
+      "docs": [{ "ref": "tbv2", "page": "16-270" }]
     },
     {
       "toolcall": "AC",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "CharBounds",
-      "description": "Puts the character bounds rectangle of a specified character into a specified buffer"
+      "description": "Puts the character bounds rectangle of a specified character into a specified buffer",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "theChar", "description": "Character to use to set bounds" },
+          { "size": "long", "name": "resultPtr", "description": "POINTER to space for rectangle" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void CharBounds(theChar,resultPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-69" }]
     },
     {
       "toolcall": "AD",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "StringBounds",
-      "description": "Puts the character bounds rectangle of a spec Pascal-type string into spec buffer"
+      "description": "Puts the character bounds rectangle of a spec Pascal-type string into spec buffer",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "stringPtr", "description": "POINTER to Pascal-type string" },
+          { "size": "long", "name": "resultPtr", "description": "POINTER to space for RECT defining rectangle" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void StringBounds(stringPtr,resultPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-266" }]
     },
     {
       "toolcall": "AE",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "CStringBounds",
-      "description": "Puts char bounds rectangle of a spec C string into a specified buffer"
+      "description": "Puts char bounds rectangle of a spec C string into a specified buffer",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "cStringPtr", "description": "POINTER to C string" },
+          { "size": "long", "name": "resultPtr", "description": "POINTER to space for RECT defining rectangle" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void CStringBounds(cStringPtr,resultPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-76" }]
     },
     {
       "toolcall": "AF",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "TextBounds",
-      "description": "Puts the character bounds rectangle of specified text into a specified buffer"
+      "description": "Puts the character bounds rectangle of specified text into a specified buffer",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "textPtr", "description": "POINTER to text" },
+          { "size": "long", "name": "textLength", "description": "INTEGER; length of text in bytes" },
+          { "size": "long", "name": "resultPtr", "description": "POINTER to space for RECT defining rectangle" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void TextBounds(textPtr,textLength,resultPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "16-269" }]
     },
     {
       "toolcall": "B0",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetArcRot",
-      "description": "Sets the arcRot field in the GrafPort to a specified value"
+      "description": "Sets the arcRot field in the GrafPort to a specified value",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "arcRotValue", "description": "INTEGER; new value of arcRot field" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void setArcRot(arcRotValue)" },
+      "docs": [{ "ref": "tbv2", "page": "16-212" }]
     },
     {
       "toolcall": "B1",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetArcRot",
-      "description": "Returns the value of the arcRot field in the current GrafPort"
+      "description": "Returns the value of the arcRot field in the current GrafPort",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "arcRot", "description": "INTEGER; value of arcRot field" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Integer getArcRot()" },
+      "docs": [{ "ref": "tbv2", "page": "16-109" }]
     },
     {
       "toolcall": "B2",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetSysFont",
-      "description": "Sets a specified font as the system font"
+      "description": "Sets a specified font as the system font",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "fontHandle", "description": "HANDLE to font that will be system font" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void setSysFont(fontHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-256" }]
     },
     {
       "toolcall": "B3",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetSysFont",
-      "description": "Returns a handle to the current system font"
+      "description": "Returns a handle to the current system font",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "fontHandle", "description": "HANDLE to current system font" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal FontHndl GetSysFont()" },
+      "docs": [{ "ref": "tbv2", "page": "16-147" }]
     },
     {
       "toolcall": "B4",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetVisRgn",
-      "description": "Copies spec region into visible region (but doesn't change visRgn field of GrafPort)"
+      "description": "Copies specified region into the visible region (but does not change the visRgn field of the GrafPort).",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rgnHandle", "description": "HANDLE to region" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetVisRgn(rgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-264" }]
     },
     {
       "toolcall": "B5",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetVisRgn",
-      "description": "Copies the contents of the visible region into a specified region"
+      "description": "Copies the contents of the visible region into a specified region. The region must have already been created with a NewRgn call.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rgnHandle", "description": "HANDLE to region" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GetVisRgn(rgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "16-153" }]
     },
     {
       "toolcall": "B6",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetIntUse",
-      "description": "Indicates to the cursor drawing code whether the code should use scan line interrupts"
+      "description": "Indicates to the cursor drawing code whether the code should use scan line interrupts.",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "useInt", "description": "BOOLEAN; TRUE for cursor to use scan line interrupts, FALSE if not" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetIntUse(useInt)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-230" },
+        { "ref": "gs16pr60", "page": "199" }
+      ]
     },
     {
       "toolcall": "B7",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "OpenPicture",
-      "description": "Allocates mem for recording of drawing commands into a pic defin. & returns handle to pic"
+      "description": "Allocates memory for the recording of drawing commands into a picture definition, and returns a handle to the picture.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "picFrame", "description": "POINTER to RECT defining picture frame" }
+        ],
+        "output": [
+          { "size": "long", "name": "picHandle", "description": "Handle to picture" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Handle OpenPicture(picFrame)" },
+      "docs": [
+        { "ref": "tbv2", "page": "17-14" }
+      ]
     },
     {
       "toolcall": "B8",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "PicComment",
-      "description": "Inserts a specified comment into the currently open picture"
+      "description": "Inserts a specified comment into the currently open picture.",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "commentKind", "description": "Type of comment" },
+          { "size": "word", "name": "dataSize", "description": "Size of additional data; 0 if none" },
+          { "size": "long", "name": "dataHandle", "description": "Handle to additional data; NIL if none" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void PicComment(commentKind,dataSize,dataHandle)" },
+      "docs": [
+        { "ref": "tbv2", "page": "17-15" }
+      ]
     },
     {
       "toolcall": "B9",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "ClosePicture",
-      "description": "Completes the picture definition process begun by OpenPicture call (QD Aux)"
+      "description": "Completes the picture definition process begun by OpenPicture call.",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ClosePicture" },
+      "docs": [{ "ref": "tbv2", "page": "17-9" }]
     },
     {
       "toolcall": "BA",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "DrawPicture",
-      "description": "Takes drawing commands recorded in pic defin., maps them from pic frame into dest rect."
+      "description": "Takes drawing commands recorded in pic definition, maps them from picture frame into destination rectangle, and draws them.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "picHandle", "description": "Handle to picture" },
+          { "size": "long", "name": "destRect", "description": "POINTER to RECT defining destination rectangle" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void DrawPicture(picHandle,destRect)" },
+      "docs": [
+        { "ref": "tbv2", "page": "17-12" }
+      ]
     },
     {
       "toolcall": "BB",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "KillPicture",
-      "description": "Releases all memory occupied by a specifed picture"
+      "description": "Releases all memory occupied by a specifed picture.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "picHandle", "description": "Handle to picture" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void KillPicture(picHandle)" },
+      "docs": [
+        { "ref": "tbv2", "page": "17-13" }
+      ]
     },
     {
       "toolcall": "BC",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "FramePoly",
-      "description": "Draws the frame of a specified polygon using the current pen mode, pattern, & size"
+      "description": "Draws the frame of a specified polygon using the current pen mode, pattern, & size. Poly is framed with a series of LineTo calls.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "polyHandle", "description": "Handle to polygon" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void FramePoly(polyHandle)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-103" }
+      ]
     },
     {
       "toolcall": "BD",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "PaintPoly",
-      "description": "Paints the interior of a specified polygon using the current pen mode & pattern"
+      "description": "Paints the interior of a specified polygon using the current pen mode & pattern.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "polyHandle", "description": "Handle to polygon" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void PaintPoly(polyHandle)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-192" }
+      ]
     },
     {
       "toolcall": "BE",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "ErasePoly",
-      "description": "Erases the interior of a specified polygon by filling it with the background pattern"
+      "description": "Erases the interior of a specified polygon by filling it with the background pattern",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "polyHandle", "description": "Handle to polygon" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void ErasePoly(polyHandle)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-90" }
+      ]
     },
     {
       "toolcall": "BF",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "InvertPoly",
-      "description": "Inverts the pixels in the interior of a specified polygon"
+      "description": "Inverts the pixels in the interior of a specified polygon.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "polyHandle", "description": "Handle to polygon" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void InvertPoly(polyHandle)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-166" }
+      ]
     },
     {
       "toolcall": "C0",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "FillPoly",
-      "description": "Fills the interior of a specified polygon with a specified pen pattern"
+      "description": "Fills the interior of a specified polygon with a specified pen pattern.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "polyHandle", "description": "Handle to polygon" },
+          { "size": "long", "name": "patternPtr", "description": "POINTER to pattern" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void FillPoly(polyHandle,patternPtr)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-96" }
+      ]
     },
     {
       "toolcall": "C1",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "OpenPoly",
-      "description": "Returns a handle to a polygon data structure that will be updated by future LineTo calls"
+      "description": "Returns a handle to a polygon data structure that will be updated by future LineTo calls.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "polyHandle", "description": "Handle to polygon" }
+        ]
+      },
+      "errors": ["qd0440"],
+      "c": { "call": "extern pascal Handle OpenPoly()" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-186" }
+      ]
     },
     {
       "toolcall": "C2",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "ClosePoly",
-      "description": "Completes the polygon definition process started with an OpenPoly call"
+      "description": "Completes the polygon definition process started with an OpenPoly call.",
+      "parameters": { "none": true },
+      "errors": ["qd0441","mmUnch"],
+      "c": { "call": "extern pascal void ClosePoly()" },
+      "docs": [{ "ref": "tbv2", "page": "16-72" }]
     },
     {
       "toolcall": "C3",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "KillPoly",
-      "description": "Disposes of a specified polygon"
+      "description": "Disposes of a specified polygon.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "polyHandle", "description": "Handle to polygon to be killed" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void KillPoly()" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-170" }
+      ]
     },
     {
       "toolcall": "C4",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "OffsetPoly",
-      "description": "Offsets a specified polygon by specified horizontal & vertical displacements"
+      "description": "Offsets a specified polygon by specified horizontal & vertical displacements.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "polyHandle", "description": "Handle to polygon" },
+          { "size": "word", "name": "dH", "description": "INTEGER; horizontal displacement in pixels" },
+          { "size": "word", "name": "dV", "description": "INTEGER; vertical displacement in pixels" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void OffsetPoly(polyHandle,dH,dV)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-183" }
+      ]
     },
     {
       "toolcall": "C5",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "MapPoly",
-      "description": "Maps a specified polygon from a source rectangle to a destination rectangle"
+      "description": "Maps a specified polygon from a source rectangle to a destination rectangle",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "polyHandle", "description": "Handle to polygon to be mapped" },
+          { "size": "long", "name": "srcRectPtr", "description": "POINTER to RECT defining source rectangle" },
+          { "size": "long", "name": "destRectPtr", "description": "POINTER to RECT defining destination rectangle" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void MapPoly(polyHandle,srcRectPtr,destRectPtr)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-174" }
+      ]
     },
     {
       "toolcall": "C6",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetClipHandle",
-      "description": "Sets the clipRgn handle field in the GrafPort to a specified value"
+      "description": "Sets the clipRgn handle field in the GrafPort to a specified value.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rgnHandle", "description": "Handle to clipping region" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetClipHandle(rgnHandle)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-219" }
+      ]
     },
     {
       "toolcall": "C7",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetClipHandle",
-      "description": "Returns a copy of the handle to the clipping region"
+      "description": "Returns a copy of the handle to the clipping region.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "rgnHandle", "description": "Handle to clipping region" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal RgnHandle GetClipHandle()" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-114" }
+      ]
     },
     {
       "toolcall": "C8",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetVisHandle",
-      "description": "Sets the visRgn field in the GrafPort to a specified value"
+      "description": "Sets the visRgn field in the GrafPort to a specified value.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rgnHandle", "description": "HANDLE to visible region" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetVisHandle(rgnHandle)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-263" }
+      ]
     },
     {
       "toolcall": "C9",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetVisHandle",
-      "description": "Returns a copy of the handle to the visible region"
+      "description": "Returns a copy of the handle to the visible region.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "visRgnHandle", "description": "HANDLE to region" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal RgnHandle GetVisHandle()" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-152" }
+      ]
     },
     {
       "toolcall": "CA",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "InitCursor",
-      "description": "Reinitializes the cursor"
+      "description": "Reinitializes the cursor. The cursor is set to the arrow cursor and made visible.",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void InitCursor()" },
+      "docs": [{ "ref": "tbv2", "page": "16-160" }]
     },
     {
       "toolcall": "CB",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetBufDims",
-      "description": "Sets size of QD II clipping and text buffers, padding to allow mods to chExtra & spExtra"
+      "description": "Sets size of QD II clipping and text buffers, padding to allow mods to chExtra & spExtra",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "maxWidth", "description": "INTEGER; width, in bytes, of widest pixel image to be used" },
+          { "size": "word", "name": "maxFontHeight", "description": "INTEGER; height, in pixels, of tallest font application will use" },
+          { "size": "word", "name": "maxFBRExtent", "description": "INTEGER; greatest fbrExtent, in pixels, of any font to be used" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void SetBufDims(maxWidth,maxFontHeight,maxFBRExtent)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-215" }
+      ]
     },
     {
       "toolcall": "CC",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "ForceBufDims",
-      "description": "Sets size of QD II clipping and text buffers, but doesn't pad values in any way"
+      "description": "Sets size of QD II clipping and text buffers, but doesn't pad maxFBRExtent in any way.",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "maxWidth", "description": "INTEGER; width, in bytes, of widest pixel image to be used" },
+          { "size": "word", "name": "maxFontHeight", "description": "INTEGER; height, in pixels, of tallest font application will use" },
+          { "size": "word", "name": "maxFBRExtent", "description": "INTEGER; greatest fbrExtent, in pixels, of any font to be used" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void ForceBufDims(maxWidth,maxFontHeight,maxFBRExtent)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-100" }
+      ]
     },
     {
       "toolcall": "CD",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SaveBufDims",
-      "description": "Saves QD II's buffer-sizing information in eight-byte record"
+      "description": "Saves QD II's buffer-sizing information in eight-byte record.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "sizeInfoPtr", "description": "POINTER to space for record (see Toolbox Ref Vol2 Figure 16-36)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SaveBufDims(sizeInfoPtr)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-206" }
+      ]
     },
     {
       "toolcall": "CE",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "RestoreBufDims",
-      "description": "Restores QD II's internal buffers to sizes desc. in 8-byte record created by SaveBufDims"
+      "description": "Restores QD II's internal buffers to sizes described in an 8-byte record created by SaveBufDims",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "sizeInfoPtr", "description": "POINTER to record to be restored" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void RestoreBufDims(sizeInfoPtr)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-205" }
+      ]
     },
     {
       "toolcall": "CF",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetFGSize",
-      "description": "Returns the size of the font globals record"
+      "description": "Returns the size of the font globals record.",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "fgSize", "description": "INTEGER; size of font globals record" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word GetFGSize()" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-118" }
+      ]
     },
     {
       "toolcall": "D0",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetFontID",
-      "description": "Sets the fontID field in the GrafPort"
+      "description": "Sets the fontID field in the GrafPort.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "fontID", "description": "Font ID" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetFontID(fontID)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-227" }
+      ]
     },
     {
       "toolcall": "D1",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetFontID",
-      "description": "Returns the fontID field of the GrafPort"
+      "description": "Returns the fontID field of the GrafPort.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "fontID", "description": "Value of fontID field in GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal LongWord GetFontID()" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-122" }
+      ]
     },
     {
       "toolcall": "D2",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetTextSize",
-      "description": "Sets the txSize field of the GrafPort to a specified value"
+      "description": "Sets the txSize field of the GrafPort to a specified value.",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "textSize", "description": "INTEGER; value for txSize field" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetTextSize(textSize)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-261" }
+      ]
     },
     {
       "toolcall": "D3",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetTextSize",
-      "description": "Returns current value of the txSize field of the GrafPort"
+      "description": "Returns current value of the txSize field of the GrafPort.",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "textSize", "description": "Current value of txSize field" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Integer GetTextSize()" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-150" }
+      ]
     },
     {
       "toolcall": "D4",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetCharExtra",
-      "description": "Sets the chExtra field in the GrafPort to a specified value"
+      "description": "Sets the chExtra field in the GrafPort to a specified value.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "charExtra", "description": "FIXED; value for chExtra field" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetCharExtra(charExtra)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-217" }
+      ]
     },
     {
       "toolcall": "D5",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetCharExtra",
-      "description": "Returns the chExtra field from the GrafPort"
+      "description": "Returns the chExtra field from the GrafPort",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "charExtra", "description": "FIXED; value of chExtra field" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Fixed GetCharExtra()" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-112" }
+      ]
     },
     {
       "toolcall": "D6",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "PPToPort",
-      "description": "Transfrs pixels from src pixel map to current port & clips to current visbl rgn & clip rgn"
+      "description": "Transfers pixels from a source pixel map to current port & clips pixels to current visble region & clipping region",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "srcLocPtr", "description": "POINTER to source LocInfo record" },
+          { "size": "long", "name": "srcRectPtr", "description": "POINTER to RECT defining source rectangle" },
+          { "size": "word", "name": "destX", "description": "INTEGER; X coordinate of upper left corner of destination" },
+          { "size": "word", "name": "destY", "description": "INTEGER; Y coordinate of upper left corner of destination" },
+          { "size": "word", "name": "transferMode", "description": "Same as pen mode (see Toolbox Ref Vol2, Table 16-9)" }
+        ]
+      },
+      "errors": ["qd0420"],
+      "c": { "call": "extern pascal void PPToPort(srcLocPtr,srcRectPtr,destX,destY,transferMode)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-196" }
+      ]
     },
     {
       "toolcall": "D7",
       "toolnum": "04",
       "toolname": "QuickDraw",
-      "callname": "InflateTextBuf",
-      "description": "Ensures that txt buff is big enough to hndle font w/spec width & height, increasing if nec"
+      "callname": "InflateTextBuffer",
+      "description": "Ensures that the text buffer is big enough to handle a font with the specified width and height, increasing it if necessary.",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "newWidth", "description": "INTEGER; width of font" },
+          { "size": "word", "name": "newHeight", "description": "INTEGER; height of font" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void InflateTextBuffer(newWidth,newHeight)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-157" }
+      ]
     },
     {
       "toolcall": "D8",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetROMFont",
-      "description": "Fills a specified buffer with information about the font in ROM"
+      "description": "Fills a specified buffer with information about the font in ROM",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "recordPtr", "description": "POINTER to space for ROM font record (see Toolbox Ref Vol2 Figure 16-33)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GetROMFont(recordPtr)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-141" }
+      ]
     },
     {
       "toolcall": "D9",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "GetFontLore",
-      "description": "Returns info, up to a spec number of bytes, about the current font in a spec buffer"
+      "description": "Returns info, up to a specified number of bytes, about the current font in a specified buffer",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "recordPtr", "description": "POINTER to space for record" },
+          { "size": "word", "name": "recordSize", "description": "Maximum number of bytes to transfer" }
+        ],
+        "output": [
+          { "size": "word", "name": "numBytesXfer", "description": "INTEGER; number of bytes tranferred" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal word GetFontLore(recordPtr,recordSize)" },
+      "docs": [
+        { "ref": "tbv2", "page": "16-141" }
+      ]
     },
     {
       "toolcall": "DA",
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "Get640Colors",
-      "description": "Returns a pointer to a 512-byte table of 32 $00s, 32 $11s, ..., 32 $FFs"
+      "description": "Returns a pointer to a 512-byte table of 32 $00s, 32 $11s, ..., 32 $FFs, to be used as solid pen patterns.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "tablePtr", "description": "POINTER to pattern table" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Pointer Get640Colors()" },
+      "docs": [
+        { "ref": "gs16pr60", "page": "200" }
+      ]
     },
     {
       "toolcall": "DB",
       "toolnum": "05",
       "toolname": "QuickDraw",
       "callname": "Set640Color",
-      "description": "Sets the current grafport’s pen pattern to a “solid” 640-mode dithered color"
+      "description": "Sets the current grafport’s pen pattern to any of the 16 \"solid\" 640-mode dithered colors",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "colorNum", "description": "Color number" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void Set640Color(colorNum)" },
+      "docs": [
+        { "ref": "gs16pr60", "page": "201" }
+      ]
     },
     {
       "toolcall": "01",
@@ -11424,7 +12010,7 @@
     "qd0432": { "source": "QuickDraw II", "code": "0432", "name": "rgnScanOverflow", "description":"Region scan overflow" },
     "qd0433": { "source": "QuickDraw II", "code": "0433", "name": "rgnFull", "description":"Region full" },
     "qd0440": { "source": "QuickDraw II", "code": "0440", "name": "polyAlreadyOpen", "description":"Polygon already open" },
-    "qd0441": { "source": "QuickDraw II", "code": "0441", "name": "polyNotOpen", "description":"Polygon not open" },
+    "qd0441": { "source": "QuickDraw II", "code": "0441", "name": "polyNotOpen", "description":"No polygon open in current GrafPort" },
     "qd0442": { "source": "QuickDraw II", "code": "0442", "name": "polyTooBig", "description":"Polygon too big" },
     "qd0450": { "source": "QuickDraw II", "code": "0450", "name": "badTableNum", "description":"Invalid color table number; 0 to 15 are valid" },
     "qd0451": { "source": "QuickDraw II", "code": "0451", "name": "badColorNum", "description":"Invalid color number; 0 to 15 are valid" },
