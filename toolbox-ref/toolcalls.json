@@ -6523,56 +6523,114 @@
       "toolnum": "07",
       "toolname": "Scheduler",
       "callname": "SchBootInit",
-      "description": "Initializes the Scheduler; called only by Tool Locator - not called by application"
+      "description": "Initializes the Scheduler; called only by Tool Locator - not called by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv2", "page": "19-4" }]
     },
     {
       "toolcall": "02",
       "toolnum": "07",
       "toolname": "Scheduler",
       "callname": "SchStartUp",
-      "description": "Starts up the Scheduler for use by an application"
+      "description": "Starts up the Scheduler for use by an application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SchStartUp()" },
+      "docs": [{ "ref": "tbv2", "page": "19-4" }]
     },
     {
       "toolcall": "03",
       "toolnum": "07",
       "toolname": "Scheduler",
       "callname": "SchShutDown",
-      "description": "Shuts down the Scheduler when an application quits"
+      "description": "Shuts down the Scheduler when an application quits",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SchShutDown()" },
+      "docs": [{ "ref": "tbv2", "page": "19-5" }]
     },
     {
       "toolcall": "04",
       "toolnum": "07",
       "toolname": "Scheduler",
       "callname": "SchVersion",
-      "description": "Returns the version number of the Scheduler"
+      "description": "Returns the version number of the Scheduler",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "versionInfo", "description": "Version number of the Scheduler" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word SchVersion()" },
+      "docs": [{ "ref": "tbv2", "page": "19-5" }]
     },
     {
       "toolcall": "05",
       "toolnum": "07",
       "toolname": "Scheduler",
       "callname": "SchReset",
-      "description": "Resets the Scheduler; called only when system is reset - not by application"
+      "description": "Resets the Scheduler; called only when system is reset - not called by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SchReset()" },
+      "docs": [{ "ref": "tbv2", "page": "19-6" }]
     },
     {
       "toolcall": "06",
       "toolnum": "07",
       "toolname": "Scheduler",
       "callname": "SchStatus",
-      "description": "Indicates whether the Scheduler is active"
+      "description": "Indicates whether the Scheduler is active",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "activeFlag", "description": "BOOLEAN; TRUE if Scheduler active, FALSE if inactive" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean SchStatus()" },
+      "docs": [
+        { "ref": "tbv2", "page": "19-6" }
+      ]
     },
     {
       "toolcall": "09",
       "toolnum": "07",
       "toolname": "Scheduler",
       "callname": "SchAddTask",
-      "description": "Adds a task to the Scheduler queue"
+      "description": "Adds a task to the Scheduler queue",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "taskPtr", "description": "POINTER to task to be added" }
+        ],
+        "output": [
+          { "size": "word", "name": "onQueueFlag", "description": "BOOLEAN; TRUE if task added to Scheduler's queue, FALSE if queue was full" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean SchAddTask(taskPtr)" },
+      "docs": [
+        { "ref": "tbv2", "page": "19-7" }
+      ]
     },
     {
       "toolcall": "0A",
       "toolnum": "07",
       "toolname": "Scheduler",
       "callname": "SchFlush",
-      "description": "Flushes all tasks in the Scheduler queue - must not be called by an application"
+      "description": "Flushes all tasks in the Scheduler queue - must not be called by an application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv2", "page": "19-8" }]
     },
     {
       "toolcall": "01",
