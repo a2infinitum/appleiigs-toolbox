@@ -6637,154 +6637,353 @@
       "toolnum": "08",
       "toolname": "Sound Tool Set",
       "callname": "SoundBootInit",
-      "description": "Initializes the Sound Tool Set; called only by Tool Locator (not by application)"
+      "description": "Initializes the Sound Tool Set; called only by Tool Locator (not by application)",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv2", "page": "21-7" }]
     },
     {
       "toolcall": "02",
       "toolnum": "08",
       "toolname": "Sound Tool Set",
       "callname": "SoundStartUp",
-      "description": "Starts up the Sound Tool Set for use by an application"
+      "description": "Starts up the Sound Tool Set for use by an application",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "dPageAddr", "description": "Bank $0 starting address for one page of direct-page space" }
+        ]
+      },
+      "errors": ["st0810","st0818"],
+      "c": { "call": "extern pascal void SoundStartUp(dPageAddr)" },
+      "docs": [{ "ref": "tbv2", "page": "21-8" }]
     },
     {
       "toolcall": "03",
       "toolnum": "08",
       "toolname": "Sound Tool Set",
       "callname": "SoundShutDown",
-      "description": "Shuts down the Sound Tool Set when an application quits"
+      "description": "Shuts down the Sound Tool Set when an application quits",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SoundShutDown()" },
+      "docs": [{ "ref": "tbv2", "page": "21-9" }]
     },
     {
       "toolcall": "04",
       "toolnum": "08",
       "toolname": "Sound Tool Set",
       "callname": "SoundVersion",
-      "description": "Returns the version number of the Sound Tool Set"
+      "description": "Returns the version number of the Sound Tool Set",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "versionInfo", "description": "Version number of the Sound Tool Set" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word SoundVersion()" },
+      "docs": [{ "ref": "tbv2", "page": "21-9" }]
     },
     {
       "toolcall": "05",
       "toolnum": "08",
       "toolname": "Sound Tool Set",
       "callname": "SoundReset",
-      "description": "Resets the Sound Tool Set; called only on reset - not by application"
+      "description": "Resets the Sound Tool Set; called only on reset - not called by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv2", "page": "21-10" }]
     },
     {
       "toolcall": "06",
       "toolnum": "08",
       "toolname": "Sound Tool Set",
-      "callname": "SoundToolStatu",
-      "description": "Indicates whether the Sound Tool Set is active"
+      "callname": "SoundToolStatus",
+      "description": "Indicates whether the Sound Tool Set is active",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "activeFlag", "description": "BOOLEAN; TRUE if Sound Tool Set active, FALSE if inactive" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word SoundToolStatus()" },
+      "docs": [{ "ref": "tbv2", "page": "21-10" }]
     },
     {
       "toolcall": "09",
       "toolnum": "08",
       "toolname": "Sound Tool Set",
       "callname": "WriteRamBlock",
-      "description": "Writes a spec number of bytes from system RAM into DOC RAM"
+      "description": "Writes a spec number of bytes from system RAM into DOC RAM",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "srcPtr", "description": "POINTER to data to be written from RAM" },
+          { "size": "long", "name": "docStart", "description": "Starting address of DOC buffer to receive data" },
+          { "size": "word", "name": "byteCount", "description": "Number of bytes to be written" }
+        ]
+      },
+      "errors": ["st0810","st0811"],
+      "c": { "call": "extern pascal void WriteRamBlock(srcPtr,docStart,byteCount)" },
+      "docs": [{ "ref": "tbv2", "page": "21-28" }]
     },
     {
       "toolcall": "0A",
       "toolnum": "08",
       "toolname": "Sound Tool Set",
       "callname": "ReadRamBlock",
-      "description": "Reads a specified number of bytes from DOC RAM into system RAM"
+      "description": "Reads a specified number of bytes from DOC RAM into system RAM",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "destPtr", "description": "POINTER to starting RAM address where data will be written" },
+          { "size": "long", "name": "docStart", "description": "Starting DOC address from which data will be read" },
+          { "size": "word", "name": "byteCount", "description": "Number of bytes to be copied" }
+        ]
+      },
+      "errors": ["st0810","st0811"],
+      "c": { "call": "extern pascal void ReadRamBlock(destPtr,docStart,byteCount)" },
+      "docs": [{ "ref": "tbv2", "page": "21-24" }]
     },
     {
       "toolcall": "0B",
       "toolnum": "08",
       "toolname": "Sound Tool Set",
       "callname": "GetTableAddres",
-      "description": "Returns the jump table address for the low-level routines"
+      "description": "Returns the jump table address for the low-level routines (see Toolbox Ref Vol2, Table 21-5)",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "jumpTableAddr", "description": "Jump table address for low-level routines" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Pointer GetTableAddress()" },
+      "docs": [{ "ref": "tbv2", "page": "21-22" }]
     },
     {
       "toolcall": "0C",
       "toolnum": "08",
       "toolname": "Sound Tool Set",
       "callname": "GetSoundVolume",
-      "description": "Reads the volume setting for a generator"
+      "description": "Reads the volume setting for a generator ($00 to $FF)",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "genNumber", "description": "Number of generator whose volume will be returned" }
+        ],
+        "output": [
+          { "size": "word", "name": "volSetting", "description": "Volume setting, from $00 to $FF; high nibble of low-order byte significant" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word GetSoundVolume(genNumber)" },
+      "docs": [{ "ref": "tbv2", "page": "21-21" }]
     },
     {
       "toolcall": "0D",
       "toolnum": "08",
       "toolname": "Sound Tool Set",
       "callname": "SetSoundVolume",
-      "description": "Changes volume setting for the volume registers in the DOC or changes system volume"
+      "description": "Changes volume setting for the volume registers in the DOC or changes system volume",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "volume", "description": "Generator or system volume setting; $00-$FF" },
+          { "size": "word", "name": "genNumber", "description": "Generator whose volume will be set; $00-$0E sets DOC, $0F-$FF sets system volume" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word SetSoundVolume(volume,genNumber)" },
+      "docs": [{ "ref": "tbv2", "page": "21-26" }]
     },
     {
       "toolcall": "0E",
       "toolnum": "08",
       "toolname": "Sound Tool Set",
       "callname": "FFStartSound",
-      "description": "Enables the DOC to start generating sound on a particular generator"
+      "description": "Enables the DOC to start generating sound on a particular generator",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "genNumFFSynth", "description": "Channel, generator, and type (see Toolbox Ref Vol2, Figure 21-4)" },
+          { "size": "long", "name": "pBlockPtr", "description": "POINTER to parameter block for sound (see Toolbox Ref Vol2, Figure 21-5)" }
+        ]
+      },
+      "errors": ["st0812","st0813","st0814","st0815"],
+      "c": { "call": "extern pascal void FFStartSound(genNumFFSynth,pBlockPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "21-15" }]
     },
     {
       "toolcall": "0F",
       "toolnum": "08",
       "toolname": "Sound Tool Set",
       "callname": "FFStopSound",
-      "description": "Halts any specified sound generators that are generating sound"
+      "description": "Halts any specified sound generators that are generating sound",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "genMask", "description": "Mask to stop generators (see Toolbox Ref Vol2, Figure 21-6)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void FFStopSound(genMask)" },
+      "docs": [{ "ref": "tbv2", "page": "21-18" }]
     },
     {
       "toolcall": "10",
       "toolnum": "08",
       "toolname": "Sound Tool Set",
       "callname": "FFSoundStatus",
-      "description": "Returns the status of all 15 sound generators"
+      "description": "Returns the status of all 15 sound generators",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "genStatusInfo", "description": "Status of all generators (bit 0 = generator 0 and so on)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word FFSoundStatus()" },
+      "docs": [{ "ref": "tbv2", "page": "21-14" }]
     },
     {
       "toolcall": "11",
       "toolnum": "08",
       "toolname": "Sound Tool Set",
-      "callname": "FFGeneratorSta",
-      "description": "Reads the first two bytes of the generator control block corresponding to a spec generator"
+      "callname": "FFGeneratorStatus",
+      "description": "Reads the first two bytes of the generator control block corresponding to a specified generator",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "genNumber", "description": "Number of generator whose status will be returned" }
+        ],
+        "output": [
+          { "size": "word", "name": "genStatus", "description": "Status of genNumber (see Toolbox Ref Vol2, Figure 21-3)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word FFGeneratorStatus()" },
+      "docs": [{ "ref": "tbv2", "page": "21-11" }]
     },
     {
       "toolcall": "12",
       "toolnum": "08",
       "toolname": "Sound Tool Set",
       "callname": "SetSoundMIRQV",
-      "description": "Sets up the entry point into the sound-interrupt handler"
+      "description": "Sets up the entry point into the sound-interrupt handler",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "sMasterIRQ", "description": "New master sound IRQ vector" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetSoundMIRQV(sMasterIRQ)" },
+      "docs": [{ "ref": "tbv2", "page": "21-25" }]
     },
     {
       "toolcall": "13",
       "toolnum": "08",
       "toolname": "Sound Tool Set",
-      "callname": "SetUserSoundIR",
-      "description": "Sets up the entry point for an application-defined synthesizer interrupt handler"
+      "callname": "SetUserSoundIRQV",
+      "description": "Sets up the entry point for an application-defined synthesizer interrupt handler",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "userIRQVector", "description": "New user sound IRQ vector" }
+        ],
+        "output": [
+          { "size": "long", "name": "oldIRQVector", "description": "Old user sound IRQ vector" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word SetUserSoundIRQV(userIRQVector)" },
+      "docs": [{ "ref": "tbv2", "page": "21-27" }]
     },
     {
       "toolcall": "14",
       "toolnum": "08",
       "toolname": "Sound Tool Set",
-      "callname": "FFSoundDoneSta",
-      "description": "Returns the current Free-Form Synthesizer playing status"
+      "callname": "FFSoundDoneStatus",
+      "description": "Returns the current Free-Form Synthesizer playing status",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "genNumber", "description": "Number of generator whose status will be returned" }
+        ],
+        "output": [
+          { "size": "word", "name": "genDoneFlag", "description": "BOOLEAN; status of genNumber: TRUE if done playing, FALSE if playing" }
+        ]
+      },
+      "errors": ["st0813"],
+      "c": { "call": "extern pascal Boolean FFSoundDoneStatus(genNumber)" },
+      "docs": [{ "ref": "tbv2", "page": "21-13" }]
     },
     {
       "toolcall": "15",
       "toolnum": "08",
       "toolname": "Sound Tool Set",
       "callname": "FFSetUpSound",
-      "description": "Identical to the FFStartSound tool call but does not actually start playing the specified sound"
+      "description": "Identical to the FFStartSound tool call but does not actually start playing the specified sound",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "channelGen", "description": "Channel, generator type word" },
+          { "size": "long", "name": "genNumber", "description": "POINTER to FFStartSound parameter block" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void FFSetUpSound(channelGen,paramBlockPtr)" },
+      "docs": [{ "ref": "tbv3", "page": "47-17" }]
     },
     {
       "toolcall": "16",
       "toolnum": "08",
       "toolname": "Sound Tool Set",
       "callname": "FFStartPlaying",
-      "description": "Starts playing the sound specified by the FF s e t UpSound tool call on a specified set of generators"
+      "description": "Starts playing the sound specified by the FFSetUpSound tool call on a specified set of generators",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "genWord", "description": "Flag word indicating which generators to start ($0000 is illegal and will cause system hang)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void FFStartPlaying(genWord)" },
+      "docs": [{ "ref": "tbv3", "page": "47-18" }]
     },
     {
       "toolcall": "17",
       "toolnum": "08",
       "toolname": "Sound Tool Set",
       "callname": "SetDOCReg",
-      "description": "Sets the DOC registers for a generator's oscillator from register contents stored in a special format"
+      "description": "Sets the DOC registers for a generator's oscillator from register contents stored in a special format",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "pBlockPtr", "description": "POINTER to DOC register parameter block" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetDOCReg(pBlockPtr)" },
+      "docs": [{ "ref": "tbv3", "page": "47-21" }]
     },
     {
       "toolcall": "18",
       "toolnum": "08",
       "toolname": "Sound Tool Set",
       "callname": "ReadDOCReg",
-      "description": "Reads the DOC registers for a generator's oscillator and stores them in the target memory location"
+      "description": "Reads the DOC registers for a generator's oscillator and stores them in the target memory location",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "pBlockPtr", "description": "POINTER to DOC register parameter block" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ReadDOCReg(pBlockPtr)" },
+      "docs": [{ "ref": "tbv3", "page": "47-19" }]
     },
     {
       "toolcall": "01",
@@ -12685,7 +12884,16 @@
     "em0607": { "source": "Event Manager", "code": "0607", "name": "emNoMemQueueErr", "description":"Insufficient memory for the event queue" },
     "em0681": { "source": "Event Manager", "code": "0681", "name": "emBadEvtQErr", "description":"The event queue is damaged" },
     "em0682": { "source": "Event Manager", "code": "0682", "name": "emBadQHndlErr", "description":"Queue handle damaged" },
-
+    
+    "st0810": { "source": "Sound Tool Set", "code": "0810", "name": "noDOCFndErr", "description":"The DOC or RAM was not found" },
+    "st0811": { "source": "Sound Tool Set", "code": "0811", "name": "docAddrRngErr", "description":"DOC address range error" },
+    "st0812": { "source": "Sound Tool Set", "code": "0812", "name": "noSAddrInitErr", "description":"The Sound Tool Set is not active" },
+    "st0813": { "source": "Sound Tool Set", "code": "0813", "name": "invalGenNumErr", "description":"Invalid generator number" },
+    "st0814": { "source": "Sound Tool Set", "code": "0814", "name": "synthModeErr", "description":"Synthesizer mode error" },
+    "st0815": { "source": "Sound Tool Set", "code": "0815", "name": "genBusyErr", "description":"The generator is already in user" },
+    "st0817": { "source": "Sound Tool Set", "code": "0817", "name": "mstrIRQNotAssgnErr", "description":"Master IRQ not assigned" },
+    "st0818": { "source": "Sound Tool Set", "code": "0818", "name": "sndAlreadyStrtErr", "description":"The Sound Tool Set is already started" },
+    "st08FF": { "source": "Sound Tool Set", "code": "08FF", "name": "unclaimedSndIntErr", "description":"Unclaimed sound interrupt error" },
 
     "mmUnch": { "source": "Memory Manager", "code": "", "name": "Memory Manager errors", "description": "Returned unchanged" },
     "slUnch": { "source": "System Loader", "code": "", "name": "System Loader errors", "description": "Returned unchanged" },
