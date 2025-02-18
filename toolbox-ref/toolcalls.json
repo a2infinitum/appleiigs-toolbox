@@ -1,5 +1,6 @@
 {
   "datastatus": [
+    "2025-02-17  QuickDraw II and Desk Manager complete.  Total completion ~30%",
     "2024-10-06  QuickDraw II about 50% complete.",
     "2024-09-12  ToolLocator and MemoryManager are complete, working on Misc Tools.  Adds doc refs.",
     "2024-08-18  Only the first few Tool Locator calls have additional information like parameters, errors, c calls"
@@ -5521,343 +5522,835 @@
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "DeskBootInit",
-      "description": "Initializes the Desk Manager; called only by Tool Locator (not by application)"
+      "description": "Initializes the Desk Manager; called only by Tool Locator (not by application)",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv1", "page": "5-9" }]
     },
     {
       "toolcall": "02",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "DeskStartUp",
-      "description": "Starts up the Desk Manager for use by an application"
+      "description": "Starts up the Desk Manager for use by an application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void DeskStartUp()" },
+      "docs": [{ "ref": "tbv1", "page": "5-9" }]
     },
     {
       "toolcall": "03",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "DeskShutDown",
-      "description": "Shuts down the Desk Manager when an application quits"
+      "description": "Shuts down the Desk Manager when an application quits",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void DeskShutDown()" },
+      "docs": [{ "ref": "tbv1", "page": "5-10" }]
     },
     {
       "toolcall": "04",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "DeskVersion",
-      "description": "Returns the version number of the Desk Manager"
+      "description": "Returns the version number of the Desk Manager",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "versionInfo", "description": "Version number of the Desk Manager" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word DeskVersion()" },
+      "docs": [
+        { "ref": "tbv1", "page": "5-10" }
+      ]
     },
     {
       "toolcall": "05",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "DeskReset",
-      "description": "Resets the Desk Manager; called only on reset - not by application"
+      "description": "Resets the Desk Manager; called only on reset - not by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void DeskShutDown()" },
+      "docs": [{ "ref": "tbv1", "page": "5-11" }]
     },
     {
       "toolcall": "06",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "DeskStatus",
-      "description": "Indicates whether the Desk Manager is active"
+      "description": "Indicates whether the Desk Manager is active",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "activeFlag", "description": "BOOLEAN; TRUE if Desk Manager is active, FALSE if not" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean DeskStatus()" },
+      "docs": [
+        { "ref": "tbv1", "page": "5-11" }
+      ]
     },
     {
       "toolcall": "09",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "SaveScrn",
-      "description": "Saves the 80-column text screens in banks $00, $01, $E0, & $E1 - not called by application"
+      "description": "Saves the 80-column text screens in banks $00, $01, $E0, & $E1 - not called by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv1", "page": "5-22" }]
     },
     {
       "toolcall": "0A",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "RestScrn",
-      "description": "Restores the screen area saved by the Desk Manager - not called by application"
+      "description": "Restores the screen area saved by the Desk Manager - not called by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv1", "page": "5-21" }]
     },
     {
       "toolcall": "0B",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "SaveAll",
-      "description": "Saves all variables that Desk Manager preserves when CDA menu is activated - (not applic)"
+      "description": "Saves all variables that Desk Manager preserves when CDA menu is activated - not called by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv1", "page": "5-22" }]
     },
     {
       "toolcall": "0C",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "RestAll",
-      "description": "Restores all variables that Desk Manager preserves when CDA menu is activated (not applic)"
+      "description": "Restores all variables that Desk Manager preserves when CDA menu is activated - not called by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv1", "page": "5-21" }]
     },
     {
       "toolcall": "0E",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "InstallNDA",
-      "description": "Installs a specified NDA in the system"
+      "description": "Installs a specified NDA in the system",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "idHandle", "description": "HANDLE to NDA header section" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void InstallNDA(idHandle)" },
+      "docs": [
+        { "ref": "tbv1", "page": "5-19" }
+      ]
     },
     {
       "toolcall": "0F",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "InstallCDA",
-      "description": "Installs a specified CDA in the system"
+      "description": "Installs a specified CDA in the system",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "idHandle", "description": "HANDLE to CDA header section" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void InstallCDA(idHandle)" },
+      "docs": [
+        { "ref": "tbv1", "page": "5-18" }
+      ]
     },
     {
       "toolcall": "11",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "ChooseCDA",
-      "description": "Activates the Desk Manager and displays the CDA menu - not called by application"
+      "description": "Activates the Desk Manager and displays the CDA menu - not called by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv1", "page": "5-12" }]
     },
     {
       "toolcall": "13",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "SetDAStrPtr",
-      "description": "Changes the names of the built-in CDA's"
+      "description": "Changes the names of the built-in CDAs",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "altDispHandle", "description": "HANDLE to new alternate display desk accessory" },
+          { "size": "long", "name": "stringTablePtr", "description": "POINTER to table of strings" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetDAStrPtr(altDispHandle,stringTablePtr)" },
+      "docs": [
+        { "ref": "tbv1", "page": "5-23" }
+      ]
     },
     {
       "toolcall": "14",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "GetDAStrPtr",
-      "description": "Returns the pointer to the names of the built-in CDA's"
+      "description": "Returns the pointer to the names of the built-in CDAs",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "stringTablePtr", "description": "POINTER to table of strings for the built-in CDA names" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Pointer GetDAStrPtr()" },
+      "docs": [
+        { "ref": "tbv1", "page": "5-16" }
+      ]
     },
     {
       "toolcall": "15",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "OpenNDA",
-      "description": "Opens a specified NDA"
+      "description": "Opens a specified NDA",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "idNum", "description": "ID number returned from Menu Manager" }
+        ],
+        "output": [
+          { "size": "word", "name": "refNum", "description": "Reference number to use when apllication closes NDA" }
+        ]
+      },
+      "errors": ["dm0510"],
+      "c": { "call": "extern pascal Word OpenNDA(idNum)" },
+      "docs": [
+        { "ref": "tbv1", "page": "5-20" }
+      ]
     },
     {
       "toolcall": "16",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "CloseNDA",
-      "description": "Closes a specified NDA"
+      "description": "Closes a specified NDA",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "refNum", "description": "As returned by the OpenNDA routine" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void CloseNDA(refNum)" },
+      "docs": [
+        { "ref": "tbv1", "page": "5-13" }
+      ]
     },
     {
       "toolcall": "17",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "SystemClick",
-      "description": "Handles mouse-down events in a system (that is, desk accessory) window"
+      "description": "Handles mouse-down events in a system (that is, desk accessory) window",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "eventRecPtr", "description": "POINTER to event record" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to system window" },
+          { "size": "word", "name": "findWndwResult", "description": "Result of the FindWindow call" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SystemClick(eventRecPtr,theWindowPtr,findWndwResult)" },
+      "docs": [
+        { "ref": "tbv1", "page": "5-26" }
+      ]
     },
     {
       "toolcall": "18",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "SystemEdit",
-      "description": "Passes standard menu edits to system windows"
+      "description": "Passes standard menu edits to system windows. Valid: 1=undo, 2=cut, 3=copy, 4=paste, 5=clear",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "editType", "description": "Edit type" }
+        ],
+        "output": [
+          { "size": "word", "name": "processedFlag", "description": "BOOLEAN; TRUE if frontmost window and DA has to handle call, otherwise FALSE" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean SystemEdit(editType)" },
+      "docs": [
+        { "ref": "tbv1", "page": "5-27" }
+      ]
     },
     {
       "toolcall": "19",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "SystemTask",
-      "description": "Causes a desk accessory to perform its periodic action"
+      "description": "Causes a desk accessory to perform its periodic action",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SystemTask()" },
+      "docs": [{ "ref": "tbv1", "page": "5-29" }]
     },
     {
       "toolcall": "1A",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "SystemEvent",
-      "description": "Previews all events returned to applic. & indicates if event was processed by a desk accs"
+      "description": "Previews all events returned to application & indicates if event was processed by a desk accessory",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "eventWhat", "description": "From event record" },
+          { "size": "long", "name": "eventMessage", "description": "From event record" },
+          { "size": "long", "name": "eventWhen", "description": "From event record" },
+          { "size": "long", "name": "eventWhere", "description": "From event record" },
+          { "size": "long", "name": "eventMods", "description": "From event record" }
+        ],
+        "output": [
+          { "size": "word", "name": "processFlag", "description": "BOOLEAN; TRUE if if event is to be processed by DA, otherwise FALSE - not called by application" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [
+        { "ref": "tbv1", "page": "5-28" }
+      ]
     },
     {
       "toolcall": "1B",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "GetNumNDAs",
-      "description": "Returns the total number of NDAs currently installed"
+      "description": "Returns the total number of NDAs currently installed",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "numberofNDAs", "description": "INTEGER; total number of open NDAs" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal unsigned int GetNumNDAs()" },
+      "docs": [
+        { "ref": "tbv1", "page": "5-17" }
+      ]
     },
     {
       "toolcall": "1C",
       "toolnum": "05",
       "toolname": "Desk Manager",
-      "callname": "CloseNDAByWinP",
-      "description": "Closes an NDA with a specified window pointer"
+      "callname": "CloseNDAByWinPtr",
+      "description": "Closes an NDA with a specified window pointer",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window to close" }
+        ]
+      },
+      "errors": ["dm0510","dm0511"],
+      "c": { "call": "extern pascal void CloseNDAByWinPtr(theWindowPtr)" },
+      "docs": [
+        { "ref": "tbv1", "page": "5-14" }
+      ]
     },
     {
       "toolcall": "1D",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "CloseAllNDAs",
-      "description": "Closes all open NDAs"
+      "description": "Closes all open NDAs",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void CloseAllNDAs()" },
+      "docs": [{ "ref": "tbv1", "page": "5-12" }]
     },
     {
       "toolcall": "1E",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "FixAppleMenu",
-      "description": "Adds the names of the NDAs to a specified menu"
+      "description": "Adds the names of the NDAs to a specified menu",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "startingID", "description": "ID of menu that will display NDAs" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void FixAppleMenu(startingID)" },
+      "docs": [
+        { "ref": "tbv1", "page": "5-15" }
+      ]
     },
     {
       "toolcall": "1F",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "AddToRunQ",
-      "description": "Adds the specified routine to the head of the run queue"
+      "description": "Adds the specified routine to the head of the run queue",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "runItemPtr", "description": "POINTER to run item to add" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void AddToRunQ(runItemPtr)" },
+      "docs": [
+        { "ref": "tbv3", "page": "29-6" }
+      ]
     },
     {
       "toolcall": "20",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "RemoveFromRunQ",
-      "description": "Removes the specified run item from the run queue"
+      "description": "Removes the specified run item from the run queue",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "runItemPtr", "description": "POINTER to run item to remove" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void RemoveFromRunQ(runItemPtr)" },
+      "docs": [
+        { "ref": "tbv3", "page": "29-8" }
+      ]
     },
     {
       "toolcall": "21",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "RemoveCDA",
-      "description": "Removes the specified CDA from the Desk Manager CDA list"
+      "description": "Removes the specified CDA from the Desk Manager CDA list (does not dispose of memory used by CDA)",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "idHandle", "description": "HANDLE to CDA header" }
+        ]
+      },
+      "errors": ["dm0510"],
+      "c": { "call": "extern pascal void RemoveCDA(idHandle)" },
+      "docs": [
+        { "ref": "tbv3", "page": "29-7" }
+      ]
     },
     {
       "toolcall": "22",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "RemoveNDA",
-      "description": "Removes the specified NDA from the Desk Manager NDA list"
+      "description": "Removes the specified NDA from the Desk Manager NDA list (does not dispose of memory used by NDA nor rebuild Apple menu)",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "idHandle", "description": "HANDLE to NDA header" }
+        ]
+      },
+      "errors": ["dm0510"],
+      "c": { "call": "extern pascal void RemoveNDA(idHandle)" },
+      "docs": [
+        { "ref": "tbv3", "page": "29-9" }
+      ]
     },
     {
       "toolcall": "23",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "GetDeskAccInfo",
-      "description": "Provides safe access to certain information about DAs currently installed in the system"
+      "description": "Provides safe access to certain information about DAs currently installed in the system",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "flags", "description": "Flags" },
+          { "size": "long", "name": "daReference", "description": "Specifies which desk accessory to get information about" },
+          { "size": "word", "name": "buffSize", "description": "Size of the result buffer" },
+          { "size": "long", "name": "bufferPtr", "description": "Pointer to the result buffer" }
+        ]
+      },
+      "errors": ["dm0520"],
+      "c": { "call": "extern pascal void GetDeskAccInfo(flags,daReference,buffSize,bufferPtr)" },
+      "docs": [
+        { "ref": "gs16pr60", "page": "24" }
+      ]
     },
     {
       "toolcall": "24",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "CallDeskAcc",
-      "description": "Calls a New Desk Accessory’s Action or Init routine with the specified values"
+      "description": "Calls a NDA's Action or Init routine with the specified values",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "flags", "description": "Flags" },
+          { "size": "long", "name": "daReference", "description": "Specifies which desk accessory to call" },
+          { "size": "word", "name": "action", "description": "Action code to pass to desk accessory" },
+          { "size": "long", "name": "data", "description": "Data value to pass to desk accessory" }
+        ],
+        "output": [
+          { "size": "word", "name": "result", "description": "Result returned from desk accessory" }
+        ]
+      },
+      "errors": ["dm0520"],
+      "c": { "call": "extern pascal Word CallDeskAcc(flags,daReference,action,data)" },
+      "docs": [
+        { "ref": "gs16pr60", "page": "22" }
+      ]
     },
     {
       "toolcall": "25",
       "toolnum": "05",
       "toolname": "Desk Manager",
       "callname": "GetDeskGlobal",
-      "description": "GetDeskGlobal retrieves information from the Desk Manager"
+      "description": "GetDeskGlobal retrieves information from the Desk Manager",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "selector", "description": "Selects which value to retrieve" }
+        ],
+        "output": [
+          { "size": "long", "name": "value", "description": "The selected value" }
+        ]
+      },
+      "errors": ["dm0520"],
+      "c": { "call": "extern pascal Long GetDeskGlobal(selector)" },
+      "docs": [
+        { "ref": "gs16pr60", "page": "26" }
+      ]
     },
     {
       "toolcall": "01",
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "EMBootInit",
-      "description": "Initializes the Event Manager; called only by Tool Locator (not by application)"
+      "description": "Initializes the Event Manager; called only by Tool Locator - not called by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv1", "page": "7-26" }]
     },
     {
       "toolcall": "02",
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "EMStartUp",
-      "description": "Starts up the Event Manager for use by an application"
+      "description": "Starts up the Event Manager, sets size of event queue, and sets minimum and maximum mouse clamp values.",
+      "parameters": {
+        "input": [      
+          { "size": "word", "name": "dPageAddr", "description": "Bank $0 starting address for one page of direct-page space" },
+          { "size": "word", "name": "queueSize", "description": "Maximum number of event records in queue (0=default of 20)" },
+          { "size": "word", "name": "xMinClamp", "description": "Minimum X clamp value for the mouse" },
+          { "size": "word", "name": "xMaxClamp", "description": "Maximum X clamp value for the mouse" },
+          { "size": "word", "name": "yMinClamp", "description": "Minimum Y clamp value for the mouse" },
+          { "size": "word", "name": "yMaxClamp", "description": "Maximum Y clamp value for the mouse" },
+          { "size": "word", "name": "userID", "description": "ID number Event Manager will use to get memory" }
+          
+        ]
+      },
+      "errors": ["em0601","em0606","em0607"],
+      "c": { "call": "extern pascal void EMStartUp(dPageAddr,queueSize,xMinClamp,xMaxClamp,yMinClamp,yMaxClamp,userID)" },
+      "docs": [
+        { "ref": "tbv1", "page": "7-27" }
+      ]
     },
     {
       "toolcall": "03",
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "EMShutDown",
-      "description": "Shuts down the Event Manager when an application quits"
+      "description": "Shuts down the Event Manager when an application quits",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void EMShutDown()" },
+      "docs": [{ "ref": "tbv1", "page": "7-29" }]
     },
     {
       "toolcall": "04",
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "EMVersion",
-      "description": "Returns the version number of the Event Manager"
+      "description": "Returns the version number of the Event Manager",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "versionInfo", "description": "Version number of the Event Manager" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word EMVersion()" },
+      "docs": [
+        { "ref": "tbv1", "page": "7-29" }
+      ]
     },
     {
       "toolcall": "05",
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "EMReset",
-      "description": "Resets the Event Manager; called only on reset - not by application"
+      "description": "Resets the Event Manager; called only on reset - not called by application",
+      "parameters": { "none": true },
+      "errors": ["mm0602"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv1", "page": "7-30" }]
     },
     {
       "toolcall": "06",
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "EMStatus",
-      "description": "Indicates whether the Event Manager is active"
+      "description": "Indicates whether the Event Manager is active",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "activeFlag", "description": "BOOLEAN; TRUE if Event Manager is active, FALSE if not" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean EMStatus()" },
+      "docs": [
+        { "ref": "tbv1", "page": "7-30" }
+      ]
     },
     {
       "toolcall": "09",
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "DoWindows",
-      "description": "Returns the address of the direct page used by the Event Manager"
+      "description": "Returns the address of the direct page used by the Event Manager - not called by application",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "dPageAddr", "description": "Bank $0 starting address for Event Manager's one-page work area" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [
+        { "ref": "tbv1", "page": "7-32" }
+      ]
     },
     {
       "toolcall": "0A",
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "GetNextEvent",
-      "description": "Returns next avail event of spec type(s); if event is in queue, GetNextEvent removes it"
+      "description": "Returns next avail event of spec type(s); if event is in queue, GetNextEvent removes it",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "eventMask", "description": "Specifies which types of events are of interest" },
+          { "size": "long", "name": "eventPtr", "description": "POINTER to the event record in which event will be placed" }
+        ],
+        "output": [
+          { "size": "word", "name": "handleEventFlag", "description": "BOOLEAN; TRUE if even should be handled by application; FALSE if not" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean GetNextEvent(eventMask,eventPtr)" },
+      "docs": [
+        { "ref": "tbv1", "page": "7-39" }
+      ]
     },
     {
       "toolcall": "0B",
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "EventAvail",
-      "description": "Allows an application to look at the next avaialble event of a spec type or types"
+      "description": "Allows an application to look at the next available event of a specified type or types.",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "eventMask", "description": "Specifies which types of events are of interest" },
+          { "size": "long", "name": "eventPtr", "description": "POINTER to the event record in which event will be placed" }
+        ],
+        "output": [
+          { "size": "word", "name": "gotEventFlag", "description": "BOOLEAN; TRUE if any specified event types available; FALSE if not" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean EventAvail(eventMask,eventPtr)" },
+      "docs": [
+        { "ref": "tbv1", "page": "7-33" }
+      ]
     },
     {
       "toolcall": "0C",
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "GetMouse",
-      "description": "Returns the current mouse location"
+      "description": "Returns the current mouse location (in the local coordinate system of the current GrafPort)",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "mouseLocPtr", "description": "POINTER to POINT for current mouse location" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GetMouse(mouseLocPtr)" },
+      "docs": [
+        { "ref": "tbv1", "page": "7-38" }
+      ]
     },
     {
       "toolcall": "0D",
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "Button",
-      "description": "Returns the current status of a specified button on the mouse"
+      "description": "Returns the current status of a specified button on the mouse",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "buttonNum", "description": "Number of button (0 or 1) to check" }
+        ],
+        "output": [
+          { "size": "word", "name": "buttonDown", "description": "BOOLEAN; TRUE if button is down, or FALSE if it isn't" }
+        ]
+      },
+      "errors": ["em0605"],
+      "c": { "call": "extern pascal Boolean Button(buttonNum)" },
+      "docs": [
+        { "ref": "tbv1", "page": "7-31" }
+      ]
     },
     {
       "toolcall": "0E",
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "StillDown",
-      "description": "Tests whether the specified mouse button is still down"
+      "description": "Tests whether the specified mouse button is still down",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "buttonNum", "description": "Number of button (0 or 1) to check" }
+        ],
+        "output": [
+          { "size": "word", "name": "buttonDown", "description": "BOOLEAN; TRUE if button down and no mouse events are pending in event queue for specifed button, FALSE if not" }
+        ]
+      },
+      "errors": ["em0605"],
+      "c": { "call": "extern pascal Boolean StillDown(buttonNum)" },
+      "docs": [
+        { "ref": "tbv1", "page": "7-47" }
+      ]
     },
     {
       "toolcall": "0F",
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "WaitMouseUp",
-      "description": "Tests whether spec mouse button is still down &, if not, removes preceding mouse-up event"
+      "description": "Tests whether specified mouse button is still down. If not, removes preceding mouse-up event from queue and returns FALSE.",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "buttonNum", "description": "Number of button (0 or 1) to check" }
+        ],
+        "output": [
+          { "size": "word", "name": "buttonDownFlag", "description": "BOOLEAN; TRUE if button down and no mouse events are pending in event queue for specifed button, FALSE if not" }
+        ]
+      },
+      "errors": ["em0605"],
+      "c": { "call": "extern pascal Boolean WaitMouseUp(buttonNum)" },
+      "docs": [
+        { "ref": "tbv1", "page": "7-49" }
+      ]
     },
     {
       "toolcall": "10",
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "TickCount",
-      "description": "Returns current number of ticks (in sixtieths of a second) since system was last started"
+      "description": "Returns current number of ticks (in sixtieths of a second) since system was last started",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "numTicks", "description": "Number of ticks since system startup" }
+        ]
+      },
+      "errors": ["em0605"],
+      "c": { "call": "extern pascal LongWord TickCount()" },
+      "docs": [
+        { "ref": "tbv1", "page": "7-48" }
+      ]
     },
     {
       "toolcall": "11",
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "GetDblTime",
-      "description": "Returns max diff (in ticks) allowed for mouse clicks to be considered a double-click"
+      "description": "Returns max difference (in ticks) allowed for mouse clicks to be considered a double-click",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "maxTicks", "description": "Maximum number of ticks between mouse clicks" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal LongWord GetDblTime()" },
+      "docs": [
+        { "ref": "tbv1", "page": "7-37" }
+      ]
     },
     {
       "toolcall": "12",
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "GetCaretTime",
-      "description": "Returns time (in ticks) between blicks of caret marking insertion pt in text to be edited"
+      "description": "Returns time (in ticks) between blicks of caret marking insertion point in text to be edited",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "numTicks", "description": "Number of ticks between blinks of the caret" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal LongWord GetCaretTime()" },
+      "docs": [
+        { "ref": "tbv1", "page": "7-36" }
+      ]
     },
     {
       "toolcall": "13",
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "SetSwitch",
-      "description": "Generates a switch event"
+      "description": "Generates a switch event - only switcher-type applications should make this call",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetSwitch()" },
+      "docs": [{ "ref": "tbv1", "page": "7-46" }]
     },
     {
       "toolcall": "14",
@@ -5871,56 +6364,159 @@
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "FlushEvents",
-      "description": "Removes all queue events of type(s) spec by mask up to 1st event of type spec by stop mask"
+      "description": "Removes all queue events of type(s) specified by mask up to the first event of type specified by stop mask",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "eventMask", "description": "Types of events to be removed from queue" },
+          { "size": "word", "name": "stopMask", "description": "Event types to stop removal process" }
+        ],
+        "output": [
+          { "size": "word", "name": "resultCode", "description": "0 = all events removed from queue, or event code = type of event that stopped process" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word FlushEvents(eventMask,stopMask)" },
+      "docs": [
+        { "ref": "tbv1", "page": "7-35" }
+      ]
     },
     {
       "toolcall": "16",
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "GetOSEvent",
-      "description": "Returns next available queue event of a spec type(s) & removes it from the queue"
+      "description": "Returns next available queue event of a specified type(s) and removes it from the queue",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "eventMask", "description": "Types of events to be removed from queue" },
+          { "size": "long", "name": "eventPtr", "description": "POINTER to the event record in which event will be placed" }
+        ],
+        "output": [
+          { "size": "word", "name": "gotEventFlag", "description": "BOOLEAN; TRUE if any specified event types available; FALSE if null event" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean GetOSEvent(eventMask,eventPtr)" },
+      "docs": [
+        { "ref": "tbv1", "page": "7-41" }
+      ]
     },
     {
       "toolcall": "17",
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "OSEventAvail",
-      "description": "Allows applic to look at next avail queue event of spec type(s), but leaves event in queue"
+      "description": "Allows application to look at next available queue event of specified type(s), but leaves event in queue",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "eventMask", "description": "Specifies which types of queue events are of interest" },
+          { "size": "long", "name": "eventPtr", "description": "POINTER to the event record in which event will be placed" }
+        ],
+        "output": [
+          { "size": "word", "name": "gotEventFlag", "description": "BOOLEAN; TRUE if any specified event types available; FALSE if null event" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean OSEventAvail(eventMask,eventPtr)" },
+      "docs": [
+        { "ref": "tbv1", "page": "7-42" }
+      ]
     },
     {
       "toolcall": "18",
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "SetEventMask",
-      "description": "Specifies the system event mask"
+      "description": "Specifies the system event mask",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "sysEventMask", "description": "System event mask" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetEventMask(sysEventMask)" },
+      "docs": [
+        { "ref": "tbv1", "page": "7-45" }
+      ]
     },
     {
       "toolcall": "19",
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "FakeMouse",
-      "description": "Allows use of alternative pting device, like graphics tablet, in place/conjuction of mouse"
+      "description": "Allows use of alternative pointing device, like graphics tablet, in place/conjuction of mouse",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "changedFlag", "description": "Indicates device's position and/or button state has changed" },
+          { "size": "byte", "name": "modLatch", "description": "Keyboard modifiers latch" },
+          { "size": "byte", "name": "padding", "description": "Set to 0" },
+          { "size": "word", "name": "xPosition", "description": "Device's clamped absolute X position" },
+          { "size": "word", "name": "yPosition", "description": "Device's clamped absolute Y position" },
+          { "size": "word", "name": "buttonStatus", "description": "Device's button status" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [
+        { "ref": "tbv1", "page": "7-34" }
+      ]
     },
     {
       "toolcall": "1A",
       "toolnum": "06",
       "toolname": "Event Manager",
-      "callname": "SetAutoKeyLimi",
-      "description": "Controls how repeated keystrokes are inserted into the event queue"
+      "callname": "SetAutoKeyLimit",
+      "description": "Controls how repeated keystrokes are inserted into the event queue",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "newLimit", "description": "Limit for inserted auto-key events" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetAutoKeyLimit(newLimit)" },
+      "docs": [
+        { "ref": "tbv3", "page": "31-6" }
+      ]
     },
     {
       "toolcall": "1B",
       "toolnum": "06",
       "toolname": "Event Manager",
-      "callname": "GetKeyTranslat",
-      "description": "Returns the identifier for the currently selected keystroke translation table"
+      "callname": "GetKeyTranslation",
+      "description": "Returns the identifier for the currently selected keystroke translation table",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "kTransID", "description": "Keyboard translation identifier ($0000 to $00FF)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word GetKeyTranslation()" },
+      "docs": [
+        { "ref": "tbv3", "page": "31-5" }
+      ]
     },
     {
       "toolcall": "1C",
       "toolnum": "06",
       "toolname": "Event Manager",
-      "callname": "SetKeyTranslat",
-      "description": "Sets a new keystroke translation table"
+      "callname": "SetKeyTranslation",
+      "description": "Sets a new keystroke translation table",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "kTransID", "description": "Keyboard translation identifier (low-order byte)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetKeyTranslation(kTransID)" },
+      "docs": [
+        { "ref": "tbv3", "page": "31-7" }
+      ]
     },
     {
       "toolcall": "01",
@@ -12017,6 +12613,20 @@
     "qd0452": { "source": "QuickDraw II", "code": "0452", "name": "badScanLine", "description":"Invalid scan line number; 0 to 199 are valid" },
     "qd04FF": { "source": "QuickDraw II", "code": "04FF", "name": "", "description":"Not implemented" },
 
+
+    "dm0510": { "source": "Desk Manager", "code": "0510", "name": "daNotFound", "description":"Specified DA not available" },
+    "dm0511": { "source": "Desk Manager", "code": "0511", "name": "notSysWindow", "description":"The window parameter is not a pointer to a system window owned by an NDA" },
+    "dm0520": { "source": "Desk Manager", "code": "0520", "name": "deskBadSelector", "description":"Selector out of range" },
+
+    "em0601": { "source": "Event Manager", "code": "0601", "name": "emDupStrtUpErr", "description":"The Event Manager has already been started" },
+    "em0602": { "source": "Event Manager", "code": "0602", "name": "emResetErr", "description":"Can't reset the Event Manager" },
+    "em0603": { "source": "Event Manager", "code": "0603", "name": "emNotActErr", "description":"The Event Manager is not active" },
+    "em0604": { "source": "Event Manager", "code": "0604", "name": "emBadEvtCodeErr", "description":"The event code is greater than 15" },
+    "em0605": { "source": "Event Manager", "code": "0605", "name": "emBadBttnNoErr", "description":"The button number given was not 0 or 1" },
+    "em0606": { "source": "Event Manager", "code": "0606", "name": "emQSiz2LrgErr", "description":"The size of the event queue is larger than 3639" },
+    "em0607": { "source": "Event Manager", "code": "0607", "name": "emNoMemQueueErr", "description":"Insufficient memory for the event queue" },
+    "em0681": { "source": "Event Manager", "code": "0681", "name": "emBadEvtQErr", "description":"The event queue is damaged" },
+    "em0682": { "source": "Event Manager", "code": "0682", "name": "emBadQHndlErr", "description":"Queue handle damaged" },
 
 
     "mmUnch": { "source": "Memory Manager", "code": "", "name": "Memory Manager errors", "description": "Returned unchanged" },
