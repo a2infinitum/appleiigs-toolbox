@@ -5505,7 +5505,7 @@
       "toolnum": "05",
       "toolname": "QuickDraw",
       "callname": "Set640Color",
-      "description": "Sets the current grafport’s pen pattern to any of the 16 \"solid\" 640-mode dithered colors",
+      "description": "Sets the current grafport's pen pattern to any of the 16 \"solid\" 640-mode dithered colors",
       "parameters": {
         "input": [
           { "size": "word", "name": "colorNum", "description": "Color number" }
@@ -6990,133 +6990,269 @@
       "toolnum": "09",
       "toolname": "ADB Tools",
       "callname": "ADBBootInit",
-      "description": "Initializes the ADB Tool Set; called only by Tool Locator (not by application)"
+      "description": "Initializes the ADB Tool Set; called only by Tool Locator (not by application)",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv1", "page": "3-10" }]
     },
     {
       "toolcall": "02",
       "toolnum": "09",
       "toolname": "ADB Tools",
       "callname": "ADBStartUp",
-      "description": "Starts up the ADB Tool Set"
+      "description": "Starts up the ADB Tool Set",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ADBStartUp()" },
+      "docs": [{ "ref": "tbv1", "page": "3-10" }]
     },
     {
       "toolcall": "03",
       "toolnum": "09",
       "toolname": "ADB Tools",
       "callname": "ADBShutDown",
-      "description": "Shuts down the ADB Tool Set"
+      "description": "Shuts down the ADB Tool Set",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ADBShutDown()" },
+      "docs": [{ "ref": "tbv1", "page": "3-11" }]
     },
     {
       "toolcall": "04",
       "toolnum": "09",
       "toolname": "ADB Tools",
       "callname": "ADBVersion",
-      "description": "Returns the version number of the ADB Tool Set"
+      "description": "Returns the version number of the ADB Tool Set",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "versionInfo", "description": "Version number of the ADB Tool Set" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word ADBVersion()" },
+      "docs": [{ "ref": "tbv2", "page": "3-11" }]
     },
     {
       "toolcall": "05",
       "toolnum": "09",
       "toolname": "ADB Tools",
       "callname": "ADBReset",
-      "description": "Resets the ADB Tool Set; called only on system reset - not by application"
+      "description": "Resets the ADB Tool Set; called only on system reset - not by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv1", "page": "3-12" }]
     },
     {
       "toolcall": "06",
       "toolnum": "09",
       "toolname": "ADB Tools",
       "callname": "ADBStatus",
-      "description": "Indicates whether the ADB Tool Set is active"
+      "description": "Indicates whether the ADB Tool Set is active",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "activeFlag", "description": "BOOLEAN; TRUE if ADB Tool Set is active; FALSE if not" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean ADBStatus()" },
+      "docs": [{ "ref": "tbv1", "page": "3-12" }]
     },
     {
       "toolcall": "09",
       "toolnum": "09",
       "toolname": "ADB Tools",
       "callname": "SendInfo",
-      "description": "Sends data to the keyboard microcontroller or to an ADB device"
+      "description": "Sends data to the keyboard microcontroller or to an ADB device",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "dataLength", "description": "Number of bytes of data to be sent (see Toolbox Ref Vol1, Table 3-4)" },
+          { "size": "long", "name": "dataPtr", "description": "POINTER to data; NIL if no data (see Toolbox Ref Vol1, Table 3-4)" },
+          { "size": "word", "name": "adbCommand", "description": "ADB command to be issued" }
+        ]
+      },
+      "errors": ["at0910"],
+      "c": { "call": "extern pascal void Sendinfo(dataLength,dataPtr,adbCommand)" },
+      "docs": [{ "ref": "tbv1", "page": "3-19" }]
     },
     {
       "toolcall": "0A",
       "toolnum": "09",
       "toolname": "ADB Tools",
-      "callname": "ReadKeyMicroDa",
-      "description": "Receives data from the keyboard microcontroller"
+      "callname": "ReadKeyMicroData",
+      "description": "Receives data from the keyboard microcontroller",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "dataLength", "description": "Number of bytes of data to be received (see Toolbox Ref Vol1, Table 3-3)" },
+          { "size": "long", "name": "dataPtr", "description": "POINTER to data; NIL if no data (see Toolbox Ref Vol1, Table 3-3)" },
+          { "size": "word", "name": "adbCommand", "description": "ADB command to be issued" }
+        ]
+      },
+      "errors": ["at0910"],
+      "c": { "call": "extern pascal void ReadKeyMicroData(dataLength,dataPtr,adbCommand)" },
+      "docs": [{ "ref": "tbv1", "page": "3-17" }]
     },
     {
       "toolcall": "0B",
       "toolnum": "09",
       "toolname": "ADB Tools",
-      "callname": "ReadKeyMicroMe",
-      "description": "Reads a data byte from the keyboard microcontroller memory"
+      "callname": "ReadKeyMicroMemory",
+      "description": "Reads a data byte from the keyboard microcontroller memory",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "dataOutPtr", "description": "POINTER to location to store results of read" },
+          { "size": "long", "name": "dataInPtr", "description": "POINTER to keyboard memory location to be read" },
+          { "size": "word", "name": "adbCommand", "description": "ADB command to be issued, equal to $0009" }
+        ]
+      },
+      "errors": ["at0910"],
+      "c": { "call": "extern pascal void ReadKeyMicroMem(dataOutPtr,dataInPtr,adbCommand)" },
+      "docs": [{ "ref": "tbv1", "page": "3-18" }]
     },
     {
       "toolcall": "0D",
       "toolnum": "09",
       "toolname": "ADB Tools",
-      "callname": "AsyncADBReceiv",
-      "description": "Receives data from an ADB device"
+      "callname": "AsyncADBReceive",
+      "description": "Receives data from an ADB device",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "compPtr", "description": "POINTER to completion routine" },
+          { "size": "word", "name": "adbCommand", "description": "ADB command, in form $C0+xyabcd, where $C0 is the Talk command, xy is the register, and abcd is the address" }
+        ]
+      },
+      "errors": ["at0910","at0982"],
+      "c": { "call": "extern pascal void AsyncADBReceive(compPtr,adbCommand)" },
+      "docs": [{ "ref": "tbv1", "page": "3-14" }]
     },
     {
       "toolcall": "0E",
       "toolnum": "09",
       "toolname": "ADB Tools",
       "callname": "SyncADBReceive",
-      "description": "Receives data from an ADB device"
+      "description": "Receives data from an ADB device",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "inputWord", "description": "ADB device command with high and low nibbles swapped" },
+          { "size": "long", "name": "compPtr", "description": "POINTER to completion routine" },
+          { "size": "word", "name": "adbCommand", "description": "ADB command to be issued, equal to $0048" }
+        ]
+      },
+      "errors": ["at0910","at0982"],
+      "c": { "call": "extern pascal void SyncADBReceive(inputWord,compPtr,adbCommand)" },
+      "docs": [{ "ref": "tbv1", "page": "3-14" }]
     },
     {
       "toolcall": "0F",
       "toolnum": "09",
       "toolname": "ADB Tools",
       "callname": "AbsOn",
-      "description": "Enables automatic polling of an absolute device (reserved for future use)"
+      "description": "Enables automatic polling of an absolute device (not implemented - reserved for future use)",
+      "docs": [{ "ref": "tbv1", "page": "3-13" }]
     },
     {
       "toolcall": "10",
       "toolnum": "09",
       "toolname": "ADB Tools",
       "callname": "AbsOff",
-      "description": "Disables automatic polling of an absolute device (reserved for future use)"
+      "description": "Disables automatic polling of an absolute device (not implemented - reserved for future use)",
+      "docs": [{ "ref": "tbv1", "page": "3-13" }]
     },
     {
       "toolcall": "11",
       "toolnum": "09",
       "toolname": "ADB Tools",
       "callname": "ReadAbs",
-      "description": "Determines whether automatic polling of an absolute device is on or off"
+      "description": "Determines whether automatic polling of an absolute device is on or off (not implemented - reserved for future use)",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "autoABSPoll", "description": "BOOLEAN; TRUE if polling on, FALSE if polling off" }
+        ]
+      },
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv1", "page": "3-16" }]
     },
     {
       "toolcall": "12",
       "toolnum": "09",
       "toolname": "ADB Tools",
       "callname": "GetAbsScale",
-      "description": "Reads absolute device scaling values (reserved for future use)"
+      "description": "Reads absolute device scaling values (reserved for future use)",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "dataInPtr", "description": "POINTER to ScaleRec; see \"SetAbsScale\"" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GetAbsScale(dataInPtr)" },
+      "docs": [{ "ref": "tbv1", "page": "3-15" }]
     },
     {
       "toolcall": "13",
       "toolnum": "09",
       "toolname": "ADB Tools",
       "callname": "SetAbsScale",
-      "description": "Sets up scaling for absolute devices (reserved for future use)"
+      "description": "Sets up scaling for absolute devices (reserved for future use)",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "dataInPtr", "description": "POINTER to scale record (see Figure 3-2)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetAbsScale(dataOutPtr)" },
+      "docs": [{ "ref": "tbv1", "page": "3-23" }]
     },
     {
       "toolcall": "14",
       "toolnum": "09",
       "toolname": "ADB Tools",
       "callname": "SRQPoll",
-      "description": "Adds a device to the SRQ list"
+      "description": "Adds a device to the SRQ list (if the device exists) so that an application can be notified when this device has data.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "compPtr", "description": "POINTER to completion routine" },
+          { "size": "word", "name": "adbRegAddr", "description": "ADB register and address" }
+        ]
+      },
+      "errors": ["at0910","at0983","at0984"],
+      "c": { "call": "extern pascal void SRQPoll(compPtr,adbRegAddr)" },
+      "docs": [{ "ref": "tbv1", "page": "3-25" }]
     },
     {
       "toolcall": "15",
       "toolnum": "09",
       "toolname": "ADB Tools",
       "callname": "SRQRemove",
-      "description": "Removes a device previously installed by the SRQPoll routine from the SRQ list"
+      "description": "Removes a device previously installed by the SRQPoll routine from the SRQ list",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "adbRegAddr", "description": "ADB register and address" }
+        ]
+      },
+      "errors": ["at0910","at0982"],
+      "c": { "call": "extern pascal void SRQRemove(adbRegAddr)" },
+      "docs": [{ "ref": "tbv1", "page": "3-26" }]
     },
     {
       "toolcall": "16",
       "toolnum": "09",
       "toolname": "ADB Tools",
       "callname": "ClearSRQTable",
-      "description": "Clears the SRQ list of all entries"
+      "description": "Clears the SRQ list of all entries",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ClearSRQTable()" },
+      "docs": [{ "ref": "tbv1", "page": "3-15" }]
     },
     {
       "toolcall": "01",
@@ -8517,7 +8653,7 @@
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "ResizeInfoBar",
-      "description": "Sets the vertical size of a standard window’s information bar"
+      "description": "Sets the vertical size of a standard window's information bar"
     },
     {
       "toolcall": "6B",
@@ -12895,6 +13031,12 @@
     "st0818": { "source": "Sound Tool Set", "code": "0818", "name": "sndAlreadyStrtErr", "description":"The Sound Tool Set is already started" },
     "st08FF": { "source": "Sound Tool Set", "code": "08FF", "name": "unclaimedSndIntErr", "description":"Unclaimed sound interrupt error" },
 
+    "at0910": { "source": "ADB Tool Set", "code": "0910", "name": "cmndIncomplete", "description":"Command not completed" },
+    "at0911": { "source": "ADB Tool Set", "code": "0911", "name": "cantSync", "description":"Can't synchronize with the system" },
+    "at0982": { "source": "ADB Tool Set", "code": "0982", "name": "adbBusy", "description":"ADB busy (command pending)" },
+    "at0983": { "source": "ADB Tool Set", "code": "0983", "name": "devNotAtAddr", "description":"Device not at present address" },
+    "at0984": { "source": "ADB Tool Set", "code": "0984", "name": "sqrListFull", "description":"SQR list is full" },
+    
     "mmUnch": { "source": "Memory Manager", "code": "", "name": "Memory Manager errors", "description": "Returned unchanged" },
     "slUnch": { "source": "System Loader", "code": "", "name": "System Loader errors", "description": "Returned unchanged" },
     "proUnch": { "source": "ProDOS 16", "code": "", "name": "ProDOS errors", "description": "Returned unchanged" },
