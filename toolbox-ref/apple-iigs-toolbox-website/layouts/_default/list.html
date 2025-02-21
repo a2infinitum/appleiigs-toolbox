@@ -173,6 +173,8 @@ Display Mode:
 
     {{ if (.parameters.none) }}
       <p>The stack is not affected by this call.  There are no input or output parameters.</p>
+    {{ else if (.parameters.info) }}
+      <p>{{ .parameters.info }}</p>
     {{ else }}
 
 

@@ -7259,343 +7259,856 @@
       "toolnum": "0A",
       "toolname": "SANE",
       "callname": "SANEBootInit",
-      "description": "Initializes the SANE Tool Set; called only by Tool Locator (not by application)"
+      "description": "Initializes the SANE Tool Set; called only by Tool Locator (not by application)",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv2", "page": "18-11" }]
     },
     {
       "toolcall": "02",
       "toolnum": "0A",
       "toolname": "SANE",
       "callname": "SANEStartup",
-      "description": "Starts up the SANE Tool Set for use by an application"
+      "description": "Starts up the SANE Tool Set for use by an application",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "dPageAddr", "description": "Bank $0 starting address for one page of direct-page space" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "The call is made automatically in APW C." },
+      "docs": [{ "ref": "tbv2", "page": "18-12" }]
     },
     {
       "toolcall": "03",
       "toolnum": "0A",
       "toolname": "SANE",
       "callname": "SANEShutDown",
-      "description": "Shuts down the SANE Tool Set when application quits"
+      "description": "Shuts down the SANE Tool Set when application quits",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SANEShutDown()" },
+      "docs": [{ "ref": "tbv2", "page": "18-13" }]
     },
     {
       "toolcall": "04",
       "toolnum": "0A",
       "toolname": "SANE",
       "callname": "SANEVersion",
-      "description": "Returns the version number of the SANE Tool Set"
+      "description": "Returns the version number of the SANE Tool Set",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "versionInfo", "description": "Version number of the SANE Tool Set" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word SANEVersion()" },
+      "docs": [{ "ref": "tbv2", "page": "18-13" }]
     },
     {
       "toolcall": "05",
       "toolnum": "0A",
       "toolname": "SANE",
       "callname": "SANEReset",
-      "description": "Resets the SANE Tool Set; called only on system reset - not by application"
+      "description": "Resets the SANE Tool Set; called only on system reset - not by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv2", "page": "18-14" }]
     },
     {
       "toolcall": "06",
       "toolnum": "0A",
       "toolname": "SANE",
       "callname": "SANEStatus",
-      "description": "Indicates whether the SANE Tool Set is active"
+      "description": "Indicates whether the SANE Tool Set is active",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "activeFlag", "description": "BOOLEAN; TRUE if SANE Tool Set active, FALSE if inactive" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean SANEStatus()" },
+      "docs": [{ "ref": "tbv2", "page": "18-14" }]
     },
     {
       "toolcall": "09",
       "toolnum": "0A",
       "toolname": "SANE",
       "callname": "SANEFP816",
-      "description": "Contains basic arithmetic ops, comparisions, conversions, environ. control, & IEEE ops"
+      "description": "Contains basic arithmetic operations, comparisons, conversions, environmental control, and IEEE auxiliary operations.",
+      "parameters": { "info": "See the Apple Numerics Manual for details."},
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SANEFP816()" },
+      "docs": [{ "ref": "tbv2", "page": "18-15" }]
     },
     {
       "toolcall": "0A",
       "toolnum": "0A",
       "toolname": "SANE",
       "callname": "SANEDecStr816",
-      "description": "Contains numeric scanners and formatters"
+      "description": "Contains numeric scanners and formatters",
+      "parameters": { "info": "See the Apple Numerics Manual for details."},
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SANEDecStr816()" },
+      "docs": [{ "ref": "tbv2", "page": "18-15" }]
     },
     {
       "toolcall": "0B",
       "toolnum": "0A",
       "toolname": "SANE",
       "callname": "SANEElems816",
-      "description": "Contains elementary functions, financial functions, and a random-number generator"
+      "description": "Contains elementary functions, financial functions, and a random-number generator",
+      "parameters": { "info": "See the Apple Numerics Manual for details."},
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SANEElems816()" },
+      "docs": [{ "ref": "tbv2", "page": "18-15" }]
     },
     {
       "toolcall": "01",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "IMBootInit",
-      "description": "Initializes the Integer Math Tool Set; called only by Tool Locator (not by application)"
+      "description": "Initializes the Integer Math Tool Set; called only by Tool Locator (not by application)",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv1", "page": "9-5" }]
     },
     {
       "toolcall": "02",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "IMStartUp",
-      "description": "Starts up the Integer Math Tool Set for use by an application"
+      "description": "Starts up the Integer Math Tool Set for use by an application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void IMStartUp()" },
+      "docs": [{ "ref": "tbv1", "page": "9-5" }]
     },
     {
       "toolcall": "03",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "IMShutDown",
-      "description": "Shuts down the Integer Math Tool Set when application quits"
+      "description": "Shuts down the Integer Math Tool Set when application quits",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void IMShutDown()" },
+      "docs": [{ "ref": "tbv1", "page": "9-6" }]
     },
     {
       "toolcall": "04",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "IMVersion",
-      "description": "Returns the version number of the Integer Math Tool Set"
+      "description": "Returns the version number of the Integer Math Tool Set",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "versionInfo", "description": "Version number of the Integer Math Tool Set" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word IMVersion()" },
+      "docs": [{ "ref": "tbv2", "page": "9-6" }]
     },
     {
       "toolcall": "05",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "IMReset",
-      "description": "Resets the Integer Math Tool Set; called only on system reset - not by application"
+      "description": "Resets the Integer Math Tool Set; called only on system reset - not by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv1", "page": "9-7" }]
     },
     {
       "toolcall": "06",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "IMStatus",
-      "description": "Indicates whether the Integer Math Tool Set is active"
+      "description": "Indicates whether the Integer Math Tool Set is active",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "activeFlag", "description": "BOOLEAN; TRUE if Integer Math is active, FALSE if inactive" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean IMStatus()" },
+      "docs": [{ "ref": "tbv1", "page": "9-7" }]
     },
     {
       "toolcall": "09",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "Multiply",
-      "description": "Multiplies two Integer inputs and produces a Longint result"
+      "description": "Multiplies two Integer inputs and produces a Longint result",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "multiplicand", "description": "First INTEGER input" },
+          { "size": "word", "name": "multiplier", "description": "Second INTEGER input" }
+        ],
+        "output": [
+          { "size": "long", "name": "longIntResult", "description": "LONGINT result" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Longint Multiply(multiplicand,multiplier)" },
+      "docs": [{ "ref": "tbv1", "page": "9-37" }]
     },
     {
       "toolcall": "0A",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "SDivide",
-      "description": "Divides two Integers & produces a signed Integer quotient & a signed Integer remainder"
+      "description": "Divides two Integers & produces a signed Integer quotient & a signed Integer remainder",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "dividend", "description": "INTEGER dividend" },
+          { "size": "word", "name": "divisor", "description": "INTEGER divisor" }
+        ],
+        "output": [
+          { "size": "word", "name": "remainder", "description": "INTEGER remainder" },
+          { "size": "word", "name": "quotient", "description": "INTEGER quotient" }
+        ]
+      },
+      "errors": ["im0b01"],
+      "c": { "call": "extern pascal IntDivRec SDivide(dividend,divisor)" },
+      "docs": [{ "ref": "tbv1", "page": "9-38" }]
     },
     {
       "toolcall": "0B",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "UDivide",
-      "description": "Divides two unsigned Integer inputs & produces an Int quotient & an unsigned int remainder"
+      "description": "Divides two unsigned Integer inputs and produces an unsigned Integer quotient & an unsigned Integer remainder",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "dividend", "description": "INTEGER dividend" },
+          { "size": "word", "name": "divisor", "description": "INTEGER divisor" }
+        ],
+        "output": [
+          { "size": "word", "name": "remainder", "description": "INTEGER remainder" },
+          { "size": "word", "name": "quotiend", "description": "INTEGER quotient" }
+        ]
+      },
+      "errors": ["im0b01"],
+      "c": { "call": "extern pascal WordDivReec UDivide(dividend,divisor)" },
+      "docs": [{ "ref": "tbv1", "page": "9-39" }]
     },
     {
       "toolcall": "0C",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "LongMul",
-      "description": "Multiplies two Longint values & produces a 64-bit result"
+      "description": "Multiplies two Longint values & produces a 64-bit result",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "multiplicand", "description": "First LONGINT input" },
+          { "size": "long", "name": "multiplier", "description": "Second LONGINT input" }
+        ],
+        "output": [
+          { "size": "long", "name": "msResult", "description": "Most significant 32 bits of the result" },
+          { "size": "long", "name": "lsResult", "description": "Least significant 32 bits of the result" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal LongMulRec LongMul(multiplicand,multiplier)" },
+      "docs": [{ "ref": "tbv1", "page": "9-35" }]
     },
     {
       "toolcall": "0D",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "LongDivide",
-      "description": "Divides two unsgn Longint inputs & produces a Longint unsgn quot & a Longint unsgn remain"
+      "description": "Divides two unsigned Longint inputs and produces a Longint unsigned quotient and a Longint unsigned remainder.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "dividend", "description": "Unsigned LONGINT dividend" },
+          { "size": "long", "name": "divisor", "description": "Unsigned LONGINT divisor" }
+        ],
+        "output": [
+          { "size": "long", "name": "remainder", "description": "Most significant 32 bits of the result" },
+          { "size": "long", "name": "quotient", "description": "Least significant 32 bits of the result" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal LongDivRec LongDivide(dividend,divisor)" },
+      "docs": [{ "ref": "tbv1", "page": "9-34" }]
     },
     {
       "toolcall": "0E",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "FixRatio",
-      "description": "Takes 2 signed Integers & produces a Fixed number as ratio of the numerator & denominator"
+      "description": "Takes 2 signed Integers & produces a Fixed number as ratio of the numerator & denominator",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "numerator", "description": "INTEGER specifying the input numerator" },
+          { "size": "word", "name": "denominator", "description": "INTEGER specifying the input denominator" }
+        ],
+        "output": [
+          { "size": "long", "name": "fixedResult", "description": "FIXED result" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Fixed FixRatio(numerator,denominator)" },
+      "docs": [{ "ref": "tbv1", "page": "9-16" }]
     },
     {
       "toolcall": "0F",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "FixMul",
-      "description": "Multiplies two 32-bit Fixed inputs and produces a 32-bit Fixed result"
+      "description": "Multiplies two 32-bit Fixed inputs and produces a 32-bit Fixed result",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "multiplicand", "description": "First FIXED input" },
+          { "size": "long", "name": "multiplier", "description": "Second FIXED input" }
+        ],
+        "output": [
+          { "size": "long", "name": "product", "description": "FIXED result" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Fixed FixMul(multiplicand,multiplier)" },
+      "docs": [{ "ref": "tbv1", "page": "9-15" }]
     },
     {
       "toolcall": "10",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "FracMul",
-      "description": "Multiplies two Frac inputs and returns a rounded Frac result"
+      "description": "Multiplies two Frac inputs and returns a rounded Frac result. Overflows are pinned to the most positive or negative value, depending on the XOR of the signs of the input.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "multiplicand", "description": "First FRAC input" },
+          { "size": "long", "name": "multiplier", "description": "Second FRAC input" }
+        ],
+        "output": [
+          { "size": "long", "name": "fracResult", "description": "Rounded FRAC result; pinned if out-of-range" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Frac FracMul(multiplicand,multiplier)" },
+      "docs": [{ "ref": "tbv1", "page": "9-22" }]
     },
     {
       "toolcall": "11",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "FixDiv",
-      "description": "Divides two like inputs and returns a rounded Fixed result (no remainder)"
+      "description": "Divides two like inputs and returns a rounded Fixed result (no remainder)",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "dividend", "description": "First input" },
+          { "size": "long", "name": "divisor", "description": "Second input (must be same type as dividend)" }
+        ],
+        "output": [
+          { "size": "long", "name": "fixedResult", "description": "Rounded FIXED result; pinned if out-of-range" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Fixed FixDiv(dividend,divisor)" },
+      "docs": [{ "ref": "tbv1", "page": "9-14" }]
     },
     {
       "toolcall": "12",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "FracDiv",
-      "description": "Divides two like inputs and returns a rounded Frac result (no remainder)"
+      "description": "Divides two like inputs and returns a rounded Frac result (no remainder)",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "dividend", "description": "First input" },
+          { "size": "long", "name": "divisor", "description": "Second input (must be same type as dividend)" }
+        ],
+        "output": [
+          { "size": "long", "name": "fracResult", "description": "Rounded FRAC result; pinned if out-of-range" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Frac FracDiv(dividend,divisor)" },
+      "docs": [{ "ref": "tbv1", "page": "9-21" }]
     },
     {
       "toolcall": "13",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "FixRound",
-      "description": "Takes a Fixed input and returns a rounded Integer result"
+      "description": "Takes a Fixed input and returns a rounded Integer result",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "fixedValue", "description": "Original FIXED value" }
+        ],
+        "output": [
+          { "size": "word", "name": "intResult", "description": "Rounded INTEGER result" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Integer FixRound(fixedValue)" },
+      "docs": [{ "ref": "tbv1", "page": "9-17" }]
     },
     {
       "toolcall": "14",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "FracSqrt",
-      "description": "Takes a Frac input and returns a rounded Frac square root"
+      "description": "Takes a Frac input and returns a rounded Frac square root",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "dividend", "description": "Original FRAC value" }
+        ],
+        "output": [
+          { "size": "long", "name": "fracResult", "description": "Rounded FRAC square root" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Frac FracSqrt(fracValue)" },
+      "docs": [{ "ref": "tbv1", "page": "9-24" }]
     },
     {
       "toolcall": "15",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "FracCos",
-      "description": "Takes a Fixed input (in radians) and returns its Frac cosine"
+      "description": "Takes a Fixed input (in radians) and returns its Frac cosine",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "angle", "description": "Angle in radians, as a FIXED value" }
+        ],
+        "output": [
+          { "size": "long", "name": "fracCosineResult", "description": "FRAC cosine result" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Frac FracCos(angle)" },
+      "docs": [{ "ref": "tbv1", "page": "9-20" }]
     },
     {
       "toolcall": "16",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "FracSin",
-      "description": "Takes a Fixed input (in radians) and returns its Frac sine"
+      "description": "Takes a Fixed input (in radians) and returns its Frac sine",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "angle", "description": "Angle in radians, as a FIXED value" }
+        ],
+        "output": [
+          { "size": "long", "name": "fracCosineResult", "description": "FRAC sine result" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Frac FracSin(angle)" },
+      "docs": [{ "ref": "tbv1", "page": "9-23" }]
     },
     {
       "toolcall": "17",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "FixAtan2",
-      "description": "Takes two like inputs & returns a Fixed arc tangent (in radians) of their coordinates"
+      "description": "Takes two like inputs & returns a Fixed arc tangent (in radians) of their coordinates",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "input1", "description": "First input" },
+          { "size": "long", "name": "input2", "description": "Second input (must be same type as first)" }
+        ],
+        "output": [
+          { "size": "long", "name": "arcTanResult", "description": "FIXED arc tangent, in radians, of input1 and input2" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Fixed FixATan2(input1,input2)" },
+      "docs": [{ "ref": "tbv1", "page": "9-13" }]
     },
     {
       "toolcall": "18",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "HiWord",
-      "description": "Returns high-order word of a Long input"
+      "description": "Returns high-order word of a Long input",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "longValue", "description": "Value whose high-order word will be returned" }
+        ],
+        "output": [
+          { "size": "word", "name": "wordResult", "description": "High-order word of longValue" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word HiWord(longValue)" },
+      "docs": [{ "ref": "tbv1", "page": "9-28" }]
     },
     {
       "toolcall": "19",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "LoWord",
-      "description": "Returns low-order word of a long inpuot"
+      "description": "Returns low-order word of a long input",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "longValue", "description": "Value whose low-order word will be returned" }
+        ],
+        "output": [
+          { "size": "word", "name": "wordResult", "description": "Low-order word of longValue" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word LoWord(longValue)" },
+      "docs": [{ "ref": "tbv1", "page": "9-36" }]
     },
     {
       "toolcall": "1A",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "Long2Fix",
-      "description": "Converts a specified Longint value to its corresponding Fixed value"
+      "description": "Converts a specified Longint value to its corresponding Fixed value",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "longIntValue", "description": "LONGINT value to be converted" }
+        ],
+        "output": [
+          { "size": "long", "name": "fixedResult", "description": "FIXED result of the conversion; pinned if out-of-range" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Fixed Long2Fix(longValue}" },
+      "docs": [{ "ref": "tbv1", "page": "9-32" }]
     },
     {
       "toolcall": "1B",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "Fix2Long",
-      "description": "Converts a Fixed value to its corresponding Longint value"
+      "description": "Converts a Fixed value to its corresponding Longint value",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "fixedValue", "description": "FIXED value to be converted" }
+        ],
+        "output": [
+          { "size": "long", "name": "longIntResult", "description": "Rounded LONGINT result of conversion" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Longint Fix2Long(fixedValue}" },
+      "docs": [{ "ref": "tbv1", "page": "9-11" }]
     },
     {
       "toolcall": "1C",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "Fix2Frac",
-      "description": "Converts a Fixed value to its corresponding Frac value"
+      "description": "Converts a Fixed value to its corresponding Frac value",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "fixedValue", "description": "FIXED value to be converted" }
+        ],
+        "output": [
+          { "size": "long", "name": "fracResult", "description": "FRAC result of conversion; pinned if out-of-range" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Frac Fix2Frac(fixedValue)" },
+      "docs": [{ "ref": "tbv1", "page": "9-10" }]
     },
     {
       "toolcall": "1D",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "Frac2Fix",
-      "description": "Converts a specifed Frac value to its corresponding Fixed value"
+      "description": "Converts a specifed Frac value to its corresponding Fixed value",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "fracValue", "description": "FRAC value to be converted" }
+        ],
+        "output": [
+          { "size": "long", "name": "fracResult", "description": "Rounded FIXED result" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Fixed Frac2Fix(fracValue)" },
+      "docs": [{ "ref": "tbv1", "page": "9-18" }]
     },
     {
       "toolcall": "1E",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "Fix2X",
-      "description": "Converts a Fixed value to its corresponding Extended value"
+      "description": "Converts a Fixed value to its corresponding Extended value",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "fixedValue", "description": "FIXED input" },
+          { "size": "long", "name": "extendPtr", "description": "POINTER to space for EXTENDED value" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void Fix2X(fixedValue,extendPtr)" },
+      "docs": [{ "ref": "tbv1", "page": "9-12" }]
     },
     {
       "toolcall": "1F",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "Frac2X",
-      "description": "Converts a specified Frac value to its corresponding Extended value"
+      "description": "Converts a specified Frac value to its corresponding Extended value",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "fracValue", "description": "FRAC input" },
+          { "size": "long", "name": "extendPtr", "description": "POINTER to space for EXTENDED value" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void Frac2X(fracValue,extendPtr)" },
+      "docs": [{ "ref": "tbv1", "page": "9-19" }]
     },
     {
       "toolcall": "20",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "X2Fix",
-      "description": "Converts an Extended value to its corresponding Fixed value"
+      "description": "Converts an Extended value to its corresponding Fixed value",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "extendPtr", "description": "POINTER to EXTENDED value" }
+        ],
+        "output": [
+          { "size": "long", "name": "fixedResult", "description": "Rounded FIXED result; pinned if out-of-range" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Longint X2Fix(extendPtr)" },
+      "docs": [{ "ref": "tbv1", "page": "9-40" }]
     },
     {
       "toolcall": "21",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "X2Frac",
-      "description": "Converts an Extended value to its corresponding Frac value"
+      "description": "Converts an Extended value to its corresponding Frac value",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "extendPtr", "description": "POINTER to EXTENDED value" }
+        ],
+        "output": [
+          { "size": "long", "name": "fracResult", "description": "Rounded FRAC result; pinned if out-of-range" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Longint X2Frac(extendPtr)" },
+      "docs": [{ "ref": "tbv1", "page": "9-41" }]
     },
     {
       "toolcall": "22",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "Int2Hex",
-      "description": "Takes unsigned int & produces an IM string representing the value in hexadecimal format"
+      "description": "Takes unsigned int & produces an Integer Math string representing the value in hexadecimal format",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "intValue", "description": "Unsigned INTEGER to be converted" },
+          { "size": "long", "name": "strPtr", "description": "POINTER to space for Integer Math string" },
+          { "size": "word", "name": "strLength", "description": "Length of Integer Math string" }
+        ]
+      },
+      "errors": ["im0b04"],
+      "c": { "call": "extern pascal void Int2Hex(intValue,strPtr,strLength)" },
+      "docs": [{ "ref": "tbv1", "page": "9-30" }]
     },
     {
       "toolcall": "23",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "Long2Hex",
-      "description": "Takes unsigned Longint value & produces an IM string representing the value in hex format"
+      "description": "Takes unsigned Longint value & produces an Integer Math string representing the value in hex format",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longValue", "description": "Unsigned LONGINT value to be converted" },
+          { "size": "long", "name": "strPtr", "description": "POINTER to space for Integer Math string" },
+          { "size": "word", "name": "strLength", "description": "Length of Integer Math string" }
+        ]
+      },
+      "errors": ["im0b04"],
+      "c": { "call": "extern pascal void Long2Hex(longValue,strPtr,strLength)" },
+      "docs": [{ "ref": "tbv1", "page": "9-33" }]
     },
     {
       "toolcall": "24",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "Hex2Int",
-      "description": "Takes an Integer Math string representing a hex value & returns an unsigned integer"
+      "description": "Takes an Integer Math string representing a hex value & returns an unsigned integer",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "strPtr", "description": "POINTER to space for Integer Math string" },
+          { "size": "word", "name": "strLength", "description": "Length of Integer Math string" }
+        ],
+        "output": [
+          { "size": "word", "name": "intResult", "description": "Unsigned INTEGER equivalent of the Integer Math string" }
+        ]
+      },
+      "errors": ["im0b02","im0b03"],
+      "c": { "call": "extern pascal word Hex2Int(strPtr,strLength)" },
+      "docs": [{ "ref": "tbv1", "page": "9-25" }]
     },
     {
       "toolcall": "25",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "Hex2Long",
-      "description": "Takes Integer Math string representing a hex value & returns an unsigned Longint"
+      "description": "Takes Integer Math string representing a hex value & returns an unsigned Longint",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "strPtr", "description": "POINTER to space for Integer Math string" },
+          { "size": "word", "name": "strLength", "description": "Length of Integer Math string" }
+        ],
+        "output": [
+          { "size": "long", "name": "longIntResult", "description": "Unsigned LONGINT equivalent of the Integer Math string" }
+        ]
+      },
+      "errors": ["im0b02","im0b03"],
+      "c": { "call": "extern pascal LongWord Hex2Long(strPtr,strLength)" },
+      "docs": [{ "ref": "tbv1", "page": "9-26" }]
     },
     {
       "toolcall": "26",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "Int2Dec",
-      "description": "Takes signed or unsigned integer & produces IM string representing value in decimal format"
+      "description": "Takes signed or unsigned integer & produces IM string representing value in decimal format",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordValue", "description": "INTEGER to be converted" },
+          { "size": "long", "name": "strPtr", "description": "POINTER to space for Integer Math string" },
+          { "size": "word", "name": "strLength", "description": "Length of Integer Math string" },
+          { "size": "word", "name": "signedFlag", "description": "BOOLEAN; TRUE if wordValue is signed, FALSE if unsigned" }
+        ]
+      },
+      "errors": ["im0b04"],
+      "c": { "call": "extern pascal void Int2Dec(wordValue,strPtr,strLength,signedFlag)" },
+      "docs": [{ "ref": "tbv1", "page": "9-29" }]
     },
     {
       "toolcall": "27",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "Long2Dec",
-      "description": "Takes signed/unsigned Longint value & produces IM str representing val in decimal format"
+      "description": "Takes a signed or unsigned Longint value and produces an Integer Math string representing the value in decimal format.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longValue", "description": "LONGINT to be converted" },
+          { "size": "long", "name": "strPtr", "description": "POINTER to space for Integer Math string" },
+          { "size": "word", "name": "strLength", "description": "Length of Integer Math string" },
+          { "size": "word", "name": "signedFlag", "description": "BOOLEAN; TRUE if wordValue is signed, FALSE if unsigned" }
+        ]
+      },
+      "errors": ["im0b04"],
+      "c": { "call": "extern pascal void Long2Dec(longValue,strPtr,strLength,signedFlag)" },
+      "docs": [{ "ref": "tbv1", "page": "9-31" }]
     },
     {
       "toolcall": "28",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "Dec2Int",
-      "description": "Takes Integer Math string representing a decimal value & returns a signed/unsigned integer"
+      "description": "Takes Integer Math string representing a decimal value & returns a signed/unsigned integer",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "strPtr", "description": "POINTER to Integer Math string" },
+          { "size": "word", "name": "strLength", "description": "Length of Integer Math string" },
+          { "size": "word", "name": "signedFlag", "description": "0 if intResult is unsigned, nonzero if intResult is signed" }
+        ],
+        "output": [
+          { "size": "word", "name": "intResult", "description": "INTEGER equivalent of the Integer Math string" }
+        ]
+      },
+      "errors": ["im0b02","im0b03"],
+      "c": { "call": "extern pascal Integer Dec2Int(strPtr,strLength,signedFlag)" },
+      "docs": [{ "ref": "tbv1", "page": "9-8" }]
     },
     {
       "toolcall": "29",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "Dec2Long",
-      "description": "Takes Integer Math string representing a decimal value & produces a Longint value"
+      "description": "Takes Integer Math string representing a decimal value & produces a Longint value",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "strPtr", "description": "POINTER to Integer Math string" },
+          { "size": "word", "name": "strLength", "description": "Length of Integer Math string" },
+          { "size": "word", "name": "signedFlag", "description": "0 if longIntResult is unsigned, nonzero if longIntResult is signed" }
+        ],
+        "output": [
+          { "size": "word", "name": "longIntResult", "description": "LONGINT equivalent of the Integer Math string" }
+        ]
+      },
+      "errors": ["im0b02","im0b03"],
+      "c": { "call": "extern pascal Longint Dec2long(strPtr,strLength,signedFlag)" },
+      "docs": [{ "ref": "tbv1", "page": "9-9" }]
     },
     {
       "toolcall": "2A",
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "Hexit",
-      "description": "Takes unsigned integer & returns a 4-byte Int Math string representing value in hex format"
+      "description": "Takes unsigned integer & returns a 4-byte Int Math string representing value in hex format (on the stack)",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "intValue", "description": "Unsigned INTEGER to be converted" }
+        ],
+        "output": [
+          { "size": "long", "name": "hexResult", "description": "4-byte Integer Math string representing value in hex format" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal LongWord HexIt(intValue)" },
+      "docs": [{ "ref": "tbv1", "page": "9-27" }]
     },
     {
       "toolcall": "01",
@@ -13036,6 +13549,11 @@
     "at0982": { "source": "ADB Tool Set", "code": "0982", "name": "adbBusy", "description":"ADB busy (command pending)" },
     "at0983": { "source": "ADB Tool Set", "code": "0983", "name": "devNotAtAddr", "description":"Device not at present address" },
     "at0984": { "source": "ADB Tool Set", "code": "0984", "name": "sqrListFull", "description":"SQR list is full" },
+
+    "im0b01": { "source": "Integer Math Tool Set", "code": "0b01", "name": "imBadInptParam", "description":"Bad input parameter" },
+    "im0b02": { "source": "Integer Math Tool Set", "code": "0b02", "name": "imIllegalChar", "description":"Illegal character in the string" },
+    "im0b03": { "source": "Integer Math Tool Set", "code": "0b03", "name": "imOverflow", "description":"Integer or longint overflow" },
+    "im0b04": { "source": "Integer Math Tool Set", "code": "0b04", "name": "imStrOverflow", "description":"Length of string is too short to represent the value" },
     
     "mmUnch": { "source": "Memory Manager", "code": "", "name": "Memory Manager errors", "description": "Returned unchanged" },
     "slUnch": { "source": "System Loader", "code": "", "name": "System Loader errors", "description": "Returned unchanged" },
