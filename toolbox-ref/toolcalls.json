@@ -1,7 +1,7 @@
 {
   "datastatus": [
     "2025-02-17  QuickDraw II and Desk Manager complete.  Total completion ~30%",
-    "2024-10-06  QuickDraw II about 50% complete.",
+    "2024-10-06  QuickDraw II about halfway complete.",
     "2024-09-12  ToolLocator and MemoryManager are complete, working on Misc Tools.  Adds doc refs.",
     "2024-08-18  Only the first few Tool Locator calls have additional information like parameters, errors, c calls"
   ],
@@ -8115,245 +8115,571 @@
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "TextBootInit",
-      "description": "Initializes the Text Tool Set; called only by Tool Locator"
+      "description": "Initializes the Text Tool Set; called only by Tool Locator",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv2", "page": "23-10" }]
     },
     {
       "toolcall": "02",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "TextStartUp",
-      "description": "Starts up the Text Tool Set for use by an application"
+      "description": "Starts up the Text Tool Set for use by an application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void TextStartUp()" },
+      "docs": [{ "ref": "tbv2", "page": "23-11" }]
     },
     {
       "toolcall": "03",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "TextShutDown",
-      "description": "Shuts down the Text Tool Set when an application quits"
+      "description": "Shuts down the Text Tool Set when an application quits",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void TextShutDown()" },
+      "docs": [{ "ref": "tbv2", "page": "23-11" }]
     },
     {
       "toolcall": "04",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "TextVersion",
-      "description": "Returns the version number of the Text Tool Set"
+      "description": "Returns the version number of the Text Tool Set",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "versionInfo", "description": "Version number of the Text Tool Set" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word TextVersion()" },
+      "docs": [{ "ref": "tbv2", "page": "23-12" }]
     },
     {
       "toolcall": "05",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "TextReset",
-      "description": "Resets the Text Tool Set; called only when the system is reset"
+      "description": "Resets the Text Tool Set; called only when the system is reset",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv2", "page": "23-13" }]
     },
     {
       "toolcall": "06",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "TextStatus",
-      "description": "Indicates whether the Text Tools Set is active"
+      "description": "Indicates whether the Text Tools Set is active",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "activeFlag", "description": "BOOLEAN; TRUE if Text Tool Set is active; FALSE if not" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean TextStatus()" },
+      "docs": [{ "ref": "tbv2", "page": "23-14" }]
     },
     {
       "toolcall": "09",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "SetInGlobals",
-      "description": "Sets the global parameters for the input device"
+      "description": "Sets the global parameters for the input device",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "andMask", "description": "Global AND mask for input device (low-order byte only)" },
+          { "size": "word", "name": "orMask", "description": "Global OR mask for input device (low-order byte only)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { 
+        "call": "extern pascal void SetInGlobals(andMask,orMask)" ,
+        "altcall": "extern pascal void SetInGlobals(mask)"
+      },
+      "docs": [{ "ref": "tbv2", "page": "23-34" }]
     },
     {
       "toolcall": "0A",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "SetOutGlobals",
-      "description": "Sets the global parameters for the output device"
+      "description": "Sets the global parameters for the output device",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "andMask", "description": "Global AND mask for output device (low-order byte only)" },
+          { "size": "word", "name": "orMask", "description": "Global OR mask for output device (low-order byte only)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { 
+        "call": "extern pascal void SetOutGlobals(andMask,orMask)" ,
+        "altcall": "extern pascal void SetOutGlobals(mask)"
+      },
+      "docs": [{ "ref": "tbv2", "page": "23-37" }]
     },
     {
       "toolcall": "0B",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "SetErrGlobals",
-      "description": "Sets the global parameters for the error output device"
+      "description": "Sets the global parameters for the error output device",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "andMask", "description": "Global AND mask for error device (low-order byte only)" },
+          { "size": "word", "name": "orMask", "description": "Global OR mask for error device (low-order byte only)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": {
+        "call": "extern pascal void SetErrGlobals(andMask,orMask)" ,
+        "altcall": "extern pascal void SetErrGlobals(mask)"
+      },
+      "docs": [{ "ref": "tbv2", "page": "23-32" }]
     },
     {
       "toolcall": "0C",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "GetInGlobals",
-      "description": "Returns the current values for the input device global parameters"
+      "description": "Returns the current values for the input device global parameters",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "andMask", "description": "Global AND mask for input device (low-order byte only)" },
+          { "size": "word", "name": "orMask", "description": "Global OR mask for input device (low-order byte only)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal TxtMaskRec GetInGlobals()" },
+      "docs": [{ "ref": "tbv2", "page": "23-24" }]
     },
     {
       "toolcall": "0D",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "GetOutGlobals",
-      "description": "Returns the current values for the output device global parameters"
+      "description": "Returns the current values for the output device global parameters",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "andMask", "description": "Global AND mask for output device (low-order byte only)" },
+          { "size": "word", "name": "orMask", "description": "Global OR mask for output device (low-order byte only)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal TxtMaskRec GetOutGlobals()" },
+      "docs": [{ "ref": "tbv2", "page": "23-26" }]
     },
     {
       "toolcall": "0E",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "GetErrGlobals",
-      "description": "Returns the current values for the error output device global parameters"
+      "description": "Returns the current values for the error output device global parameters",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "andMask", "description": "Global AND mask for error device (low-order byte only)" },
+          { "size": "word", "name": "orMask", "description": "Global OR mask for error device (low-order byte only)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal TxtMaskRec GetErrGlobals()" },
+      "docs": [{ "ref": "tbv2", "page": "23-22" }]
     },
     {
       "toolcall": "0F",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "SetInputDevice",
-      "description": "Sets the input device to a specified type and location"
+      "description": "Sets the input device to a specified type and location",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "deviceType", "description": "Input device type (0 = BASIC, 1 = Pascal, 2 = RAM based)" },
+          { "size": "long", "name": "ptrOrSlot", "description": "Slot number for BASIC or Pascal driver, or POINTER to jump table for RAM-based driver" }
+        ]
+      },
+      "errors": ["tt0c01"],
+      "c": { 
+        "call": "extern pascal void SetInputDevice(deviceType,ptrOrSlot)" ,
+        "altcall": "extern pascal void SetInputDevice(deviceRec)"
+      },
+      "docs": [{ "ref": "tbv2", "page": "23-35" }]
     },
     {
       "toolcall": "10",
       "toolnum": "0C",
       "toolname": "Text Tools",
-      "callname": "SetOutputDevic",
-      "description": "Sets the output device to a specified type and location"
+      "callname": "SetOutputDevice",
+      "description": "Sets the output device to a specified type and location",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "deviceType", "description": "Output device type (0 = BASIC, 1 = Pascal, 2 = RAM based)" },
+          { "size": "long", "name": "ptrOrSlot", "description": "Slot number for BASIC or Pascal driver, or POINTER to jump table for RAM-based driver" }
+        ]
+      },
+      "errors": ["tt0c01"],
+      "c": { 
+        "call": "extern pascal void SetOutputDevice(deviceType,ptrOrSlot)" ,
+        "altcall": "extern pascal void SetOutputDevice(deviceRec)"
+      },
+      "docs": [{ "ref": "tbv2", "page": "23-38" }]
     },
     {
       "toolcall": "11",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "SetErrorDevice",
-      "description": "Sets the error output device to a specified type and location"
+      "description": "Sets the error output device to a specified type and location",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "deviceType", "description": "Error device type (0 = BASIC, 1 = Pascal, 2 = RAM based)" },
+          { "size": "long", "name": "ptrOrSlot", "description": "Slot number for BASIC or Pascal driver, or POINTER to jump table for RAM-based driver" }
+        ]
+      },
+      "errors": ["tt0c01"],
+      "c": { 
+        "call": "extern pascal void SetErrortDevice(deviceType,ptrOrSlot)" ,
+        "altcall": "extern pascal void SetErrortDevice(deviceRec)"
+      },
+      "docs": [{ "ref": "tbv2", "page": "23-33" }]
     },
     {
       "toolcall": "12",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "GetInputDevice",
-      "description": "Returns the type of driver installed as the input device"
+      "description": "Returns the type of driver installed as the input device",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "deviceType", "description": "Input device type (0 = BASIC, 1 = Pascal, 2 = RAM based)" },
+          { "size": "long", "name": "ptrOrSlot", "description": "Slot number for BASIC or Pascal driver, or POINTER to jump table for RAM-based driver" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal DeviceRec GetInputDevice()" },
+      "docs": [{ "ref": "tbv2", "page": "23-25" }]
     },
     {
       "toolcall": "13",
       "toolnum": "0C",
       "toolname": "Text Tools",
-      "callname": "GetOutputDevic",
-      "description": "Returns the type of driver installed as the output device"
+      "callname": "GetOutputDevice",
+      "description": "Returns the type of driver installed as the output device",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "deviceType", "description": "Output device type (0 = BASIC, 1 = Pascal, 2 = RAM based)" },
+          { "size": "long", "name": "ptrOrSlot", "description": "Slot number for BASIC or Pascal driver, or POINTER to jump table for RAM-based driver" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal DeviceRec GetOutputDevice()" },
+      "docs": [{ "ref": "tbv2", "page": "23-27" }]
     },
     {
       "toolcall": "14",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "GetErrorDevice",
-      "description": "Returns the type of driver installed as the error output device"
+      "description": "Returns the type of driver installed as the error output device",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "deviceType", "description": "Error device type (0 = BASIC, 1 = Pascal, 2 = RAM based)" },
+          { "size": "long", "name": "ptrOrSlot", "description": "Slot number for BASIC or Pascal driver, or POINTER to jump table for RAM-based driver" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal DeviceRec GetErrorDevice()" },
+      "docs": [{ "ref": "tbv2", "page": "23-23" }]
     },
     {
       "toolcall": "15",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "InitTextDev",
-      "description": "Initializes a specified text device"
+      "description": "Initializes a specified text device",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "deviceNum", "description": "Device to initialize (0 = input, 1 = output, 2 = error output)" }
+        ]
+      },
+      "errors": ["tt0c01"],
+      "c": { "call": "extern pascal void InitTextDev(deviceNum)" },
+      "docs": [{ "ref": "tbv2", "page": "23-28" }]
     },
     {
       "toolcall": "16",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "CtlTextDev",
-      "description": "Passes a control code to a specified text device"
+      "description": "Passes a control code to a specified text device. Errors other than $0C01 can only occur for Pascal devices.",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "deviceNum", "description": "Device to initialize (0 = input, 1 = output, 2 = error output)" },
+          { "size": "word", "name": "controlCode", "description": "Control code (in low-order byte) to pass to device" }
+        ]
+      },
+      "errors": ["tt0c01","tt0c02","tt0c03","tt0c04","tt0c06","tt0c06","tt0c07","tt0c08","tt0c09","tt0c0a","tt0c0b","tt0c0c","tt0c0d","tt0c0e","tt0c0f","tt0c10","tt0c40"],
+      "c": { "call": "extern pascal void InitTextDev(deviceNum)" },
+      "docs": [{ "ref": "tbv2", "page": "23-28" }]
     },
     {
       "toolcall": "17",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "StatusTextDev",
-      "description": "Executes a status call to a specified text device"
+      "description": "Executes a status call to a specified text device",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "deviceNum", "description": "Device to initialize (0 = input, 1 = output, 2 = error output)" },
+          { "size": "word", "name": "requestCode", "description": "Request code (in low-order byte) to pass to deviceNum" }
+        ]
+      },
+      "errors": ["ttpascal"],
+      "c": { "call": "extern pascal void StatusTextDev(deviceNum,requestCode)" },
+      "docs": [{ "ref": "tbv2", "page": "23-39" }]
     },
     {
       "toolcall": "18",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "WriteChar",
-      "description": "Combines a character with output global AND & OR mask & writes to output device"
+      "description": "Combines a character with output global AND mask and OR mask and writes to output device",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "theChar", "description": "Character to write (in low-order byte)" }
+        ]
+      },
+      "errors": ["ttpascal"],
+      "c": { "call": "extern pascal void WriteChar(theChar)" },
+      "docs": [{ "ref": "tbv2", "page": "23-42" }]
     },
     {
       "toolcall": "19",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "ErrWriteChar",
-      "description": "Combines a character with output global AND & OR mask & writes to error output text device"
+      "description": "Combines a character with output global AND & OR mask & writes to error output text device",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "theChar", "description": "Character to write (in low-order byte)" }
+        ]
+      },
+      "errors": ["ttpascal"],
+      "c": { "call": "extern pascal void ErrWriteChar(theChar)" },
+      "docs": [{ "ref": "tbv2", "page": "23-42" }]
     },
     {
       "toolcall": "1A",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "WriteLine",
-      "description": "Combines pointed-to Pascal-type string with out global mask, + CR, then output"
+      "description": "Combines pointed-to Pascal-type string with out global mask, + CR, then output",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "strPtr", "description": "POINTER to Pascal-type string to be written" }
+        ]
+      },
+      "errors": ["ttpascal"],
+      "c": { "call": "extern pascal void WriteLine(strPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "23-44" }]
     },
     {
       "toolcall": "1B",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "ErrWriteLine",
-      "description": "Combines pointed-to Pascal-type string with outpt global masks & write to err out"
+      "description": "Combines pointed-to Pascal-type string with output global masks & write to error out",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "strPtr", "description": "POINTER to Pascal-type string" }
+        ]
+      },
+      "errors": ["ttpascal"],
+      "c": { "call": "extern pascal void ErrWriteLine(strPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "23-20" }]
     },
     {
       "toolcall": "1C",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "WriteString",
-      "description": "Combines a pointed-to Pascal-type string with outpt global masks & write to out device"
+      "description": "Combines a pointed-to Pascal-type string (first byte = length) with output global masks & write to output device",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "strPtr", "description": "POINTER to Pascal-type string to be written" }
+        ]
+      },
+      "errors": ["ttpascal"],
+      "c": { "call": "extern pascal void WriteString(strPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "23-45" }]
     },
     {
       "toolcall": "1D",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "ErrWriteString",
-      "description": "Combines a pointed-to Pascal-type string with outpt global masks & write to err out"
+      "description": "Combines a pointed-to Pascal-type string (first byte = length) with the output global masks and writes to the error output text device.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "strPtr", "description": "POINTER to Pascal-type string to be written" }
+        ]
+      },
+      "errors": ["ttpascal"],
+      "c": { "call": "extern pascal void ErrWriteString(strPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "23-21" }]
     },
     {
       "toolcall": "1E",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "TextWriteBlock",
-      "description": "Combines a char string with output global masks & writes to output text device"
+      "description": "Combines a char string with output global masks & writes to output text device",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "textPtr", "description": "POINTER to start of ASCII text" },
+          { "size": "word", "name": "offset", "description": "Offset within ASCII text" },
+          { "size": "word", "name": "count", "description": "String length" }
+        ]
+      },
+      "errors": ["ttpascal"],
+      "c": { "call": "extern pascal void Text WriteBlock(textPtr,offset,count)" },
+      "docs": [{ "ref": "tbv2", "page": "23-41" }]
     },
     {
       "toolcall": "1F",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "ErrWriteBlock",
-      "description": "Combines a char string with output global masks & write to err out"
+      "description": "Combines a char string with output global masks & write to error out",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "textPtr", "description": "POINTER to start of ASCII text" },
+          { "size": "word", "name": "offset", "description": "Offset within ASCII text" },
+          { "size": "word", "name": "count", "description": "String length" }
+        ]
+      },
+      "errors": ["ttpascal"],
+      "c": { "call": "extern pascal void Text ErrWriteBlock(textPtr,offset,count)" },
+      "docs": [{ "ref": "tbv2", "page": "23-17" }]
     },
     {
       "toolcall": "20",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "WriteCString",
-      "description": "Combines a pointed-to C string with output global masks & write to output txt device"
+      "description": "Combines a pointed-to C string with output global masks & write to output text device",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "cStrPtr", "description": "POINTER to C-type string to be written" }
+        ]
+      },
+      "errors": ["ttpascal"],
+      "c": { "call": "extern pascal void WriteCString(strPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "23-43" }]
     },
     {
       "toolcall": "21",
       "toolnum": "0C",
       "toolname": "Text Tools",
-      "callname": "ErrWriteCStrin",
-      "description": "Combines a pointed-to C string with output global masks & write to err output txt dvc"
+      "callname": "ErrWriteCString",
+      "description": "Combines a pointed-to C-type string (terminated with $00) with output global masks and writes the string to the error output text device.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "cStrPtr", "description": "POINTER to C-type string to be written" }
+        ]
+      },
+      "errors": ["ttpascal"],
+      "c": { "call": "extern pascal void ErrWriteCString(strPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "23-19" }]
     },
     {
       "toolcall": "22",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "ReadChar",
-      "description": "Reads a char from input text device, combines with input global mask, & puts char on stack"
+      "description": "Reads a char from input text device, combines with input global mask, and puts char on stack",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "echoFlag", "description": "Echo or don't echo character to output device (see Toolbox Ref Vol2, Figure 23-1)" }
+        ]
+      },
+      "errors": ["ttpascal"],
+      "c": { "call": "extern pascal Word ReadChar(echoFlag)" },
+      "docs": [{ "ref": "tbv2", "page": "23-29" }]
     },
     {
       "toolcall": "23",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "TextReadBlock",
-      "description": "Reads char block from input txt device, combines w/input global mask & writes to mem loc"
+      "description": "Reads a block of characters from the input text device, combines with input global masks, and writes block to mem location at bufferPtr + offset",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "bufferPtr", "description": "POINTER to start of block" },
+          { "size": "word", "name": "offset", "description": "Offset to start of block to be read" },
+          { "size": "word", "name": "blockSize", "description": "Size of block to read" },
+          { "size": "word", "name": "echoFlag", "description": "Echo or don't echo character to output device (see Toolbox Ref Vol2, Figure 23-1)" }
+        ]
+      },
+      "errors": ["ttpascal"],
+      "c": { "call": "extern pascal void TextReadBlock(bufferPtr,offset,blockSize,echoFlag)" },
+      "docs": [{ "ref": "tbv2", "page": "23-40" }]
     },
     {
       "toolcall": "24",
       "toolnum": "0C",
       "toolname": "Text Tools",
       "callname": "ReadLine",
-      "description": "Reads char string from input txt device, combines w/input global mask, & writes to mem loc"
-    },
-    {
-      "toolcall": "01",
-      "toolnum": "0D",
-      "toolname": "RAMDisk Tool",
-      "callname": "RDBootInit",
-      "description": "Initializes the RAMDisk Tool set; called only by Memory Manager - not by application"
+      "description": "Reads char string from input txt device, combines w/input global mask, & writes to mem loc",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "bufferPtr", "description": "POINTER to start of buffer.where characters will be written" },
+          { "size": "word", "name": "maxCount", "description": "Maximum line length" },
+          { "size": "word", "name": "eolChar", "description": "End-of-line character in low byte" },
+          { "size": "word", "name": "echoFlag", "description": "Echo or don't echo character to output device (see Toolbox Ref Vol2, Figure 23-1)" }
+        ],
+        "output": [
+          { "size": "word", "name": "charCount", "description": "Count of characters received" }
+        ]
+      },
+      "errors": ["ttpascal"],
+      "c": { "call": "extern pascal Word ReadLine(bufferPtr,maxCount,eolChar,echoFlag)" },
+      "docs": [{ "ref": "tbv2", "page": "23-30" }]
     },
     {
       "toolcall": "01",
@@ -13550,11 +13876,31 @@
     "at0983": { "source": "ADB Tool Set", "code": "0983", "name": "devNotAtAddr", "description":"Device not at present address" },
     "at0984": { "source": "ADB Tool Set", "code": "0984", "name": "sqrListFull", "description":"SQR list is full" },
 
-    "im0b01": { "source": "Integer Math Tool Set", "code": "0b01", "name": "imBadInptParam", "description":"Bad input parameter" },
-    "im0b02": { "source": "Integer Math Tool Set", "code": "0b02", "name": "imIllegalChar", "description":"Illegal character in the string" },
-    "im0b03": { "source": "Integer Math Tool Set", "code": "0b03", "name": "imOverflow", "description":"Integer or longint overflow" },
-    "im0b04": { "source": "Integer Math Tool Set", "code": "0b04", "name": "imStrOverflow", "description":"Length of string is too short to represent the value" },
+    "im0b01": { "source": "Integer Math Tool Set", "code": "0B01", "name": "imBadInptParam", "description":"Bad input parameter" },
+    "im0b02": { "source": "Integer Math Tool Set", "code": "0B02", "name": "imIllegalChar", "description":"Illegal character in the string" },
+    "im0b03": { "source": "Integer Math Tool Set", "code": "0B03", "name": "imOverflow", "description":"Integer or longint overflow" },
+    "im0b04": { "source": "Integer Math Tool Set", "code": "0B04", "name": "imStrOverflow", "description":"Length of string is too short to represent the value" },
     
+    "tt0c01": { "source": "Text Tool Set", "code": "0C01", "name": "badDevType", "description":"Illegal device type" },
+    "tt0c02": { "source": "Text Tool Set", "code": "0C02", "name": "badDevNum", "description":"Illegal device number" },
+    "tt0c03": { "source": "Text Tool Set", "code": "0C03", "name": "badMode", "description":"Illegal operation" },
+    "tt0c04": { "source": "Text Tool Set", "code": "0C04", "name": "unDefHW", "description":"Undefined hardware error" },
+    "tt0c05": { "source": "Text Tool Set", "code": "0C05", "name": "lostDev", "description":"Lost device; device is no longer on line" },
+    "tt0c06": { "source": "Text Tool Set", "code": "0C06", "name": "lostFile", "description":"File is not longer available" },
+    "tt0c07": { "source": "Text Tool Set", "code": "0C07", "name": "badTitle", "description":"Illegal file name" },
+    "tt0c08": { "source": "Text Tool Set", "code": "0C08", "name": "noRoom", "description":"Insufficient space on the specified diskette" },
+    "tt0c09": { "source": "Text Tool Set", "code": "0C09", "name": "noDevice", "description":"Specified volume is not on line" },
+    "tt0c0a": { "source": "Text Tool Set", "code": "0C0A", "name": "noFile", "description":"Specified file is not in the directory given" },
+    "tt0c0b": { "source": "Text Tool Set", "code": "0C0B", "name": "dupFile", "description":"Duplicate file" },
+    "tt0c0c": { "source": "Text Tool Set", "code": "0C0C", "name": "notClosed", "description":"Attempt to open a file that is already open" },
+    "tt0c0d": { "source": "Text Tool Set", "code": "0C0D", "name": "notOpen", "description":"Attempt to access a closed file" },
+    "tt0c0e": { "source": "Text Tool Set", "code": "0C0E", "name": "badFormat", "description":"Error reading real or integer number" },
+    "tt0c0f": { "source": "Text Tool Set", "code": "0C0F", "name": "ringBufOFlo", "description":"Ring buffer overflow" },
+    "tt0c10": { "source": "Text Tool Set", "code": "0C10", "name": "writeProtected", "description":"The specified disk is write protected" },
+    "tt0c40": { "source": "Text Tool Set", "code": "0C40", "name": "devErr", "description":"The device did not complete a read or write" },
+    "ttpascal": { "source": "Text Tool Set", "code": "", "name": "Pascal device errors", "description":"Any of the errors $0C02-$0C40 listed in Toolbox Ref. Vol3 section 'Text Tool Set Summary' (or see CtlTextDev Tool Call)" },
+
+
     "mmUnch": { "source": "Memory Manager", "code": "", "name": "Memory Manager errors", "description": "Returned unchanged" },
     "slUnch": { "source": "System Loader", "code": "", "name": "System Loader errors", "description": "Returned unchanged" },
     "proUnch": { "source": "ProDOS 16", "code": "", "name": "ProDOS errors", "description": "Returned unchanged" },

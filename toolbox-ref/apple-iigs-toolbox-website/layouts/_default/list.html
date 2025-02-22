@@ -271,7 +271,10 @@ Display Mode:
       <p>Call must not be made by an application.</p>
     {{ else }}
       <pre>{{ .c.call }} </pre>
-    
+      {{ if .c.altcall }}
+      <p>You can also use the following alternate form of the call:</p>
+      <pre>{{ .c.altcall }} </pre>
+      {{ end }}
     {{ end }}
     </div>
     {{ end }}
