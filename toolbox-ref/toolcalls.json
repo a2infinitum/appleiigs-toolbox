@@ -1,5 +1,6 @@
 {
   "datastatus": [
+    "2025-03-02  50% !!!!!!!!!!!!!!!!!!!!!!",
     "2025-02-17  QuickDraw II and Desk Manager complete.  Total completion ~30%",
     "2024-10-06  QuickDraw II about halfway complete.",
     "2024-09-12  ToolLocator and MemoryManager are complete, working on Misc Tools.  Adds doc refs.",
@@ -123,7 +124,7 @@
       "toolnum": "01",
       "toolname": "Tool Locator",
       "callname": "GetFuncPtr",
-      "description": "Returns entry in the function ptr table for a spec function in a specified tool set",
+      "description": "Returns entry in the function ptr table for a specified function in a specified tool set",
       "parameters": {
         "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
@@ -181,7 +182,7 @@
       "toolnum": "01",
       "toolname": "Tool Locator",
       "callname": "LoadTools",
-      "description": "Ensures that spec system tool sets are available & have specified minimum version numbers",
+      "description": "Ensures that specified system tool sets are available & have specified minimum version numbers",
       "parameters": {
         "input": [{ "size": "long", "name": "toolTablePtr", "description": "POINTER to table of tool set numbers" }]
       },
@@ -198,7 +199,7 @@
       "toolnum": "01",
       "toolname": "Tool Locator",
       "callname": "LoadOneTool",
-      "description": "Ensures that spec system tool set is available & has a spec minimum version number",
+      "description": "Ensures that specified system tool set is available & has a specified minimum version number",
       "parameters": {
         "input": [
           { "size": "word", "name": "toolNumber", "description": "INTEGER; tool set number of tool set to load" },
@@ -1080,7 +1081,7 @@
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "WriteBRam",
-      "description": "Writes 252 bytes of data from a spec mem loc, plus 4 checksum bytes, to Battery RAM",
+      "description": "Writes 252 bytes of data from a specified mem loc, plus 4 checksum bytes, to Battery RAM",
       "parameters": {
         "input": [ { "size": "long", "name": "bufferPtr", "description": "POINTER to the 252 bytes to be written to Battery RAM" } ]
       },
@@ -1093,7 +1094,7 @@
       "toolnum": "03",
       "toolname": "Misc Tools",
       "callname": "ReadBRam",
-      "description": "Reads 252 bytes of data from Battery RAM, plus 4 checksum bytes, & writes to spec mem loc",
+      "description": "Reads 252 bytes of data from Battery RAM, plus 4 checksum bytes, & writes to specified mem loc",
       "parameters": {
         "input": [ { "size": "long", "name": "bufferPtr", "description": "POINTER to the 256 bytes to be written to application" } ]
       },
@@ -3074,7 +3075,7 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetSysField",
-      "description": "Sets the sysField field in GrafPort to a spec value - not called by an application",
+      "description": "Sets the sysField field in GrafPort to a specified value - not called by an application",
       "parameters": {
         "input": [{ "size": "long", "name": "sysFieldValue", "description": "New value for sysField field" }]
       },
@@ -3212,7 +3213,7 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "Pt2Rect",
-      "description": "Copies spec pt to uppr left corner of spec rect & another pt to lower right corner of rect",
+      "description": "Copies specified pt to uppr left corner of specified rect & another pt to lower right corner of rect",
       "parameters": {
         "input": [
           { "size": "long", "name": "point1Ptr", "description": "POINTER to first source POINT" },
@@ -3281,7 +3282,7 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "PaintRect",
-      "description": "Paints the interior of spec rectangle using the current pen mode & pattern",
+      "description": "Paints the interior of specified rectangle using the current pen mode & pattern",
       "parameters": {
         "input": [{ "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" }]
       },
@@ -3412,7 +3413,7 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "FrameRRect",
-      "description": "Draws the frame of a spec round rectangle using the current pen mode, pattern & size",
+      "description": "Draws the frame of a specified round rectangle using the current pen mode, pattern & size",
       "parameters": {
         "input": [
           { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" },
@@ -3429,7 +3430,7 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "PaintRRect",
-      "description": "Paints interior of spec round rectangle using the current pen mode & pattern",
+      "description": "Paints interior of specified round rectangle using the current pen mode & pattern",
       "parameters": {
         "input": [
           { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" },
@@ -3446,7 +3447,7 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "EraseRRect",
-      "description": "Erases interior of a spec round rectangle by filling it in with the backround pattern",
+      "description": "Erases interior of a specified round rectangle by filling it in with the backround pattern",
       "parameters": {
         "input": [
           { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" },
@@ -3515,7 +3516,7 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "PaintArc",
-      "description": "Paints the interior of spec arc using the current pen mode & pattern",
+      "description": "Paints the interior of specified arc using the current pen mode & pattern",
       "parameters": {
         "input": [
           { "size": "long", "name": "rectPtr", "description": "POINTER to RECT defining enclosing rectangle" },
@@ -3633,7 +3634,7 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetEmptyRgn",
-      "description": "Destroys previous region information by setting a spec region to an empty region",
+      "description": "Destroys previous region information by setting a specified region to an empty region",
       "parameters": {
         "input": [
           { "size": "long", "name": "rgnHandle", "description": "HANDLE to region being modified" }
@@ -3648,7 +3649,7 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "SetRectRgn",
-      "description": "Destroys previous region information by setting a spec region to a spec rectangle",
+      "description": "Destroys previous region information by setting a specified region to a specified rectangle",
       "parameters": {
         "input": [
           { "size": "long", "name": "rgnHandle", "description": "HANDLE to region being set" }, 
@@ -3667,7 +3668,7 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "RectRgn",
-      "description": "Destroys previous region information by setting a spec region to a spec rectangle",
+      "description": "Destroys previous region information by setting a specified region to a specified rectangle",
       "parameters": {
         "input": [
           { "size": "long", "name": "rgnHandle", "description": "HANDLE to region being set" },
@@ -4698,7 +4699,7 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "StringBounds",
-      "description": "Puts the character bounds rectangle of a spec Pascal-type string into spec buffer",
+      "description": "Puts the character bounds rectangle of a specified Pascal-type string into specified buffer",
       "parameters": {
         "input": [
           { "size": "long", "name": "stringPtr", "description": "POINTER to Pascal-type string" },
@@ -4714,7 +4715,7 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "CStringBounds",
-      "description": "Puts char bounds rectangle of a spec C string into a specified buffer",
+      "description": "Puts char bounds rectangle of a specified C string into a specified buffer",
       "parameters": {
         "input": [
           { "size": "long", "name": "cStringPtr", "description": "POINTER to C string" },
@@ -6162,7 +6163,7 @@
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "GetNextEvent",
-      "description": "Returns next avail event of spec type(s); if event is in queue, GetNextEvent removes it",
+      "description": "Returns next avail event of specified type(s); if event is in queue, GetNextEvent removes it",
       "parameters": {
         "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
@@ -6721,7 +6722,7 @@
       "toolnum": "08",
       "toolname": "Sound Tool Set",
       "callname": "WriteRamBlock",
-      "description": "Writes a spec number of bytes from system RAM into DOC RAM",
+      "description": "Writes a specified number of bytes from system RAM into DOC RAM",
       "parameters": {
         "input": [
           { "size": "long", "name": "srcPtr", "description": "POINTER to data to be written from RAM" },
@@ -8686,672 +8687,1585 @@
       "toolnum": "0D",
       "toolname": "RAMDisk Tool",
       "callname": "RDBootInit",
-      "description": "Initializes the RAMDisk Tool set; called only by Memory Manager - not by application"
+      "description": "This routine does nothing. It just returns to the caller. Do not use.",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "docs": [{ "ref": "tool13av", "page": "see doc" }]
     },
     {
       "toolcall": "02",
       "toolnum": "0D",
       "toolname": "RAMDisk Tool",
       "callname": "RDStartUp",
-      "description": "Starts up the RAMDisk Tool set"
+      "description": "This routine does nothing. It just returns to the caller. Do not use.",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "docs": [{ "ref": "tool13av", "page": "see doc" }]
     },
     {
       "toolcall": "03",
       "toolnum": "0D",
       "toolname": "RAMDisk Tool",
       "callname": "RDShutDown",
-      "description": "Shuts down the RAMDisk Tool set"
+      "description": "This routine does nothing. It just returns to the caller. Do not use.",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "docs": [{ "ref": "tool13av", "page": "see doc" }]
     },
     {
       "toolcall": "04",
       "toolnum": "0D",
       "toolname": "RAMDisk Tool",
       "callname": "RDVersion",
-      "description": "Returns the version of the RAMDisk Tool set"
+      "description": "Returns the current version number of the RAMDisk tool set. The version is the same as the Memory Manager one.",
+      "parameters": {
+        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ],
+        "output": [ { "size": "word", "name": "version", "description": "Version number of tool set" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word RDVersion()" },
+      "docs": [{ "ref": "tool13av", "page": "see doc" }]
     },
     {
       "toolcall": "05",
       "toolnum": "0D",
       "toolname": "RAMDisk Tool",
       "callname": "RDReset",
-      "description": "Resets the RAMDisk Tool set - not by application"
+      "description": "This routine does nothing. It just returns to the caller. Do not use.",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "docs": [{ "ref": "tool13av", "page": "see doc" }]
     },
     {
       "toolcall": "06",
       "toolnum": "0D",
       "toolname": "RAMDisk Tool",
       "callname": "RDStatus",
-      "description": "Indicates whether the RAMDisk Tool set is active"
+      "description": "Indicates whether the RAMDisk Tool set is active",
+      "parameters": {
+        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ],
+        "output": [ { "size": "word", "name": "activeFlag", "description": "BOOLEAN; TRUE ($FFFF) = active. False ($0000) = not active." } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean RDStatus()" },
+      "docs": [{ "ref": "tool13av", "page": "see doc" }]
     },
     {
       "toolcall": "09",
       "toolnum": "0D",
       "toolname": "RAMDisk Tool",
       "callname": "Kill",
-      "description": "This routine does nothing"
+      "description": "This routine does nothing. It just returns to the caller. Do not use.",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "docs": [{ "ref": "tool13av", "page": "see doc" }]
     },
     {
       "toolcall": "0A",
       "toolnum": "0D",
       "toolname": "RAMDisk Tool",
       "callname": "RDExecPCCmd",
-      "description": "This routine executes normal or extended SmartPort commands, using data from the zero page"
+      "description": "This routine executes normal or extended SmartPort commands, using data from the zero page. See the IIgs Firmware Ref.",
+      "parameters": { "none": true },
+      "errors": ["rd01","rd21","rd27","rd28","rd2d"],
+      "c": { "call": "extern pascal void RDExecPCCmd()" },
+      "docs": [{ "ref": "tool13av", "page": "see doc" }]
     },
     {
       "toolcall": "0B",
       "toolnum": "0D",
       "toolname": "RAMDisk Tool",
       "callname": "RDSetDiskSize",
-      "description": "This routine does nothing"
+      "description": "This routine does nothing. It just returns to the caller. Do not use.",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "docs": [{ "ref": "tool13av", "page": "see doc" }]
     },
     {
       "toolcall": "0C",
       "toolnum": "0D",
       "toolname": "RAMDisk Tool",
       "callname": "RDGetDiskSize",
-      "description": "This routine returns the current size of the RAMDisk in bytes"
+      "description": "This routine returns the current size of the RAMDisk in bytes",
+      "parameters": {
+        "input": [ { "size": "long", "name": "longspace", "description": "Space for result" } ],
+        "output": [ { "size": "long", "name": "size", "description": "Size in bytes (unconfirmed)" } ]
+      },
+      "errors": ["none"],
+      "docs": [{ "ref": "tool13av", "page": "see doc" }]
     },
     {
       "toolcall": "01",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "WindBootInit",
-      "description": "Initializes the Window Manager; called only by Tool Locator - not by application"
+      "description": "Initializes the Window Manager; called only by Tool Locator - not by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv2", "page": "25-32" }]
     },
     {
       "toolcall": "02",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "WindStartUp",
-      "description": "Starts up the Window Manager for use by an application"
+      "description": "Starts up the Window Manager for use by an application",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "userID", "description": "ID number of application" }
+      ] },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void WindStartUp(UserID)" },
+      "docs": [{ "ref": "tbv2", "page": "25-32" }]
     },
     {
       "toolcall": "03",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "WindShutDown",
-      "description": "Shuts down the Window Manager when an application quits"
+      "description": "Shuts down the Window Manager when an application quits",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void WindShutDown()" },
+      "docs": [{ "ref": "tbv2", "page": "25-33" }]
     },
     {
       "toolcall": "04",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "WindVersion",
-      "description": "Returns the version number of the Window Manager"
+      "description": "Returns the version number of the Window Manager",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "versionInfo", "description": "Version number of the Window Manager" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word WindVersion()" },
+      "docs": [{ "ref": "tbv2", "page": "25-33" }]
     },
     {
       "toolcall": "05",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "WindReset",
-      "description": "Resets the Window Manager; called only when system reset - not by application"
+      "description": "Resets the Window Manager; called only when system reset - not by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv2", "page": "25-34" }]
     },
     {
       "toolcall": "06",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "WindStatus",
-      "description": "Indicates whether the Window Manager is active"
+      "description": "Indicates whether the Window Manager is active",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "activeFlag", "description": "BOOLEAN; TRUE if Window Manager is active; FALSE if not" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word WindStatus()" },
+      "docs": [{ "ref": "tbv2", "page": "25-34" }]
     },
     {
       "toolcall": "09",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "NewWindow",
-      "description": "Creates spec window per its params, adds to window list, returns ptr to new wndw GrafPort"
+      "description": "Creates specified window per its params, adds to window list, returns pointer to new window's GrafPort",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "paramListPtr", "description": "POINTER to parameter list (see Toolbox Ref Vol2, Table 25-9)" }
+        ],
+        "output": [
+          { "size": "long", "name": "theWindow", "description": "POINTER to window's GrafPort; NIL if error" }
+        ]
+      },
+      "errors": ["wm0e01","wm0e02"],
+      "c": { "call": "extern pascal GrafPortPtr NewWindow(paramListPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-83" }]
     },
     {
       "toolcall": "0A",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "CheckUpdate",
-      "description": "Looks from top to bottom in window list for visible window that needs updating"
+      "description": "Looks from top to bottom in window list for visible window that needs updating - normally called by EventManager",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "theEventPtr", "description": "POINTER to an event record" }
+        ],
+        "output": [
+          { "size": "word", "name": "updateFlag", "description": "BOOLEAN; TRUE if update event found, otherwise FALSE" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean CheckUpdate(theEventPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-37" }]
     },
     {
       "toolcall": "0B",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "CloseWindow",
-      "description": "Removes spec window from scrn, disposes all ctrls assoc w/window, deletes window from list"
+      "description": "Removes a specified window from the screen, disposes of all controls and RAM associated with that window, and deletes it from the window list.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void CloseWindow(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-38" }]
     },
     {
       "toolcall": "0C",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "DeskTop",
-      "description": "Controls region addition to & subtraction from desktop & ctrls current desktop pattern"
+      "description": "Controls the addition of regions to and subtraction of regions from the desktop and controls the current desktop pattern.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "deskTopOP", "description": "Operation to perform" },
+          { "size": "long", "name": "dtParam", "description": "Parameter needed for operation" }
+        ],
+        "output": [
+          { "size": "long", "name": "retParam", "description": "Possible return parameter (see Toolbox Ref Vol2, Table 25-5)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Pointer Desktop(deskTopOP,dtParam)" },
+      "docs": [{ "ref": "tbv2", "page": "25-39" }]
     },
     {
       "toolcall": "0D",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "SetWTitle",
-      "description": "Changes the title of a specified window to a spec title and redraw the window"
+      "description": "Changes the title of a specified window to a specified title and redraw the window",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "titlePtr", "description": "POINTER to new title" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetWTitle(titlePtr,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-111" }]
     },
     {
       "toolcall": "0E",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetWTitle",
-      "description": "Returns the pointer to a specified window's title"
+      "description": "Returns the pointer to a specified window's title",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "long", "name": "titlePtr", "description": "POINTER to window's title string" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Pointer GetWTitle(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-73" }]
     },
     {
       "toolcall": "0F",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "SetFrameColor",
-      "description": "Sets the color of a specified window's frame"
+      "description": "Sets the color of a specified window's frame. Does not redraw. Call HideWindow, SetFrameColor, then ShowWindow to redraw in new colors",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "newColorPtr", "description": "POINTER to five-word pattern/color table; NIL for default table" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetFrameColor(newColorPtr,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-99" }]
     },
     {
       "toolcall": "10",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetFrameColor",
-      "description": "Returns the color of a specifed window's frame"
+      "description": "Returns the color of a specifed window's frame",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "colorPtr", "description": "POINTER to five-word pattern/color table to be filled with window's color table" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GetFrameColor(colorPtr,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-57" }]
     },
     {
       "toolcall": "11",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "SelectWindow",
-      "description": "Makes a specified window the active window"
+      "description": "Makes a specified window the active window",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SelectWindow(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-92" }]
     },
     {
       "toolcall": "12",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "HideWindow",
-      "description": "Makes a specified window invisible"
+      "description": "Makes a specified window invisible",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void HideWindow(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-78" }]
     },
     {
       "toolcall": "13",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "ShowWindow",
-      "description": "Makes a specified window visible if it was invisible and then draws the window"
+      "description": "Makes a specified window visible if it was invisible and then draws the window",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ShowWindow(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-114" }]
     },
     {
       "toolcall": "14",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "SendBehind",
-      "description": "Changes position of a specified window, redrawing any exposed windows"
+      "description": "Changes position of a specified window, redrawing any exposed windows",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "behindWindowPtr", "description": "POINTER to GrafFort or $FFFFFFFF=top, $FFFFFFFE=bottom" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SendBehind(behindWindowPtr,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-93" }]
     },
     {
       "toolcall": "15",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "FrontWindow",
-      "description": "Returns a ptr to the first visible window in the windows list (that is, the active window)"
+      "description": "Returns a ptr to the first visible window in the windows list (that is, the active window)",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to active window's GrafPort; NIL if none visible" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal GrafPortPtr FrontWindow()" },
+      "docs": [{ "ref": "tbv2", "page": "25-50" }]
     },
     {
       "toolcall": "16",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "SetInfoDraw",
-      "description": "Sets pointer to routine that draws information bar for specified window"
+      "description": "Sets pointer to routine that draws information bar for specified window",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "infoDrawPtr", "description": "POINTER to draw information bar routine" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetInfoDraw(infoDrawPtr,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-101" }]
     },
     {
       "toolcall": "17",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "FindWindow",
-      "description": "Indicates which part of which window, if any, cursor was in when mouse button was pressed"
+      "description": "Indicates which part of which window, if any, cursor was in when mouse button was pressed",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "whichWindowPtr", "description": "POINTER to space to store pointer to window; NIL if not found" },
+          { "size": "word", "name": "pointX", "description": "X point to check, in global coordinates" },
+          { "size": "word", "name": "pointY", "description": "Y point to check, in global coordinates" }
+        ],
+        "output": [
+          { "size": "word", "name": "location", "description": "Mouse-down event location (see Toolbox Ref Vol2, Table 25-8)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word FindWindow(whichWindowPtr,pointX,pointY)" },
+      "docs": [{ "ref": "tbv2", "page": "25-48" }]
     },
     {
       "toolcall": "18",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "TrackGoAway",
-      "description": "Tracks mouse until bttn released, hi-lighting go-away region if mouse loc is inside it"
+      "description": "Tracks mouse until button released, highlighting the go-away region as the mouse stays inside of it",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "startX", "description": "Starting X coordinate of cursor, in global coordinates" },
+          { "size": "word", "name": "startY", "description": "Starting Y coordinate of cursor, in global coordinates" },
+          { "size": "long", "name": "whichWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "word", "name": "goAway", "description": "BOOLEAN; TRUE if go-away selected when button released, FALSE if not" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean TrackGoAway(startX,startY,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-127" }]
     },
     {
       "toolcall": "19",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "MoveWindow",
-      "description": "Moves a specified window to another part of the screen without affecting its size"
+      "description": "Moves a specified window to another part of the screen without affecting its size",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "newX", "description": "New X coordinate of content region's upper left corner (global)" },
+          { "size": "word", "name": "newY", "description": "New Y coordinate of content region's upper left corner (global)" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void MoveWindow(newX,newY,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-82" }]
     },
     {
       "toolcall": "1A",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "DragWindow",
-      "description": "Pulls around dotted outln of spec window, following movements of mouse until bttn released"
+      "description": "Pulls around a dotted outline of a specified window, following movements of mouse until button is released",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "grid", "description": "Drag resolution, zero for default (see Table 25-7)" },
+          { "size": "word", "name": "startX", "description": "Starting X coordinate of cursor, in global coordinates" },
+          { "size": "word", "name": "startY", "description": "Starting Y coordinate of cursor, in global coordinates" },
+          { "size": "word", "name": "grace", "description": "Grace buffer around bounds" },
+          { "size": "long", "name": "boundsRectPtr", "description": "POINTER to RECT structure for cursor boundary, NIL for default" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void DragWindow(grid,startX,startY,grace,boundsRectPtr,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-44" }]
     },
     {
       "toolcall": "1B",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GrowWindow",
-      "description": "Pulls around grow image of spec window, following movements of mouse until bttn released"
+      "description": "Pulls around a grow image of a specified window, following the movements of the mouse until the mouse button is released",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "minWidth", "description": "Minimum width of content region" },
+          { "size": "word", "name": "minHeight", "description": "Minimum height of content region" },
+          { "size": "word", "name": "startX", "description": "Starting X coordinate of cursor, in global coordinates" },
+          { "size": "word", "name": "startY", "description": "Starting Y coordinate of cursor, in global coordinates" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output":[
+          { "size": "long", "name": "newSize", "description": "High word = new width; low word = new height" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal LongWord GrowWindow(minWidth,minHeight,startX,startY,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-75" }]
     },
     {
       "toolcall": "1C",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "SizeWindow",
-      "description": "Enlarges or shrinks port rectangle of spec window's GrafPort to a spec width & height"
+      "description": "Enlarges or shrinks port rectangle of specified window's GrafPort to a specified width & height",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "newWidth", "description": "New width of window in pixels" },
+          { "size": "word", "name": "newHeight", "description": "New height of window in pixels" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SizeWindow(newWidth,newHeight,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-115" }]
     },
     {
       "toolcall": "1D",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "TaskMaster",
-      "description": "Calls GetNextEvent & looks in event part of task record to see if it can handle the event"
+      "description": "Calls GetNextEvent & looks in event part of task record to see if it can handle the event",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "taskMask", "description": "Mask used by TaskMaster to call GetNextEvent" },
+          { "size": "long", "name": "taskRecPtr", "description": "POINTER to Window Manager task record" }
+        ],
+        "output":[
+          { "size": "word", "name": "taskCode", "description": "Code indicating action to be taken; 0=no further task to perform" }
+        ]
+      },
+      "errors": ["wm0e03"],
+      "c": { "call": "extern pascal Word TaskMaster(taskMask,taskRecPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-118" }]
     },
     {
       "toolcall": "1E",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "BeginUpdate",
-      "description": "Replaces visible region of window's GrafPort with intersection of visible & update region"
+      "description": "Replaces visible region of window's GrafPort with intersection of visible & update region. Use pattern is BeginUpdate, draw window contents, EndUpdate.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void BeginUpdate(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-35" }]
     },
     {
       "toolcall": "1F",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "EndUpdate",
-      "description": "Restores normal visible region of spec window's GrafPort that was changed by BeginUpdate"
+      "description": "Restores normal visible region of specified window's GrafPort that was changed by BeginUpdate",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void EndUpdate(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-47" }]
     },
     {
       "toolcall": "20",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetWMgrPort",
-      "description": "Returns a pointer to the Window Manager's port"
+      "description": "Returns a pointer to the Window Manager's port",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "wPortPtr", "description": "POINTER to Window Manager's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal GrafPortPtr GetWMgrPort()" },
+      "docs": [{ "ref": "tbv2", "page": "25-71" }]
     },
     {
       "toolcall": "21",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "PinRect",
-      "description": "Pins a specified point inside a specified rectangle"
+      "description": "Pins a specified point inside a specified rectangle",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "theXPt", "description": "X coordinate of point to be pinned" },
+          { "size": "word", "name": "theYPt", "description": "Y coordinate of point to be pinned" },
+          { "size": "long", "name": "theRectPtr", "description": "POINTER to RECT data structure defining boundary of point" }
+        ],
+        "output": [
+          { "size": "long", "name": "pinnedPt", "description": "POINT; high word = X coordinate, low word = Y coordinate" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { 
+        "call": "extern pascal Long PinRect(theXPt,theYPt,theRectPtr)",
+        "altcall": "extern pascal Long PinRect(thePoint,theRectPtr)"
+      },
+      "docs": [{ "ref": "tbv2", "page": "25-89" }]
     },
     {
       "toolcall": "22",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "HiliteWindow",
-      "description": "Highlights or unhighlights a specified window"
+      "description": "Highlights or unhighlights a specified window",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "fHiliteFlag", "description": "BOOLEAN; TRUE to highlight window, FALSE to unhighlight" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void HiliteWindow(fHiliteFlag,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-79" }]
     },
     {
       "toolcall": "23",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "ShowHide",
-      "description": "Shows or hides a window"
+      "description": "Shows or hides a window",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "showFlag", "description": "BOOLEAN; TRUE to show, FALSE to hide" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ShowHide(showFlag,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-113" }]
     },
     {
       "toolcall": "24",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "BringToFront",
-      "description": "Brings spec window to front of all windows & redraws windows as necessary (no highlight)"
+      "description": "Brings specified window to front of all windows and redraws windows as necessary (no highlight)",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void BringToFront(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-36" }]
     },
     {
       "toolcall": "25",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "WindNewRes",
-      "description": "Closes Window Manager's GrafPort & opens new GrafPort in the other SHR resolution"
+      "description": "Closes Window Manager's GrafPort & opens new GrafPort in the other SHR resolution (call after resolution change)",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void WindNewRes" },
+      "docs": [{ "ref": "tbv2", "page": "25-135" }]
     },
     {
       "toolcall": "26",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "TrackZoom",
-      "description": "Tracks mouse until bttn released, hi-lighting zoom region if mouse location is inside it"
+      "description": "Tracks mouse until button released, hi-lighting zoom region if mouse location is inside it",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "startX", "description": "Starting X coordinate of cursor, in global coordinates" },
+          { "size": "word", "name": "startY", "description": "Starting Y coordinate of cursor, in global coordinates" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "word", "name": "zoom", "description": "BOOLEAN; TRUE if zoom region was selected, FALSE if not" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { 
+        "call": "extern pascal Boolean TrackZoom(startX,startY,theWindowPtr)",
+        "altcall": "extern pascal Boolean TrackZoom(start,theWindowPtr)"
+      },
+      "docs": [{ "ref": "tbv2", "page": "25-129" }]
     },
     {
       "toolcall": "27",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "ZoomWindow",
-      "description": "Switches size & position of spec window between its current size & pos & its max size"
+      "description": "Switches size & position of specified window between its current size and position & its max size",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ZoomWindow(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-138" }]
     },
     {
       "toolcall": "28",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "SetWRefCon",
-      "description": "Sets value that is inside spec window record & is reserved for the application's use"
+      "description": "Sets value that is inside specified window record & is reserved for the application's use",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "wRefCon", "description": "Value of wRefCon field" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetWRefCon(wRefCon,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-110" }]
     },
     {
       "toolcall": "29",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetWRefCon",
-      "description": "Returns value from spec window's record that was passed to either NewWindow or SetWRefCon"
+      "description": "Returns value from specified window's record that was passed to either NewWindow or SetWRefCon",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "long", "name": "wRefCon", "description": "Current value of wRefCon field" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Longword GetWRefCon(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-72" }]
     },
     {
       "toolcall": "2A",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetNextWindow",
-      "description": "Returns ptr to next window in window list after spec window; NIL if last window in list"
+      "description": "Returns pointer to next window in window list after specified window; NIL if last window in list",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "long", "name": "nextWindowPtr", "description": "POINTER to next window's GrafPort in list; NIL if last window" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal GrafPortPtr GetNextWindow(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-61" }]
     },
     {
       "toolcall": "2B",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetWKind",
-      "description": "Indicates whether a spec window is a system window or an application window"
+      "description": "Indicates whether a specified window is a system window or an application window",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "word", "name": "windowKind", "description": "Bit 15 is for application window, 1 for system window" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word GetWKind(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-70" }]
     },
     {
       "toolcall": "2C",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetWFrame",
-      "description": "Returns the bit flag that describes a specified window's frame type"
+      "description": "Returns the bit flag that describes a specified window's frame type",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "word", "name": "wFrame", "description": "Bit flag with window's frame type" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word GetWFrame(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-69" }]
     },
     {
       "toolcall": "2D",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "SetWFrame",
-      "description": "Sets the bit flag that describes a specified window's frame type"
+      "description": "Sets the bit flag that describes a specified window's frame type",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wFrame", "description": "Bit flag with window's frame type" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word SetWFrame(wFrame,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-108" }]
     },
     {
       "toolcall": "2E",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetStructRgn",
-      "description": "Returns a handle to a specified window's structure region"
+      "description": "Returns a handle to a specified window's structure region",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "long", "name": "wStructHandle", "description": "HANDLE to window's structure region" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal RgnHandle GetStructRgn(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-65" }]
     },
     {
       "toolcall": "2F",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetContentRgn",
-      "description": "Returns a handle to a specified window's content region"
+      "description": "Returns a handle to a specified window's content region",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "long", "name": "wContHandle", "description": "HANDLE to window's content region" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal RgnHandle GetContentRgn(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-53" }]
     },
     {
       "toolcall": "30",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetUpdateRgn",
-      "description": "Returns a handle to a specified window's update region"
+      "description": "Returns a handle to a specified window's update region",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "long", "name": "wUpdateHandle", "description": "HANDLE to window's update region" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal RgnHandle GetUpdateRgn(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-67" }]
     },
     {
       "toolcall": "31",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetDefProc",
-      "description": "Returns ptr to routine that's called to draw, hit test, & define window's frame & behavior"
+      "description": "Returns pointer to routine that's called to draw, hit test, & define window's frame & behavior",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "long", "name": "wDefProcPtr", "description": "POINTER to window's definition procedure" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal LongProcPtr GetDefProc(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-55" }]
     },
     {
       "toolcall": "32",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "SetDefProc",
-      "description": "Sets ptr to routine that's called to draw, hit test, & define window's frame & behavior"
+      "description": "Sets pointer to routine that defines drawing, hit test, window's frame and behavior",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "wDefProcPtr", "description": "POINTER to window's definition procedure" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetDefProc(wDefProcPtr,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-98" }]
     },
     {
       "toolcall": "33",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetWControls",
-      "description": "Returns the handle to the first control in the window's control list"
+      "description": "Returns the handle to the first control in the window's control list",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "long", "name": "controlHandle", "description": "HANDLE to first control in window's control list; NIL if none" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal CtlRecHndl GetWControls(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-68" }]
     },
     {
       "toolcall": "34",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "SetOriginMask",
-      "description": "Specifies the mask used to put the horizontal origin on a grid"
+      "description": "Specifies the mask used to put the horizontal origin on a grid (very useful for preserving dithered colors in 640 mode)",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "originMask", "description": "Mask used to place horizontal origin on a grid" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetOriginMask(originMask,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-104" }]
     },
     {
       "toolcall": "35",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetInfoRefCon",
-      "description": "Returns value associated with the draw information bar routine for a spec window"
+      "description": "Returns value associated with the draw information bar routine for a specified window",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "long", "name": "infoRefCon", "description": "Value passed to draw information bar routine" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Longword GetinfoRefCon(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-59" }]
     },
     {
       "toolcall": "36",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "SetInfoRefCon",
-      "description": "Sets value associated with the draw information bar routine for a spec window"
+      "description": "Sets value associated with the draw information bar routine for a specified window",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "infoRefCon", "description": "Value passed to draw information bar routine" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal SetinfoRefCon(infoRefCon,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-102" }]
     },
     {
       "toolcall": "37",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetZoomRect",
-      "description": "Returns ptr to rectangle used as content's zoomed or unzoomed size for a specified window"
+      "description": "Returns pointer to rectangle used as content's zoomed or unzoomed size for a specified window",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "long", "name": "wZoomSizePtr", "description": "POINTER to RECT data structure used as content's zoomed size" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Rect* GetZoomRect(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-74" }]
     },
     {
       "toolcall": "38",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "SetZoomRect",
-      "description": "Sets rectangle to be used as content's zoomed or unzoomed size for a specified window"
+      "description": "Sets rectangle to be used as content's zoomed or unzoomed size for a specified window",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "wZoomSizePtr", "description": "POINTER to rectangle to be used as content's zoomed size" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetZoomRect(wZoomSizePtr,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-112" }]
     },
     {
       "toolcall": "39",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "RefreshDesktop",
-      "description": "Redraws the entire desktop and all the windows"
+      "description": "Redraws the entire desktop and all the windows",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "redrawRect", "description": "POINTER to RECT of rectangle to redraw; NIL for entire screen" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void RefreshDesktop(redrawRect)" },
+      "docs": [{ "ref": "tbv2", "page": "25-91" }]
     },
     {
       "toolcall": "3A",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "InvalRect",
-      "description": "Accumulates spec rectangle into update region of window whose GrafPort is current port"
+      "description": "Accumulates specified rectangle into update region of window whose GrafPort is current port (tells WM it needs updating)",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "badRectPtr", "description": "POINTER to RECT data structure of rectangle to be added" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void InvalRect(badRectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-80" }]
     },
     {
       "toolcall": "3B",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "InvalRgn",
-      "description": "Accumulates spec region into update region of window whose GrafPort is current port"
+      "description": "Accumulates specified region into update region of window whose GrafPort is current port (tells WM it needs updating)",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "badRgnHandle", "description": "HANDLE to region to be added to update region" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void InvalRgn(badRgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "25-81" }]
     },
     {
       "toolcall": "3C",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "ValidRect",
-      "description": "Removes spec rectangle from update region of current GrafPort window & cancels updates"
+      "description": "Removes specified rectangle from update region of current GrafPort window & cancels updates",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "goodRectPtr", "description": "POINTER to RECT data structure of rectangle to be removed" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ValidRect(goodRectPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-131" }]
     },
     {
       "toolcall": "3D",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "ValidRgn",
-      "description": "Removes spec region from update region of current GrafPort window & cancels updates"
+      "description": "Removes specified region from update region of current GrafPort window & cancels updates",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "goodRgnHandle", "description": "HANDLE to region to be subtracted from update region" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ValidRgn(goodRgnHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "25-132" }]
     },
     {
       "toolcall": "3E",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetContentOrig",
-      "description": "Returns value used by TaskMaster to set origin of window's GrafPort when update event"
+      "description": "Returns value used by TaskMaster to set origin of window's GrafPort when update event",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "long", "name": "origin", "description": "POINT; low word = Y origin, high word = X origin" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Long GetContentOrigin(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-52" }]
     },
     {
       "toolcall": "3F",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "SetContentOrig",
-      "description": "Sets the origin of the window's GrafPort when handling an update event"
+      "description": "Sets the origin of the window's GrafPort when handling an update event",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "xOrigin", "description": "Content region's horizontal offset into data area" },
+          { "size": "word", "name": "yOrigin", "description": "Content region's vertical offset into data area" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetContentOrigin(xOrigin,yOrigin,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-95" }]
     },
     {
       "toolcall": "40",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetDataSize",
-      "description": "Returns the height and width of the data area of a specified window"
+      "description": "Returns the height and width of the data area of a specified window",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "long", "name": "dataSize", "description": "Low word = height; high word = width" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal LongWord GetDataSize(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-54" }]
     },
     {
       "toolcall": "41",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "SetDataSize",
-      "description": "Sets the height and width of the data area of a specifed window"
+      "description": "Sets the height and width of the data area of a specifed window",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "dataWidth", "description": "Width of data area in pixels" },
+          { "size": "word", "name": "dataHeight", "description": "Height of data area in pixels" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetDataSize(dataWidth,dataHeight,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-97" }]
     },
     {
       "toolcall": "42",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetMaxGrow",
-      "description": "Returns the maximum values to which a spec window's content region can grow"
+      "description": "Returns the maximum values to which a specified window's content region can grow",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "long", "name": "maxGrow", "description": "Low word = maxHeight; high word = maxWidth" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal LongWord GetMaxGrow(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-60" }]
     },
     {
       "toolcall": "43",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "SetMaxGrow",
-      "description": "Sets the maximum values to which a spec window's content region can grow"
+      "description": "Sets the maximum values to which a specified window's content region can grow",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "maxWidth", "description": "Maximum content width in pixels" },
+          { "size": "word", "name": "maxHeight", "description": "Maximum content height in pixels" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetMaxGrow(maxWidth,maxHeight,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-103" }]
     },
     {
       "toolcall": "44",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetScroll",
-      "description": "Returns # pixels that TaskMaster will scroll content region when arrow scroll bar selected"
+      "description": "Returns the number of pixels that TaskMaster will scroll content region when arrow scroll bar selected",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "long", "name": "scrollAmount", "description": "Low word = vertical amount; high word = horizontal amount" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal LongWord GetScroll(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-64" }]
     },
     {
       "toolcall": "45",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "SetScroll",
-      "description": "Sets # of pixels that TaskMaster will scroll content region when arrow scroll bar selected"
+      "description": "Sets the number of pixels that TaskMaster will scroll content region when arrow scroll bar selected",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "hScroll", "description": "Number of pixels to scroll horizontally" },
+          { "size": "word", "name": "vScroll", "description": "Number of pixels to scroll vertically" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetScroll(hScroll,vScroll,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-106" }]
     },
     {
       "toolcall": "46",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetPage",
-      "description": "Returns # of pixels that TaskMaster will scroll content region when selected on scroll bar"
+      "description": "Returns the number of pixels that TaskMaster will scroll content region when selected on scroll bar",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "long", "name": "pageAmount", "description": "Low word = vertical amount; high word = horizontal amount" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GetPage(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-62" }]
     },
     {
       "toolcall": "47",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "SetPage",
-      "description": "Sets # of pixels that TaskMaster will scroll content region when selected on scroll bar"
+      "description": "Sets the number of pixels that TaskMaster will scroll content region when selected on scroll bar",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "hPage", "description": "Number of pixels to page horizontally" },
+          { "size": "word", "name": "vPage", "description": "Number of pixels to page vertically" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetPage(hPage,vPage,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-105" }]
     },
     {
       "toolcall": "48",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetContentDraw",
-      "description": "Returns pointer to routine that draws content region of a specified window"
+      "description": "Returns pointer to routine that draws content region of a specified window",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "long", "name": "contentDrawPtr", "description": "POINTER to routine called to draw content region" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal VoidProcPtr GetContentDraw(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-51" }]
     },
     {
       "toolcall": "49",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "SetContentDraw",
-      "description": "Sets pointer to routine that draws content region of a specified window"
+      "description": "Sets pointer to routine that draws content region of a specified window",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "contentDrawPtr", "description": "POINTER to routine to draw content region" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetContentDraw(contentDrawPtr,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-94" }]
     },
     {
       "toolcall": "4A",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetInfoDraw",
-      "description": "Returns pointer to routine that draws information bar for specified window"
+      "description": "Returns pointer to routine that draws information bar for specified window",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "long", "name": "infoDrawPtr", "description": "POINTER to routine called to draw information bar" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal VoidProcPtr GetContentDraw(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-58" }]
     },
     {
       "toolcall": "4B",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "SetSysWindow",
-      "description": "Marks a specified window as a system window"
+      "description": "Marks a specified window as a system window",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetSysWindow(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-107" }]
     },
     {
       "toolcall": "4C",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetSysWFlag",
-      "description": "Indicate whether a specified window is a a system or an application window"
+      "description": "Indicate whether a specified window is a a system or an application window",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ],
+        "output": [
+          { "size": "word", "name": "sysFlag", "description": "BOOLEAN; TRUE if system window, FALSE if application window" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean GetSysWFlag(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-66" }]
     },
     {
       "toolcall": "4D",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "StartDrawing",
-      "description": "Makes a specified window the current port and sets its origin"
+      "description": "Makes a specified window the current port and sets its origin",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void StartDrawing(theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-116" }]
     },
     {
       "toolcall": "4E",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "SetWindowIcons",
-      "description": "Sets the icon font for the Window Manager"
+      "description": "Sets the icon font for the Window Manager",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "newFontHandle", "description": "HANDLE to new icon font; negative to not replace font" }
+        ],
+        "output": [
+          { "size": "long", "name": "oldFontHandle", "description": "HANDLE to icon font before call" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal FontHndl SetWindowicons(newFontHandle)" },
+      "docs": [{ "ref": "tbv2", "page": "25-109" }]
     },
     {
       "toolcall": "4F",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetRectInfo",
-      "description": "Sets information rectangle to coordinates of the information bar rectangle"
+      "description": "Sets information rectangle to coordinates of the information bar rectangle",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "infoRectPtr", "description": "POINTER to destination RECT where rectangle will be stored" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void GetRectinfo(infoRectPtr,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-63" }]
     },
     {
       "toolcall": "50",
       "toolnum": "0E",
       "toolname": "Window Manager",
-      "callname": "StartInfoDrawi",
-      "description": "Allows application to draw or hit test outside of information bar definition procedure"
+      "callname": "StartInfoDrawing",
+      "description": "Allows application to draw or hit test outside of information bar definition procedure",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "infoRectPtr", "description": "POINTER to destination RECT where information bar's data will be stored" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void StartInfoDrawing(infoRectPtr,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-117" }]
     },
     {
       "toolcall": "51",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "EndInfoDrawing",
-      "description": "Puts the Window Manager back into a global coordinate system"
+      "description": "Puts the Window Manager back into a global coordinate system",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void EndInfoDrawing()" },
+      "docs": [{ "ref": "tbv2", "page": "25-47" }]
     },
     {
       "toolcall": "52",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetFirstWindow",
-      "description": "Returns pointer to first window in the window list (window may not be the active window)"
+      "description": "Returns pointer to first window in the window list (window may not be the active window)",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "firstWindowPtr", "description": "POINTER to first window, or NIL" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal GrafPortPtr GetFirstWindow()" },
+      "docs": [{ "ref": "tbv2", "page": "25-56" }]
     },
     {
       "toolcall": "53",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "WindDragRect",
-      "description": "Pulls dotted outln of spec rectangle around scrn, follown mvmnts of mouse til btn released"
+      "description": "Pulls dotted outline of specified rectangle around screen, following the movements of the mouse until the mouse button is released",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "actionProcPtr", "description": "POINTER to routine; NIL for default" },
+          { "size": "long", "name": "dragPatternPtr", "description": "POINTER to pattern to use for drag outline" },
+          { "size": "word", "name": "startX", "description": "X coordinate of starting point, in global coordinates" },
+          { "size": "word", "name": "startY", "description": "Y coordinate of starting point, in global coordinates" },
+          { "size": "long", "name": "dragRectPtr", "description": "POINTER to RECT data structure of rectangle to be dragged" },
+          { "size": "long", "name": "limitRectPtr", "description": "POINTER to RECT of limit rectangle" },
+          { "size": "long", "name": "slopRectPtr", "description": "POINTER to RECT of slop rectangle" },
+          { "size": "word", "name": "dragFlag", "description": "Bit flag customizing drag rectangle (see Toolbox Ref Vol1 Figure 4-25)" }
+        ],
+        "output": [
+          { "size": "long", "name": "moveDelta", "description": "High word = amount X changed; low word = amount Y changed" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Longword WindDragRect(actionProcPtr,dragPatternPtr,startX,startY,dragRectPtr,limitRectPtr,slopRectPtr,dragFlag)" },
+      "docs": [{ "ref": "tbv2", "page": "25-133" }]
     },
     {
       "toolcall": "54",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetDragRect",
-      "description": "Returns the address of the internal DragRect routine"
+      "description": "Returns the address of the internal DragRect routine (undocumented?)",
+      "parameters": { "none": true },
+      "c": { "call": false }
     },
     {
       "toolcall": "55",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "DrawInfoBar",
-      "description": "Redraws the info bar of the window specified by grafPortPtr"
+      "description": "Redraws the info bar of the window specified by grafPortPtr",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "grafPortPtr", "description": "Pointer to GrafPort for window" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void DrawInfoBar(grafPortPtr);" },
+      "docs": [{ "ref": "tbv3", "page": "52-26" }]
     },
     {
       "toolcall": "56",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "WindowGlobal",
-      "description": "Spec a mask that determines how Window Manager performs tasks & retuns windowGlobalFlag"
+      "description": "Specifies a mask that determines how Window Manager performs tasks and retuns windowGlobalFlag",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "windowGlobalMask", "description": "Global mask (see Toolbox Ref Vol2, Table 25-11)" }
+        ],
+        "output": [
+          { "size": "word", "name": "windowGlobalFlag", "description": "Current state of window global flag (see Toolbox Ref Vol2, Table 25-11)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word WindowGlobal(windowGlobalMask)" },
+      "docs": [{ "ref": "tbv2", "page": "25-136" }]
     },
     {
       "toolcall": "57",
       "toolnum": "0E",
       "toolname": "Window Manager",
-      "callname": "SetContentOrig",
-      "description": "Sets origin of windows GrafPort when hndlng updt event & ctrls scrolling of content region"
+      "callname": "SetContentOrigin",
+      "description": "Sets origin of windows GrafPort when hndlng updt event & ctrls scrolling of content region",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "xOrigin", "description": "Content region's horizontal offset into data area" },
+          { "size": "word", "name": "yOrigin", "description": "Content region's vertical offset into data area" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal SetContentOrigin(xOrigin,yOrigin,theWindowPtr)" },
+      "docs": [{ "ref": "tbv2", "page": "25-95" }]
     },
     {
       "toolcall": "58",
       "toolnum": "0E",
       "toolname": "Window Manager",
-      "callname": "GetWindowMgrGl",
-      "description": "Returns a pointer to the Window Manager global data area - call not made by application"
+      "callname": "GetWindowMgrGlobals",
+      "description": "Returns a pointer to the Window Manager global data area - call not made by application",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "globalDataPtr", "description": "Pointer to the global data area" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Pointer GetWindowMgrGlobals()" },
+      "docs": [{ "ref": "tbv3", "page": "52-30" }]
     },
     {
       "toolcall": "59",
@@ -9372,239 +10286,527 @@
         ]
       },
       "errors": ["none"],
-      "c": { "call": "extern pascal Word AlertWindow(alertFlags, subStrPtr, alertStrRef)" },
+      "c": { "call": "extern pascal Word AlertWindow(alertFlags,subStrPtr,alertStrRef)" },
       "docs": [{ "ref": "tbv3", "page": "52-21" }]
     },
     {
       "toolcall": "5A",
       "toolnum": "0E",
       "toolname": "Window Manager",
-      "callname": "StartFrameDraw",
-      "description": "Sets up to draw a window frame - should be called only be window definition procedures"
+      "callname": "StartFrameDrawing",
+      "description": "Sets up to draw a window frame - should be called only be window definition procedures",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "windowPtr", "description": "Pointer to the window to be drawn" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void StartFrameDrawing(windowPtr)" },
+      "docs": [{ "ref": "tbv3", "page": "52-35" }]
     },
     {
       "toolcall": "5B",
       "toolnum": "0E",
       "toolname": "Window Manager",
-      "callname": "EndFrameDrawin",
-      "description": "Restores Window Manager variables after a call to StartFrameDrawing"
+      "callname": "EndFrameDrawing",
+      "description": "Restores Window Manager variables after a call to StartFrameDrawing",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void EndFrameDrawing()" },
+      "docs": [{ "ref": "tbv3", "page": "52-27" }]
     },
     {
       "toolcall": "5C",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "ResizeWindow",
-      "description": "Moves, resizes, & draws the window specified by grafPortPtr"
+      "description": "Moves, resizes, and draws the window specified by grafPortPtr",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "hiddenFlag", "description": "BOOLEAN; whether to hide covered area" },
+          { "size": "long", "name": "rectPtr", "description": "POINTER to new content rectangle" },
+          { "size": "long", "name": "grafPortPtr", "description": "POINTER to window's GrafPort" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ResizeWindow(hiddenFlag,rectPtr,grafPortPtr)" },
+      "docs": [{ "ref": "tbv3", "page": "52-34" }]
     },
     {
       "toolcall": "5D",
       "toolnum": "0E",
       "toolname": "Window Manager",
-      "callname": "TaskMasterCont",
-      "description": "Internal routine that handles events inside the content region of a window"
+      "callname": "TaskMasterContent",
+      "description": "Internal routine that handles events inside the content region of a window. Your program should never issue this call.",
+      "docs": [{ "ref": "tbv3", "page": "52-46" }]
     },
     {
       "toolcall": "5E",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "TaskMasterKey",
-      "description": "Internal routine that handles keystroke events inside the content region of a window"
+      "description": "Internal routine that handles keystroke events inside the content region of a window. Your program should never issue this call.",
+      "docs": [{ "ref": "tbv3", "page": "52-49" }]
     },
     {
       "toolcall": "5F",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "TaskMaskerDA",
-      "description": "This call is the TaskMaster entry point for desk accessories"
+      "description": "This call is the TaskMaster entry point for desk accessories",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "eventMask", "description": "Not used" },
+          { "size": "long", "name": "taskRecPtr", "description": "POINTER to extended task record" }
+        ],
+        "output": [
+          { "size": "word", "name": "taskCode", "description": "TaskMaster result code" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word TaskMasterDA(eventMask,taskRecPtr)" },
+      "docs": [{ "ref": "tbv3", "page": "52-48" }]
     },
     {
       "toolcall": "60",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "CompileText",
-      "description": "Combines source text with either custom or standard strings to compile a result text string"
+      "description": "Combines source text with either custom or standard strings to compile a result text string",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "subType", "description": "Type of custom substitution strings" },
+          { "size": "long", "name": "subStringsPtr", "description": "POINTER to substitution array" },
+          { "size": "long", "name": "srcStringPtr", "description": "POINTER to source string" },
+          { "size": "word", "name": "srcSize", "description": "Length of source string being pointed to by srcStringPtr" }
+        ],
+        "output": [
+          { "size": "long", "name": "stringHandle", "description": "HANDLE to result string" }
+        ]
+      },
+      "errors": ["wm0e04"],
+      "c": { "call": "extern pascal Handle CompileText(subType,subStringsPtr,srcStringPtr,srcSize)" },
+      "docs": [{ "ref": "tbv3", "page": "52-24" }]
     },
     {
       "toolcall": "61",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "NewWindow2",
-      "description": "Performs the same function as NewWindow but allows the input window template as a resource"
+      "description": "Performs the same function as NewWindow but allows the input window template as a resource",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "titlePtr", "description": "POINTER to replacement title" },
+          { "size": "long", "name": "refCon", "description": "RefCon to replace value in template" },
+          { "size": "long", "name": "contentDrawPtr", "description": "POINTER to replacement content-draw routine" },
+          { "size": "long", "name": "defProcPtr", "description": "POINTER to replacement window definition procedure" },
+          { "size": "word", "name": "paramTableDesc", "description": "Type of reference in paramTableRef" },
+          { "size": "long", "name": "paramTableRef", "description": "Reference to window template" },
+          { "size": "word", "name": "resourceType", "description": "Resource type of template referred to by paramTableRef" }
+        ],
+        "output": [
+          { "size": "long", "name": "grafPortPtr", "description": "POINTER to window's GrafPort; NIL if error" }
+        ]
+      },
+      "errors": ["rmUnch","mmUnch","wmUnch","cmUnch"],
+      "c": { "call": "extern pascal Pointer NewWindow2(titlePtr,refCon,contentDrawPtr,defProcPtr,paramTableDesc,paramTableRef,resourceType)" },
+      "docs": [{ "ref": "tbv3", "page": "52-31" }]
     },
     {
       "toolcall": "62",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "ErrorWindow",
-      "description": "Creates a dialog box displaying an error message for a specified error code"
+      "description": "Creates a dialog box displaying an error message for a specified error code",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "subType", "description": "Type of custom substitution string" },
+          { "size": "long", "name": "subStringPtr", "description": "POINTER to substitution string" },
+          { "size": "word", "name": "errNum", "description": "GS/OS error number" }
+        ],
+        "output": [
+          { "size": "word", "name": "buttonNumber", "description": "Number of the button clicked by the user" }
+        ]
+      },
+      "errors": ["rmUnch"],
+      "c": { "call": "extern pascal Word ErrorWindow(subType,subStringPtr,errNum)" },
+      "docs": [{ "ref": "tbv3", "page": "52-28" }]
     },
     {
       "toolcall": "63",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetAuxWindInfo",
-      "description": "Returns a pointer to a block of auxiliary data for a specified window"
+      "description": "Returns a pointer to a block of auxiliary data for a specified window",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "Window pointer" }
+        ],
+        "output": [
+          { "size": "long", "name": "auxInfoPtr", "description": "POINTER to auxiliary window record" }
+        ]
+      },
+      "errors": ["mm0201"],
+      "c": { "call": "extern pascal Pointer GetAuxWindInfo(theWindowPtr)" },
+      "docs": [{ "ref": "gs16pr60", "page": "303" }]
     },
     {
       "toolcall": "64",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "DoModalWindow",
-      "description": "Handles user interaction in a window containing extended controls"
+      "description": "Handles user interaction in a window containing extended controls",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "eventPtr", "description": "POINTER to an extended task record" },
+          { "size": "long", "name": "updateProc", "description": "POINTER to update procedure; NIL if for standard" },
+          { "size": "long", "name": "eventHook", "description": "POINTER to event hook routine; NIL for none" },
+          { "size": "long", "name": "beepProc", "description": "POINTER to beep procedure" },
+          { "size": "word", "name": "flags", "description": "Flags" }
+        ],
+        "output": [
+          { "size": "long", "name": "ID", "description": "ID of control or menu item that was selected" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Long DoModalWindow(eventPtr,updateProc,eventHook,beepProc,flags)" },
+      "docs": [{ "ref": "gs16pr60", "page": "298" }]
     },
     {
       "toolcall": "65",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "MWGetCtlPart",
-      "description": "Returns the part code from any TrackControl call made by the most recent DoModalWindow call"
+      "description": "Returns the part code from any TrackControl call made by the most recent DoModalWindow call",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "ctlPart", "description": "Part code" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word MWGetCtlPart()" },
+      "docs": [{ "ref": "gs16pr60", "page": "308" }]
     },
     {
       "toolcall": "66",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "MWSetMenuProc",
-      "description": "Informs DoModalWindow of the address of a routine to be called when the frontmost window changes inside a DoModalWindow call"
+      "description": "Informs DoModalWindow of the address of a routine to be called when the frontmost window changes inside a DoModalWindow call",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "newMenuProc", "description": "Pointer to new menu procedure or $FFFFFFFF" }
+        ],
+        "output": [
+          { "size": "long", "name": "oldMenuProc", "description": "Pointer to previous menu procedure" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal VoidProcPtr MWSetMenuProc(newMenuProc)" },
+      "docs": [{ "ref": "gs16pr60", "page": "309" }]
     },
     {
       "toolcall": "67",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "MWStdDrawProc",
-      "description": "MWStdDrawProc is what DoModalWindow calls to update a modal window if you do not supply your own update procedure"
+      "description": "MWStdDrawProc is what DoModalWindow calls to update a modal window if you do not supply your own update procedure",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void MWStdDrawProc()" },
+      "docs": [{ "ref": "gs16pr60", "page": "311" }]
     },
     {
       "toolcall": "68",
       "toolnum": "0E",
       "toolname": "Window Manager",
-      "callname": "MWSetUpEditMen",
-      "description": "Sets the sate of the standard emenu items based on the frontmost window"
+      "callname": "MWSetUpEditMenu",
+      "description": "Sets the sate of the standard emenu items based on the frontmost window",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void MWSetUpEditMenu()" },
+      "docs": [{ "ref": "gs16pr60", "page": "310" }]
     },
     {
       "toolcall": "69",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "FindCursorCtl",
-      "description": "Returns the handle for the control beneath a given point"
+      "description": "Returns the handle for the control beneath a given point",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "ctlHandlePtr", "description": "POINTER to space for control handle" },
+          { "size": "word", "name": "xLoc", "description": "Local X coordinate of point" },
+          { "size": "word", "name": "yLoc", "description": "Local Y coordinate of point" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to the window to check; NIL for front window" }
+        ],
+        "output": [
+          { "size": "word", "name": "partCode", "description": "Part code for the control beneath the given point" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal unsigned int FindCursorCtl(ctlHandlePtr,xLoc,yLoc,theWindowPtr)" },
+      "docs": [{ "ref": "gs16pr60", "page": "302" }]
     },
     {
       "toolcall": "6A",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "ResizeInfoBar",
-      "description": "Sets the vertical size of a standard window's information bar"
+      "description": "Sets the vertical size of a standard window's information bar",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "flags", "description": "Flags (reserved, use 0)" },
+          { "size": "word", "name": "newHeight", "description": "New information bar height" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to the window" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ResizeInfoBar(flags,newHeight,theWindowPtr)" },
+      "docs": [{ "ref": "gs16pr60", "page": "312" }]
     },
     {
       "toolcall": "6B",
       "toolnum": "0E",
       "toolname": "Window Manager",
-      "callname": "HandleDiskInse",
-      "description": "Lets an application know about disks the user has inserted or ejected"
+      "callname": "HandleDiskInsert",
+      "description": "Lets an application know about disks the user has inserted or ejected",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "flags", "description": "Input flags" },
+          { "size": "word", "name": "devNum", "description": "GS/OS device number" }
+        ],
+        "output": [
+          { "size": "word", "name": "resultFlags", "description": "Resulting flags" },
+          { "size": "word", "name": "resultFlags", "description": "Resulting device number" }
+        ]
+      },
+      "errors": ["gsosUnch"],
+      "c": { "call": "extern pascal long HandleDiskInsert(flags,devNum)" },
+      "docs": [{ "ref": "gs16pr60", "page": "304" }]
     },
     {
       "toolcall": "6C",
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "UpdateWindow",
-      "description": "Updates the specified window"
+      "description": "Updates the specified window if it has a content draw routine and the environment permits",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "flags", "description": "Input flags" },
+          { "size": "long", "name": "theWindowPtr", "description": "Window to update" }
+        ]
+      },
+      "errors": ["wm0e05"],
+      "c": { "call": "extern pascal void UpdateWindow(flags,theWindowPtr)" },
+      "docs": [{ "ref": "gs16pr601", "page": "35" }]
     },
     {
       "toolcall": "01",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "MenuBootInit",
-      "description": "Initializes the Menu Manager; called only by Tool Locator - not by application"
+      "description": "Initializes the Menu Manager; called only by Tool Locator - not by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv1", "page": "13-29" }]
     },
     {
       "toolcall": "02",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "MenuStartUp",
-      "description": "Starts up the Menu Manager for use by an application"
+      "description": "Starts up the Menu Manager for use by an application",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "userID", "description": "ID assigned to the application" },
+          { "size": "word", "name": "dPageAddr", "description": "Bank $0 starting address for one page of direct-page space" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void MenuStartUp(userID,dPageAddr)" },
+      "docs": [{ "ref": "tbv1", "page": "13-30" }]
     },
     {
       "toolcall": "03",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "MenuShutDown",
-      "description": "Shuts down the Menu Manager when an application quits"
+      "description": "Shuts down the Menu Manager when an application quits",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void MenuShutDown()" },
+      "docs": [{ "ref": "tbv1", "page": "13-31" }]
     },
     {
       "toolcall": "04",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "MenuVersion",
-      "description": "Returns the version number of the Menu Manager"
+      "description": "Returns the version number of the Menu Manager",
+      "parameters": {
+        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ],
+        "output": [ { "size": "word", "name": "versionInfo", "description": "Version number of Menu Manager" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word MenuVersion()" },
+      "docs": [{ "ref": "tbv1", "page": "13-31" }]
     },
     {
       "toolcall": "05",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "MenuReset",
-      "description": "Resets the Menu Manager; called only when system reset - not by application"
+      "description": "Resets the Menu Manager; called only when system reset - not by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv1", "page": "13-32" }]
     },
     {
       "toolcall": "06",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "MenuStatus",
-      "description": "Indicates whether the Menu Manager is active"
+      "description": "Indicates whether the Menu Manager is active",
+      "parameters": {
+        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ],
+        "output": [ { "size": "word", "name": "activeFlag", "description": "BOOLEAN; TRUE if Menu Manager is active; FALSE if not" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean MenuStatus()" },
+      "docs": [{ "ref": "tbv1", "page": "13-32" }]
     },
     {
       "toolcall": "09",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "MenuKey",
-      "description": "Maps a character to the associated menu and item for that character"
+      "description": "Maps a character to the associated menu and item for that character",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "taskRecPtr", "description": "POINTER to a task record containing character to check" },
+          { "size": "long", "name": "barHandle", "description": "HANDLE to menu bar, or 0 for system menu bar" } 
+      ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void MenuKey(taskRecPtr,barHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "13-61" }]
     },
     {
       "toolcall": "0A",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "GetMenuBar",
-      "description": "Returns the handle of the current menu bar"
+      "description": "Returns the handle of the current menu bar",
+      "parameters": {
+        "input": [ { "size": "long", "name": "longspace", "description": "Space for result" } ],
+        "output": [ { "size": "long", "name": "barHandle", "description": "HANDLE to current menu bar" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal CtlRecHndl GetMenuBar()" },
+      "docs": [{ "ref": "tbv1", "page": "13-44" }]
     },
     {
       "toolcall": "0B",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "MenuRefresh",
-      "description": "Attempts to refresh the screen"
+      "description": "Attempts to refresh the screen.",
+      "parameters": {
+        "input": [ { "size": "long", "name": "redrawRoutinePtr", "description": "POINTER to redraw routine in the application" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void MenuRefresh(redrawRoutinPtr)" },
+      "docs": [{ "ref": "tbv1", "page": "13-64" }]
     },
     {
       "toolcall": "0C",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "FlashMenuBar",
-      "description": "Flashes the entire current menu bar"
+      "description": "Flashes the entire current menu bar",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void FlashMenuBar()" },
+      "docs": [{ "ref": "tbv1", "page": "13-41" }]
     },
     {
       "toolcall": "0D",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "InsertMenu",
-      "description": "Inserts a specified menu into the menu list after a spec menu item or at front of list"
+      "description": "Inserts a specified menu into the menu list after a specified menu item or at front of list",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "addMenuHandle", "description": "HANDLE to menu to insert" },
+          { "size": "word", "name": "insertAfter", "description": "Menu is inserted after this menu; if 0, menu inserted at front" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void InsertMenu(addMenuHandle,insertAfter)" },
+      "docs": [{ "ref": "tbv1", "page": "13-57" }]
     },
     {
       "toolcall": "0E",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "DeleteMenu",
-      "description": "Removes a specified menu from the menu list"
+      "description": "Removes a specified menu from the menu list",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "menuNum", "description": "ID of menu to be deleted" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void DeleteMenu(menuNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-36" }]
     },
     {
       "toolcall": "0F",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "InsertMItem",
-      "description": "Inserts a menu item into a menu after a specified menu item or at the front of the list"
+      "description": "Inserts a menu item into a menu after a specified menu item or at the front of the list",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "addItemPtr", "description": "POINTER to item to insert" },
+          { "size": "word", "name": "insertAfter", "description": "Item after which item is inserted; 0 to add to front, $FFFF at end" }, 
+          { "size": "word", "name": "menuNum", "description": "Menu ID of menu to contain new item, 0 for first menu" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void InsertMItem(additemPtr,insertAfter,menuNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-58" }]
     },
     {
       "toolcall": "10",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "DeleteMItem",
-      "description": "Removes a specified item from the current menu"
+      "description": "Removes a specified item from the current menu",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "itemNum", "description": "Item ID of item to be deleted" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void DeleteMItem(itemNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-37" }]
     },
     {
       "toolcall": "11",
@@ -9758,14 +10960,14 @@
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "SetMItemFlag",
-      "description": "Sets spec item number to be underlined or not underlined & sets the highlighting style"
+      "description": "Sets specified item number to be underlined or not underlined & sets the highlighting style"
     },
     {
       "toolcall": "27",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "GetMItemFlag",
-      "description": "Returns values for a spec item, such as whether it is disabled, underlined or highlighted"
+      "description": "Returns values for a specified item, such as whether it is disabled, underlined or highlighted"
     },
     {
       "toolcall": "28",
@@ -9835,21 +11037,21 @@
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "DisableMItem",
-      "description": "Sets spec menu item to display in dimmed characters & does not allow it to be selected"
+      "description": "Sets specified menu item to display in dimmed characters & does not allow it to be selected"
     },
     {
       "toolcall": "32",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "CheckMItem",
-      "description": "Sets spec menu item to display or to not display a check mark to the left of the item"
+      "description": "Sets specified menu item to display or to not display a check mark to the left of the item"
     },
     {
       "toolcall": "33",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "SetMItemMark",
-      "description": "Sets a spec menu item to display or to not display a spec character to the left of item"
+      "description": "Sets a specified menu item to display or to not display a specified character to the left of item"
     },
     {
       "toolcall": "34",
@@ -10122,14 +11324,14 @@
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "GetCtlTitle",
-      "description": "Returns value in spec ctrl's ctlData field, which, for ctrls w/titles, is ptr to title str"
+      "description": "Returns value in specified ctrl's ctlData field, which, for ctrls w/titles, is ptr to title str"
     },
     {
       "toolcall": "0E",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "HideControl",
-      "description": "Makes spec ctrl invisible by fillng region the ctrl occupies w/bkground pattern of grafprt"
+      "description": "Makes specified ctrl invisible by fillng region the ctrl occupies w/bkground pattern of grafprt"
     },
     {
       "toolcall": "0F",
@@ -10206,7 +11408,7 @@
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "SetCtlValue",
-      "description": "Sets spec ctrl's ctlValue field to a spec value & redraws ctrl to reflect new setting"
+      "description": "Sets specified ctrl's ctlValue field to a specified value & redraws ctrl to reflect new setting"
     },
     {
       "toolcall": "1A",
@@ -10283,7 +11485,7 @@
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "EraseControl",
-      "description": "Makes spec ctrl invisible but doesn't add ctrl's enclosing rectangle to wndw update region"
+      "description": "Makes specified ctrl invisible but doesn't add ctrl's enclosing rectangle to wndw update region"
     },
     {
       "toolcall": "25",
@@ -10563,7 +11765,7 @@
       "toolnum": "11",
       "toolname": "System Loader",
       "callname": "GetLoadSegInfo",
-      "description": "Returns the Memory Segment Table entry corresponding to the spec (by #) load segment"
+      "description": "Returns the Memory Segment Table entry corresponding to the specified (by #) load segment"
     },
     {
       "toolcall": "10",
@@ -10647,7 +11849,7 @@
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "DrawIcon",
-      "description": "Draws a spec icon in a spec mode at a spec location & clips to current visible region"
+      "description": "Draws a specified icon in a specified mode at a specified location & clips to current visible region"
     },
     {
       "toolcall": "0C",
@@ -10794,7 +11996,7 @@
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PrDefault",
-      "description": "Fills the fields of a spec print record with default values for the appropriate printer"
+      "description": "Fills the fields of a specified print record with default values for the appropriate printer"
     },
     {
       "toolcall": "0A",
@@ -10871,7 +12073,7 @@
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PrSetError",
-      "description": "Stores spec value into global variable where Print Manager keeps its printer err codes"
+      "description": "Stores specified value into global variable where Print Manager keeps its printer err codes"
     },
     {
       "toolcall": "16",
@@ -11074,42 +12276,42 @@
       "toolnum": "14",
       "toolname": "Line Edit",
       "callname": "LEKey",
-      "description": "Replaces select range/caret in text of spec edit record w/spec char & leaves insert pnt"
+      "description": "Replaces select range/caret in text of specified edit record w/specified char & leaves insert pnt"
     },
     {
       "toolcall": "12",
       "toolnum": "14",
       "toolname": "Line Edit",
       "callname": "LECut",
-      "description": "Removes selection range from text of spec edit record & places it in LineEdit scrap"
+      "description": "Removes selection range from text of specified edit record & places it in LineEdit scrap"
     },
     {
       "toolcall": "13",
       "toolnum": "14",
       "toolname": "Line Edit",
       "callname": "LECopy",
-      "description": "Copies selection range from text of a spec edit record to the LineEdit scrap"
+      "description": "Copies selection range from text of a specified edit record to the LineEdit scrap"
     },
     {
       "toolcall": "14",
       "toolnum": "14",
       "toolname": "Line Edit",
       "callname": "LEPaste",
-      "description": "Replaces selec range/caret in text of spec edit record w/contents of LineEdit scrap"
+      "description": "Replaces selec range/caret in text of specified edit record w/contents of LineEdit scrap"
     },
     {
       "toolcall": "15",
       "toolnum": "14",
       "toolname": "Line Edit",
       "callname": "LEDelete",
-      "description": "Removes selec range from text of spec edit record without placing it in LineEdit scrap"
+      "description": "Removes selec range from text of specified edit record without placing it in LineEdit scrap"
     },
     {
       "toolcall": "16",
       "toolnum": "14",
       "toolname": "Line Edit",
       "callname": "LEInsert",
-      "description": "Takes spec text & inserts it just before selection range/caret in text of spec edit record"
+      "description": "Takes specified text & inserts it just before selection range/caret in text of specified edit record"
     },
     {
       "toolcall": "17",
@@ -11179,7 +12381,7 @@
       "toolnum": "14",
       "toolname": "Line Edit",
       "callname": "LETextBox2",
-      "description": "Draws spec txt in spec rectangle, justify text as spec, w/word wrap, & handle embed chges"
+      "description": "Draws specified txt in specified rectangle, justify text as spec, w/word wrap, & handle embed chges"
     },
     {
       "toolcall": "21",
@@ -11326,28 +12528,28 @@
       "toolnum": "15",
       "toolname": "Dialog Manager",
       "callname": "DlgCut",
-      "description": "Checks if spec dialog has any editLine items, if so applies LEcut proc to selected item"
+      "description": "Checks if specified dialog has any editLine items, if so applies LEcut proc to selected item"
     },
     {
       "toolcall": "13",
       "toolnum": "15",
       "toolname": "Dialog Manager",
       "callname": "DlgCopy",
-      "description": "Checks if spec dialog has any editLine items, if so applies LEcopy proc to selected item"
+      "description": "Checks if specified dialog has any editLine items, if so applies LEcopy proc to selected item"
     },
     {
       "toolcall": "14",
       "toolnum": "15",
       "toolname": "Dialog Manager",
       "callname": "DlgPaste",
-      "description": "Checks if spec dialog has any editLine items, if so applies LEPaste proc to selected item"
+      "description": "Checks if specified dialog has any editLine items, if so applies LEPaste proc to selected item"
     },
     {
       "toolcall": "15",
       "toolnum": "15",
       "toolname": "Dialog Manager",
       "callname": "DlgDelete",
-      "description": "Checks if spec dialog has any editLine items, if so applies LEDelete proc to selected item"
+      "description": "Checks if specified dialog has any editLine items, if so applies LEDelete proc to selected item"
     },
     {
       "toolcall": "16",
@@ -11417,14 +12619,14 @@
       "toolnum": "15",
       "toolname": "Dialog Manager",
       "callname": "SetIText",
-      "description": "Provides text for spec statText or editLine item in a spec dialog box & draws the item"
+      "description": "Provides text for specified statText or editLine item in a specified dialog box & draws the item"
     },
     {
       "toolcall": "21",
       "toolnum": "15",
       "toolname": "Dialog Manager",
       "callname": "SelectIText",
-      "description": "Sets selection range or insertion point for a spec editLine item in a spec dialog box"
+      "description": "Sets selection range or insertion point for a specified editLine item in a specified dialog box"
     },
     {
       "toolcall": "22",
@@ -11480,7 +12682,7 @@
       "toolnum": "15",
       "toolname": "Dialog Manager",
       "callname": "SetDItemBox",
-      "description": "Changes the display rectangle of a spec item to a new display rectangle"
+      "description": "Changes the display rectangle of a specified item to a new display rectangle"
     },
     {
       "toolcall": "2A",
@@ -11655,7 +12857,7 @@
       "toolnum": "16",
       "toolname": "Scrap Manager",
       "callname": "GetScrap",
-      "description": "Copies scrap info of appropriate type to spec handle, setting handle to correct size"
+      "description": "Copies scrap info of appropriate type to specified handle, setting handle to correct size"
     },
     {
       "toolcall": "0E",
@@ -11914,7 +13116,7 @@
       "toolnum": "19",
       "toolname": "Note Synthesize",
       "callname": "NoteOff",
-      "description": "Switches the spec generator to release mode, which causes note being generated to die out"
+      "description": "Switches the specified generator to release mode, which causes note being generated to die out"
     },
     {
       "toolcall": "0D",
@@ -12131,7 +13333,7 @@
       "toolnum": "1B",
       "toolname": "Font Manager",
       "callname": "GetFamInfo",
-      "description": "Returns family name & characteristics of a font family with a spec family number"
+      "description": "Returns family name & characteristics of a font family with a specified family number"
     },
     {
       "toolcall": "0C",
@@ -12152,7 +13354,7 @@
       "toolnum": "1B",
       "toolname": "Font Manager",
       "callname": "InstallFont",
-      "description": "Finds spec font or best fit if spec font isn't available; loads or scales; makes current"
+      "description": "Finds specified font or best fit if specified font isn't available; loads or scales; makes current"
     },
     {
       "toolcall": "0F",
@@ -12166,7 +13368,7 @@
       "toolnum": "1B",
       "toolname": "Font Manager",
       "callname": "CountFonts",
-      "description": "Returns number of fonts currently available to Font Manager that fit a spec description"
+      "description": "Returns number of fonts currently available to Font Manager that fit a specified description"
     },
     {
       "toolcall": "11",
@@ -12180,7 +13382,7 @@
       "toolnum": "1B",
       "toolname": "Font Manager",
       "callname": "LoadFont",
-      "description": "Loads a spec font into memory (if not already there) & make it current & unpurgeable"
+      "description": "Loads a specified font into memory (if not already there) & make it current & unpurgeable"
     },
     {
       "toolcall": "13",
@@ -12313,7 +13515,7 @@
       "toolnum": "1C",
       "toolname": "List Manager",
       "callname": "NextMember",
-      "description": "Searches spec list record, start w/spec member, & return ptr to member of nxt member found"
+      "description": "Searches specified list record, start w/specified member, & return ptr to member of nxt member found"
     },
     {
       "toolcall": "0C",
@@ -12327,7 +13529,7 @@
       "toolnum": "1C",
       "toolname": "List Manager",
       "callname": "SelectMember",
-      "description": "Select spec member, deselects other select members in list, scrolls list & put spec on top"
+      "description": "Select specified member, deselects other select members in list, scrolls list & put specified on top"
     },
     {
       "toolcall": "0E",
@@ -12341,7 +13543,7 @@
       "toolnum": "1C",
       "toolname": "List Manager",
       "callname": "ResetMember",
-      "description": "Search spec list record, start w/first member, & returns ptr to member record, & deselects"
+      "description": "Search specified list record, start w/first member, & returns ptr to member record, & deselects"
     },
     {
       "toolcall": "10",
@@ -12460,14 +13662,14 @@
       "toolnum": "1D",
       "toolname": "ACE Tool Set",
       "callname": "ACECompress",
-      "description": "Compresses equivalent of NBlks of blocks of digital audio data & stores at spec location"
+      "description": "Compresses equivalent of NBlks of blocks of digital audio data & stores at specified location"
     },
     {
       "toolcall": "0A",
       "toolnum": "1D",
       "toolname": "ACE Tool Set",
       "callname": "ACEExpand",
-      "description": "Decompresses a previously compressed Audio Sample, using spec method, & stores at spec loc"
+      "description": "Decompresses a previously compressed Audio Sample, using specified method, & stores at specified loc"
     },
     {
       "toolcall": "0B",
@@ -12894,7 +14096,7 @@
       "toolnum": "20",
       "toolname": "MIDI Tool Set",
       "callname": "MIDIWritePacke",
-      "description": "Queues spec MIDI packet into output buffer - returns # of bytes written, if successful"
+      "description": "Queues specified MIDI packet into output buffer - returns # of bytes written, if successful"
     },
     {
       "toolcall": "01",
@@ -13174,7 +14376,7 @@
       "toolnum": "00",
       "toolname": "ProDOS 16",
       "callname": "DESTROY",
-      "description": "Deletes a spec standard, extended, or subdir file & updates file system to show deletion"
+      "description": "Deletes a specified standard, extended, or subdir file & updates file system to show deletion"
     },
     {
       "toolcall": "04",
@@ -13237,7 +14439,7 @@
       "toolnum": "00",
       "toolname": "ProDOS 16",
       "callname": "NEWLINE",
-      "description": "Enables or disables the newline read mode for an open file & spec enable mask & character"
+      "description": "Enables or disables the newline read mode for an open file & specified enable mask & character"
     },
     {
       "toolcall": "12",
@@ -13251,7 +14453,7 @@
       "toolnum": "00",
       "toolname": "ProDOS 16",
       "callname": "WRITE",
-      "description": "Attempts to transfer # bytes spec from applications buffer to the spec file, at mark"
+      "description": "Attempts to transfer # bytes specified from applications buffer to the specified file, at mark"
     },
     {
       "toolcall": "14",
@@ -13286,7 +14488,7 @@
       "toolnum": "00",
       "toolname": "ProDOS 16",
       "callname": "SET_EOF",
-      "description": "Sets logical size of oepn file to spec value which may be larger or smaller than current"
+      "description": "Sets logical size of open file to specified value which may be larger or smaller than current"
     },
     {
       "toolcall": "19",
@@ -13356,7 +14558,7 @@
       "toolnum": "00",
       "toolname": "ProDOS 16",
       "callname": "ERASE_DISK",
-      "description": "Puts up dialog box that allows user to erase a spec volume (does not physically format)"
+      "description": "Puts up dialog box that allows user to erase a specified volume (does not physically format)"
     },
     {
       "toolcall": "27",
@@ -13419,7 +14621,7 @@
       "toolnum": "20",
       "toolname": "GS/OS",
       "callname": "DestroyGS",
-      "description": "Deletes a spec standard, extended, or subdir file & updates file system to show deletion"
+      "description": "Deletes a specified standard, extended, or subdir file & updates file system to show deletion"
     },
     {
       "toolcall": "03",
@@ -13524,7 +14726,7 @@
       "toolnum": "20",
       "toolname": "GS/OS",
       "callname": "NewLineGS",
-      "description": "Enables or disables newline read mode for an open file, & spec enable mask & character"
+      "description": "Enables or disables newline read mode for an open file, & specified enable mask & character"
     },
     {
       "toolcall": "12",
@@ -13538,7 +14740,7 @@
       "toolnum": "20",
       "toolname": "GS/OS",
       "callname": "WriteGS",
-      "description": "Attempts to transfer # bytes spec from applications buffer to the spec file, at mark"
+      "description": "Attempts to transfer # bytes specified from applications buffer to the specified file, at mark"
     },
     {
       "toolcall": "14",
@@ -13573,7 +14775,7 @@
       "toolnum": "20",
       "toolname": "GS/OS",
       "callname": "Set_EOFGS",
-      "description": "Sets logical size of oepn file to spec value which may be larger or smaller than current"
+      "description": "Sets logical size of open file to specified value which may be larger or smaller than current"
     },
     {
       "toolcall": "19",
@@ -13650,7 +14852,7 @@
       "toolnum": "20",
       "toolname": "GS/OS",
       "callname": "Erase_DiskGS",
-      "description": "Puts up dialog box that allows user to erase a spec volume (does not physically format)"
+      "description": "Puts up dialog box that allows user to erase a specified volume (does not physically format)"
     },
     {
       "toolcall": "26",
@@ -13899,14 +15101,27 @@
     "tt0c10": { "source": "Text Tool Set", "code": "0C10", "name": "writeProtected", "description":"The specified disk is write protected" },
     "tt0c40": { "source": "Text Tool Set", "code": "0C40", "name": "devErr", "description":"The device did not complete a read or write" },
     "ttpascal": { "source": "Text Tool Set", "code": "", "name": "Pascal device errors", "description":"Any of the errors $0C02-$0C40 listed in Toolbox Ref. Vol3 section 'Text Tool Set Summary' (or see CtlTextDev Tool Call)" },
-
-
+    
+    "wm0e01": { "source": "Window Manager", "code": "0E01", "name": "paramLenErr", "description":"The first word of the parameter list is the wrong size" },
+    "wm0e02": { "source": "Window Manager", "code": "0E02", "name": "allocateErr", "description":"Unable to allocate the window record" },
+    "wm0e03": { "source": "Window Manager", "code": "0E03", "name": "taskMaskErr", "description":"Some reserved bits were not clear in the wmTaskMask field of the wmTaskRec record" },
+    "wm0e04": { "source": "Window Manager", "code": "0E04", "name": "compileTooLarge", "description":"Compiled text is larger than 64K" },
+    "wm0e05": { "source": "Window Manager", "code": "0E05", "name": "cantUpdateErr", "description":"Cannot update the specified window in the current environment" },
+    
+    "cmUnch": { "source": "Control Manager", "code": "", "name": "Control Manager errors", "description": "Returned unchanged" },
     "mmUnch": { "source": "Memory Manager", "code": "", "name": "Memory Manager errors", "description": "Returned unchanged" },
+    "rmUnch": { "source": "Resource Manager", "code": "", "name": "Resource Manager errors", "description": "Returned unchanged" },
     "slUnch": { "source": "System Loader", "code": "", "name": "System Loader errors", "description": "Returned unchanged" },
+    "wmUnch": { "source": "Window Manager", "code": "", "name": "Window Manager errors", "description": "Returned unchanged" },
     "proUnch": { "source": "ProDOS 16", "code": "", "name": "ProDOS errors", "description": "Returned unchanged" },
-    "gsosUnch": { "source": "GS/OS", "code": "", "name": "GS/OS errors", "description": "Returned unchanged" }
-
-
+    "gsosUnch": { "source": "GS/OS", "code": "", "name": "GS/OS errors", "description": "Returned unchanged" },
+    
+    "****NOTE***": { "_": "Not sure if these might be smartport/gsos/p16 codes?  come from RAMDisk tool which is sketchy (undefined)"},
+    "rd01": { "source": "Unknown (ramdisk)", "code": "01", "name": "", "description":"Bad command number" },
+    "rd21": { "source": "Unknown (ramdisk)", "code": "21", "name": "", "description":"Bad Ctl or Status code" },
+    "rd27": { "source": "Unknown (ramdisk)", "code": "27", "name": "", "description":"I/O error" },
+    "rd28": { "source": "Unknown (ramdisk)", "code": "28", "name": "", "description":"No device error" },
+    "rd2d": { "source": "Unknown (ramdisk)", "code": "2D", "name": "", "description":"Bad block number" }
   },
   "references": {
     "tbv1": {
@@ -13937,6 +15152,11 @@
     "tn.iigs.100": {
       "title": "Apple IIgs Technical Note #100: VersionVille",
       "url": "https://apple2.gs/technotes/tn/iigs/TN.IIGS.100.txt",
+      "emoji": "🗒️"
+    },
+    "tool13av": {
+      "title": "Tool 13 - RAMDisk (unofficial)",
+      "url": "https://docs.google.com/document/d/1nX9iMr4a7aHWUF0xcY8qv20MRiz1GOa6SJOWhzkD0Wg/edit?tab=t.0",
       "emoji": "🗒️"
     }
   } 
