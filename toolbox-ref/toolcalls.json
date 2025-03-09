@@ -10813,441 +10813,1050 @@
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "GetSysBar",
-      "description": "Returns the handle of the current system menu bar"
+      "description": "Returns the handle of the current system menu bar",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" } 
+        ],
+        "output": [ 
+          { "size": "long", "name": "barHandle", "description": "HANDLE to current system bar" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal CtlRecHndl GetSysBar()" },
+      "docs": [{ "ref": "tbv1", "page": "13-55" }]
     },
     {
       "toolcall": "12",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "SetSysBar",
-      "description": "Sets a new system bar; the system menu bar becomes the current menu bar"
+      "description": "Sets a new system bar; the system menu bar becomes the current menu bar",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "barHandle", "description": "HANDLE to new system bar" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetSysBar(barHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "13-86" }]
     },
     {
       "toolcall": "13",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "FixMenuBar",
-      "description": "Computes standard sizes for the menu bar and menus"
+      "description": "Computes standard sizes for the menu bar and menus",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" } 
+        ],
+        "output": [
+          { "size": "word", "name": "menuHght", "description": "Height of the menu bar" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word FixMenuBar()" },
+      "docs": [{ "ref": "tbv1", "page": "13-41" }]
     },
     {
       "toolcall": "14",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "CountMItems",
-      "description": "Returns the number of items, including any dividing lines, in a specified menu"
+      "description": "Returns the number of items, including any dividing lines, in a specified menu",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "menuNum", "description": "Menu ID of menu whose items will be counted" } 
+        ],
+        "output": [
+          { "size": "word", "name": "numberItems", "description": "Number of items in the menu" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word CountMItems(menuNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-35" }]
     },
     {
       "toolcall": "15",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "NewMenuBar",
-      "description": "Creates a default menu bar with no menus"
+      "description": "Creates a default menu bar with no menus",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort; NIL if system" } 
+        ],
+        "output": [
+          { "size": "long", "name": "barHandle", "description": "HANDLE to menu bar" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal CtlRecHndl NewMenuBar(theWindowPtr)" },
+      "docs": [{ "ref": "tbv1", "page": "13-68" }]
     },
     {
       "toolcall": "16",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "GetMHandle",
-      "description": "Returns a handle to a menu record"
+      "description": "Returns a handle to a menu record",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "menuNum", "description": "Menu whose handle will be returned" } 
+        ],
+        "output": [
+          { "size": "long", "name": "menuHandle", "description": "HANDLE to specified menu; 0 if menu not found" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal CtlRecHndl GetMHandle(menuNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-48" }]
     },
     {
       "toolcall": "17",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "SetBarColors",
-      "description": "Sets the normal, inverse, and outline colors of the current menu bar"
+      "description": "Sets the normal, inverse, and outline colors of the current menu bar",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "newBarColor", "description": "Normal color (see Toolbox Ref Vol1, Table 13-11)" },
+          { "size": "word", "name": "newInvertColor", "description": "Selected color (see Toolbox Ref Vol1, Table 13-11)" },
+          { "size": "word", "name": "newOutColor", "description": "Outline color (see Toolbox Ref Vol1, Table 13-11)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetBarColors(newBarcolor,newInvertColor,newOutColor)" },
+      "docs": [{ "ref": "tbv1", "page": "13-69" }]
     },
     {
       "toolcall": "18",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "GetBarColors",
-      "description": "Returns the colors for the current menu bar"
+      "description": "Returns the colors for the current menu bar",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "menuBarColor", "description": "Current menu bar colors (see Toolbox Ref Vol1, Table 13-10)" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal LongWord GetBarColors()" },
+      "docs": [{ "ref": "tbv1", "page": "13-42" }]
     },
     {
       "toolcall": "19",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "SetMTitleStart",
-      "description": "Sets the starting position for the leftmost title within the current menu bar"
+      "description": "Sets the starting position for the leftmost title within the current menu bar",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "xStart", "description": "Starting position of first title from left in pixels (0-127)" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetMTitleStart(xStart)" },
+      "docs": [{ "ref": "tbv1", "page": "13-84" }]
     },
     {
       "toolcall": "1A",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "GetMTitleStart",
-      "description": "Returns the starting position of the leftmost title within the current menu bar"
+      "description": "Returns the starting position of the leftmost title within the current menu bar",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "xStart", "description": "Starting position of first title in number of pixels from left" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word GetMTitleStart()" },
+      "docs": [{ "ref": "tbv1", "page": "13-54" }]
     },
     {
       "toolcall": "1B",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "GetMenuMgrPort",
-      "description": "Returns a pointer to the Menu Manager's port"
+      "description": "Returns a pointer to the Menu Manager's port",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "menuMgrPtr", "description": "POINTER to Menu Manager port" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal GrafPortPtr GetMenuMgrPort()" },
+      "docs": [{ "ref": "tbv1", "page": "13-46" }]
     },
     {
       "toolcall": "1C",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "CalcMenuSize",
-      "description": "Sets menu dimensions, either manually or automatically"
+      "description": "Sets menu dimensions, either manually or automatically",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "newWidth", "description": "Menu width in pixels, or 0 for automatic calculation" },
+          { "size": "word", "name": "newHeight", "description": "Menu height in pixels, or 0 for automatic calculation" },
+          { "size": "word", "name": "menuNum", "description": "ID number of the menu whose width and height will be calculated" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void CalcMenuSize(newWidth,newHeight,menuNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-33" }]
     },
     {
       "toolcall": "1D",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "SetMTitleWidth",
-      "description": "Sets the width of a title"
+      "description": "Sets the width of a title",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "newWidth", "description": "Width of title in pixels" },
+          { "size": "word", "name": "menuNum", "description": "Number of menu whose width will be set" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetMTitleWidth(newWidth,menuNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-85" }]
     },
     {
       "toolcall": "1E",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "GetMTitleWidth",
-      "description": "Returns the width of a menu title"
+      "description": "Returns the width of a menu title",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "menuNum", "description": "Number of menu whose title width will be returned" }
+        ],
+        "output":[
+          { "size": "word", "name": "currentWidth", "description": "Width of the title in pixels" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word GetMTitleWidth(menuNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-54" }]
     },
     {
       "toolcall": "1F",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "SetMenuFlag",
-      "description": "Sets the menu to a specified state"
+      "description": "Sets the menu to a specified state",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "newValue", "description": "New bit value to set  (see Toolbox Ref Vol1, Table 13-8)" },
+          { "size": "word", "name": "menuNum", "description": "Number of menu whose state will be set" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetMenuFlag(newValue,menuNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-72" }]
     },
     {
       "toolcall": "20",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "GetMenuFlag",
-      "description": "Returns the menu flag for a specified menu"
+      "description": "Returns the menu flag for a specified menu",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "menuNum", "description": "Number of menu whose state will be returned" }
+        ],
+        "output": [
+          { "size": "word", "name": "menuState", "description": "Current state of menu bar ctlFlag" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word GetMenuFlag(menuNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-45" }]
     },
     {
       "toolcall": "21",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "SetMenuTitle",
-      "description": "Specifies the title for a menu"
+      "description": "Specifies the title for a menu",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "newStrPtr", "description": "POINTER to string to become new title" },
+          { "size": "word", "name": "menuNum", "description": "Number of menu whose title will be set" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetMenuTitle(newStrPtr,menuNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-74" }]
     },
     {
       "toolcall": "22",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "GetMenuTitle",
-      "description": "Returns a pointer to the title of a menu"
+      "description": "Returns a pointer to the title of a menu",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "menuNum", "description": "Number of menu whose title pointer will be returned" }
+        ],
+        "output": [
+          { "size": "long", "name": "menuTitlePtr", "description": "POINTER to the title of the menu" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Pointer GetMenuTitle(menuNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-47" }]
     },
     {
       "toolcall": "23",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "MenuGlobal",
-      "description": "Turns menu help on/off or returns state of menu help; help user know inactive to active"
+      "description": "Turns menu help on/off or returns state of menu help; help user know inactive to active",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "menuGlobalMask", "description": "Global mask (see Toolbox Ref Vol1, Table 13-6)" }
+        ],
+        "output": [
+          { "size": "word", "name": "menuGlobalFlag", "description": "Current state of menu global flag (see Toolbox Ref Vol1, Table 13-7)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word MenuGlobal(menuGlobalMask)" },
+      "docs": [{ "ref": "tbv1", "page": "13-59" }]
     },
     {
       "toolcall": "24",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "SetMItem",
-      "description": "Specifies the name for a menu item by pointing to an item line"
+      "description": "Specifies the name for a menu item by pointing to an item line",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "newItemLinePtr", "description": "POINTER to an item line" },
+          { "size": "word", "name": "itemNum", "description": "Number of item whose name will be set" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetMItem(newItemLinePtr,itemNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-75" }]
     },
     {
       "toolcall": "25",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "GetMItem",
-      "description": "Returns a pointer to the name of an item"
+      "description": "Returns a pointer to the name of an item",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "itemNum", "description": "Number of item whose name pointer will be returned" }
+        ],
+        "output": [
+          { "size": "long", "name": "itemNamePtr", "description": "POINTER to the name of the item" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Pointer GetMItem(itemNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-49" }]
     },
     {
       "toolcall": "26",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "SetMItemFlag",
-      "description": "Sets specified item number to be underlined or not underlined & sets the highlighting style"
+      "description": "Sets specified item number to be underlined or not underlined & sets the highlighting style",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "newValue", "description": "New bits to set (see Toolbox Ref Vol1, Table 13-9)" },
+          { "size": "word", "name": "itemNum", "description": "Number of item whose text style will be set" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetMItemFlag(newValue,itemNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-77" }]
     },
     {
       "toolcall": "27",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "GetMItemFlag",
-      "description": "Returns values for a specified item, such as whether it is disabled, underlined or highlighted"
+      "description": "Returns values for a specified item, such as whether it is disabled, underlined or highlighted",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "itemNum", "description": "Number of item whose flag will be returned" }
+        ],
+        "output": [
+          { "size": "word", "name": "itemFlag", "description": "Values for flag (see Toolbox Ref Vol1, Table 13-9 in the section \"SetMitemFlag\")" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word GetMItemFlag(itemNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-50" }]
     },
     {
       "toolcall": "28",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "SetMItemBlink",
-      "description": "Determines how many times all menu items should blink when selected"
+      "description": "Determines how many times all menu items should blink when selected",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "count", "description": "Number of times any item should blink when selected" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetMItemBlink(count)" },
+      "docs": [{ "ref": "tbv1", "page": "13-76" }]
     },
     {
       "toolcall": "29",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "MenuNewRes",
-      "description": "Adjusts screen resolution and redraws the current system menu bar"
+      "description": "Adjusts screen resolution and redraws the current system menu bar",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void MenuNewRes()" },
+      "docs": [{ "ref": "tbv1", "page": "13-63" }]
     },
     {
       "toolcall": "2A",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "DrawMenuBar",
-      "description": "Draws the current menu bar, along with any menu titles on the bar"
+      "description": "Draws the current menu bar, along with any menu titles on the bar",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void DrawMenuBar()" },
+      "docs": [{ "ref": "tbv1", "page": "13-40" }]
     },
     {
       "toolcall": "2B",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "MenuSelect",
-      "description": "Draws hilighted titles, pulls down menus, & handles user interaction when mouse bttn click"
+      "description": "Draws highlighted titles, pulls down menus, and handles user interaction when a mouse button is clicked on a menu bar (see FindWindow routine if using Window Manager).",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "taskRecPtr", "description": "POINTER to a task record containing button-down point" },
+          { "size": "long", "name": "barHandle", "description": "HANDLE to menu bar; 0 for system menu bar" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void MenuSelect(taskRecPtr,barHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "13-66" }]
     },
     {
       "toolcall": "2C",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "HiliteMenu",
-      "description": "Highlights or unhighlights the title of a specified menu"
+      "description": "Highlights or unhighlights the title of a specified menu",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "hiliteFlag", "description": "BOOLEAN; FALSE to draw normally, TRUE to highlight title" },
+          { "size": "word", "name": "menuNum", "description": "ID of menu" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void HiliteMenu(hiliteFlag,menuNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-56" }]
     },
     {
       "toolcall": "2D",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "NewMenu",
-      "description": "Allocates space for a menu list and its items"
+      "description": "Allocates space for a menu list and its items",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "menuStringPtr", "description": "POINTER to an array of menu lines and item lines" }
+        ],
+        "output":[
+          { "size": "long", "name": "menuHandle", "description": "HANDLE to menu; 0 if error" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal CtlRecHndl NewMenu(menuStringPtr)" },
+      "docs": [{ "ref": "tbv1", "page": "13-67" }]
     },
     {
       "toolcall": "2E",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "DisposeMenu",
-      "description": "Frees the memory allocated by NewMenu"
+      "description": "Frees the memory allocated by NewMenu",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "menuHandle", "description": "HANDLE to menu list to be discarded" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void DisposeMenu(menuHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "13-39" }]
     },
     {
       "toolcall": "2F",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "InitPalette",
-      "description": "Reinitializes the palettes needed for the colored Apple logo in system menu bar"
+      "description": "Reinitializes the palettes needed for the colored Apple logo in system menu bar (changes SCB for lines 2 through 9 to the first color from color tables 1 through 6)",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void InitPalette()" },
+      "docs": [{ "ref": "tbv1", "page": "13-56" }]
     },
     {
       "toolcall": "30",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "EnableMItem",
-      "description": "Sets a specified menu item to display normally and allows it to be selected"
+      "description": "Sets a specified menu item to display normally and allows it to be selected",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "itemNum", "description": "Number of item to be enabled" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void EnableMItem(itemNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-40" }]
     },
     {
       "toolcall": "31",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "DisableMItem",
-      "description": "Sets specified menu item to display in dimmed characters & does not allow it to be selected"
+      "description": "Sets specified menu item to display in dimmed characters & does not allow it to be selected",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "itemNum", "description": "Number of item to be disabled" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void DisableMItem(itemNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-38" }]
     },
     {
       "toolcall": "32",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "CheckMItem",
-      "description": "Sets specified menu item to display or to not display a check mark to the left of the item"
+      "description": "Sets specified menu item to display or to not display a check mark to the left of the item",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "checkedFlag", "description": "BOOLEAN; TRUE to check item; FALSE to uncheck item" },
+          { "size": "word", "name": "itemNum", "description": "Number of item to be checked or unchecked" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void CheckMItem(checkedFlag,itemNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-34" }]
     },
     {
       "toolcall": "33",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "SetMItemMark",
-      "description": "Sets a specified menu item to display or to not display a specified character to the left of item"
+      "description": "Sets a specified menu item to display or to not display a specified character to the left of item",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "mark", "description": "Character to mark item with or 0 for no mark" },
+          { "size": "word", "name": "itemNum", "description": "Number of item to be marked or unmarked" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetMItemMark(mark,itemNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-80" }]
     },
     {
       "toolcall": "34",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "GetMItemMark",
-      "description": "Returns the current character that is displayed to the left of a specified menu item"
+      "description": "Returns the current character that is displayed to the left of a specified menu item",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "itemNum", "description": "Number of item to be marked or unmarked" }
+        ],
+        "output": [
+          { "size": "word", "name": "mark", "description": "Character marking item; 0 if no mark" }
+
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word GetMItemMark(itemNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-51" }]
     },
     {
       "toolcall": "35",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "SetMItemStyle",
-      "description": "Sets the text style for a specified menu item"
+      "description": "Sets the text style for a specified menu item",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "textStyle", "description": "Text style (see Toolbox Ref Vol1, Figure 13-12)" },
+          { "size": "word", "name": "itemNum", "description": "Number of item whose text style will be set" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetMItemStyle(textStyle,itemNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-82" }]
     },
     {
       "toolcall": "36",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "GetMItemStyle",
-      "description": "Returns the text style for a specified menu item"
+      "description": "Returns the text style for a specified menu item",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "itemNum", "description": "Number of item whose text style will be returned" }
+        ],
+        "output": [
+          { "size": "word", "name": "mark", "description": "Text style (see Toolbox Ref Vol1, Figure 13-12 section \"SetMItemStyle\")" }
+
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal TextStyle GetMItemStyle(itemNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-52" }]
     },
     {
       "toolcall": "37",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "SetMenuID",
-      "description": "Specifies a new menu number"
+      "description": "Specifies a new menu number",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "newMenuNum", "description": "New menu number for the menu" },
+          { "size": "word", "name": "curMenuNum", "description": "Current menu number whose ID will be changed" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetMenuID(newMenuNum,curMenuNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-73" }]
+
     },
     {
       "toolcall": "38",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "SetMItemID",
-      "description": "Specifies the ID number of a menu item"
+      "description": "Specifies the ID number of a menu item",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "newItemNum", "description": "New ID number to be assigned to the item" },
+          { "size": "word", "name": "curItemNum", "description": "Current item whose ID will be changed" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetMItemID(newItemNum,curItemNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-79" }]
     },
     {
       "toolcall": "39",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "SetMenuBar",
-      "description": "Sets the current menu bar"
+      "description": "Sets the current menu bar",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "barHandle", "description": "HANDLE to new current bar; 0 for system menu bar" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetMenuBar(barHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "13-71" }]
     },
     {
       "toolcall": "3A",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "SetMItemName",
-      "description": "Specifies the aname of a menu item by pointing to a Pascal-type string"
+      "description": "Specifies the aname of a menu item by pointing to a Pascal-type string",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "strPtr", "description": "POINTER to a Pascal-type string (length in first byte)" },
+          { "size": "word", "name": "itemNum", "description": "Number of item whose name will be set" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetMItemName(strPtr,itemNum)" },
+      "docs": [{ "ref": "tbv1", "page": "13-81" }]
     },
     {
       "toolcall": "3B",
       "toolnum": "0F",
       "toolname": "Menu Manager",
-      "callname": "GetPopUpDefPro",
-      "description": "Returns a pointer to the control definition procedure for pop-up menus"
+      "callname": "GetPopUpDefProc",
+      "description": "Returns a pointer to the control definition procedure for pop-up menus (called during Control Manager startup) - application should not call",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "defProcPtr", "description": "Pointer to control procedure" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Pointer GetPopUpDefProc()" },
+      "docs": [{ "ref": "tbv3", "page": "37-21" }]
     },
     {
       "toolcall": "3C",
       "toolnum": "0F",
       "toolname": "Menu Manager",
-      "callname": "PopUpMenuSelec",
-      "description": "Draws highlighted titles and handles user interaction when the user clicks on a pop-up menu"
+      "callname": "PopUpMenuSelect",
+      "description": "Draws highlighted titles and handles user interaction when the user clicks on a pop-up menu",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "selection", "description": "Item ID of current menu selection" },
+          { "size": "word", "name": "currentLeft", "description": "Global coordinate value of left edge of pop-up menu" },
+          { "size": "word", "name": "currentTop", "description": "Global coordinate value of top of current selection" },
+          { "size": "word", "name": "flag", "description": "Flag word for call" },
+          { "size": "long", "name": "menuHandle", "description": "Menu Handle" }
+        ],
+        "output": [
+          { "size": "word", "name": "itemID", "description": "Item ID of new selection (0 if none)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word PopUpMenuSelect(selection,currentLeft,currentTop,flag,menuHandle)" },
+      "docs": [{ "ref": "tbv3", "page": "37-27" }]
     },
     {
       "toolcall": "3E",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "NewMenu2",
-      "description": "Allocates space for a menu list and its items"
+      "description": "Allocates space for a menu list and its items",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "refDesc", "description": "Defines type of reference in menuTRef" },
+          { "size": "long", "name": "menuTRef", "description": "Reference to menu template" }
+        ],
+        "output": [
+          { "size": "long", "name": "menuHandle", "description": "HANDLE for new menu" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Long NewMenu2(refDesc,menuTRef)" },
+      "docs": [{ "ref": "tbv3", "page": "37-24" }]
     },
     {
       "toolcall": "3F",
       "toolnum": "0F",
       "toolname": "Menu Manager",
-      "callname": "InsertMitem2",
-      "description": "Inserts an item into a menu after a specified menu item or at the top of the menu"
+      "callname": "InsertMItem2",
+      "description": "Inserts an item into a menu after a specified menu item or at the top of the menu",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "refDesc", "description": "Defines type of reference in menuItemTRef" },
+          { "size": "long", "name": "menuItemTRef", "description": "Reference to menu item template" },
+          { "size": "word", "name": "insertAfter", "description": "ID of item after which to insert this item" },
+          { "size": "word", "name": "menuNum", "description": "ID of menu after which to insert this item" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void InsertMItem2(refDesc,menuItemTRef,insertAfter,menuNum)" },
+      "docs": [{ "ref": "tbv3", "page": "37-23" }]
     },
     {
       "toolcall": "40",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "SetMenuTitle2",
-      "description": "Specifies the title of a menu"
+      "description": "Specifies the title of a menu",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "refDesc", "description": "Defines type of reference in titleRef" },
+          { "size": "long", "name": "titleRef", "description": "Reference to title string of menu" },
+          { "size": "word", "name": "menuNum", "description": "ID of menu to receive title" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetMenuTitle2(refDesc,titleRef,menuNum)" },
+      "docs": [{ "ref": "tbv3", "page": "37-29" }]
     },
     {
       "toolcall": "41",
       "toolnum": "0F",
       "toolname": "Menu Manager",
-      "callname": "SetMitem2",
-      "description": "Specifies the title of a menu item"
+      "callname": "SetMItem2",
+      "description": "Specifies the title of a menu item",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "refDesc", "description": "Defines type of reference in menuItemTRef" },
+          { "size": "long", "name": "menuItemTRef", "description": "Reference to menu item template" },
+          { "size": "word", "name": "menuItemID", "description": "ID of item to be changed" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetMItem2(refDesc,menuItemTRef,menuItemID)" },
+      "docs": [{ "ref": "tbv3", "page": "37-30" }]
     },
     {
       "toolcall": "42",
       "toolnum": "0F",
       "toolname": "Menu Manager",
-      "callname": "SetMitemName2",
-      "description": "Specifies the name of a menu item"
+      "callname": "SetMItemName2",
+      "description": "Specifies the name of a menu item",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "refDesc", "description": "Defines type of reference in titleRef" },
+          { "size": "long", "name": "titleRef", "description": "Reference to menu item title" },
+          { "size": "word", "name": "menuItemID", "description": "ID of item to be changed" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetMItemName2(refDesc,titleRef,menuItemID)" },
+      "docs": [{ "ref": "tbv3", "page": "37-31" }]
     },
     {
       "toolcall": "43",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "NewMenuBar2",
-      "description": "Creates a menu bar using a menu bar template as its input specification"
+      "description": "Creates a menu bar using a menu bar template as its input specification",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "refDesc", "description": "Defines type of reference in menuBarTRef" },
+          { "size": "long", "name": "menuBarTRef", "description": "Reference to menu bar template" },
+          { "size": "long", "name": "windowPtr", "description": "POINTER to window's GrafPort; NIL if system menu bar" }
+        ],
+        "output": [
+          { "size": "long", "name": "menuBarHandle", "description": "HANDLE for new menu bar" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Long NewMenuBar2(refDesc,menuBarTRef,windowPtr)" },
+      "docs": [{ "ref": "tbv3", "page": "37-25" }]
     },
     {
       "toolcall": "44",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "GetResMTitle",
-      "description": "Returns pointer to the menu title"
+      "description": "Returns pointer to the menu title (undocumented?)"
     },
     {
       "toolcall": "45",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "HideMenuBar",
-      "description": "Hides the system menu bar by adding the menu bar to the desktop region"
+      "description": "Hides the system menu bar by adding the menu bar to the desktop region",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void HideMenuBar()" },
+      "docs": [{ "ref": "tbv3", "page": "37-22" }]
     },
     {
       "toolcall": "46",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "ShowMenuBar",
-      "description": "Reveals the system menu bar by subtracting the menu bar from the desktop region"
+      "description": "Reveals the system menu bar by subtracting the menu bar from the desktop region, setting visible, and updating SCBs",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ShowMenuBar()" },
+      "docs": [{ "ref": "tbv3", "page": "37-32" }]
     },
     {
       "toolcall": "47",
       "toolnum": "0F",
       "toolname": "Menu Manager",
-      "callname": "SetItemIcon",
-      "description": "ItemIconRef field in the itemStruct record for the menu item indicated"
+      "callname": "SetMItemIcon",
+      "description": "Set the ItemIconRef field in the itemStruct record for the menu item indicated",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "iconDesc", "description": "Describes how icon is to be referenced" },
+          { "size": "long", "name": "iconRef", "description": "Reference to icon" },
+          { "size": "word", "name": "itemID", "description": "ID of menu item" }
+        ]
+      },
+      "errors": ["mn0f03"],
+      "c": { "call": "extern pascal void SetMItemIcon(iconDesc,iconRef,itemID)" },
+      "docs": [{ "ref": "gs16pr60", "page": "114" }]
     },
     {
       "toolcall": "48",
       "toolnum": "0F",
       "toolname": "Menu Manager",
-      "callname": "GetItemIcon",
-      "description": "Returns the reference to the icon associated with menu item indicated"
+      "callname": "GetMItemIcon",
+      "description": "Returns the reference to the icon associated with menu item indicated",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "itemID", "description": "ID of menu item" }
+        ],
+        "output": [
+          { "size": "long", "name": "iconRef", "description": "Reference to icon" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Ref GetMItemIcon(itemID)" },
+      "docs": [{ "ref": "gs16pr60", "page": "108" }]
     },
     {
       "toolcall": "49",
       "toolnum": "0F",
       "toolname": "Menu Manager",
-      "callname": "SetItemStruct",
-      "description": "Sets the ItemTitleRef field of the item record to the reference for the itemStruct record passed"
+      "callname": "SetMItemStruct",
+      "description": "Sets the ItemTitleRef field of the item record to the reference for the itemStruct record passed",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "itemStructDesc", "description": "Describes how itemStruct is to be referenced" },
+          { "size": "long", "name": "itemStructRef", "description": "Reference to itemStruct" },
+          { "size": "word", "name": "itemID", "description": "ID of menu item" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetMItemStruct(itemStructDesc,itemStructRef,itemID)" },
+      "docs": [{ "ref": "gs16pr60", "page": "115" }]
     },
     {
       "toolcall": "4A",
       "toolnum": "0F",
       "toolname": "Menu Manager",
-      "callname": "GetItemStruct",
-      "description": "Returns the reference to the itemStruct record of the menu item specified"
+      "callname": "GetMItemStruct",
+      "description": "Returns the reference to the itemStruct record of the menu item specified",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "itemID", "description": "ID of menu item" }
+        ],
+        "output": [
+          { "size": "long", "name": "itemStructRef", "description": "Reference to itemStruct" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Ref GetMItemStruct(itemID)" },
+      "docs": [{ "ref": "gs16pr60", "page": "109" }]
     },
     {
       "toolcall": "4B",
       "toolnum": "0F",
       "toolname": "Menu Manager",
-      "callname": "RemoveItemStru",
-      "description": "Removes the itemStruct record from the item record"
+      "callname": "RemoveMItemStruct",
+      "description": "Removes the itemStruct record from the item record",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "itemID", "description": "ID of menu item" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void RemoveMItemStruct(itemID)" },
+      "docs": [{ "ref": "gs16pr60", "page": "112" }]
     },
     {
       "toolcall": "4C",
       "toolnum": "0F",
       "toolname": "Menu Manager",
-      "callname": "GetItemFlag2",
-      "description": "Returns the itemfFag2 field for the itemStruct record associated with the menu item indicated"
+      "callname": "GetMItemFlag2",
+      "description": "Returns the itemFlag2 field for the itemStruct record associated with the menu item indicated",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "itemID", "description": "ID of menu item" }
+        ],
+        "output": [
+          { "size": "word", "name": "itemFlag", "description": "itemFlag2 field from itemStruct" }
+        ]
+      },
+      "errors": ["mn0f03"],
+      "c": { "call": "extern pascal Word GetMItemFlag2(itemID)" },
+      "docs": [{ "ref": "gs16pr60", "page": "107" }]
     },
     {
       "toolcall": "4D",
       "toolnum": "0F",
       "toolname": "Menu Manager",
-      "callname": "SetItemFlag2",
-      "description": "Sets the itemFlag2 field for the itemStruct record of the indicated menu item to the value passed"
+      "callname": "SetMItemFlag2",
+      "description": "Sets the itemFlag2 field for the itemStruct record of the indicated menu item to the value passed",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "newValue", "description": "New value for itemFlag2" },
+          { "size": "word", "name": "itemID", "description": "ID of menu item" }
+        ]
+      },
+      "errors": ["mn0f03"],
+      "c": { "call": "extern pascal void SetMItemFlag2(newValue,itemID)" },
+      "docs": [{ "ref": "gs16pr60", "page": "113" }]
     },
     {
       "toolcall": "4E",
       "toolnum": "0F",
       "toolname": "Menu Manager",
-      "callname": "GetItemWidth",
-      "description": "Computes the default size of a specified menu item"
+      "callname": "GetMItemWidth",
+      "description": "Computes the default size of a specified menu item (undocumented?)"
     },
     {
       "toolcall": "4F",
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "GetMItemBlink",
-      "description": "GetMItemBlink returns the current menu item blink setting, as set with SetMItemBlink"
+      "description": "GetMItemBlink returns the current menu item blink setting, as set with SetMItemBlink",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "count", "description": "Menu item blink setting" }
+
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word GetMItemBlink()" },
+      "docs": [{ "ref": "gs16pr60", "page": "106" }]
     },
     {
       "toolcall": "50",
       "toolnum": "0F",
       "toolname": "Menu Manager",
-      "callname": "InsertPathMIte",
-      "description": "Takes a GS/OS pathname and inserts one menu item into the specified menu for each segment of the pathname"
+      "callname": "InsertPathMItem",
+      "description": "Takes a GS/OS pathname and inserts one menu item into the specified menu for each segment of the pathname",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "flags", "description": "Flags" },
+          { "size": "long", "name": "pathPtr", "description": "POINTER to GS/OS input filename" },
+          { "size": "word", "name": "deviceNum", "description": "Device number the path is on, if known" },
+          { "size": "word", "name": "menuID", "description": "Menu ID of the menu to insert into" },
+          { "size": "word", "name": "afterID", "description": "Menu item ID of the item to insert after" },
+          { "size": "word", "name": "startingID", "description": "Menu item ID to use for the first item inserted" },
+          { "size": "long", "name": "resultPtr", "description": "POINTER to the result buffer" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal void InsertPathMItems(flags,pathPtr,deviceNum,menuID,afterID,startingID,resultPtr)" },
+      "docs": [{ "ref": "gs16pr60", "page": "110" }]
     },
     {
       "toolcall": "01",
@@ -15108,6 +15717,8 @@
     "wm0e04": { "source": "Window Manager", "code": "0E04", "name": "compileTooLarge", "description":"Compiled text is larger than 64K" },
     "wm0e05": { "source": "Window Manager", "code": "0E05", "name": "cantUpdateErr", "description":"Cannot update the specified window in the current environment" },
     
+    "mn0f03": { "source": "Menu Manager", "code": "0F03", "name": "menuNoStruct", "description":"Returned if bit 10 of itemFlag is not set" },
+
     "cmUnch": { "source": "Control Manager", "code": "", "name": "Control Manager errors", "description": "Returned unchanged" },
     "mmUnch": { "source": "Memory Manager", "code": "", "name": "Memory Manager errors", "description": "Returned unchanged" },
     "rmUnch": { "source": "Resource Manager", "code": "", "name": "Resource Manager errors", "description": "Returned unchanged" },
