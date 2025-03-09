@@ -654,7 +654,7 @@
       "toolnum": "02",
       "toolname": "Memory Manager",
       "callname": "DisposeAll",
-      "description": "Discards all of the handles and blocks belonging to a specifed user ID",
+      "description": "Discards all of the handles and blocks belonging to a specified user ID",
       "parameters": {
         "input": [
           { "size": "word", "name": "userID", "description": "User ID whose handles will be discarded" }
@@ -4931,7 +4931,7 @@
       "toolnum": "04",
       "toolname": "QuickDraw",
       "callname": "KillPicture",
-      "description": "Releases all memory occupied by a specifed picture.",
+      "description": "Releases all memory occupied by a specified picture.",
       "parameters": {
         "input": [
           { "size": "long", "name": "picHandle", "description": "Handle to picture" }
@@ -6252,7 +6252,7 @@
           { "size": "word", "name": "buttonNum", "description": "Number of button (0 or 1) to check" }
         ],
         "output": [
-          { "size": "word", "name": "buttonDown", "description": "BOOLEAN; TRUE if button down and no mouse events are pending in event queue for specifed button, FALSE if not" }
+          { "size": "word", "name": "buttonDown", "description": "BOOLEAN; TRUE if button down and no mouse events are pending in event queue for specified button, FALSE if not" }
         ]
       },
       "errors": ["em0605"],
@@ -6273,7 +6273,7 @@
           { "size": "word", "name": "buttonNum", "description": "Number of button (0 or 1) to check" }
         ],
         "output": [
-          { "size": "word", "name": "buttonDownFlag", "description": "BOOLEAN; TRUE if button down and no mouse events are pending in event queue for specifed button, FALSE if not" }
+          { "size": "word", "name": "buttonDownFlag", "description": "BOOLEAN; TRUE if button down and no mouse events are pending in event queue for specified button, FALSE if not" }
         ]
       },
       "errors": ["em0605"],
@@ -6358,7 +6358,22 @@
       "toolnum": "06",
       "toolname": "Event Manager",
       "callname": "PostEvent",
-      "description": "Posts an event into the event queue"
+      "description": "Posts an event into the event queue",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "eventCode", "description": "Type of event to be placed in the queue" },
+          { "size": "long", "name": "eventMsg", "description": "Event message" }
+        ],
+        "output": [
+          { "size": "word", "name": "resultCode", "description": "0 if event posted, 1 if event type not enabed in system event mask" }
+        ]
+      },
+      "errors": ["tl0604"],
+      "c": { "call": "extern pascal Word PostEvent(eventCode,eventMsg)" },
+      "docs": [
+        { "ref": "tbv1", "page": "7-43" }
+      ]
     },
     {
       "toolcall": "15",
@@ -7080,7 +7095,7 @@
         ]
       },
       "errors": ["at0910"],
-      "c": { "call": "extern pascal void Sendinfo(dataLength,dataPtr,adbCommand)" },
+      "c": { "call": "extern pascal void SendInfo(dataLength,dataPtr,adbCommand)" },
       "docs": [{ "ref": "tbv1", "page": "3-19" }]
     },
     {
@@ -7856,7 +7871,7 @@
       "toolnum": "0B",
       "toolname": "Integer Math",
       "callname": "Frac2Fix",
-      "description": "Converts a specifed Frac value to its corresponding Fixed value",
+      "description": "Converts a specified Frac value to its corresponding Fixed value",
       "parameters": {
         "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
@@ -9006,7 +9021,7 @@
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "GetFrameColor",
-      "description": "Returns the color of a specifed window's frame",
+      "description": "Returns the color of a specified window's frame",
       "parameters": {
         "input": [
           { "size": "long", "name": "colorPtr", "description": "POINTER to five-word pattern/color table to be filled with window's color table" },
@@ -9860,7 +9875,7 @@
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "SetDataSize",
-      "description": "Sets the height and width of the data area of a specifed window",
+      "description": "Sets the height and width of the data area of a specified window",
       "parameters": {
         "input": [
           { "size": "word", "name": "dataWidth", "description": "Width of data area in pixels" },
@@ -10218,7 +10233,7 @@
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "WindowGlobal",
-      "description": "Specifies a mask that determines how Window Manager performs tasks and retuns windowGlobalFlag",
+      "description": "Specifies a mask that determines how Window Manager performs tasks and returns windowGlobalFlag",
       "parameters": {
         "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
@@ -10531,7 +10546,7 @@
       "toolnum": "0E",
       "toolname": "Window Manager",
       "callname": "MWSetUpEditMenu",
-      "description": "Sets the sate of the standard emenu items based on the frontmost window",
+      "description": "Sets the state of the standard menu items based on the frontmost window",
       "parameters": { "none": true },
       "errors": ["none"],
       "c": { "call": "extern pascal void MWSetUpEditMenu()" },
@@ -11100,7 +11115,7 @@
       "toolnum": "0F",
       "toolname": "Menu Manager",
       "callname": "SetMItemName",
-      "description": "Specifies the aname of a menu item by pointing to a Pascal-type string"
+      "description": "Specifies the name of a menu item by pointing to a Pascal-type string"
     },
     {
       "toolcall": "3B",
@@ -11821,7 +11836,7 @@
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "QDAuxReset",
-      "description": "Resets QuickDraw II Auxiliary; called only when the system is reset - not by applicaiton"
+      "description": "Resets QuickDraw II Auxiliary; called only when the system is reset - not by application"
     },
     {
       "toolcall": "06",
@@ -11947,7 +11962,7 @@
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "KillPicture",
-      "description": "Releases all memory occupied by a specifed picture"
+      "description": "Releases all memory occupied by a specified picture"
     },
     {
       "toolcall": "01",
@@ -12367,7 +12382,7 @@
       "toolnum": "14",
       "toolname": "Line Edit",
       "callname": "LESetHilite",
-      "description": "Sets the leHiliteHook field of a psecified edit record to a specified address"
+      "description": "Sets the leHiliteHook field of a specified edit record to a specified address"
     },
     {
       "toolcall": "1F",
@@ -12584,7 +12599,7 @@
       "toolnum": "15",
       "toolname": "Dialog Manager",
       "callname": "CautionAlert",
-      "description": "Invokes an alert defined by alert template & draws caution icon in uppr-left corner of box"
+      "description": "Invokes an alert defined by alert template & draws caution icon in upper-left corner of box"
     },
     {
       "toolcall": "1B",
@@ -12612,7 +12627,7 @@
       "toolnum": "15",
       "toolname": "Dialog Manager",
       "callname": "GetIText",
-      "description": "Returns the text of a specified statText or editLine item in a psecified dialog box"
+      "description": "Returns the text of a specified statText or editLine item in a specified dialog box"
     },
     {
       "toolcall": "20",
@@ -12654,7 +12669,7 @@
       "toolnum": "15",
       "toolname": "Dialog Manager",
       "callname": "UpdateDialog",
-      "description": "Redraws the part of a specified dialog that is in a specifed update region"
+      "description": "Redraws the part of a specified dialog that is in a specified update region"
     },
     {
       "toolcall": "26",
@@ -12703,7 +12718,7 @@
       "toolnum": "15",
       "toolname": "Dialog Manager",
       "callname": "ModalDialog2",
-      "description": "If frontmost wndow is modal, then handles events in window; returns code if emabled item"
+      "description": "If frontmost window is modal, then handles events in window; returns code if enabled item"
     },
     {
       "toolcall": "2E",
@@ -12738,14 +12753,14 @@
       "toolnum": "15",
       "toolname": "Dialog Manager",
       "callname": "GetAlertStage",
-      "description": "Returns the stage of the last occurence of an alert as a number from 0 to 3"
+      "description": "Returns the stage of the last occurrence of an alert as a number from 0 to 3"
     },
     {
       "toolcall": "35",
       "toolnum": "15",
       "toolname": "Dialog Manager",
       "callname": "ResetAlertStag",
-      "description": "Resets stage of last occurrence of alert so next occurence of same alert will be as first"
+      "description": "Resets stage of last occurrence of alert so next occurrence of same alert will be as first"
     },
     {
       "toolcall": "36",
@@ -12990,7 +13005,7 @@
       "toolnum": "17",
       "toolname": "Std File Ops",
       "callname": "SFAllCaps",
-      "description": "Allows applicat. to decide if filenames will be displayed in all upper or upper/lowercase"
+      "description": "Allows the application to decide if filenames will be displayed in all upper or upper/lowercase"
     },
     {
       "toolcall": "0E",
@@ -13459,7 +13474,7 @@
       "toolnum": "1C",
       "toolname": "List Manager",
       "callname": "ListBootInit",
-      "description": "Initializes the List Manager; called only by Tool Locater - not by application"
+      "description": "Initializes the List Manager; called only by Tool Locator - not by application"
     },
     {
       "toolcall": "02",
@@ -13893,7 +13908,7 @@
       "toolnum": "1E",
       "toolname": "ResourceManager",
       "callname": "MatchResourceH",
-      "description": "Returns the type and ID of a resource, given ahandle to that resource"
+      "description": "Returns the type and ID of a resource, given a handle to that resource"
     },
     {
       "toolcall": "1F",
@@ -14523,7 +14538,7 @@
       "toolnum": "00",
       "toolname": "ProDOS 16",
       "callname": "GET_DEV_NUMBER",
-      "description": "Returns device number of a device identifed by device name or volume name"
+      "description": "Returns device number of a device identified by device name or volume name"
     },
     {
       "toolcall": "21",
@@ -14572,7 +14587,7 @@
       "toolnum": "00",
       "toolname": "ProDOS 16",
       "callname": "GET_BOOT_VOL",
-      "description": "Returns volume name of volume from wich the file GS/OS was last loaded & executed (*/)"
+      "description": "Returns volume name of volume from which the file GS/OS was last loaded & executed (*/)"
     },
     {
       "toolcall": "29",
@@ -14705,7 +14720,7 @@
       "toolnum": "20",
       "toolname": "GS/OS",
       "callname": "Expand_PathGS",
-      "description": "Converts input pathname into full pathname with ':' as separators, optionally changin case"
+      "description": "Converts input pathname into full pathname with ':' as separators, optionally changing case"
     },
     {
       "toolcall": "0F",
@@ -14817,7 +14832,7 @@
       "toolnum": "20",
       "toolname": "GS/OS",
       "callname": "End_SessionGS",
-      "description": "Flushes any deferred block writes occuring during write-deferral session & resume norm"
+      "description": "Flushes any deferred block writes occurring during write-deferral session & resume norm"
     },
     {
       "toolcall": "1F",
@@ -14831,7 +14846,7 @@
       "toolnum": "20",
       "toolname": "GS/OS",
       "callname": "Get_Dev_NumberG",
-      "description": "Returns device number of a device identifed by device name or volume name"
+      "description": "Returns device number of a device identified by device name or volume name"
     },
     {
       "toolcall": "21",
@@ -14873,7 +14888,7 @@
       "toolnum": "20",
       "toolname": "GS/OS",
       "callname": "Get_Boot_VolGS",
-      "description": "Returns volume name of volume from wich the file GS/OS was last loaded & executed (*/)"
+      "description": "Returns volume name of volume from which the file GS/OS was last loaded & executed (*/)"
     },
     {
       "toolcall": "29",
@@ -14971,7 +14986,7 @@
       "toolnum": "20",
       "toolname": "GS/OS",
       "callname": "D_RenameGS",
-      "description": "Replaces a device name as specificed in a device information block"
+      "description": "Replaces a device name as specified in a device information block"
     },
     {
       "toolcall": "39",
