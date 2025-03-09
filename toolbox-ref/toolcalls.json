@@ -560,9 +560,9 @@
           { "size": "long", "name": "blockSize", "description": "Size in bytes of block to create" },
           { "size": "word", "name": "userID", "description": "User ID to be associated with the block" },
           { "size": "word", "name": "attributes", "description": "Attributes (see Toolbox Ref Vol1 Figure 12-9)" },
-          { "size": "long", "name": "locationPtr", "description": "POINTER to where in memory the block is to begin" } 
+          { "size": "long", "name": "locationPtr", "description": "POINTER to where in memory the block is to begin" }
         ],
-        "output": [ 
+        "output": [
           { "size": "long", "name": "theHandle", "description": "HANDLE of new block; empty if block of 0 bytes created" }
         ]
       },
@@ -742,8 +742,8 @@
           { "size": "long", "name": "longspace", "description": "Space for result" },
           { "size": "long", "name": "locationPtr", "description": "POINTER whose handle will be found" }
         ],
-        "output": [ 
-          { "size": "long", "name": "theHandle", "description": "HANDLE of locationPtr; NIL if not found" } 
+        "output": [
+          { "size": "long", "name": "theHandle", "description": "HANDLE of locationPtr; NIL if not found" }
         ]
       },
       "errors": ["none"],
@@ -1111,7 +1111,7 @@
       "parameters": {
         "input": [
           { "size": "word", "name": "theData", "description": "Data to be written (low-order byte only)on" },
-          { "size": "word", "name": "paramRefNum", "description": "Parameter reference number (see Toolbox Ref Vol1, Table 14-3)" } 
+          { "size": "word", "name": "paramRefNum", "description": "Parameter reference number (see Toolbox Ref Vol1, Table 14-3)" }
         ]
       },
       "errors": ["none"],
@@ -1127,7 +1127,7 @@
       "parameters": {
         "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
-          { "size": "word", "name": "paramRefNum", "description": "Parameter reference number (see Toolbox Ref Vol1, Table 14-3)" } 
+          { "size": "word", "name": "paramRefNum", "description": "Parameter reference number (see Toolbox Ref Vol1, Table 14-3)" }
         ],
         "output": [
           { "size": "word", "name": "theData", "description": "Data that was read (low-order byte only)" }
@@ -1206,9 +1206,9 @@
       "callname": "SetVector",
       "description": "Sets the vector address for a specified interrupt manager or handler",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "vectorRefNum", "description": "Vector to be set (see Toolbox Ref Vol1 Figure 14-9)" },
-          { "size": "long", "name": "vectorPtr", "description": "POINTER to the manager or handle" } 
+          { "size": "long", "name": "vectorPtr", "description": "POINTER to the manager or handle" }
        ]
       },
       "errors": ["none"],
@@ -1225,9 +1225,9 @@
       "callname": "GetVector",
       "description": "Returns the vector address for a specified interrupt manager or handler",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
-          { "size": "word", "name": "vectorRefNum", "description": "Vector reference number of manager or handler" } 
+          { "size": "word", "name": "vectorRefNum", "description": "Vector reference number of manager or handler" }
        ],
        "output":[
           { "size": "long", "name": "vectorPtr", "description": "POINTER to the manager or handle" }
@@ -1247,7 +1247,7 @@
       "callname": "SetHeartBeat",
       "description": "Installs a specified task into the HeartBeat Interrupt Task queue",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "taskPtr", "description": "POINTER to task header" }
        ]
       },
@@ -1262,7 +1262,7 @@
       "callname": "DelHeartBeat",
       "description": "Deletes a specified task from the HeartBeat Interrupt Task queue",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "taskPtr", "description": "POINTER to task header" }
        ]
       },
@@ -1295,11 +1295,11 @@
       "callname": "SysFailMgr",
       "description": "Displays system failure message and halts program execution",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "errorCode", "description": "Error code (see Toolbox Ref Vol1 Figure 14-8)" },
           { "size": "long", "name": "strPtr", "description": "POINTER to ASCII string to be displayed as system failure message" }
        ]
-      },      
+      },
       "errors": ["none"],
       "c": { "call": "extern pascal void SysFailMgr(errorCode,strPtr)" },
       "docs": [{ "ref": "tbv1", "page": "14-54" }]
@@ -1311,14 +1311,14 @@
       "callname": "GetAddr",
       "description": "Returns an address of a byte, word, or long parameter referenced by the firmware",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
           { "size": "word", "name": "refNum", "description": "Parameter reference number (see Toolbox Ref Vol1, Table 14-5)" }
         ],
-        "output": [ 
+        "output": [
           { "size": "long", "name": "paramPtr", "description": "POINTER to parameter" }
         ]
-      },      
+      },
       "errors": ["mt0301"],
       "c": { "call": "extern pascal Pointer GetAddr(refNum)" },
       "docs": [{ "ref": "tbv1", "page": "14-19" }]
@@ -1330,18 +1330,18 @@
       "callname": "ReadMouse",
       "description": "Returns mouse position, status, and mode",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "wordspace", "description": "Space for result" }
         ],
-        "output": [ 
+        "output": [
           { "size": "word", "name": "xPosition", "description": "X position of the mouse" },
           { "size": "word", "name": "yPosition", "description": "Y position of the mouse" },
           { "size": "byte", "name": "status", "description": "Mouse status" },
           { "size": "byte", "name": "mode", "description": "Mouse mode" }
         ]
-      },      
+      },
       "errors": ["mt0309"],
       "c": { "call": "extern pascal MouseRec ReadMouse()" },
       "docs": [{ "ref": "tbv1", "page": "14-34" }]
@@ -1353,10 +1353,10 @@
       "callname": "InitMouse",
       "description": "Initializes mouse clamp values to $000 min & $3FF max & clears mouse mode & status",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "mouseSlot", "description": "Requests search for mouse ($0000) or slot for mouse ($0001-7)" }
         ]
-      },      
+      },
       "errors": ["mt0302"],
       "c": { "call": "extern pascal void InitMouse(mouseSlot)" },
       "docs": [{ "ref": "tbv1", "page": "14-32" }]
@@ -1368,10 +1368,10 @@
       "callname": "SetMouse",
       "description": "Sets the mouse mode",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "mouseMode", "description": "Mouse mode, low-order byte only (see Toolbox Ref V1, Table 14-7)" }
         ]
-      },      
+      },
       "errors": ["none"],
       "c": { "call": "extern pascal void SetMouse(mouseMode)" },
       "docs": [{ "ref": "tbv1", "page": "14-36" }]
@@ -1404,8 +1404,8 @@
       "toolname": "Misc Tools",
       "callname": "ClampMouse",
       "description": "Sets new clamp values & then sets the mouse position to the minimum clamp values",
-      "parameters": { 
-        "input": [ 
+      "parameters": {
+        "input": [
           { "size": "word", "name": "xMinClamp", "description": "Minimum clamp value for the X axis" },
           { "size": "word", "name": "xMaxClamp", "description": "Maximum clamp value for the X axis" },
           { "size": "word", "name": "yMinClamp", "description": "Minimum clamp value for the Y axis" },
@@ -1422,14 +1422,14 @@
       "toolname": "Misc Tools",
       "callname": "GetMouseClamp",
       "description": "Returns the current mouse clamp values",
-      "parameters": { 
-        "input": [ 
+      "parameters": {
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "wordspace", "description": "Space for result" }
         ],
-        "output": [ 
+        "output": [
           { "size": "word", "name": "xMinClamp", "description": "Minimum clamp value for the X axis" },
           { "size": "word", "name": "xMaxClamp", "description": "Maximum clamp value for the X axis" },
           { "size": "word", "name": "yMinClamp", "description": "Minimum clamp value for the Y axis" },
@@ -1447,11 +1447,11 @@
       "callname": "PosMouse",
       "description": "Positions the mouse at specified coordinates",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "xPos", "description": "X axis (horizontal) position of mouse" },
           { "size": "word", "name": "yPos", "description": "Y axis (vertical) position of mouse" }
        ]
-      },      
+      },
       "errors": ["none"],
       "c": { "call": "extern pascal void PosMouse(xPos,yPos)" },
       "docs": [{ "ref": "tbv1", "page": "14-33" }]
@@ -1463,13 +1463,13 @@
       "callname": "ServeMouse",
       "description": "Returns the mouse interrupt status",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" }
         ],
-        "output": [ 
+        "output": [
           { "size": "word", "name": "intStatus", "description": "Mouse interrupt status (see Toolbox Ref Vol1 Figure 14-2)" }
         ]
-      },      
+      },
       "errors": ["none"],
       "c": { "call": "extern pascal Word ServeMouse()" },
       "docs": [{ "ref": "tbv1", "page": "14-35" }]
@@ -1481,15 +1481,15 @@
       "callname": "GetNewID",
       "description": "Creates a new user ID",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "idTag", "description": "High-order byte = type and auxID fields; low-order byte = $0000" }
 
         ],
-        "output": [ 
+        "output": [
           { "size": "word", "name": "userID", "description": "Complete user ID" }
         ]
-      },      
+      },
       "errors": ["mt0301","mt030B"],
       "c": { "call": "extern pascal Word GetNewID(idTag)" },
       "docs": [
@@ -1504,10 +1504,10 @@
       "callname": "DeleteID",
       "description": "Deletes all references to a specified user ID",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "idTag", "description": "The type and mainID fields of the user ID to delete" }
         ]
-      },      
+      },
       "errors": ["none"],
       "c": { "call": "extern pascal void DeleteID(idTag)" },
       "docs": [{ "ref": "tbv1", "page": "14-59" }]
@@ -1519,11 +1519,11 @@
       "callname": "StatusID",
       "description": "Indicates whether a specified user ID is active",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "idTag", "description": "The type and mainID fields of the desired user ID" }
 
         ]
-      },      
+      },
       "errors": ["mt030B"],
       "c": { "call": "extern pascal void StatusID(idTag)" },
       "docs": [
@@ -1537,11 +1537,11 @@
       "callname": "IntSource",
       "description": "Enables or disables certain interrupt sources",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "srcRefNum", "description": "Source reference number of interrupt (see Toolbox Ref Vol1 Figure 14-6)" }
 
         ]
-      },      
+      },
       "errors": ["none"],
       "c": { "call": "extern pascal void IntSource(srcRefNum)" },
       "docs": [
@@ -1554,8 +1554,8 @@
       "toolname": "Misc Tools",
       "callname": "FWentry",
       "description": "Allows some Apple II emulation-mode entry points to be supported from full native mode",
-      "parameters": { 
-        "input": [ 
+      "parameters": {
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "wordspace", "description": "Space for result" },
@@ -1565,7 +1565,7 @@
           { "size": "word", "name": "yRegValue", "description": "Y register at entry (low-order byte only)" },
           { "size": "word", "name": "eModeEntryPt", "description": "Emulation mode entry point" }
         ],
-        "output": [ 
+        "output": [
           { "size": "word", "name": "status", "description": "Processor status at exit (high-order byte only)" },
           { "size": "word", "name": "aRegExit", "description": "Accumulator at exit (low-order byte only)" },
           { "size": "word", "name": "xRegExit", "description": "X register at exit (low-order byte only)" },
@@ -1582,11 +1582,11 @@
       "toolname": "Misc Tools",
       "callname": "GetTick",
       "description": "Returns the current value of the tick counter",
-      "parameters": { 
-        "input": [ 
+      "parameters": {
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" }
         ],
-        "output": [ 
+        "output": [
           { "size": "long", "name": "tickCounter", "description": "Current value of the tick counter" }
         ]
       },
@@ -1600,15 +1600,15 @@
       "toolname": "Misc Tools",
       "callname": "PackBytes",
       "description": "Packs bytes into a special format that uses less storage space",
-      "parameters": { 
-        "input": [ 
+      "parameters": {
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "long", "name": "startHandle", "description": "POINTER to POINTER to start of area to be packed" },
           { "size": "long", "name": "sizePtr", "description": "POINTER to Word containing size of the area" },
           { "size": "long", "name": "bufferPtr", "description": "POINTER to the start of the output buffer area" },
           { "size": "word", "name": "bufferSize", "description": "Size of the output buffer area" }
         ],
-        "output": [ 
+        "output": [
           { "size": "word", "name": "numPackbytes", "description": "Number of packed bytes generated" }
         ]
       },
@@ -1625,15 +1625,15 @@
       "toolname": "Misc Tools",
       "callname": "UnPackBytes",
       "description": "Umpacks data from the packed format used by PackBytes",
-      "parameters": { 
-        "input": [ 
+      "parameters": {
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "long", "name": "bufferPtr", "description": "POINTER to the buffer containing the packed data" },
           { "size": "word", "name": "bufferSize", "description": "Size of the packed data buffer" },
           { "size": "long", "name": "startHandle", "description": "POINTER to POINTER to area where the data will be unpacked" },
           { "size": "long", "name": "sizePtr", "description": "POINTER to Word containing size of area for unpacked data" }
         ],
-        "output": [ 
+        "output": [
           { "size": "word", "name": "numUnpackbytes", "description": "Number of source bytes unpacked" }
         ]
       },
@@ -1651,8 +1651,8 @@
       "toolname": "Misc Tools",
       "callname": "Munger",
       "description": "Manipulates bytes in a string of bytes (like find and replace)",
-      "parameters": { 
-        "input": [ 
+      "parameters": {
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "long", "name": "destPtr", "description": "POINTER to the tect to be manipulated" },
           { "size": "long", "name": "destLenPtr", "description": "POINTER to number of bytes to manipulate" },
@@ -1662,7 +1662,7 @@
           { "size": "word", "name": "replLen", "description": "Number of bytes for replPtr" },
           { "size": "long", "name": "padPtr", "description": "POINTER to character value to be added to short input" }
         ],
-        "output": [ 
+        "output": [
           { "size": "word", "name": "padBytesFound", "description": "Number of bytes padded or truncated; 0 if target found; negative if not found" }
         ]
       },
@@ -1679,13 +1679,13 @@
       "callname": "GetIRQEnable",
       "description": "Returns w/hardware interrupt enable states for interrupt sources that Misc.Tool can control",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" }
         ],
-        "output": [ 
+        "output": [
           { "size": "word", "name": "hdIntStatus", "description": "Status of hardware interrupts (see Toolbox Ref Vol1 Figure 14-1)" }
         ]
-      },      
+      },
       "errors": ["none"],
       "c": { "call": "extern pascal Word GetIRQEnable()" },
       "docs": [
@@ -1698,8 +1698,8 @@
       "toolname": "Misc Tools",
       "callname": "SetAbsClamp",
       "description": "Sets the clamp values for an absolute device to new values",
-      "parameters": { 
-        "input": [ 
+      "parameters": {
+        "input": [
           { "size": "word", "name": "xMinClamp", "description": "Minimum clamp value for the X axis" },
           { "size": "word", "name": "xMaxClamp", "description": "Maximum clamp value for the X axis" },
           { "size": "word", "name": "yMinClamp", "description": "Minimum clamp value for the Y axis" },
@@ -1716,14 +1716,14 @@
       "toolname": "Misc Tools",
       "callname": "GetAbsClamp",
       "description": "Returns the current values of the absolute device clamps",
-      "parameters": { 
-        "input": [ 
+      "parameters": {
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "wordspace", "description": "Space for result" }
         ],
-        "output": [ 
+        "output": [
           { "size": "word", "name": "xMinClamp", "description": "Minimum clamp value for the X axis" },
           { "size": "word", "name": "xMaxClamp", "description": "Maximum clamp value for the X axis" },
           { "size": "word", "name": "yMinClamp", "description": "Minimum clamp value for the Y axis" },
@@ -1760,11 +1760,11 @@
       "callname": "AddToQueue",
       "description": "Adds the specified entry to a queue",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "newEntryPtr", "description": "POINTER to element to add to queue" },
-          { "size": "long", "name": "headerPtr", "description": "POINTER to first queue element" } 
+          { "size": "long", "name": "headerPtr", "description": "POINTER to first queue element" }
         ]
-      },      
+      },
       "errors": ["mt0381","mt0382"],
       "c": { "call": "extern pascal void AddToQueue(newEntryPtr,headerPtr)" },
       "docs": [
@@ -1778,11 +1778,11 @@
       "callname": "DeleteFromQueue",
       "description": "Deletes a specified element from a queue",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "entryPtr", "description": "POINTER to element to delete from queue" },
-          { "size": "long", "name": "headerPtr", "description": "POINTER to first queue element" } 
+          { "size": "long", "name": "headerPtr", "description": "POINTER to first queue element" }
         ]
-      },      
+      },
       "errors": ["mt0380","mt0381"],
       "c": { "call": "extern pascal void DeleteFromQueue(entryPtr,headerPtr)" },
       "docs": [
@@ -1796,11 +1796,11 @@
       "callname": "SetInterruptState",
       "description": "Copies the specified number of bytes from the input interrupt state record into the system interrupt variables",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "intStateRcdPtr", "description": "POINTER to interrupt state record" },
-          { "size": "word", "name": "bytesDesired", "description": "Number of bytes to copy from record to system" } 
+          { "size": "word", "name": "bytesDesired", "description": "Number of bytes to copy from record to system" }
         ]
-      },      
+      },
       "errors": ["none"],
       "c": { "call": "extern pascal void SetInterruptState(intStateRcdPtr,bytesDesired)" },
       "docs": [
@@ -1814,11 +1814,11 @@
       "callname": "GetInterruptState",
       "description": "Copies the specified number of bytes into an input interrupt record from the system interrupt variables",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "intStateRcdPtr", "description": "POINTER to interrupt state record" },
-          { "size": "word", "name": "bytesDesired", "description": "Number of bytes to copy from system to record" } 
+          { "size": "word", "name": "bytesDesired", "description": "Number of bytes to copy from system to record" }
         ]
-      },      
+      },
       "errors": ["none"],
       "c": { "call": "extern pascal void GetlnterruptState(intStateRcdPtr,bytesDesired)" },
       "docs": [
@@ -1832,13 +1832,13 @@
       "callname": "GetIntStateRecSize",
       "description": "Returns the size (in bytes) of the interrupt state record",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" }
         ],
-        "output": [ 
+        "output": [
           { "size": "word", "name": "sizeOfRecord", "description": "Length of interrupt state record, in bytes" }
         ]
-      },      
+      },
       "errors": ["none"],
       "c": { "call": "extern pascal Word GetIntStateRecSize()" },
       "docs": [
@@ -1852,17 +1852,17 @@
       "callname": "ReadMouse2",
       "description": "Returns the mouse position, status, and mode",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "wordspace", "description": "Space for result" }
         ],
-        "output": [ 
+        "output": [
           { "size": "word", "name": "xPosition", "description": "X position of the mouse" },
           { "size": "word", "name": "yPosition", "description": "Y position of the mouse" },
           { "size": "word", "name": "statusMode", "description": "Status and mode bytes" }
         ]
-      },      
+      },
       "errors": ["mt0309"],
       "c": { "call": "extern pascal MouseRec ReadMouse2()" },
       "docs": [
@@ -1876,13 +1876,13 @@
       "callname": "GetCodeResConverter",
       "description": "Returns the address of a routine that loads code resources",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" }
         ],
-        "output": [ 
+        "output": [
           { "size": "long", "name": "pointer", "description": "POINTER to code resource converter routine" }
         ]
-      },      
+      },
       "errors": ["none"],
       "c": { "call": "extern pascal Pointer GetCodeResConverter()" },
       "docs": [
@@ -1918,16 +1918,16 @@
       "callname": "ConvSeconds",
       "description": "Allows conversion to and from a long integer containing the number of seconds since January 1, 1904",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
           { "size": "word", "name": "convVerb", "description": "Direction and type of conversion" },
           { "size": "long", "name": "seconds", "description": "Number of seconds since January 1, 1904" },
           { "size": "long", "name": "datePtr", "description": "POINTER to buffer for converted date" }
         ],
-        "output": [ 
+        "output": [
           { "size": "long", "name": "secondsOut", "description": "Resulting number of seconds" }
         ]
-      },      
+      },
       "errors": ["mt0390","mt0391"],
       "c": { "call": "extern pascal unsigned long ConvSeconds(convVerb,seconds,datePtr)" },
       "docs": [
@@ -1941,10 +1941,10 @@
       "callname": "SysBeep2",
       "description": "SysBeep2 takes an integer parameter indicating what sound to make",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "beepType", "description": "Beep type" }
         ]
-      },      
+      },
       "errors": ["none"],
       "c": { "call": "extern pascal void SysBeep2(beepType)" },
       "docs": [
@@ -1958,12 +1958,12 @@
       "callname": "VersionString",
       "description": "Converts a 32-bit Version number into a Pascal string",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "flags", "description": "Reserved (pass 0)" },
           { "size": "long", "name": "theVersion", "description": "The version number to convert" },
           { "size": "long", "name": "stringPtr", "description": "POINTER to a 10-byte buffer" }
         ]
-      },      
+      },
       "errors": ["none"],
       "c": { "call": "extern pascal void VersionString(flags,theVersion,stringPtr)" },
       "docs": [
@@ -1977,7 +1977,7 @@
       "callname": "WaitUntil",
       "description": "Provides an upper limit on the frequency of repeating actions",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "space", "description": "Space for result" },
           { "size": "word", "name": "delayFrom", "description": "Anchor point to delay from" },
           { "size": "word", "name": "delayAmount", "description": "Specifies how long to wait for anchor" }
@@ -1985,7 +1985,7 @@
         "output": [
           { "size": "word", "name": "newTime", "description": "New anchor point for next call" }
         ]
-      },      
+      },
       "errors": ["none"],
       "c": { "call": "extern pascal Word WaitUntil(delayFrom,delayAmount)" },
       "docs": [
@@ -1999,7 +1999,7 @@
       "callname": "StringToText",
       "description": "StringToText translates 8-bit-character text into similar text that can be displayed on the Apple IIGS text screen",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "space", "description": "Space for result" },
           { "size": "word", "name": "space", "description": "Space for result" },
           { "size": "word", "name": "flags", "description": "Flags" },
@@ -2011,7 +2011,7 @@
           { "size": "word", "name": "resultFlags", "description": "Result flags" },
           { "size": "word", "name": "printableLength", "description": "Number of printing charachters in result" }
         ]
-      },      
+      },
       "errors": ["mt034F"],
       "c": { "call": "extern pascal Long StringToText(flags,textPtr,textLen,resultPtr)" },
       "docs": [
@@ -2025,11 +2025,11 @@
       "callname": "ShowBootInfo",
       "description": "Provides a way for special system extensions to make their presence known while the system is starting up",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "cStringPtr", "description": "POINTER to zero-terminated string (or NIL)" },
           { "size": "long", "name": "iconPtr", "description": "POINTER to DrawIcon-style icon (or NIL)" }
         ]
-      },      
+      },
       "errors": ["none"],
       "c": { "call": "extern pascal void ShowBootInfo(cStringPtr,iconPtr)" },
       "docs": [
@@ -2043,13 +2043,13 @@
       "callname": "ScanDevices",
       "description": "Provides easy access to a GS/OS system service vector which checks for disk insertions",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "space", "description": "Space for result" }
         ],
         "output": [
           { "size": "word", "name": "deviceNumber", "description": "Device number" }
         ]
-      },      
+      },
       "errors": ["none"],
       "c": { "call": "extern pascal Word ScanDevices()" },
       "docs": [
@@ -2063,7 +2063,7 @@
       "callname": "AlertMessage",
       "description": "Displays a message on either the text screen or the Super Hi-Res screen and makes the user choose 1 of up to 3 buttons",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "space", "description": "Space for result" },
           { "size": "long", "name": "tablePtr", "description": "POINTER to the message table" },
           { "size": "word", "name": "msgNumber", "description": "Message index number (0, 1, 2...)" },
@@ -2072,7 +2072,7 @@
         "output": [
           { "size": "word", "name": "buttonNum", "description": "Button chosen by the user" }
         ]
-      },      
+      },
       "errors": ["mt0377"],
       "c": { "call": "extern pascal Word AlertMessage(tablePtr,msgNumber,substitutions)" },
       "docs": [
@@ -2086,7 +2086,7 @@
       "callname": "DoSysPrefs",
       "description": "Clears and then sets specified bits in the GS/OS system preferences word",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "space", "description": "Space for result" },
           { "size": "word", "name": "bitsToClear", "description": "System preference bits to clear" },
           { "size": "word", "name": "bitsToSet", "description": "System preference bits to set" }
@@ -2094,7 +2094,7 @@
         "output": [
           { "size": "word", "name": "oldSysPrefs", "description": "Previous system preference word" }
         ]
-      },      
+      },
       "errors": ["mt0301"],
       "c": { "call": "extern pascal Word DoSysPrefs(bitsToClear,bitsToSet)" },
       "docs": [
@@ -2119,13 +2119,13 @@
       "callname": "QDStartUp",
       "description": "Starts up QuickDraw II for use by an application",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "dPageAddr", "description": "Bank $0 starting address for 3 pages of direct-page space" },
           { "size": "word", "name": "masterSCB", "description": "Master SCB for super Hi-Res graphics" },
           { "size": "word", "name": "maxWidth", "description": "INTEGER; size in bytes of largest pixel map, 0 for screen width" },
           { "size": "word", "name": "userID", "description": "User ID of application" }
         ]
-      },      
+      },
       "errors": ["qd0401","qd0410","mmUnch"],
       "c": { "call": "extern pascal void QDStartUp(dPageAddr,masterSCB,maxWidth,userID)" },
       "docs": [
@@ -2194,9 +2194,9 @@
       "callname": "GetAddress",
       "description": "Returns a pointer to a specified table",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
-          { "size": "word", "name": "tableID", "description": "ID of table whose pointer will be retrieved" } 
+          { "size": "word", "name": "tableID", "description": "ID of table whose pointer will be retrieved" }
         ],
         "output": [ { "size": "long", "name": "tablePtr", "description": "POINTER to table in ROM" } ]
       },
@@ -2260,9 +2260,9 @@
       "callname": "SetColorTable",
       "description": "Sets a specified color table to specified values",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "tableNumber", "description": "INTEGER; number of table whose color values will be set" },
-          { "size": "long", "name": "srcTablePtr", "description": "POINTER to color table" } 
+          { "size": "long", "name": "srcTablePtr", "description": "POINTER to color table" }
         ]
       },
       "errors": ["qd0450"],
@@ -2276,9 +2276,9 @@
       "callname": "GetColorTable",
       "description": "Fills a specified color table with the contents of another color table",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "tableNumber", "description": "INTEGER; color table to be copied" },
-          { "size": "long", "name": "destTablePtr", "description": "POINTER to color table to receive new values" } 
+          { "size": "long", "name": "destTablePtr", "description": "POINTER to color table to receive new values" }
         ]
       },
       "errors": ["qd0450"],
@@ -2292,10 +2292,10 @@
       "callname": "SetColorEntry",
       "description": "Sets the value of a color in a specified color table",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "tableNumber", "description": "INTEGER; number of color table" },
           { "size": "word", "name": "entryNumber", "description": "INTEGER; number of color to be changed" },
-          { "size": "word", "name": "newColor", "description": "INTEGER; master color value for color" } 
+          { "size": "word", "name": "newColor", "description": "INTEGER; master color value for color" }
         ]
       },
       "errors": ["qd0450","qd0451"],
@@ -2309,10 +2309,10 @@
       "callname": "GetColorEntry",
       "description": "Returns the value of a specified color in a specified color table",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "tableNumber", "description": "INTEGER; number of color table" },
-          { "size": "word", "name": "entryNumber", "description": "INTEGER; number of color to be examined" } 
+          { "size": "word", "name": "entryNumber", "description": "INTEGER; number of color to be examined" }
         ]
       },
       "errors": ["qd0450","qd0451"],
@@ -2326,7 +2326,7 @@
       "callname": "SetSCB",
       "description": "Sets the SCB to a specified value",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "scanLine", "description": "INTEGER; scan line whose SCB is to be set" },
           { "size": "word", "name": "newSCB", "description": "INTEGER; new value for SCB" }
         ]
@@ -2342,11 +2342,11 @@
       "callname": "GetSCB",
       "description": "Returns the value of a specified SCB",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "scanLine", "description": "INTEGER; new value for SCB" }
         ],
-        "output": [ 
+        "output": [
           { "size": "word", "name": "scb", "description": "Value of SCB" }
         ]
       },
@@ -2361,7 +2361,7 @@
       "callname": "SetAllSCBs",
       "description": "Sets all SCBs to a specified value",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "newSCB", "description": "new value for SCB" }
         ]
       },
@@ -2376,7 +2376,7 @@
       "callname": "ClearScreen",
       "description": "Sets the words in screen memory to a specified value",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "colorWord", "description": "Color as offset into current color table" }
         ]
       },
@@ -2391,7 +2391,7 @@
       "callname": "SetMasterSCB",
       "description": "Sets the master SCB to a specified value",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "masterSCB", "description": "Value for master SCB (low-order byte only; high-order byte=0)" }
         ]
       },
@@ -3652,7 +3652,7 @@
       "description": "Destroys previous region information by setting a specified region to a specified rectangle",
       "parameters": {
         "input": [
-          { "size": "long", "name": "rgnHandle", "description": "HANDLE to region being set" }, 
+          { "size": "long", "name": "rgnHandle", "description": "HANDLE to region being set" },
           { "size": "word", "name": "left", "description": "INTEGER; left X coordinate for rectangle" },
           { "size": "word", "name": "top", "description": "INTEGER; top Y coordinate for rectangle" },
           { "size": "word", "name": "right", "description": "INTEGER; right X coordinate for rectangle" },
@@ -6059,7 +6059,7 @@
       "callname": "EMStartUp",
       "description": "Starts up the Event Manager, sets size of event queue, and sets minimum and maximum mouse clamp values.",
       "parameters": {
-        "input": [      
+        "input": [
           { "size": "word", "name": "dPageAddr", "description": "Bank $0 starting address for one page of direct-page space" },
           { "size": "word", "name": "queueSize", "description": "Maximum number of event records in queue (0=default of 20)" },
           { "size": "word", "name": "xMinClamp", "description": "Minimum X clamp value for the mouse" },
@@ -6067,7 +6067,7 @@
           { "size": "word", "name": "yMinClamp", "description": "Minimum Y clamp value for the mouse" },
           { "size": "word", "name": "yMaxClamp", "description": "Maximum Y clamp value for the mouse" },
           { "size": "word", "name": "userID", "description": "ID number Event Manager will use to get memory" }
-          
+
         ]
       },
       "errors": ["em0601","em0606","em0607"],
@@ -8204,7 +8204,7 @@
         ]
       },
       "errors": ["none"],
-      "c": { 
+      "c": {
         "call": "extern pascal void SetInGlobals(andMask,orMask)" ,
         "altcall": "extern pascal void SetInGlobals(mask)"
       },
@@ -8223,7 +8223,7 @@
         ]
       },
       "errors": ["none"],
-      "c": { 
+      "c": {
         "call": "extern pascal void SetOutGlobals(andMask,orMask)" ,
         "altcall": "extern pascal void SetOutGlobals(mask)"
       },
@@ -8321,7 +8321,7 @@
         ]
       },
       "errors": ["tt0c01"],
-      "c": { 
+      "c": {
         "call": "extern pascal void SetInputDevice(deviceType,ptrOrSlot)" ,
         "altcall": "extern pascal void SetInputDevice(deviceRec)"
       },
@@ -8340,7 +8340,7 @@
         ]
       },
       "errors": ["tt0c01"],
-      "c": { 
+      "c": {
         "call": "extern pascal void SetOutputDevice(deviceType,ptrOrSlot)" ,
         "altcall": "extern pascal void SetOutputDevice(deviceRec)"
       },
@@ -8359,7 +8359,7 @@
         ]
       },
       "errors": ["tt0c01"],
-      "c": { 
+      "c": {
         "call": "extern pascal void SetErrortDevice(deviceType,ptrOrSlot)" ,
         "altcall": "extern pascal void SetErrortDevice(deviceRec)"
       },
@@ -9317,7 +9317,7 @@
         ]
       },
       "errors": ["none"],
-      "c": { 
+      "c": {
         "call": "extern pascal Long PinRect(theXPt,theYPt,theRectPtr)",
         "altcall": "extern pascal Long PinRect(thePoint,theRectPtr)"
       },
@@ -9399,7 +9399,7 @@
         ]
       },
       "errors": ["none"],
-      "c": { 
+      "c": {
         "call": "extern pascal Boolean TrackZoom(startX,startY,theWindowPtr)",
         "altcall": "extern pascal Boolean TrackZoom(start,theWindowPtr)"
       },
@@ -10632,7 +10632,7 @@
       "callname": "MenuStartUp",
       "description": "Starts up the Menu Manager for use by an application",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "userID", "description": "ID assigned to the application" },
           { "size": "word", "name": "dPageAddr", "description": "Bank $0 starting address for one page of direct-page space" }
         ]
@@ -10698,9 +10698,9 @@
       "callname": "MenuKey",
       "description": "Maps a character to the associated menu and item for that character",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "taskRecPtr", "description": "POINTER to a task record containing character to check" },
-          { "size": "long", "name": "barHandle", "description": "HANDLE to menu bar, or 0 for system menu bar" } 
+          { "size": "long", "name": "barHandle", "description": "HANDLE to menu bar, or 0 for system menu bar" }
       ]
       },
       "errors": ["none"],
@@ -10752,9 +10752,9 @@
       "callname": "InsertMenu",
       "description": "Inserts a specified menu into the menu list after a specified menu item or at front of list",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "addMenuHandle", "description": "HANDLE to menu to insert" },
-          { "size": "word", "name": "insertAfter", "description": "Menu is inserted after this menu; if 0, menu inserted at front" } 
+          { "size": "word", "name": "insertAfter", "description": "Menu is inserted after this menu; if 0, menu inserted at front" }
         ]
       },
       "errors": ["none"],
@@ -10768,8 +10768,8 @@
       "callname": "DeleteMenu",
       "description": "Removes a specified menu from the menu list",
       "parameters": {
-        "input": [ 
-          { "size": "word", "name": "menuNum", "description": "ID of menu to be deleted" } 
+        "input": [
+          { "size": "word", "name": "menuNum", "description": "ID of menu to be deleted" }
         ]
       },
       "errors": ["none"],
@@ -10783,10 +10783,10 @@
       "callname": "InsertMItem",
       "description": "Inserts a menu item into a menu after a specified menu item or at the front of the list",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "addItemPtr", "description": "POINTER to item to insert" },
-          { "size": "word", "name": "insertAfter", "description": "Item after which item is inserted; 0 to add to front, $FFFF at end" }, 
-          { "size": "word", "name": "menuNum", "description": "Menu ID of menu to contain new item, 0 for first menu" } 
+          { "size": "word", "name": "insertAfter", "description": "Item after which item is inserted; 0 to add to front, $FFFF at end" },
+          { "size": "word", "name": "menuNum", "description": "Menu ID of menu to contain new item, 0 for first menu" }
         ]
       },
       "errors": ["none"],
@@ -10800,8 +10800,8 @@
       "callname": "DeleteMItem",
       "description": "Removes a specified item from the current menu",
       "parameters": {
-        "input": [ 
-          { "size": "word", "name": "itemNum", "description": "Item ID of item to be deleted" } 
+        "input": [
+          { "size": "word", "name": "itemNum", "description": "Item ID of item to be deleted" }
         ]
       },
       "errors": ["none"],
@@ -10815,11 +10815,11 @@
       "callname": "GetSysBar",
       "description": "Returns the handle of the current system menu bar",
       "parameters": {
-        "input": [ 
-          { "size": "long", "name": "longspace", "description": "Space for result" } 
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
         ],
-        "output": [ 
-          { "size": "long", "name": "barHandle", "description": "HANDLE to current system bar" } 
+        "output": [
+          { "size": "long", "name": "barHandle", "description": "HANDLE to current system bar" }
         ]
       },
       "errors": ["none"],
@@ -10833,8 +10833,8 @@
       "callname": "SetSysBar",
       "description": "Sets a new system bar; the system menu bar becomes the current menu bar",
       "parameters": {
-        "input": [ 
-          { "size": "long", "name": "barHandle", "description": "HANDLE to new system bar" } 
+        "input": [
+          { "size": "long", "name": "barHandle", "description": "HANDLE to new system bar" }
         ]
       },
       "errors": ["none"],
@@ -10848,11 +10848,11 @@
       "callname": "FixMenuBar",
       "description": "Computes standard sizes for the menu bar and menus",
       "parameters": {
-        "input": [ 
-          { "size": "word", "name": "wordspace", "description": "Space for result" } 
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
         ],
         "output": [
-          { "size": "word", "name": "menuHght", "description": "Height of the menu bar" } 
+          { "size": "word", "name": "menuHght", "description": "Height of the menu bar" }
         ]
       },
       "errors": ["none"],
@@ -10866,12 +10866,12 @@
       "callname": "CountMItems",
       "description": "Returns the number of items, including any dividing lines, in a specified menu",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
-          { "size": "word", "name": "menuNum", "description": "Menu ID of menu whose items will be counted" } 
+          { "size": "word", "name": "menuNum", "description": "Menu ID of menu whose items will be counted" }
         ],
         "output": [
-          { "size": "word", "name": "numberItems", "description": "Number of items in the menu" } 
+          { "size": "word", "name": "numberItems", "description": "Number of items in the menu" }
         ]
       },
       "errors": ["none"],
@@ -10885,12 +10885,12 @@
       "callname": "NewMenuBar",
       "description": "Creates a default menu bar with no menus",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
-          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort; NIL if system" } 
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window's GrafPort; NIL if system" }
         ],
         "output": [
-          { "size": "long", "name": "barHandle", "description": "HANDLE to menu bar" } 
+          { "size": "long", "name": "barHandle", "description": "HANDLE to menu bar" }
         ]
       },
       "errors": ["none"],
@@ -10904,12 +10904,12 @@
       "callname": "GetMHandle",
       "description": "Returns a handle to a menu record",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
-          { "size": "word", "name": "menuNum", "description": "Menu whose handle will be returned" } 
+          { "size": "word", "name": "menuNum", "description": "Menu whose handle will be returned" }
         ],
         "output": [
-          { "size": "long", "name": "menuHandle", "description": "HANDLE to specified menu; 0 if menu not found" } 
+          { "size": "long", "name": "menuHandle", "description": "HANDLE to specified menu; 0 if menu not found" }
         ]
       },
       "errors": ["none"],
@@ -10923,7 +10923,7 @@
       "callname": "SetBarColors",
       "description": "Sets the normal, inverse, and outline colors of the current menu bar",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "newBarColor", "description": "Normal color (see Toolbox Ref Vol1, Table 13-11)" },
           { "size": "word", "name": "newInvertColor", "description": "Selected color (see Toolbox Ref Vol1, Table 13-11)" },
           { "size": "word", "name": "newOutColor", "description": "Outline color (see Toolbox Ref Vol1, Table 13-11)" }
@@ -10940,11 +10940,11 @@
       "callname": "GetBarColors",
       "description": "Returns the colors for the current menu bar",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" }
         ],
         "output": [
-          { "size": "long", "name": "menuBarColor", "description": "Current menu bar colors (see Toolbox Ref Vol1, Table 13-10)" } 
+          { "size": "long", "name": "menuBarColor", "description": "Current menu bar colors (see Toolbox Ref Vol1, Table 13-10)" }
         ]
       },
       "errors": ["none"],
@@ -10958,8 +10958,8 @@
       "callname": "SetMTitleStart",
       "description": "Sets the starting position for the leftmost title within the current menu bar",
       "parameters": {
-        "input": [ 
-          { "size": "word", "name": "xStart", "description": "Starting position of first title from left in pixels (0-127)" } 
+        "input": [
+          { "size": "word", "name": "xStart", "description": "Starting position of first title from left in pixels (0-127)" }
         ]
       },
       "errors": ["none"],
@@ -10973,7 +10973,7 @@
       "callname": "GetMTitleStart",
       "description": "Returns the starting position of the leftmost title within the current menu bar",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" }
         ],
         "output": [
@@ -10991,11 +10991,11 @@
       "callname": "GetMenuMgrPort",
       "description": "Returns a pointer to the Menu Manager's port",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" }
         ],
         "output": [
-          { "size": "long", "name": "menuMgrPtr", "description": "POINTER to Menu Manager port" } 
+          { "size": "long", "name": "menuMgrPtr", "description": "POINTER to Menu Manager port" }
         ]
       },
       "errors": ["none"],
@@ -11009,7 +11009,7 @@
       "callname": "CalcMenuSize",
       "description": "Sets menu dimensions, either manually or automatically",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "newWidth", "description": "Menu width in pixels, or 0 for automatic calculation" },
           { "size": "word", "name": "newHeight", "description": "Menu height in pixels, or 0 for automatic calculation" },
           { "size": "word", "name": "menuNum", "description": "ID number of the menu whose width and height will be calculated" }
@@ -11026,7 +11026,7 @@
       "callname": "SetMTitleWidth",
       "description": "Sets the width of a title",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "newWidth", "description": "Width of title in pixels" },
           { "size": "word", "name": "menuNum", "description": "Number of menu whose width will be set" }
         ]
@@ -11042,7 +11042,7 @@
       "callname": "GetMTitleWidth",
       "description": "Returns the width of a menu title",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "menuNum", "description": "Number of menu whose title width will be returned" }
         ],
@@ -11061,7 +11061,7 @@
       "callname": "SetMenuFlag",
       "description": "Sets the menu to a specified state",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "newValue", "description": "New bit value to set  (see Toolbox Ref Vol1, Table 13-8)" },
           { "size": "word", "name": "menuNum", "description": "Number of menu whose state will be set" }
         ]
@@ -11077,7 +11077,7 @@
       "callname": "GetMenuFlag",
       "description": "Returns the menu flag for a specified menu",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "menuNum", "description": "Number of menu whose state will be returned" }
         ],
@@ -11096,7 +11096,7 @@
       "callname": "SetMenuTitle",
       "description": "Specifies the title for a menu",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "newStrPtr", "description": "POINTER to string to become new title" },
           { "size": "word", "name": "menuNum", "description": "Number of menu whose title will be set" }
         ]
@@ -11112,7 +11112,7 @@
       "callname": "GetMenuTitle",
       "description": "Returns a pointer to the title of a menu",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
           { "size": "word", "name": "menuNum", "description": "Number of menu whose title pointer will be returned" }
         ],
@@ -11131,7 +11131,7 @@
       "callname": "MenuGlobal",
       "description": "Turns menu help on/off or returns state of menu help; help user know inactive to active",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "menuGlobalMask", "description": "Global mask (see Toolbox Ref Vol1, Table 13-6)" }
         ],
@@ -11150,7 +11150,7 @@
       "callname": "SetMItem",
       "description": "Specifies the name for a menu item by pointing to an item line",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "newItemLinePtr", "description": "POINTER to an item line" },
           { "size": "word", "name": "itemNum", "description": "Number of item whose name will be set" }
         ]
@@ -11166,7 +11166,7 @@
       "callname": "GetMItem",
       "description": "Returns a pointer to the name of an item",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
           { "size": "word", "name": "itemNum", "description": "Number of item whose name pointer will be returned" }
         ],
@@ -11185,7 +11185,7 @@
       "callname": "SetMItemFlag",
       "description": "Sets specified item number to be underlined or not underlined & sets the highlighting style",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "newValue", "description": "New bits to set (see Toolbox Ref Vol1, Table 13-9)" },
           { "size": "word", "name": "itemNum", "description": "Number of item whose text style will be set" }
         ]
@@ -11201,7 +11201,7 @@
       "callname": "GetMItemFlag",
       "description": "Returns values for a specified item, such as whether it is disabled, underlined or highlighted",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "itemNum", "description": "Number of item whose flag will be returned" }
         ],
@@ -11220,7 +11220,7 @@
       "callname": "SetMItemBlink",
       "description": "Determines how many times all menu items should blink when selected",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "count", "description": "Number of times any item should blink when selected" }
         ]
       },
@@ -11257,7 +11257,7 @@
       "callname": "MenuSelect",
       "description": "Draws highlighted titles, pulls down menus, and handles user interaction when a mouse button is clicked on a menu bar (see FindWindow routine if using Window Manager).",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "taskRecPtr", "description": "POINTER to a task record containing button-down point" },
           { "size": "long", "name": "barHandle", "description": "HANDLE to menu bar; 0 for system menu bar" }
         ]
@@ -11273,7 +11273,7 @@
       "callname": "HiliteMenu",
       "description": "Highlights or unhighlights the title of a specified menu",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "hiliteFlag", "description": "BOOLEAN; FALSE to draw normally, TRUE to highlight title" },
           { "size": "word", "name": "menuNum", "description": "ID of menu" }
         ]
@@ -11289,7 +11289,7 @@
       "callname": "NewMenu",
       "description": "Allocates space for a menu list and its items",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
           { "size": "long", "name": "menuStringPtr", "description": "POINTER to an array of menu lines and item lines" }
         ],
@@ -11308,7 +11308,7 @@
       "callname": "DisposeMenu",
       "description": "Frees the memory allocated by NewMenu",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "menuHandle", "description": "HANDLE to menu list to be discarded" }
         ]
       },
@@ -11334,7 +11334,7 @@
       "callname": "EnableMItem",
       "description": "Sets a specified menu item to display normally and allows it to be selected",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "itemNum", "description": "Number of item to be enabled" }
         ]
       },
@@ -11349,7 +11349,7 @@
       "callname": "DisableMItem",
       "description": "Sets specified menu item to display in dimmed characters & does not allow it to be selected",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "itemNum", "description": "Number of item to be disabled" }
         ]
       },
@@ -11364,7 +11364,7 @@
       "callname": "CheckMItem",
       "description": "Sets specified menu item to display or to not display a check mark to the left of the item",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "checkedFlag", "description": "BOOLEAN; TRUE to check item; FALSE to uncheck item" },
           { "size": "word", "name": "itemNum", "description": "Number of item to be checked or unchecked" }
         ]
@@ -11380,7 +11380,7 @@
       "callname": "SetMItemMark",
       "description": "Sets a specified menu item to display or to not display a specified character to the left of item",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "mark", "description": "Character to mark item with or 0 for no mark" },
           { "size": "word", "name": "itemNum", "description": "Number of item to be marked or unmarked" }
         ]
@@ -11396,7 +11396,7 @@
       "callname": "GetMItemMark",
       "description": "Returns the current character that is displayed to the left of a specified menu item",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "itemNum", "description": "Number of item to be marked or unmarked" }
         ],
@@ -11416,7 +11416,7 @@
       "callname": "SetMItemStyle",
       "description": "Sets the text style for a specified menu item",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "textStyle", "description": "Text style (see Toolbox Ref Vol1, Figure 13-12)" },
           { "size": "word", "name": "itemNum", "description": "Number of item whose text style will be set" }
         ]
@@ -11432,7 +11432,7 @@
       "callname": "GetMItemStyle",
       "description": "Returns the text style for a specified menu item",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "itemNum", "description": "Number of item whose text style will be returned" }
         ],
@@ -11452,7 +11452,7 @@
       "callname": "SetMenuID",
       "description": "Specifies a new menu number",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "newMenuNum", "description": "New menu number for the menu" },
           { "size": "word", "name": "curMenuNum", "description": "Current menu number whose ID will be changed" }
         ]
@@ -11469,7 +11469,7 @@
       "callname": "SetMItemID",
       "description": "Specifies the ID number of a menu item",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "newItemNum", "description": "New ID number to be assigned to the item" },
           { "size": "word", "name": "curItemNum", "description": "Current item whose ID will be changed" }
         ]
@@ -11485,7 +11485,7 @@
       "callname": "SetMenuBar",
       "description": "Sets the current menu bar",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "barHandle", "description": "HANDLE to new current bar; 0 for system menu bar" }
         ]
       },
@@ -11500,7 +11500,7 @@
       "callname": "SetMItemName",
       "description": "Specifies the aname of a menu item by pointing to a Pascal-type string",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "strPtr", "description": "POINTER to a Pascal-type string (length in first byte)" },
           { "size": "word", "name": "itemNum", "description": "Number of item whose name will be set" }
         ]
@@ -11516,7 +11516,7 @@
       "callname": "GetPopUpDefProc",
       "description": "Returns a pointer to the control definition procedure for pop-up menus (called during Control Manager startup) - application should not call",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" }
         ],
         "output": [
@@ -11534,7 +11534,7 @@
       "callname": "PopUpMenuSelect",
       "description": "Draws highlighted titles and handles user interaction when the user clicks on a pop-up menu",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "selection", "description": "Item ID of current menu selection" },
           { "size": "word", "name": "currentLeft", "description": "Global coordinate value of left edge of pop-up menu" },
@@ -11557,7 +11557,7 @@
       "callname": "NewMenu2",
       "description": "Allocates space for a menu list and its items",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
           { "size": "word", "name": "refDesc", "description": "Defines type of reference in menuTRef" },
           { "size": "long", "name": "menuTRef", "description": "Reference to menu template" }
@@ -11577,7 +11577,7 @@
       "callname": "InsertMItem2",
       "description": "Inserts an item into a menu after a specified menu item or at the top of the menu",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "refDesc", "description": "Defines type of reference in menuItemTRef" },
           { "size": "long", "name": "menuItemTRef", "description": "Reference to menu item template" },
           { "size": "word", "name": "insertAfter", "description": "ID of item after which to insert this item" },
@@ -11595,7 +11595,7 @@
       "callname": "SetMenuTitle2",
       "description": "Specifies the title of a menu",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "refDesc", "description": "Defines type of reference in titleRef" },
           { "size": "long", "name": "titleRef", "description": "Reference to title string of menu" },
           { "size": "word", "name": "menuNum", "description": "ID of menu to receive title" }
@@ -11612,7 +11612,7 @@
       "callname": "SetMItem2",
       "description": "Specifies the title of a menu item",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "refDesc", "description": "Defines type of reference in menuItemTRef" },
           { "size": "long", "name": "menuItemTRef", "description": "Reference to menu item template" },
           { "size": "word", "name": "menuItemID", "description": "ID of item to be changed" }
@@ -11629,7 +11629,7 @@
       "callname": "SetMItemName2",
       "description": "Specifies the name of a menu item",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "refDesc", "description": "Defines type of reference in titleRef" },
           { "size": "long", "name": "titleRef", "description": "Reference to menu item title" },
           { "size": "word", "name": "menuItemID", "description": "ID of item to be changed" }
@@ -11646,7 +11646,7 @@
       "callname": "NewMenuBar2",
       "description": "Creates a menu bar using a menu bar template as its input specification",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
           { "size": "word", "name": "refDesc", "description": "Defines type of reference in menuBarTRef" },
           { "size": "long", "name": "menuBarTRef", "description": "Reference to menu bar template" },
@@ -11696,7 +11696,7 @@
       "callname": "SetMItemIcon",
       "description": "Set the ItemIconRef field in the itemStruct record for the menu item indicated",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "iconDesc", "description": "Describes how icon is to be referenced" },
           { "size": "long", "name": "iconRef", "description": "Reference to icon" },
           { "size": "word", "name": "itemID", "description": "ID of menu item" }
@@ -11713,7 +11713,7 @@
       "callname": "GetMItemIcon",
       "description": "Returns the reference to the icon associated with menu item indicated",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
           { "size": "word", "name": "itemID", "description": "ID of menu item" }
         ],
@@ -11732,7 +11732,7 @@
       "callname": "SetMItemStruct",
       "description": "Sets the ItemTitleRef field of the item record to the reference for the itemStruct record passed",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "itemStructDesc", "description": "Describes how itemStruct is to be referenced" },
           { "size": "long", "name": "itemStructRef", "description": "Reference to itemStruct" },
           { "size": "word", "name": "itemID", "description": "ID of menu item" }
@@ -11749,7 +11749,7 @@
       "callname": "GetMItemStruct",
       "description": "Returns the reference to the itemStruct record of the menu item specified",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
           { "size": "word", "name": "itemID", "description": "ID of menu item" }
         ],
@@ -11768,7 +11768,7 @@
       "callname": "RemoveMItemStruct",
       "description": "Removes the itemStruct record from the item record",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "itemID", "description": "ID of menu item" }
         ]
       },
@@ -11783,7 +11783,7 @@
       "callname": "GetMItemFlag2",
       "description": "Returns the itemFlag2 field for the itemStruct record associated with the menu item indicated",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "itemID", "description": "ID of menu item" }
         ],
@@ -11802,7 +11802,7 @@
       "callname": "SetMItemFlag2",
       "description": "Sets the itemFlag2 field for the itemStruct record of the indicated menu item to the value passed",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "newValue", "description": "New value for itemFlag2" },
           { "size": "word", "name": "itemID", "description": "ID of menu item" }
         ]
@@ -11825,7 +11825,7 @@
       "callname": "GetMItemBlink",
       "description": "GetMItemBlink returns the current menu item blink setting, as set with SetMItemBlink",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" }
         ],
         "output": [
@@ -11844,7 +11844,7 @@
       "callname": "InsertPathMItem",
       "description": "Takes a GS/OS pathname and inserts one menu item into the specified menu for each segment of the pathname",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "flags", "description": "Flags" },
           { "size": "long", "name": "pathPtr", "description": "POINTER to GS/OS input filename" },
           { "size": "word", "name": "deviceNum", "description": "Device number the path is on, if known" },
@@ -15670,7 +15670,7 @@
     "em0607": { "source": "Event Manager", "code": "0607", "name": "emNoMemQueueErr", "description":"Insufficient memory for the event queue" },
     "em0681": { "source": "Event Manager", "code": "0681", "name": "emBadEvtQErr", "description":"The event queue is damaged" },
     "em0682": { "source": "Event Manager", "code": "0682", "name": "emBadQHndlErr", "description":"Queue handle damaged" },
-    
+
     "st0810": { "source": "Sound Tool Set", "code": "0810", "name": "noDOCFndErr", "description":"The DOC or RAM was not found" },
     "st0811": { "source": "Sound Tool Set", "code": "0811", "name": "docAddrRngErr", "description":"DOC address range error" },
     "st0812": { "source": "Sound Tool Set", "code": "0812", "name": "noSAddrInitErr", "description":"The Sound Tool Set is not active" },
@@ -15691,7 +15691,7 @@
     "im0b02": { "source": "Integer Math Tool Set", "code": "0B02", "name": "imIllegalChar", "description":"Illegal character in the string" },
     "im0b03": { "source": "Integer Math Tool Set", "code": "0B03", "name": "imOverflow", "description":"Integer or longint overflow" },
     "im0b04": { "source": "Integer Math Tool Set", "code": "0B04", "name": "imStrOverflow", "description":"Length of string is too short to represent the value" },
-    
+
     "tt0c01": { "source": "Text Tool Set", "code": "0C01", "name": "badDevType", "description":"Illegal device type" },
     "tt0c02": { "source": "Text Tool Set", "code": "0C02", "name": "badDevNum", "description":"Illegal device number" },
     "tt0c03": { "source": "Text Tool Set", "code": "0C03", "name": "badMode", "description":"Illegal operation" },
@@ -15710,13 +15710,13 @@
     "tt0c10": { "source": "Text Tool Set", "code": "0C10", "name": "writeProtected", "description":"The specified disk is write protected" },
     "tt0c40": { "source": "Text Tool Set", "code": "0C40", "name": "devErr", "description":"The device did not complete a read or write" },
     "ttpascal": { "source": "Text Tool Set", "code": "", "name": "Pascal device errors", "description":"Any of the errors $0C02-$0C40 listed in Toolbox Ref. Vol3 section 'Text Tool Set Summary' (or see CtlTextDev Tool Call)" },
-    
+
     "wm0e01": { "source": "Window Manager", "code": "0E01", "name": "paramLenErr", "description":"The first word of the parameter list is the wrong size" },
     "wm0e02": { "source": "Window Manager", "code": "0E02", "name": "allocateErr", "description":"Unable to allocate the window record" },
     "wm0e03": { "source": "Window Manager", "code": "0E03", "name": "taskMaskErr", "description":"Some reserved bits were not clear in the wmTaskMask field of the wmTaskRec record" },
     "wm0e04": { "source": "Window Manager", "code": "0E04", "name": "compileTooLarge", "description":"Compiled text is larger than 64K" },
     "wm0e05": { "source": "Window Manager", "code": "0E05", "name": "cantUpdateErr", "description":"Cannot update the specified window in the current environment" },
-    
+
     "mn0f03": { "source": "Menu Manager", "code": "0F03", "name": "menuNoStruct", "description":"Returned if bit 10 of itemFlag is not set" },
 
     "cmUnch": { "source": "Control Manager", "code": "", "name": "Control Manager errors", "description": "Returned unchanged" },
@@ -15726,7 +15726,7 @@
     "wmUnch": { "source": "Window Manager", "code": "", "name": "Window Manager errors", "description": "Returned unchanged" },
     "proUnch": { "source": "ProDOS 16", "code": "", "name": "ProDOS errors", "description": "Returned unchanged" },
     "gsosUnch": { "source": "GS/OS", "code": "", "name": "GS/OS errors", "description": "Returned unchanged" },
-    
+
     "****NOTE***": { "_": "Not sure if these might be smartport/gsos/p16 codes?  come from RAMDisk tool which is sketchy (undefined)"},
     "rd01": { "source": "Unknown (ramdisk)", "code": "01", "name": "", "description":"Bad command number" },
     "rd21": { "source": "Unknown (ramdisk)", "code": "21", "name": "", "description":"Bad Ctl or Status code" },
@@ -15770,5 +15770,5 @@
       "url": "https://docs.google.com/document/d/1nX9iMr4a7aHWUF0xcY8qv20MRiz1GOa6SJOWhzkD0Wg/edit?tab=t.0",
       "emoji": "🗒️"
     }
-  } 
+  }
 }
