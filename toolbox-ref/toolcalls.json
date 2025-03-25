@@ -11863,427 +11863,1041 @@
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "CtlBootInit",
-      "description": "Initializes the Control Manager; called only by Tool Locator (not application)"
+      "description": "Initializes the Control Manager; called only by Tool Locator (not application)",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv1", "page": "4-41" }]
     },
     {
       "toolcall": "02",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "CtlStartUp",
-      "description": "Starts up the Control Manager for use by an application"
+      "description": "Starts up the Control Manager for use by an application",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "userID", "description": "ID assigned to the application" },
+          { "size": "word", "name": "dPageAddr", "description": "Bank $0 starting address for one page of direct-page space" }
+        ]
+      },
+      "errors": ["cm1001"],
+      "c": { "call": "extern pascal void CtlStartUp(userID,dPageAddr)" },
+      "docs": [{ "ref": "tbv1", "page": "4-42" }]
     },
     {
       "toolcall": "03",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "CtlShutDown",
-      "description": "Shuts down the Control Manager"
+      "description": "Shuts down the Control Manager",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void CtlShutDown()" },
+      "docs": [{ "ref": "tbv1", "page": "4-43" }]
     },
     {
       "toolcall": "04",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "CtlVersion",
-      "description": "Returns the version number of the Control Manager"
+      "description": "Returns the version number of the Control Manager",
+      "parameters": {
+        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ],
+        "output": [ { "size": "word", "name": "versionInfo", "description": "Version number of the Control Manager" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word CtlVersion()" },
+      "docs": [{ "ref": "tbv1", "page": "4-43" }]
     },
     {
       "toolcall": "05",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "CtlReset",
-      "description": "Resets the Control Manager; called only on reset (not by application)"
+      "description": "Resets the Control Manager; called only on reset (not by application)",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv1", "page": "4-44" }]
     },
     {
       "toolcall": "06",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "CtlStatus",
-      "description": "Indicates whether the Control Manager is active"
+      "description": "Indicates whether the Control Manager is active",
+      "parameters": {
+        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ],
+        "output": [ { "size": "word", "name": "activeFlag", "description": "BOOLEAN; TRUE if Control Manager is active, FALSE if not" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean CtlStatus()" },
+      "docs": [{ "ref": "tbv1", "page": "4-44" }]
     },
     {
       "toolcall": "09",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "NewControl",
-      "description": "Creates a ctrl, adds it to begin of spec. window's ctrl list, & returns handle to new ctrl"
+      "description": "Creates a control, adds it to beginning of specified window's control list, and returns handle to new control",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window owner" },
+          { "size": "long", "name": "boundsRectPtr", "description": "POINTER to RECT data structure defining enclosing rectangle" },
+          { "size": "long", "name": "titlePtr", "description": "POINTER to title string (ctlData)" },
+          { "size": "word", "name": "flag", "description": "Bit flag (see Toolbox Ref Vol1, Figure 4-26)" },
+          { "size": "word", "name": "value", "description": "Control's starting value" },
+          { "size": "word", "name": "param1", "description": "Additional parameter (view size for scroll bars)" },
+          { "size": "word", "name": "param2", "description": "Additional parameter (data size for scroll bars)" },
+          { "size": "long", "name": "defProcPtr", "description": "POINTER to definition procedure, or standard control value" },
+          { "size": "long", "name": "refCon", "description": "Reserved for application use" },
+          { "size": "long", "name": "colorTablePtr", "description": "POINTER to control's color table; NIL for default color table" }
+        ],
+        "output": [ { "size": "long", "name": "theControlHandle", "description": "HANDLE to control; NIL = error" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal CtlRecHndl NewControl(theWindowPtr,boundsRectPtr,titlePtr,flag,value,paraml,param2,defProcPtr,refCon,colorTablePtr" },
+      "docs": [{ "ref": "tbv1", "page": "4-70" }]
     },
     {
       "toolcall": "0A",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "DisposeControl",
-      "description": "Deletes a spec. ctrl & releases mem occupied by ctrl record & any data struct. w/the ctrl"
+      "description": "Deletes a specified control from its window's control list, releases its memory and any associated data structures.",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void DisposeControl(theControlHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "4-45" }]
     },
     {
       "toolcall": "0B",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "KillControls",
-      "description": "Disposes of all controls associated with a specified window"
+      "description": "Disposes of all controls associated with a specified window",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window whose controls are to be disposed of" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void KillControls(theWindowPtr)" },
+      "docs": [{ "ref": "tbv1", "page": "4-68" }]
     },
     {
       "toolcall": "0C",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "SetCtlTitle",
-      "description": "Sets a specified control's title to a given string and redraws the control"
+      "description": "Sets a specified control's title to a given string and redraws the control",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "titlePtr", "description": "POINTER to control's ctlData field" },
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetCtlTitle(titlePtr,theControlHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "4-78" }]
     },
     {
       "toolcall": "0D",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "GetCtlTitle",
-      "description": "Returns value in specified ctrl's ctlData field, which, for ctrls w/titles, is ptr to title str"
+      "description": "Returns value in specified control's ctlData field, so scrollbars = view and data size, for ctrls w/titles = ptr to title str, or custom.",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" } 
+        ],
+        "output": [
+          { "size": "long", "name": "ctlTitlePtr", "description": "POINTER to control's ctlData field" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Pointer GetCtlTitle(theControlHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "4-63" }]
     },
     {
       "toolcall": "0E",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "HideControl",
-      "description": "Makes specified ctrl invisible by fillng region the ctrl occupies w/bkground pattern of grafprt"
+      "description": "Makes a specified control invisible by filling the region the control occupies with the background pattern of the window's GrafPort.",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control to be hidden" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void HideControl(theControlHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "4-66" }]
     },
     {
       "toolcall": "0F",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "ShowControl",
-      "description": "Makes a specified control visible"
+      "description": "Makes a specified control visible",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control to be hidden" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void ShowControl(theControlHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "4-80" }]
     },
     {
       "toolcall": "10",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "DrawControls",
-      "description": "Draws all controls currently visible in a specified window"
+      "description": "Draws all controls currently visible in a specified window",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "theWindowPtr", "description": "HANDLE to window whose controls are to be drawn" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void DrawControls(theWindowPtr)" },
+      "docs": [{ "ref": "tbv1", "page": "4-54" }]
     },
     {
       "toolcall": "11",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "HiliteControl",
-      "description": "Changes the way a specified control is highlighted"
+      "description": "Changes the way a specified control is highlighted",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "hiliteState", "description": "Type of highlighting: 0 = none, 1-253 = part code, 255 = inactive" },
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control to be highlighted" } 
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void HiliteControl(hiliteState,theControlHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "4-67" }]
     },
     {
       "toolcall": "12",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "CtlNewRes",
-      "description": "Reinitializes resolution and mode"
+      "description": "Reinitializes resolution and mode. Call after you have changed the video modes.",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void CtlNewRes()" },
+      "docs": [{ "ref": "tbv1", "page": "4-45" }]
     },
     {
       "toolcall": "13",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "FindControl",
-      "description": "Tells in which of window's ctrls, if any, the cursor was in when user pressed mouse button"
+      "description": "Reports which of window's controls, if any, the cursor was in when user pressed mouse button.",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "foundCtlPtr", "description": "POINTER to address where handle of found control will be stored" },
+          { "size": "word", "name": "pointX", "description": "X coordinate to check, in global coordinates" },
+          { "size": "word", "name": "pointY", "description": "Y coordinate to check, in global coordinates" },
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window to check" }
+        ],
+        "output": [
+          { "size": "word", "name": "foundPart", "description": "Part code of found part of control" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word FindControl(foundCtlPtr,pointX,pointY,theWindowPtr)" },
+      "docs": [{ "ref": "tbv1", "page": "4-57" }]
     },
     {
       "toolcall": "14",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "TestControl",
-      "description": "Tests which part of a specified control contains a specified point"
+      "description": "Tests which part of a specified control contains a specified point (if specified control is visible and active)",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "pointX", "description": "X coordinate to check, in global coordinates" },
+          { "size": "word", "name": "pointY", "description": "Y coordinate to check, in global coordinates" },
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE of control to be tested" }
+        ],
+        "output": [
+          { "size": "word", "name": "partCode", "description": "Part code of the POINT; 0 if not in visible, active control" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word TestControl(pointX,pointY,theControlHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "4-81" }]
     },
     {
       "toolcall": "15",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "TrackControl",
-      "description": "Follows mouse movements and responds appropriately until mouse button is released"
+      "description": "Follows mouse movements and responds appropriately until mouse button is released",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "startX", "description": "X coordinate, in global coordinates, of starting point" },
+          { "size": "word", "name": "startY", "description": "Y coordinate, in global coordinates, of starting point" },
+          { "size": "long", "name": "actionProcPtr", "description": "POINTER to routine; NIL, or negative (see Toolbox Ref Vol1 Chapter4 -\"Additional Actions and the Action Procedure\")" },
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
+        ],
+        "output": [
+          { "size": "word", "name": "partCode", "description": "Selected part when button was released" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word TrackControl(startX,startY,actionProcPtr,theControlHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "4-82" }]
     },
     {
       "toolcall": "16",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "MoveControl",
-      "description": "Moves a specified control to a new location within its window"
+      "description": "Moves a specified control to a new location within its window",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "newX", "description": "New X origin ofcontrol, in local coordinates" },
+          { "size": "word", "name": "newY", "description": "New Y origin ofcontrol, in local coordinates" },
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void MoveControl(newX,newY,theControlHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "4-69" }]
     },
     {
       "toolcall": "17",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "DragControl",
-      "description": "Pulls dotted outln of ctrl around screen, following mvments of mouse till button released"
+      "description": "Pulls dotted outln of ctrl around screen, following mvments of mouse till button released",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "startX", "description": "X coordinate of starting point in local coordinates" },
+          { "size": "word", "name": "startY", "description": "Y coordinate of starting point in local coordinates" },
+          { "size": "long", "name": "limitRectPtr", "description": "POINTER to bounds RECT data structure" },
+          { "size": "long", "name": "slopRectPtr", "description": "POINTER to slop RECT data structure" },
+          { "size": "word", "name": "axis", "description": "Movement constraint: 0=none, 1=horizontal, 2=vertical" },
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void DragControl(startX,startY,limitRectPtr,slopRectPtr,axis,theControlHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "4-46" }]
     },
     {
       "toolcall": "18",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "SetCtlIcons",
-      "description": "Provides a handle to a specified new icon font"
+      "description": "Replaces current icon font with a specified new font and returns the handle of the old font, or just returns the handle of the old font.",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "newFontHandle", "description": "HANDLE to new icon font; negative value to not set new font" }
+        ],
+        "output": [
+          { "size": "long", "name": "oldFontHandle", "description": "HANDLE to old icon font" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal FontHndl SetCtlIcons(newFontHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "4-75" }]
     },
     {
       "toolcall": "19",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "SetCtlValue",
-      "description": "Sets specified ctrl's ctlValue field to a specified value & redraws ctrl to reflect new setting"
+      "description": "Sets specified control's ctlValue field to a specified value & redraws control to reflect new setting",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "newValue", "description": "New value for control" },
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetCtlValue(newValue,theControlHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "4-79" }]
     },
     {
       "toolcall": "1A",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "GetCtlValue",
-      "description": "Returns a specified control's current ctlValue field"
+      "description": "Returns a specified control's current ctlValue field",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
+        ],
+        "output": [
+          { "size": "word", "name": "curValue", "description": "Control's current value" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word GetCtlValue(theControlHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "4-64" }]
     },
     {
       "toolcall": "1B",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "SetCtlParams",
-      "description": "Sets new params in ctrl's def procedure, which will set values & redraw ctrl if necessary"
+      "description": "Sets new params in controls's definition procedure, which will set values & redraw control if necessary",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "param2", "description": "Additional control parameter; defined by control" },
+          { "size": "word", "name": "param1", "description": "Additional control parameter; defined by control" },
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word SetCtlParams(param2,param1,theControlHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "4-76" }]
     },
     {
       "toolcall": "1C",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "GetCtlParams",
-      "description": "Returns a specified control's additional parameters"
+      "description": "Returns a specified control's additional parameters",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
+        ],
+        "output": [
+          { "size": "word", "name": "param1", "description": "Additional control parameter; defined by control" },
+          { "size": "word", "name": "param2", "description": "Additional control parameter; defined by control" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal LongWord GetCtlParams(theControlHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "4-61" }]
     },
     {
       "toolcall": "1D",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "DragRect",
-      "description": "Pulls dotted outln of rectangle around screen, follown mvments of mouse till bttn released"
+      "description": "Pulls a dotted outline of a specified rectangle around the screen, following the mouse movements until the mouse button is released",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "actionProcPtr", "description": "POINTER to routine; NIL for default" },
+          { "size": "long", "name": "dragPatternPtr", "description": "POINTER to pattern to use for drag outline" },
+          { "size": "word", "name": "startX", "description": "X coordinate of starting point in local coordinates" },
+          { "size": "word", "name": "startY", "description": "Y coordinate of starting point in local coordinates" },
+          { "size": "long", "name": "dragRectPtr", "description": "POINTER to RECT data structure of rectangle to be dragged" },
+          { "size": "long", "name": "limitRectPtr", "description": "POINTER to bounds RECT data structure" },
+          { "size": "long", "name": "slopRectPtr", "description": "POINTER to slop RECT data structure" },
+          { "size": "word", "name": "dragFlag", "description": "Bit flag that customizes DragRect (see Toolbox Ref Vol1 Figure 4-25)" }
+        ],
+        "output": [
+          { "size": "long", "name": "moveDelta", "description": "High word = amount X changed, low word = amount Y changed" }
+        ]
+      },
+      "errors": ["cm1001"],
+      "c": { "call": "extern pascal Longword DragRect(actionProcPtr,dragPatternPtr,startX,startY,dragRectPtr,limitRectPtr,slopRectPtr,dragFlag)" },
+      "docs": [{ "ref": "tbv1", "page": "4-48" }]
     },
     {
       "toolcall": "1E",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "GrowSize",
-      "description": "Returns the height & width of size box ctrl, using Control Manager's current icon font"
+      "description": "Returns the height & width of size box control, using Control Manager's current icon font",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "sizeOfGrow", "description": "High-order word is width, low-order word is height" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Longword GrowSize()" },
+      "docs": [{ "ref": "tbv1", "page": "4-65" }]
     },
     {
       "toolcall": "1F",
       "toolnum": "10",
       "toolname": "Control Manager",
-      "callname": "GetCtlDpage",
-      "description": "Returns the value of the Control Manager's direct page"
+      "callname": "GetCtlDPage",
+      "description": "Returns the value of the Control Manager's direct page",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "ctlDPage", "description": "Bank $0 starting address of Control Manager's direct page" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word GetCtlDPage()" },
+      "docs": [{ "ref": "tbv1", "page": "4-60" }]
     },
     {
       "toolcall": "20",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "SetCtlAction",
-      "description": "Sets a specified control's ctrlAction field to a new action"
+      "description": "Sets a specified control's ctrlAction field to a new action",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "newActionPtr", "description": "POINTER to custom control action procedure" },
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetCtlAction(newActionPtr,theControlHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "4-74" }]
     },
     {
       "toolcall": "21",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "GetCtlAction",
-      "description": "Returns the current value of a specified control's ctlAction field"
+      "description": "Returns the current value of a specified control's ctlAction field",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
+        ],
+        "output": [
+          { "size": "long", "name": "ctlActionValue", "description": "Value in control's ctlActton field" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal LongProcPtr GetCtlAction(theControlHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "4-59" }]
     },
     {
       "toolcall": "22",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "SetCtlRefCon",
-      "description": "Sets a specified control's ctlRefCon field to a new value"
+      "description": "Sets a specified control's ctlRefCon field to a new value",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "newRefCon", "description": "Value to store in the control's ctlRefCon field" },
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetCtlRefCon(newRefCon,theControlHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "4-77" }]
     },
     {
       "toolcall": "23",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "GetCtlRefCon",
-      "description": "Returns the current value of a specified control's ctlRefCon field"
+      "description": "Returns the current value of a specified control's ctlRefCon field",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
+        ],
+        "output": [
+          { "size": "long", "name": "ctlRefConValue", "description": "Value in control's ctlRefCon field" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Longword GetCtlRefCon(theControlHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "4-62" }]
     },
     {
       "toolcall": "24",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "EraseControl",
-      "description": "Makes specified ctrl invisible but doesn't add ctrl's enclosing rectangle to wndw update region"
+      "description": "Makes specified control invisible but doesn't add control's enclosing rectangle to window update region",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control to be erased" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void EraseControl(theControlHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "4-56" }]
     },
     {
       "toolcall": "25",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "DrawOneCtl",
-      "description": "Draws a specified control"
+      "description": "Draws a specified control",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control to be drawn" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void DrawOneCtl(theControlHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "4-55" }]
     },
     {
       "toolcall": "26",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "FindTargetCtl",
-      "description": "Returns the handle of the target control within the control list for the active window"
+      "description": "Returns the handle of the target control within the control list for the active window",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "ctlHandle", "description": "Handle of target control; undefined if none or error" }
+        ]
+      },
+      "errors": ["cm1004","cm1005","cm1006","cm100c"],
+      "c": { "call": "extern pascal Handle FindTargetCtl()" },
+      "docs": [{ "ref": "tbv3", "page": "28-26" }]
     },
     {
       "toolcall": "27",
       "toolnum": "10",
       "toolname": "Control Manager",
-      "callname": "MakeNextCtlTar",
-      "description": "Makes the next eligible control the target control"
+      "callname": "MakeNextCtlTarget",
+      "description": "Makes the next eligible control the target control",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "ctlHandle", "description": "Handle of target control; undefined if error" }
+        ]
+      },
+      "errors": ["cm1004","cm1005","cm100b"],
+      "c": { "call": "extern pascal Handle MakeNextCtlTarget()" },
+      "docs": [{ "ref": "tbv3", "page": "28-32" }]
     },
     {
       "toolcall": "28",
       "toolnum": "10",
       "toolname": "Control Manager",
-      "callname": "MakeThisCtlTar",
-      "description": "Makes the specified control the target"
+      "callname": "MakeThisCtlTarget",
+      "description": "Makes the specified control the target",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "ctlToBeTarget", "description": "Handle to control to be made the target" }
+        ]
+      },
+      "errors": ["cm1007","cm1008"],
+      "c": { "call": "extern pascal void MakeThisCtlTarget(ctlToBeTarget)" },
+      "docs": [{ "ref": "tbv3", "page": "28-33" }]
     },
     {
       "toolcall": "29",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "SendEventToCtl",
-      "description": "Passes a specified extended task record to the appropriate control or controls"
+      "description": "Passes a specified extended task record to the appropriate control or controls",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "targetOnlyFlag", "description": "(Boolean) TRUE = send to target only; FALSE = all controls" },
+          { "size": "long", "name": "ctlWindowPtr", "description": "Pointer to window to search; NIL for top window" },
+          { "size": "long", "name": "eTaskRecPtr", "description": "Pointer to extended task record for event" }
+        ],
+        "output": [
+          { "size": "word", "name": "result", "description": "BOOLEAN; TRUE if event accepted; otherwise FALSE" }
+        ]
+      },
+      "errors": ["cm1005","cm100c"],
+      "c": { "call": "extern pascal Boolean SendEventToCtl(targetOnlyFlag,ctlWindowPtr,eTaskRecPtr)" },
+      "docs": [{ "ref": "tbv3", "page": "28-37" }]
     },
     {
       "toolcall": "2A",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "GetCtlID",
-      "description": "Returns the ctlID field from the control record of a specified control"
+      "description": "Returns the ctlID field from the control record of a specified control",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "ctlHandle", "description": "HANDLE to control" }
+        ],
+        "output": [
+          { "size": "long", "name": "ctlID", "description": "ctlID for specified control" }
+        ]
+      },
+      "errors": ["cm1004","cm1007"],
+      "c": { "call": "extern pascal Long GetCtlID(ctlHandle)" },
+      "docs": [{ "ref": "tbv3", "page": "28-28" }]
     },
     {
       "toolcall": "2B",
       "toolnum": "10",
       "toolname": "Control Manager",
-      "callname": "SetCtliD",
-      "description": "Sets the ctliD field in the control record of a specified control"
+      "callname": "SetCtlID",
+      "description": "Sets the ctlID field in the control record of a specified control",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "newID", "description": "New ctlID value for the control" },
+          { "size": "long", "name": "ctlHandle", "description": "HANDLE to control" }
+        ]
+      },
+      "errors": ["cm1004","cm1007"],
+      "c": { "call": "extern pascal void SetCtlID(newID,ctlHandle)" },
+      "docs": [{ "ref": "tbv3", "page": "28-39" }]
     },
     {
       "toolcall": "2C",
       "toolnum": "10",
       "toolname": "Control Manager",
-      "callname": "CallDefProc",
-      "description": "Calls a controls defproc with the specified inputs"
+      "callname": "CallCtlDefProc",
+      "description": "Calls a control's definition procedure with the specified inputs",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "ctlHandle", "description": "HANDLE of control to be called" },
+          { "size": "word", "name": "ctlMessage", "description": "Control message to send to control definition procedure" },
+          { "size": "long", "name": "ctlParam", "description": "Parameter to pass to control definition procedure" }
+        ],
+        "output": [
+          { "size": "long", "name": "result", "description": "Result value from control definition procedure" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Long CallCtlDefProc(ctlHandle,ctlMessage,ctlParam)" },
+      "docs": [{ "ref": "tbv3", "page": "28-22" }]
     },
     {
       "toolcall": "2D",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "NotifyCtls",
-      "description": "Calls the control definition procedures for extended controls in a specified window"
+      "description": "Calls control definition procedures for extended controls in a specified window, sending a control message and parameter.",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "mask", "description": "Bit mask to be compared with ctlMoreFlags" },
+          { "size": "word", "name": "message", "description": "Control message to send to control definition procedures" },
+          { "size": "long", "name": "param", "description": "Parameter to pass to control definition procedures" },
+          { "size": "long", "name": "window", "description": "GrafPort of window whose control list is to be searched" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void NotifyCtls(mask,message,param,window)" },
+      "docs": [{ "ref": "tbv3", "page": "28-36" }]
     },
     {
       "toolcall": "2E",
       "toolnum": "10",
       "toolname": "Control Manager",
-      "callname": "GetCtlMoreFlag",
-      "description": "Gets the contents of the ctlMoreFlags field of the control record for a specified control"
+      "callname": "GetCtlMoreFlags",
+      "description": "Gets the contents of the ctlMoreFlags field of the control record for a specified control",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "ctlHandle", "description": "HANDLE to control" }
+        ],
+        "output": [
+          { "size": "word", "name": "ctlMoreFlags", "description": "ctlMoreFlags for specified control" }
+        ]
+      },
+      "errors": ["cm1004","cm1007"],
+      "c": { "call": "extern pascal Word GetCtlMoreFlags(ctlHandle)" },
+      "docs": [{ "ref": "tbv3", "page": "28-29" }]
     },
     {
       "toolcall": "2F",
       "toolnum": "10",
       "toolname": "Control Manager",
-      "callname": "SetCtlMoreFlag",
-      "description": "Sets the contents of the ctlMoreFlags field of the control record for a specified control"
+      "callname": "SetCtlMoreFlags",
+      "description": "Sets the contents of the ctlMoreFlags field of the control record for a specified control",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "newMoreFlags", "description": "New ctlMoreFlags value for the control" },
+          { "size": "long", "name": "ctlHandle", "description": "HANDLE to control" }
+        ]
+      },
+      "errors": ["cm1004","cm1007"],
+      "c": { "call": "extern pascal void SetCtlMoreFlags(newMoreFlags,ctlHandle)" },
+      "docs": [{ "ref": "tbv3", "page": "28-40" }]
     },
     {
       "toolcall": "30",
       "toolnum": "10",
       "toolname": "Control Manager",
-      "callname": "GetCtlHandleFr",
-      "description": "Retrieves the control handle to the control record with a specified ctlID field value"
+      "callname": "GetCtlHandleFromID",
+      "description": "Retrieves the control handle to the control record with a specified ctlID field value",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "ctlWindowPtr", "description": "POINTER to window for control list search; NIL = top window" },
+          { "size": "long", "name": "ctlID", "description": "ID value for desired control" }
+        ],
+        "output": [
+          { "size": "long", "name": "ctlHandle", "description": "HANDLE for specified control" }
+        ]
+      },
+      "errors": ["cm1004","cm1005","cm1009","cm100c"],
+      "c": { "call": "extern pascal Long GetCtlHandleFromID(ctlWindowPtr,ctlID)" },
+      "docs": [{ "ref": "tbv3", "page": "28-27" }]
     },
     {
       "toolcall": "31",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "NewControl2",
-      "description": "Creates one or more new controls."
+      "description": "Creates one or more new controls.",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "ownerPtr", "description": "POINTER to window for control(s)" },
+          { "size": "word", "name": "inputDesc", "description": "Describes contents of inputRef" },
+          { "size": "long", "name": "inputRef", "description": "Reference of a type defined by inputDesc" }
+        ],
+        "output": [
+          { "size": "long", "name": "ctlHandle", "description": "Control handle (if single control created) or 0" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Handle NewControl2(ownerPtr,inputDesc,inputRef)" },
+      "docs": [{ "ref": "tbv3", "page": "28-34" }]
     },
     {
       "toolcall": "32",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "CMLoadResource",
-      "description": "This is an entry point to the internal Control Manager routine that loads resources"
+      "description": "This is an entry point to the internal Control Manager routine that loads resources.",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "resourceType", "description": "Type of resource to load" },
+          { "size": "long", "name": "resourceID", "description": "ID of resource to load" }
+        ],
+        "output": [
+          { "size": "long", "name": "resourceHandle", "description": "Handle of loaded resource" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Handle CMLoadResource(resourceType,resourceID)" },
+      "docs": [{ "ref": "tbv3", "page": "28-24" }]
     },
     {
       "toolcall": "33",
       "toolnum": "10",
       "toolname": "Control Manager",
-      "callname": "CMReleaseResou",
-      "description": "This is an entry point to the internal Control Manager routine that releases resources"
+      "callname": "CMReleaseResource",
+      "description": "This is an entry point to the internal Control Manager routine that releases resources",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "resourceType", "description": "Type of resource to load" },
+          { "size": "long", "name": "resourceID", "description": "ID of resource to load" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void CMReleaseResource(resourceType,resourceID)" },
+      "docs": [{ "ref": "tbv3", "page": "28-25" }]
     },
     {
       "toolcall": "34",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "SetCtlParamPtr",
-      "description": "Sets the pointer to the current text substitution array for the Control Manager"
+      "description": "Sets the pointer to the current text substitution array for the Control Manager.",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "subArrayPtr", "description": "New pointer to text substitution array" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SetCtlParamPtr(subArrayPtr)" },
+      "docs": [{ "ref": "tbv3", "page": "28-41" }]
     },
     {
       "toolcall": "35",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "GetCtlParamPtr",
-      "description": "Retrieves the pointer to the current text substitution array for the Control Manager"
+      "description": "Retrieves the pointer to the current text substitution array for the Control Manager",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "subArrayPtr", "description": "New pointer to text substitution array" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Pointer GetCtlParamPtr()" },
+      "docs": [{ "ref": "tbv3", "page": "28-30" }]
     },
     {
       "toolcall": "36",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "FutzCtls",
-      "description": "Invalidates bound rects of a window's normal controls and tells other controls that window state has changed"
+      "description": "Invalidates bound rects of a window's normal controls and tells other controls that window state has change (undocumented?)",
+      "parameters": { "none": true },
+      "c": { "call": false }
     },
     {
       "toolcall": "37",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "InvalCtls",
-      "description": "Invalidates all rectangles for all controls in a specified window"
+      "description": "Invalidates all rectangles for all controls in a specified window",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "ctlWindowPtr", "description": "POINTER to window for operation" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void InvalCtls(ctlWindowPtr)" },
+      "docs": [{ "ref": "tbv3", "page": "28-31" }]
     },
     {
       "toolcall": "38",
       "toolnum": "10",
       "toolname": "Control Manager",
-      "callname": "CMUnloadSegmen",
-      "description": "Unloads any dynamic segments that have been loaded in the course of using the tool"
+      "callname": "CMUnloadSegment",
+      "description": "Unloads any dynamic segments that have been loaded in the course of using the tool (undocumented?)"
     },
     {
       "toolcall": "39",
       "toolnum": "10",
       "toolname": "Control Manager",
-      "callname": "FindRadioButto",
-      "description": "Returns a value indicating which radio button is selected in a given family"
+      "callname": "FindRadioButton",
+      "description": "Returns a value indicating which radio button is selected in a given family",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "windPtr", "description": "Window containing the radio buttons" },
+          { "size": "word", "name": "famNum", "description": "Family number for the radio buttons to check" }
+        ],
+        "output": [
+          { "size": "word", "name": "radioNum", "description": "Value indicating selected radio button" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal unsigned int FindRadioButton(windPtr,famNum)" },
+      "docs": [{ "ref": "gs16pr60", "page": "13" }]
     },
     {
       "toolcall": "3A",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "SetLETextByID",
-      "description": "Sets the text of an Edit Line control to a string supplied by the caller"
+      "description": "Sets the text of an Edit Line control to a string supplied by the caller",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "windPtr", "description": "Pointer to the window containing the control" },
+          { "size": "long", "name": "LECtlID", "description": "Control ID  for the LineEdit control" },
+          { "size": "long", "name": "textPtr", "description": "Pointer to Pascal string" }
+        ]
+      },
+      "errors": ["cm1004","cm1005","cm1009","cm100c"],
+      "c": { "call": "extern pascal void SetLETextByID(windPtr,LECtlID,textPtr)" },
+      "docs": [{ "ref": "gs16pr60", "page": "16" }]
     },
     {
       "toolcall": "3B",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "GetLETextByID",
-      "description": "Returns the text of an Edit Line control into a buffer supplied by the caller"
+      "description": "Returns the text of an Edit Line control into a buffer supplied by the caller",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "windPtr", "description": "Pointer to the window containing the control" },
+          { "size": "long", "name": "LECtlID", "description": "Control ID  for the LineEdit control" },
+          { "size": "long", "name": "textPtr", "description": "POINTER to result buffer" }
+        ]
+      },
+      "errors": ["cm1004","cm1005","cm1009","cm100c"],
+      "c": { "call": "extern pascal void GetLETextByID(windPtr,LECtlID,textPtr)" },
+      "docs": [{ "ref": "gs16pr60", "page": "14" }]
     },
     {
       "toolcall": "3C",
       "toolnum": "10",
       "toolname": "Control Manager",
-      "callname": "SetCtlValueByI",
-      "description": "Sets the value of the control that has the specified control ID in the specified window"
+      "callname": "SetCtlValueByD",
+      "description": "Sets the value of the control that has the specified control ID in the specified window",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "newValue", "description": "New value for control" },
+          { "size": "long", "name": "windPtr", "description": "Window containing the control (NIL = front)" },
+          { "size": "long", "name": "ctlID", "description": "Control ID of the control" }
+        ]
+      },
+      "errors": ["cm1004","cm1005","cm1009","cm100c"],
+      "c": { "call": "extern pascal void SetCtlValueByID(newValue,windPtr,ctlID)" },
+      "docs": [{ "ref": "gs16pr601", "page": "5" }]
     },
     {
       "toolcall": "3D",
       "toolnum": "10",
       "toolname": "Control Manager",
-      "callname": "GetCtlValueByI",
-      "description": "Returns the current value of the control that has the specified control ID in the specified window"
+      "callname": "GetCtlValueByID",
+      "description": "Returns the current value of the control that has the specified control ID in the specified window",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "windPtr", "description": "Window containing the control (NIL = front)" },
+          { "size": "long", "name": "ctlID", "description": "Control ID of the control" }
+        ], 
+        "output": [
+          { "size": "word", "name": "theValue", "description": "Current control value" }
+        ]
+      },
+      "errors": ["cmUnch"],
+      "c": { "call": "extern pascal void SetCtlValueByID(newValue,windPtr,ctlID)" },
+      "docs": [{ "ref": "gs16pr601", "page": "5" }]
     },
     {
       "toolcall": "3E",
       "toolnum": "10",
       "toolname": "Control Manager",
-      "callname": "InvalOneCtlByI",
-      "description": "Invalidates a control's rectangle, just as if you called InvalRect on the control's rectangle"
+      "callname": "InvalOneCtlByID",
+      "description": "Invalidates a control's rectangle, just as if you called InvalRect on the control's rectangle",
+      "parameters": {
+        "input": [ 
+          { "size": "long", "name": "windPtr", "description": "Window containing the control (NIL = front)" },
+          { "size": "long", "name": "ctlID", "description": "Control ID of the control" }
+        ]
+      },
+      "errors": ["cmUnch"],
+      "c": { "call": "extern pascal void InvalOneCtlByID(windPtr,ctlID)" },
+      "docs": [{ "ref": "gs16pr601", "page": "4" }]
     },
     {
       "toolcall": "3F",
       "toolnum": "10",
       "toolname": "Control Manager",
       "callname": "HiliteCtlByID",
-      "description": "Changes the way a specified control is highlighted, just as if you called HiliteControl"
+      "description": "Changes the way a specified control is highlighted, just as if you called HiliteControl",
+      "parameters": {
+        "input": [ 
+          { "size": "word", "name": "hiliteState", "description": "New highlight value" },
+          { "size": "long", "name": "windPtr", "description": "Window containing the control (NIL = front)" },
+          { "size": "long", "name": "ctlID", "description": "Control ID of the control" }
+        ]
+      },
+      "errors": ["cmUnch"],
+      "c": { "call": "extern pascal void HiliteCtlByID(hiliteState,windPtr,ctlID)" },
+      "docs": [{ "ref": "gs16pr601", "page": "3" }]
     },
     {
       "toolcall": "01",
@@ -15718,6 +16332,19 @@
     "wm0e05": { "source": "Window Manager", "code": "0E05", "name": "cantUpdateErr", "description":"Cannot update the specified window in the current environment" },
 
     "mn0f03": { "source": "Menu Manager", "code": "0F03", "name": "menuNoStruct", "description":"Returned if bit 10 of itemFlag is not set" },
+    
+    "cm1001": { "source": "Control Manager", "code": "1001", "name": "wmNotStartedUp", "description":"The Window Manager is not initialized" },
+    "cm1002": { "source": "Control Manager", "code": "1002", "name": "cmNotInitialized", "description":"The Control Manager has not been started" },
+    "cm1003": { "source": "Control Manager", "code": "1003", "name": "noCtlInList", "description":"The control is not in the window list" },
+    "cm1004": { "source": "Control Manager", "code": "1004", "name": "noCtlError", "description":"No controls in the window" },
+    "cm1005": { "source": "Control Manager", "code": "1005", "name": "noExtendedCtlError", "description":"No extended controls in the window" },
+    "cm1006": { "source": "Control Manager", "code": "1006", "name": "noCtlTargetError", "description":"No extended control is currently the target control" },
+    "cm1007": { "source": "Control Manager", "code": "1007", "name": "notExtendedCtlError", "description":"The action is valid only for extended controls" },
+    "cm1008": { "source": "Control Manager", "code": "1008", "name": "canNotBeTargetError", "description":"The specified control cannot be made the target control" },
+    "cm1009": { "source": "Control Manager", "code": "1009", "name": "noSuchIDError", "description":"The specified control ID cannot be found" },
+    "cm100a": { "source": "Control Manager", "code": "100A", "name": "tooFewParmsError", "description":"Too few parameters were specified" },
+    "cm100b": { "source": "Control Manager", "code": "100B", "name": "noCtlToBeTargetError", "description":"No control could be made the target control" },
+    "cm100c": { "source": "Control Manager", "code": "100C", "name": "noFrontWindowError", "description":"There is no front window" },
 
     "cmUnch": { "source": "Control Manager", "code": "", "name": "Control Manager errors", "description": "Returned unchanged" },
     "mmUnch": { "source": "Memory Manager", "code": "", "name": "Memory Manager errors", "description": "Returned unchanged" },
