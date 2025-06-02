@@ -1,5 +1,6 @@
 {
   "datastatus": [
+    "2025-06-01  QuickDraw Aux, System Loader, Print Manager... now over 65%.",
     "2025-03-02  50% !!!!!!!!!!!!!!!!!!!!!!",
     "2025-02-17  QuickDraw II and Desk Manager complete.  Total completion ~30%",
     "2024-10-06  QuickDraw II about halfway complete.",
@@ -186,7 +187,7 @@
       "parameters": {
         "input": [{ "size": "long", "name": "toolTablePtr", "description": "POINTER to table of tool set numbers" }]
       },
-      "errors": ["tl0001", "tl0010", "slUnch", "proUnch"],
+      "errors": ["tl0001", "tl0010", "slUnch", "pdUnch"],
       "c": { "call": "extern pascal void LoadTools(toolTablePtr)" },
       "docs": [
         { "ref": "tbv2", "page": "24-11" },
@@ -206,7 +207,7 @@
           { "size": "word", "name": "minVersion", "description": "Minimum version number of tool set needed" }
         ]
       },
-      "errors": ["tl0001", "tl0010", "slUnch", "proUnch"],
+      "errors": ["tl0001", "tl0010", "slUnch", "pdUnch"],
       "c": { "call": "extern pascal void LoadOneTool(toolNumber,minVersion)" },
       "docs": [
         { "ref": "tbv2", "page": "24-10" },
@@ -388,7 +389,7 @@
           { "size": "long", "name": "startStopRefRet", "description": "Reference to resulting StartStop record"}
         ]
       },
-      "errors": ["tl0103", "tl0104", "slUnch", "mmUnch", "gsosUnch"],
+      "errors": ["tl0103", "tl0104", "slUnch", "mmUnch", "gsUnch"],
       "c": { "call": "extern pascal long StartUpTools(userID,startStopRefDesc,startStopRef)" },
       "docs": [
         { "ref": "tbv3", "page": "51-18" },
@@ -4416,7 +4417,7 @@
       "description": "Sets the text mode to a specified value",
       "parameters": {
         "input": [
-          { "size": "word", "name": "textMode", "description": "INTEGER; text mode (see Toolbox Ref Vol2 Figure 16-10)" }
+          { "size": "word", "name": "textMode", "description": "INTEGER; text mode (see Toolbox Ref Vol2 Table 16-10)" }
         ]
       },
       "errors": ["none"],
@@ -4434,7 +4435,7 @@
           { "size": "word", "name": "wordspace", "description": "Space for result" }
         ],
         "output": [
-          { "size": "word", "name": "textMode", "description": "INTEGER; text mode (see Toolbox Ref Vol2 Figure 16-10)" }
+          { "size": "word", "name": "textMode", "description": "INTEGER; text mode (see Toolbox Ref Vol2 Table 16-10)" }
         ]
       },
       "errors": ["none"],
@@ -8813,7 +8814,7 @@
       "description": "Starts up the Window Manager for use by an application",
       "parameters": {
         "input": [
-          { "size": "word", "name": "userID", "description": "ID number of application" }
+          { "size": "word", "name": "userID", "description": "ID number of the application" }
       ] },
       "errors": ["none"],
       "c": { "call": "extern pascal void WindStartUp(UserID)" },
@@ -10210,7 +10211,7 @@
         ]
       },
       "errors": ["none"],
-      "c": { "call": "extern pascal void DrawInfoBar(grafPortPtr);" },
+      "c": { "call": "extern pascal void DrawInfoBar(grafPortPtr)" },
       "docs": [{ "ref": "tbv3", "page": "52-26" }]
     },
     {
@@ -10594,7 +10595,7 @@
           { "size": "word", "name": "resultFlags", "description": "Resulting device number" }
         ]
       },
-      "errors": ["gsosUnch"],
+      "errors": ["gsUnch"],
       "c": { "call": "extern pascal long HandleDiskInsert(flags,devNum)" },
       "docs": [{ "ref": "gs16pr60", "page": "304" }]
     },
@@ -11942,7 +11943,7 @@
       "callname": "NewControl",
       "description": "Creates a control, adds it to beginning of specified window's control list, and returns handle to new control",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
           { "size": "long", "name": "theWindowPtr", "description": "POINTER to window owner" },
           { "size": "long", "name": "boundsRectPtr", "description": "POINTER to RECT data structure defining enclosing rectangle" },
@@ -11968,8 +11969,8 @@
       "callname": "DisposeControl",
       "description": "Deletes a specified control from its window's control list, releases its memory and any associated data structures.",
       "parameters": {
-        "input": [ 
-          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" } 
+        "input": [
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
         ]
       },
       "errors": ["none"],
@@ -11983,8 +11984,8 @@
       "callname": "KillControls",
       "description": "Disposes of all controls associated with a specified window",
       "parameters": {
-        "input": [ 
-          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window whose controls are to be disposed of" } 
+        "input": [
+          { "size": "long", "name": "theWindowPtr", "description": "POINTER to window whose controls are to be disposed of" }
         ]
       },
       "errors": ["none"],
@@ -11998,9 +11999,9 @@
       "callname": "SetCtlTitle",
       "description": "Sets a specified control's title to a given string and redraws the control",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "titlePtr", "description": "POINTER to control's ctlData field" },
-          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" } 
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
         ]
       },
       "errors": ["none"],
@@ -12014,12 +12015,12 @@
       "callname": "GetCtlTitle",
       "description": "Returns value in specified control's ctlData field, so scrollbars = view and data size, for ctrls w/titles = ptr to title str, or custom.",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
-          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" } 
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
         ],
         "output": [
-          { "size": "long", "name": "ctlTitlePtr", "description": "POINTER to control's ctlData field" } 
+          { "size": "long", "name": "ctlTitlePtr", "description": "POINTER to control's ctlData field" }
         ]
       },
       "errors": ["none"],
@@ -12033,8 +12034,8 @@
       "callname": "HideControl",
       "description": "Makes a specified control invisible by filling the region the control occupies with the background pattern of the window's GrafPort.",
       "parameters": {
-        "input": [ 
-          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control to be hidden" } 
+        "input": [
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control to be hidden" }
         ]
       },
       "errors": ["none"],
@@ -12048,8 +12049,8 @@
       "callname": "ShowControl",
       "description": "Makes a specified control visible",
       "parameters": {
-        "input": [ 
-          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control to be hidden" } 
+        "input": [
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control to be hidden" }
         ]
       },
       "errors": ["none"],
@@ -12063,8 +12064,8 @@
       "callname": "DrawControls",
       "description": "Draws all controls currently visible in a specified window",
       "parameters": {
-        "input": [ 
-          { "size": "long", "name": "theWindowPtr", "description": "HANDLE to window whose controls are to be drawn" } 
+        "input": [
+          { "size": "long", "name": "theWindowPtr", "description": "HANDLE to window whose controls are to be drawn" }
         ]
       },
       "errors": ["none"],
@@ -12078,9 +12079,9 @@
       "callname": "HiliteControl",
       "description": "Changes the way a specified control is highlighted",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "hiliteState", "description": "Type of highlighting: 0 = none, 1-253 = part code, 255 = inactive" },
-          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control to be highlighted" } 
+          { "size": "long", "name": "theControlHandle", "description": "HANDLE to control to be highlighted" }
         ]
       },
       "errors": ["none"],
@@ -12105,7 +12106,7 @@
       "callname": "FindControl",
       "description": "Reports which of window's controls, if any, the cursor was in when user pressed mouse button.",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "long", "name": "foundCtlPtr", "description": "POINTER to address where handle of found control will be stored" },
           { "size": "word", "name": "pointX", "description": "X coordinate to check, in global coordinates" },
@@ -12127,7 +12128,7 @@
       "callname": "TestControl",
       "description": "Tests which part of a specified control contains a specified point (if specified control is visible and active)",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "pointX", "description": "X coordinate to check, in global coordinates" },
           { "size": "word", "name": "pointY", "description": "Y coordinate to check, in global coordinates" },
@@ -12148,7 +12149,7 @@
       "callname": "TrackControl",
       "description": "Follows mouse movements and responds appropriately until mouse button is released",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "startX", "description": "X coordinate, in global coordinates, of starting point" },
           { "size": "word", "name": "startY", "description": "Y coordinate, in global coordinates, of starting point" },
@@ -12170,7 +12171,7 @@
       "callname": "MoveControl",
       "description": "Moves a specified control to a new location within its window",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "newX", "description": "New X origin ofcontrol, in local coordinates" },
           { "size": "word", "name": "newY", "description": "New Y origin ofcontrol, in local coordinates" },
           { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
@@ -12187,7 +12188,7 @@
       "callname": "DragControl",
       "description": "Pulls dotted outln of ctrl around screen, following mvments of mouse till button released",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "startX", "description": "X coordinate of starting point in local coordinates" },
           { "size": "word", "name": "startY", "description": "Y coordinate of starting point in local coordinates" },
           { "size": "long", "name": "limitRectPtr", "description": "POINTER to bounds RECT data structure" },
@@ -12207,7 +12208,7 @@
       "callname": "SetCtlIcons",
       "description": "Replaces current icon font with a specified new font and returns the handle of the old font, or just returns the handle of the old font.",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
           { "size": "long", "name": "newFontHandle", "description": "HANDLE to new icon font; negative value to not set new font" }
         ],
@@ -12226,7 +12227,7 @@
       "callname": "SetCtlValue",
       "description": "Sets specified control's ctlValue field to a specified value & redraws control to reflect new setting",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "newValue", "description": "New value for control" },
           { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
         ]
@@ -12242,7 +12243,7 @@
       "callname": "GetCtlValue",
       "description": "Returns a specified control's current ctlValue field",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
         ],
@@ -12261,7 +12262,7 @@
       "callname": "SetCtlParams",
       "description": "Sets new params in controls's definition procedure, which will set values & redraw control if necessary",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "param2", "description": "Additional control parameter; defined by control" },
           { "size": "word", "name": "param1", "description": "Additional control parameter; defined by control" },
           { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
@@ -12278,7 +12279,7 @@
       "callname": "GetCtlParams",
       "description": "Returns a specified control's additional parameters",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
           { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
         ],
@@ -12298,7 +12299,7 @@
       "callname": "DragRect",
       "description": "Pulls a dotted outline of a specified rectangle around the screen, following the mouse movements until the mouse button is released",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
           { "size": "long", "name": "actionProcPtr", "description": "POINTER to routine; NIL for default" },
           { "size": "long", "name": "dragPatternPtr", "description": "POINTER to pattern to use for drag outline" },
@@ -12324,7 +12325,7 @@
       "callname": "GrowSize",
       "description": "Returns the height & width of size box control, using Control Manager's current icon font",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" }
         ],
         "output": [
@@ -12342,7 +12343,7 @@
       "callname": "GetCtlDPage",
       "description": "Returns the value of the Control Manager's direct page",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" }
         ],
         "output": [
@@ -12360,7 +12361,7 @@
       "callname": "SetCtlAction",
       "description": "Sets a specified control's ctrlAction field to a new action",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "newActionPtr", "description": "POINTER to custom control action procedure" },
           { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
         ]
@@ -12376,7 +12377,7 @@
       "callname": "GetCtlAction",
       "description": "Returns the current value of a specified control's ctlAction field",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
           { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
         ],
@@ -12395,7 +12396,7 @@
       "callname": "SetCtlRefCon",
       "description": "Sets a specified control's ctlRefCon field to a new value",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "newRefCon", "description": "Value to store in the control's ctlRefCon field" },
           { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
         ]
@@ -12411,7 +12412,7 @@
       "callname": "GetCtlRefCon",
       "description": "Returns the current value of a specified control's ctlRefCon field",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
           { "size": "long", "name": "theControlHandle", "description": "HANDLE to control" }
         ],
@@ -12430,7 +12431,7 @@
       "callname": "EraseControl",
       "description": "Makes specified control invisible but doesn't add control's enclosing rectangle to window update region",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "theControlHandle", "description": "HANDLE to control to be erased" }
         ]
       },
@@ -12445,7 +12446,7 @@
       "callname": "DrawOneCtl",
       "description": "Draws a specified control",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "theControlHandle", "description": "HANDLE to control to be drawn" }
         ]
       },
@@ -12460,7 +12461,7 @@
       "callname": "FindTargetCtl",
       "description": "Returns the handle of the target control within the control list for the active window",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" }
         ],
         "output": [
@@ -12478,7 +12479,7 @@
       "callname": "MakeNextCtlTarget",
       "description": "Makes the next eligible control the target control",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" }
         ],
         "output": [
@@ -12496,7 +12497,7 @@
       "callname": "MakeThisCtlTarget",
       "description": "Makes the specified control the target",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "ctlToBeTarget", "description": "Handle to control to be made the target" }
         ]
       },
@@ -12511,7 +12512,7 @@
       "callname": "SendEventToCtl",
       "description": "Passes a specified extended task record to the appropriate control or controls",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "word", "name": "targetOnlyFlag", "description": "(Boolean) TRUE = send to target only; FALSE = all controls" },
           { "size": "long", "name": "ctlWindowPtr", "description": "Pointer to window to search; NIL for top window" },
@@ -12532,7 +12533,7 @@
       "callname": "GetCtlID",
       "description": "Returns the ctlID field from the control record of a specified control",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
           { "size": "long", "name": "ctlHandle", "description": "HANDLE to control" }
         ],
@@ -12551,7 +12552,7 @@
       "callname": "SetCtlID",
       "description": "Sets the ctlID field in the control record of a specified control",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "newID", "description": "New ctlID value for the control" },
           { "size": "long", "name": "ctlHandle", "description": "HANDLE to control" }
         ]
@@ -12567,7 +12568,7 @@
       "callname": "CallCtlDefProc",
       "description": "Calls a control's definition procedure with the specified inputs",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
           { "size": "long", "name": "ctlHandle", "description": "HANDLE of control to be called" },
           { "size": "word", "name": "ctlMessage", "description": "Control message to send to control definition procedure" },
@@ -12588,7 +12589,7 @@
       "callname": "NotifyCtls",
       "description": "Calls control definition procedures for extended controls in a specified window, sending a control message and parameter.",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "mask", "description": "Bit mask to be compared with ctlMoreFlags" },
           { "size": "word", "name": "message", "description": "Control message to send to control definition procedures" },
           { "size": "long", "name": "param", "description": "Parameter to pass to control definition procedures" },
@@ -12606,7 +12607,7 @@
       "callname": "GetCtlMoreFlags",
       "description": "Gets the contents of the ctlMoreFlags field of the control record for a specified control",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "long", "name": "ctlHandle", "description": "HANDLE to control" }
         ],
@@ -12625,7 +12626,7 @@
       "callname": "SetCtlMoreFlags",
       "description": "Sets the contents of the ctlMoreFlags field of the control record for a specified control",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "newMoreFlags", "description": "New ctlMoreFlags value for the control" },
           { "size": "long", "name": "ctlHandle", "description": "HANDLE to control" }
         ]
@@ -12641,7 +12642,7 @@
       "callname": "GetCtlHandleFromID",
       "description": "Retrieves the control handle to the control record with a specified ctlID field value",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
           { "size": "long", "name": "ctlWindowPtr", "description": "POINTER to window for control list search; NIL = top window" },
           { "size": "long", "name": "ctlID", "description": "ID value for desired control" }
@@ -12661,7 +12662,7 @@
       "callname": "NewControl2",
       "description": "Creates one or more new controls.",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
           { "size": "long", "name": "ownerPtr", "description": "POINTER to window for control(s)" },
           { "size": "word", "name": "inputDesc", "description": "Describes contents of inputRef" },
@@ -12682,7 +12683,7 @@
       "callname": "CMLoadResource",
       "description": "This is an entry point to the internal Control Manager routine that loads resources.",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" },
           { "size": "word", "name": "resourceType", "description": "Type of resource to load" },
           { "size": "long", "name": "resourceID", "description": "ID of resource to load" }
@@ -12702,7 +12703,7 @@
       "callname": "CMReleaseResource",
       "description": "This is an entry point to the internal Control Manager routine that releases resources",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "resourceType", "description": "Type of resource to load" },
           { "size": "long", "name": "resourceID", "description": "ID of resource to load" }
         ]
@@ -12718,7 +12719,7 @@
       "callname": "SetCtlParamPtr",
       "description": "Sets the pointer to the current text substitution array for the Control Manager.",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "subArrayPtr", "description": "New pointer to text substitution array" }
         ]
       },
@@ -12733,7 +12734,7 @@
       "callname": "GetCtlParamPtr",
       "description": "Retrieves the pointer to the current text substitution array for the Control Manager",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "longspace", "description": "Space for result" }
         ],
         "output": [
@@ -12760,7 +12761,7 @@
       "callname": "InvalCtls",
       "description": "Invalidates all rectangles for all controls in a specified window",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "ctlWindowPtr", "description": "POINTER to window for operation" }
         ]
       },
@@ -12782,7 +12783,7 @@
       "callname": "FindRadioButton",
       "description": "Returns a value indicating which radio button is selected in a given family",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "long", "name": "windPtr", "description": "Window containing the radio buttons" },
           { "size": "word", "name": "famNum", "description": "Family number for the radio buttons to check" }
@@ -12802,7 +12803,7 @@
       "callname": "SetLETextByID",
       "description": "Sets the text of an Edit Line control to a string supplied by the caller",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "windPtr", "description": "Pointer to the window containing the control" },
           { "size": "long", "name": "LECtlID", "description": "Control ID  for the LineEdit control" },
           { "size": "long", "name": "textPtr", "description": "Pointer to Pascal string" }
@@ -12819,7 +12820,7 @@
       "callname": "GetLETextByID",
       "description": "Returns the text of an Edit Line control into a buffer supplied by the caller",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "windPtr", "description": "Pointer to the window containing the control" },
           { "size": "long", "name": "LECtlID", "description": "Control ID  for the LineEdit control" },
           { "size": "long", "name": "textPtr", "description": "POINTER to result buffer" }
@@ -12836,7 +12837,7 @@
       "callname": "SetCtlValueByD",
       "description": "Sets the value of the control that has the specified control ID in the specified window",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "newValue", "description": "New value for control" },
           { "size": "long", "name": "windPtr", "description": "Window containing the control (NIL = front)" },
           { "size": "long", "name": "ctlID", "description": "Control ID of the control" }
@@ -12853,11 +12854,11 @@
       "callname": "GetCtlValueByID",
       "description": "Returns the current value of the control that has the specified control ID in the specified window",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "wordspace", "description": "Space for result" },
           { "size": "long", "name": "windPtr", "description": "Window containing the control (NIL = front)" },
           { "size": "long", "name": "ctlID", "description": "Control ID of the control" }
-        ], 
+        ],
         "output": [
           { "size": "word", "name": "theValue", "description": "Current control value" }
         ]
@@ -12873,7 +12874,7 @@
       "callname": "InvalOneCtlByID",
       "description": "Invalidates a control's rectangle, just as if you called InvalRect on the control's rectangle",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "long", "name": "windPtr", "description": "Window containing the control (NIL = front)" },
           { "size": "long", "name": "ctlID", "description": "Control ID of the control" }
         ]
@@ -12889,7 +12890,7 @@
       "callname": "HiliteCtlByID",
       "description": "Changes the way a specified control is highlighted, just as if you called HiliteControl",
       "parameters": {
-        "input": [ 
+        "input": [
           { "size": "word", "name": "hiliteState", "description": "New highlight value" },
           { "size": "long", "name": "windPtr", "description": "Window containing the control (NIL = front)" },
           { "size": "long", "name": "ctlID", "description": "Control ID of the control" }
@@ -12904,273 +12905,635 @@
       "toolnum": "11",
       "toolname": "System Loader",
       "callname": "LoaderInit",
-      "description": "Initializes System Loader Toolset; called only by the Tool Locator - not by application"
+      "description": "Initializes System Loader Toolset; called only by the Tool Locator - not by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "p16ref", "page": "215" }]
     },
     {
       "toolcall": "02",
       "toolnum": "11",
       "toolname": "System Loader",
       "callname": "LoaderStartUp",
-      "description": "Starts up System Loader - This function does nothing - Do not use"
+      "description": "Starts up System Loader - This function does nothing - Do not use",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "p16ref", "page": "216" }]
     },
     {
       "toolcall": "03",
       "toolnum": "11",
       "toolname": "System Loader",
       "callname": "LoaderShutDown",
-      "description": "Shuts down System Loader - This function does nothing - Do not use"
+      "description": "Shuts down System Loader - This function does nothing - Do not use",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "p16ref", "page": "217" }]
     },
     {
       "toolcall": "04",
       "toolnum": "11",
       "toolname": "System Loader",
       "callname": "LoaderVersion",
-      "description": "Returns the version number of System Loader"
+      "description": "Returns the version number of System Loader",
+      "parameters": {
+        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ],
+        "output": [ { "size": "word", "name": "versionInfo", "description": "Version number of Tool Locator" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word LoaderVersion()" },
+      "docs": [{ "ref": "p16ref", "page": "218" }]
     },
     {
       "toolcall": "05",
       "toolnum": "11",
       "toolname": "System Loader",
       "callname": "LoaderReset",
-      "description": "Resets System Loader Toolset - This function does nothing - Do not use"
+      "description": "Resets System Loader Toolset - This function does nothing - Do not use",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void LoaderReset()" },
+      "docs": [{ "ref": "p16ref", "page": "220" }]
     },
     {
       "toolcall": "06",
       "toolnum": "11",
       "toolname": "System Loader",
       "callname": "LoaderStatus",
-      "description": "Indicates whether System Loader Toolset is active"
+      "description": "Indicates whether System Loader Toolset is active",
+      "parameters": {
+        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ],
+        "output": [ { "size": "word", "name": "activeFlag", "description": "BOOLEAN; TRUE if System Loader is active, FALSE if not" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean LoaderStatus()" },
+      "docs": [{ "ref": "tbv1", "page": "221" }]
     },
     {
       "toolcall": "09",
       "toolnum": "11",
       "toolname": "System Loader",
       "callname": "InitialLoad",
-      "description": "Called to ask the System Loader to perform an initial load of a program"
+      "description": "Called by a controlling program (such as a shell or a switcher) to ask the System Loader to perform an initial load of a program",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "userID", "description": "User ID consisting of TypeID and MainID fields which can also be zero (see documentation)" },
+          { "size": "long", "name": "pathPtr", "description": "POINTER to pathname of file to be loaded" },
+          { "size": "word", "name": "specialMemoryFlag", "description": "Special memory flag; if TRUE (nonzero), it will not load any static segments into special memory (banks $00 and $01)" }
+        ],
+        "output": [
+          { "size": "word", "name": "dirPageStackSize", "description": "Stack size in the Direct Page" },
+          { "size": "word", "name": "dirPageStackAddr", "description": "Stack address in the Direct Page" },
+          { "size": "long", "name": "startingAddress", "description": "Address of the loaded file" },
+          { "size": "word", "name": "userID", "description": "User ID that was passed in, or created by this call" }
+        ]
+      },
+      "errors": ["sl1104","sl1105","sl1109","sl110a","sl110b","pdUnch","mmUnch"],
+      "c": { "call": "none" },
+      "docs": [{ "ref": "p16ref", "page": "222" }]
     },
     {
       "toolcall": "0A",
       "toolnum": "11",
       "toolname": "System Loader",
       "callname": "Restart",
-      "description": "Restarts a dormant application that was shut down, but is still in memory"
+      "description": "Asks the System Loader to resurrect a dormant application - one that has been shut down (by the User Shutdown function), but is still in memory.",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "userID", "description": "An existing, nonzero User ID must be specified (the Aux ID part is ignored)." }
+        ],
+        "output": [
+          { "size": "word", "name": "dirPageStackSize", "description": "Stack size in the Direct Page" },
+          { "size": "word", "name": "dirPageStackAddr", "description": "Stack address in the Direct Page" },
+          { "size": "long", "name": "startingAddress", "description": "Address of the loaded file" },
+          { "size": "word", "name": "userID", "description": "User ID that was passed in, or created by this call" }
+        ]
+      },
+      "errors": ["sl1101","sl1105","sl1108","pdUnch","mmUnch"],
+      "c": { "call": "none" },
+      "docs": [{ "ref": "p16ref", "page": "225" }]
     },
     {
       "toolcall": "0B",
       "toolnum": "11",
       "toolname": "System Loader",
       "callname": "LoadSegNum",
-      "description": "Loads a load segment specified by load-file number, seg number, & user ID, into memory"
+      "description": "Loads a load segment specified by load-file number, seg number, & user ID, into memory",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "userID", "description": "Caller's User ID" },
+          { "size": "word", "name": "loadFileNum", "description": "The load-file number" },
+          { "size": "word", "name": "loadSegNum", "description": "The load-segment number" }
+        ],
+        "output": [
+          { "size": "long", "name": "segAddress", "description": "Address of the segment" }
+        ]
+      },
+      "errors": ["sl1101","sl1102","sl1104","sl1105","sl1107","sl1107","sl1109","sl110a","sl110b","pdUnch","mmUnch"],
+      "c": { "call": "none" },
+      "docs": [{ "ref": "p16ref", "page": "228" }]
     },
     {
       "toolcall": "0C",
       "toolnum": "11",
       "toolname": "System Loader",
       "callname": "UnloadSegNum",
-      "description": "Unloads a specific load segment from memory"
+      "description": "Unloads a specific load segment from memory",
+      "parameters": {
+        "input": [
+         { "size": "word", "name": "userID", "description": "Caller's User ID" },
+         { "size": "word", "name": "loadFileNum", "description": "The load-file number" },
+         { "size": "word", "name": "loadSegNum", "description": "The load-segment number" }
+        ]
+      },
+      "errors": ["sl1101","sl1105","pdUnch","mmUnch"],
+      "c": { "call": "none" },
+      "docs": [{ "ref": "p16ref", "page": "232" }]
     },
     {
       "toolcall": "0D",
       "toolnum": "11",
       "toolname": "System Loader",
       "callname": "LoadSegName",
-      "description": "Loads a named segment into memory (named by its load file's pathname & segment name)"
+      "description": "Loads a named segment (by name) into memory, named by its load file's pathname & segment name)",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "userID", "description": "User ID (if the segment should have a different User ID from the current one)" },
+          { "size": "long", "name": "loadFileName", "description": "POINTER to pathname of file to be loaded" },
+          { "size": "word", "name": "loadSegName", "description": "POINTER to segment name to be loaded" }
+        ],
+        "output": [
+          { "size": "word", "name": "loadSegNum", "description": "The load-segment number" },
+          { "size": "word", "name": "loadFileNum", "description": "The load-file number" },
+          { "size": "word", "name": "userID", "description": "User ID that was passed in, or created by this call" },
+          { "size": "long", "name": "segmentAddress", "description": "Address of the loaded segment" }
+        ]
+      },
+      "errors": ["sl1101","sl1104","sl1105","sl1107","sl1109","sl110a","sl110b","pdUnch","mmUnch"],
+      "c": { "call": "none" },
+      "docs": [{ "ref": "p16ref", "page": "234" }]
     },
     {
       "toolcall": "0E",
       "toolnum": "11",
       "toolname": "System Loader",
       "callname": "UnloadSeg",
-      "description": "Unloads the load segment containing the specified address"
+      "description": "Unloads the load segment containing the specified address",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "segAddress", "description": "Any address in memory" }
+        ],
+        "output": [
+          { "size": "word", "name": "loadSegNum", "description": "The load-segment number" },
+          { "size": "word", "name": "loadFileNum", "description": "The load-file number" },
+          { "size": "word", "name": "userID", "description": "User ID of the found segment" }
+        ]
+      },
+      "errors": ["sl1101","sl1105","pdUnch","mmUnch"],
+      "c": { "call": "none" },
+      "docs": [{ "ref": "p16ref", "page": "236" }]
     },
     {
       "toolcall": "0F",
       "toolnum": "11",
       "toolname": "System Loader",
       "callname": "GetLoadSegInfo",
-      "description": "Returns the Memory Segment Table entry corresponding to the specified (by #) load segment"
+      "description": "Returns the Memory Segment Table entry corresponding to the specified (by #) load segment",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "userID", "description": "User ID" },
+          { "size": "word", "name": "loadFileNum", "description": "The load-file number" },
+          { "size": "word", "name": "loadSegNum", "description": "The load-segment number" },
+          { "size": "long", "name": "bufferAddress", "description": "Address of user buffer for results" }
+        ]
+      },
+      "errors": ["sl1101","sl1105","pdUnch","mmUnch"],
+      "c": { "call": "none" },
+      "docs": [{ "ref": "p16ref", "page": "238" }]
     },
     {
       "toolcall": "10",
       "toolnum": "11",
       "toolname": "System Loader",
       "callname": "GetUserID",
-      "description": "Returns the User ID associated with the specified pathname"
+      "description": "Returns the User ID associated with the specified pathname.  Allows controlling propathname. Allows controlling program to determine whether it can restart an application or must perform an initial load.",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "pathPtr", "description": "POINTER to pathname" }
+        ],
+        "output": [
+          { "size": "word", "name": "userID", "description": "User ID" }
+        ]
+      },
+      "errors": ["sl1101","sl1105","pdUnch","mmUnch"],
+      "c": { "call": "none" },
+      "docs": [{ "ref": "p16ref", "page": "240" }]
     },
     {
       "toolcall": "11",
       "toolnum": "11",
       "toolname": "System Loader",
       "callname": "LGetPathname",
-      "description": "Returns the pathname associated with the specified User ID"
+      "description": "Returns the pathname associated with the specified User ID. P16 uses this call to se application prefix (1/) for a program that is restarted from memory",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "userID", "description": "User ID" },
+          { "size": "word", "name": "loadFileNum", "description": "The load-file number" }
+        ],
+        "output": [
+          { "size": "long", "name": "pathPtr", "description": "POINTER to pathname" }
+        ]
+      },
+      "errors": ["sl1101","sl1105","pdUnch","mmUnch"],
+      "c": { "call": "none" },
+      "docs": [{ "ref": "p16ref", "page": "242" }]
     },
     {
       "toolcall": "12",
       "toolnum": "11",
       "toolname": "System Loader",
       "callname": "UserShutdown",
-      "description": "Closes down an application that has just terminated"
+      "description": "Closes down an application that has just terminated",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "userID", "description": "User ID" },
+          { "size": "word", "name": "quitFlag", "description": "QUIT flag (correspondes to P16 flag word parameter for quit function)" }
+        ],
+        "output": [
+          { "size": "word", "name": "userID", "description": "User ID" }
+        ]
+      },
+      "errors": ["sl1105","pdUnch","mmUnch"],
+      "c": { "call": "none" },
+      "docs": [{ "ref": "p16ref", "page": "244" }]
     },
     {
       "toolcall": "01",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "QDAuxBootInit",
-      "description": "Initializes QuickDraw II Auxiliary; called only by the Tool Locator - not by application"
+      "description": "Initializes QuickDraw II Auxiliary; called only by the Tool Locator - not by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv2", "page": "17-6" }]
     },
     {
       "toolcall": "02",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "QDAuxStartUp",
-      "description": "Starts up QuickDraw II Auxiliary for use by an application"
+      "description": "Starts up QuickDraw II Auxiliary for use by an application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void QDAuxStartUp()" },
+      "docs": [{ "ref": "tbv2", "page": "17-6" }]
     },
     {
       "toolcall": "03",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "QDAuxShutDown",
-      "description": "Shuts down QuickDraw II Auxiliary when an application quits"
+      "description": "Shuts down QuickDraw II Auxiliary when an application quits",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void QDAuxShutDown()" },
+      "docs": [{ "ref": "tbv2", "page": "17-6" }]
     },
     {
       "toolcall": "04",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "QDAuxVersion",
-      "description": "Returns the version number of QuickDraw II Auxiliary"
+      "description": "Returns the version number of QuickDraw II Auxiliary toolset",
+      "parameters": {
+        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ],
+        "output": [ { "size": "word", "name": "versionInfo", "description": "Version number of the QuickDraw Auxiliary Set" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word QDAuxVersion()" },
+      "docs": [{ "ref": "tbv2", "page": "17-7" }]
     },
     {
       "toolcall": "05",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "QDAuxReset",
-      "description": "Resets QuickDraw II Auxiliary; called only when the system is reset - not by applicaiton"
+      "description": "Resets QuickDraw II Auxiliary; called only when the system is reset - not by applicaiton",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv2", "page": "17-8" }]
     },
     {
       "toolcall": "06",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "QDAuxStatus",
-      "description": "Indicates whether QuickDraw II Auxiliary is active"
+      "description": "Indicates whether QuickDraw II Auxiliary is active",
+      "parameters": {
+        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ],
+        "output": [ { "size": "word", "name": "activeFlag", "description": "BOOLEAN; TRUE if QuickDraw Aux toolset is active, FALSE if not" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean QDAuxStatus()" },
+      "docs": [{ "ref": "tbv2", "page": "17-8" }]
     },
     {
       "toolcall": "09",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "CopyPixels",
-      "description": "Copies pixel image from 1 place to another, w/stretch or compress to make source fit dest"
+      "description": "Copies pixel image from 1 place to another, w/stretch or compress to make source fit dest",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "srcLocPtr", "description": "POINTER to locInfo record of source rectangle " },
+          { "size": "long", "name": "destLocPtr", "description": "POINTER to locInfo record of destination rectangle" },
+          { "size": "long", "name": "srcRect", "description": "POINTER to RECT defining source rectangle" },
+          { "size": "long", "name": "destRect", "description": "POINTER to RECT defining destination rectangle" },
+          { "size": "word", "name": "xferMode", "description": "Pen mode" },
+          { "size": "long", "name": "maskRgn", "description": "HANDLE to mask region" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void CopyPixels(srcLocPtr,destLocPtr,srcRect,destRect,xferMode,maskRgn)" },
+      "docs": [{ "ref": "tbv2", "page": "17-10" }]
     },
     {
       "toolcall": "0A",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "WaitCursor",
-      "description": "Changes the cursor to a predefined cursor that looks like a watch"
+      "description": "Changes the cursor to a predefined cursor that looks like a watch",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void WaitCursor()" },
+      "docs": [{ "ref": "tbv2", "page": "17-16" }]
     },
     {
       "toolcall": "0B",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "DrawIcon",
-      "description": "Draws a specified icon in a specified mode at a specified location & clips to current visible region"
+      "description": "Draws a specified icon in a specified mode at a specified location & clips to current visible region",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "iconPtr", "description": "POINTER to icon record (see Toolbox Ref Vol2 Figure 17-1)" },
+          { "size": "word", "name": "displayMode", "description": "HANDLE to mask region (see Toolbox Ref Vol2 Figure 17-2)" },
+          { "size": "word", "name": "xPos", "description": "X coordinate of upper left corner of icon" },
+          { "size": "word", "name": "yPos", "description": "Y coordinate of upper left corner of icon" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void Drawicon(iconPtr,displayMode,xPos,yPos)" },
+      "docs": [{ "ref": "tbv2", "page": "17-11" }]
     },
     {
       "toolcall": "0C",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "SpecialRect",
-      "description": "Frames & fills a rectangle in a single call"
+      "description": "Frames and fills a rectangle in a single call, making separate calls to FrameRect and FillRect unnecessary.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "rectPtr", "description": "POINTER to rectangle to draw" },
+          { "size": "word", "name": "frameColor", "description": "Color of rectangle frame" },
+          { "size": "word", "name": "fillColor", "description": "Color of rectangle interior" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void SpecialRect(rectPtr,frameColor,fillColor)" },
+      "docs": [{ "ref": "tbv3", "page": "44-15" }]
     },
     {
       "toolcall": "0D",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "SeedFill",
-      "description": "Generates a mask from a specified source image and pattern by filling outward from a starting point"
+      "description": "Generates a mask from a specified source image and pattern by filling outward from a starting point",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "srcLocInfoPtr", "description": "POINTER to source locInfo data record" },
+          { "size": "long", "name": "srcRect", "description": "POINTER to source rectangle data record" },
+          { "size": "long", "name": "destLocInfoPtr", "description": "POINTER to destination locInfo data record" },
+          { "size": "long", "name": "destRect", "description": "POINTER to destination rectangle data record" },
+          { "size": "word", "name": "seedH", "description": "Horizontal offset (pixel) to start fill point" },
+          { "size": "word", "name": "seedV", "description": "Verical offset (pixel) to start fill point" },
+          { "size": "word", "name": "resMode", "description": "Resolution mode" },
+          { "size": "long", "name": "patternPtr", "description": "POINTER to fill pattern" },
+          { "size": "long", "name": "leakTblPtr", "description": "POINTER to leak-through color table" }
+        ]
+      },
+      "errors": ["mm0201","qa1211","qa1212"],
+      "c": { "call": "extern pascal void SeedFill(srcLocInfoPtr,srcRect,destLocInfoPtr,destRect,seedH,seedV,resMode,patternPtr,leakTblPtr)" },
+      "docs": [{ "ref": "tbv3", "page": "44-8" }]
     },
     {
       "toolcall": "0E",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "CalcMask",
-      "description": "Generates a mask from a specified source image and pattern by filling inward from the boundary rectangle"
+      "description": "Generates a mask from a specified source image and pattern by filling inward from the boundary rectangle",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "srcLocInfoPtr", "description": "POINTER to source locInfo data record" },
+          { "size": "long", "name": "srcRect", "description": "POINTER to source rectangle data record" },
+          { "size": "long", "name": "destLocInfoPtr", "description": "POINTER to destination locInfo data record" },
+          { "size": "long", "name": "destRect", "description": "POINTER to destination rectangle data record" },
+          { "size": "word", "name": "resMode", "description": "Resolution mode" },
+          { "size": "long", "name": "patternPtr", "description": "POINTER to fill pattern" },
+          { "size": "long", "name": "leakTblPtr", "description": "POINTER to leak-through color table" }
+        ]
+      },
+      "errors": ["mm0201","qa1211","qa1212"],
+      "c": { "call": "extern pascal void CalcMask(srcLocIinfoPtr,srcRect,destLocInfoPtr,destRect,resMode,patternPtr,leakTblPtr)" },
+      "docs": [{ "ref": "tbv3", "page": "44-3" }]
     },
     {
       "toolcall": "0F",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "GetSysIcon",
-      "description": "Returns small icons representing files, devices, and other miscellaneous icons"
+      "description": "Returns small icons representing files, devices, and other miscellaneous icons",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "flags", "description": "What kind of icon to get" },
+          { "size": "word", "name": "value", "description": "File type, deviceID, or index" },
+          { "size": "long", "name": "auxValue", "description": "Auxiliary type of file or zero" }
+        ],
+        "output": [
+          { "size": "long", "name": "iconPtr", "description": "POINTER to resulting icon" }
+        ]
+      },
+      "errors": ["qa1230"],
+      "c": { "call": "extern pascal IconPtr GetSysIcon(flags,value,auxValue)" },
+      "docs": [{ "ref": "gs16pr60", "page": "204" }]
     },
     {
       "toolcall": "10",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "PixelMap2Rgn",
-      "description": "Transforms a pixel map into a QuickDraw II region"
+      "description": "Transforms a pixel map into a QuickDraw II region",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "srcLocInfo", "description": "POINTER to a locInfo record for the pixel map" },
+          { "size": "word", "name": "bitsPerPixel", "description": "Number of bits per pixel (either 2 or 4)" },
+          { "size": "word", "name": "colorsToInclude", "description": "Bit flags indicating which colors to include" }
+        ],
+        "output": [
+          { "size": "long", "name": "theRgn", "description": "HANDLE to region created from the pixel map" }
+        ]
+      },
+      "errors": ["qd0433", "mmUnch"],
+      "c": { "call": "extern pascal RgnHandle PixelMap2Rgn(srcLocInfo,bitsPerPixel,colorsToInclude)" },
+      "docs": [{ "ref": "gs16pr60", "page": "207" }]
     },
     {
       "toolcall": "13",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "IBeamCursor",
-      "description": "Sets the QuickDraw II cursor to an I-beam cursor"
+      "description": "Sets the QuickDraw II cursor to an I-beam cursor",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void IBeamCursor()" },
+      "docs": [{ "ref": "gs16pr60", "page": "206" }]
     },
     {
       "toolcall": "14",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "WhooshRect",
-      "description": "Animates a “zooming” effect from one rectangle to another"
+      "description": "Animates a “zooming” effect from one rectangle to another",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "flags", "description": "Flags" },
+          { "size": "long", "name": "smallRect", "description": "POINTER to first rectangle" },
+          { "size": "long", "name": "bigRect", "description": "POINTER to second rectangle" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void WhooshRect(flags,smallRect,bigRect)" },
+      "docs": [{ "ref": "gs16pr60", "page": "209" }]
     },
     {
       "toolcall": "15",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
-      "callname": "DrawStringWidt",
-      "description": "Draws a string in a specified horizontal width on a single line"
+      "callname": "DrawStringWidth",
+      "description": "Draws a string in a specified horizontal width on a single line",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "flags", "description": "Flags" },
+          { "size": "long", "name": "ref", "description": "String reference" },
+          { "size": "word", "name": "width", "description": "Width in pixels" }
+        ]
+      },
+      "errors": ["qa1231","slUnch"],
+      "c": { "call": "extern pascal void DrawStringWidth(flags,ref,width)" },
+      "docs": [{ "ref": "gs16pr601", "page": "19" }]
     },
     {
       "toolcall": "16",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "UseColorTable",
-      "description": "Preserves Scanline Control Bytes (SCBs) and sets them to use a color table you specify"
+      "description": "Preserves Scanline Control Bytes (SCBs) and sets them to use a color table you specify",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "word", "name": "tableNum", "description": "Color table number (0..15)" },
+          { "size": "long", "name": "tablePtr", "description": "Pointer to color table (NIL = standard)" },
+          { "size": "word", "name": "width", "description": "Flags" }
+        ],
+        "output": [
+          { "size": "long", "name": "colorInfo", "description": "Value to pass to RestoreColorTable" }
+        ]
+      },
+      "errors": ["nhUnch"],
+      "c": { "call": "extern pascal Long UseColorTable(tableNum,tablePtr,flags)" },
+      "docs": [{ "ref": "gs16pr601", "page": "22" }]
     },
     {
       "toolcall": "17",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
-      "callname": "RestoreColorTa",
-      "description": "Undoes the effects of UseColorTable"
+      "callname": "RestoreColorTable",
+      "description": "Undoes the effects of UseColorTable",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "colorInfo", "description": "Color information from UseColorTable" },
+          { "size": "word", "name": "flags", "description": "Flags" }
+        ]
+      },
+      "errors": ["dhUnch"],
+      "c": { "call": "extern pascal void RestoreColorTable(colorInfo,flags)" },
+      "docs": [{ "ref": "gs16pr601", "page": "21" }]
     },
     {
       "toolcall": "B7",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "OpenPicture",
-      "description": "Allocates mem for recording of drawing commands into a pic defin. & returns handle to pic"
+      "description": "Allocates memory for the recording of drawing commands into a picture definition, and returns picture handle. (see QuickDraw II OpenPicture call $B704)",
+      "docs": [
+        { "ref": "tbv2", "page": "17-14" }
+      ]
     },
     {
       "toolcall": "B8",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "PicComment",
-      "description": "Inserts a specified comment into the currently open picture"
+      "description": "Inserts a specified comment into the currently open picture. (see QuickDraw II PicComment call $B804)",
+      "docs": [
+        { "ref": "tbv2", "page": "17-9" }
+      ]
     },
     {
       "toolcall": "BA",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "DrawPicture",
-      "description": "Takes drawing commands recorded in pic defin., maps them from pic frame into dest rect."
+      "description": "Takes drawing commands recorded in picture definition, maps them from picture frame into destination rect. (see QuickDraw II DrawPicture call $BA04)",
+      "docs": [
+        { "ref": "tbv2", "page": "17-12" }
+      ]
     },
     {
       "toolcall": "BB",
       "toolnum": "12",
       "toolname": "QuickDraw Aux",
       "callname": "KillPicture",
-      "description": "Releases all memory occupied by a specifed picture"
+      "description": "Releases all memory occupied by a specifed picture. (see QuickDraw II KillPicture call $BB04)",
+      "docs": [
+        { "ref": "tbv2", "page": "17-13" }
+      ]
     },
     {
       "toolcall": "01",
@@ -13184,217 +13547,517 @@
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PMStartUp",
-      "description": "Starts up the Print Manager for use by an application"
+      "description": "Starts up the Print Manager for use by an application",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "userID", "description": "ID number of the application" },
+          { "size": "word", "name": "dPageAddr", "description": "Bank $0 starting address for 2 pages of direct-page space" }
+        ]
+      },
+      "errors": ["pm1301","slUnch","tlUnch","mmUnch"],
+      "c": { "call": "extern pascal void PMStartUp(userID,dPageAddr)" },
+      "docs": [{ "ref": "tbv1", "page": "15-26" }]
     },
     {
       "toolcall": "03",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PMShutDown",
-      "description": "Shuts down the Print Manager when an application quits"
+      "description": "Shuts down the Print Manager when an application quits",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void PMShutDown()" },
+      "docs": [{ "ref": "tbv1", "page": "15-27" }]
     },
     {
       "toolcall": "04",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PMVersion",
-      "description": "Returns the version number of the Print Manager"
+      "description": "Returns the version number of the Print Manager",
+      "parameters": {
+        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ],
+        "output": [ { "size": "word", "name": "versionInfo", "description": "Version number of the Print Manager" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word PMVersion()" },
+      "docs": [{ "ref": "tbv1", "page": "15-27" }]
     },
     {
       "toolcall": "05",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PMReset",
-      "description": "Resets the Print Manager; called only when system reset - not by application"
+      "description": "Resets the Print Manager; called only when system reset - not by application",
+      "parameters": { "none": true },
+      "errors": ["none"],
+      "c": { "call": false },
+      "docs": [{ "ref": "tbv1", "page": "15-28" }]
     },
     {
       "toolcall": "06",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PMStatus",
-      "description": "Indicates whether the Print Manager is active"
+      "description": "Indicates whether the Print Manager is active",
+      "parameters": {
+        "input": [ { "size": "word", "name": "wordspace", "description": "Space for result" } ],
+        "output": [ { "size": "word", "name": "activeFlag", "description": "BOOLEAN; TRUE if Print Manager is active, FALSE if not" } ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean PMStatus()" },
+      "docs": [{ "ref": "tbv1", "page": "15-28" }]
     },
     {
       "toolcall": "09",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PrDefault",
-      "description": "Fills the fields of a specified print record with default values for the appropriate printer"
+      "description": "Fills the fields of specified print record with default values for the appropriate printer. printRecordHandle may be a new or an existing print record.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "printRecordHandle", "description": "HANDLE to print record" }
+        ]
+      },
+      "errors": ["pm1303","mmUnch"],
+      "c": { "call": "extern pascal void PrDefault(printRecordHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "15-32" }]
     },
     {
       "toolcall": "0A",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PrValidate",
-      "description": "Checks print record for compatibility w/current version # of Print Mgr & installed printer"
+      "description": "Checks print record for compatibility w/current version # of Print Mgr & installed printer",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "printRecordHandle", "description": "HANDLE to print record" }
+        ],
+        "output": [
+          { "size": "word", "name": "recAdjustFlag", "description": "BOOLEAN; TRUE if record adjusted, FALSE if no change" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal Boolean PrValidate(printRecordHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "15-46" }]
     },
     {
       "toolcall": "0B",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PrStlDialog",
-      "description": "Conducts a style dialog w/user to determine page dimens & other info needed for page setup"
+      "description": "Conducts a style dialog w/user to determine page dimens & other info needed for page setup",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "printRecordHandle", "description": "HANDLE to print record" }
+        ],
+        "output": [
+          { "size": "word", "name": "confirmFlag", "description": "BOOLEAN; TRUE if user confirms dialog, FALSE if not" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal Boolean PrStlDialog(printRecordHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "15-45" }]
     },
     {
       "toolcall": "0C",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PrJobDialog",
-      "description": "Conducts a job dialog w/user to determine print quality, range of pages to print, etc."
+      "description": "Conducts a job dialog w/user to determine print quality, range of pages to print, etc.",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "printRecordHandle", "description": "HANDLE to print record" }
+        ],
+        "output": [
+          { "size": "word", "name": "confirmFlag", "description": "BOOLEAN; TRUE if user confirms dialog, FALSE if not" }
+        ]
+      },
+      "errors": ["mmUnch"],
+      "c": { "call": "extern pascal Boolean PrJobDialog(printRecordHandle)" },
+      "docs": [{ "ref": "tbv1", "page": "15-35" }]
     },
     {
       "toolcall": "0D",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PrPixelMap",
-      "description": "Prints all or part of a specified pixel map"
+      "description": "Prints all or part of a specified pixel map",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "srcLogPtr", "description": "POINTER to source LocInfo containing POINTER to pixel map" },
+          { "size": "long", "name": "srcRectPtr", "description": "POINTER to rectangle enclosing portion of pixel map to print" },
+          { "size": "word", "name": "colorFlag", "description": "BOOLEAN; TRUE if printing in color, FALSE if in black and white" }
+        ]
+      },
+      "errors": ["pm1302","pm1304","pm1305","pm1306","pm1307","mmUnch","qdUnch"],
+      "c": { "call": "extern pascal void PrPixelMap(srcLocPtr,srcRectPtr,colorFlag)" },
+      "docs": [{ "ref": "tbv1", "page": "15-42" }]
     },
     {
       "toolcall": "0E",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PrOpenDoc",
-      "description": "Inits GrafPort for use in printing a document, makes it current port & returns ptr to port"
+      "description": "Initializes a GrafPort for use in printing a document, makes it the current port, and returns a pointer to the port.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" },
+          { "size": "long", "name": "printRecordHandle", "description": "HANDLE to print record" },
+          { "size": "long", "name": "printGrafPortPtr", "description": "POINTER to GrafPort, if desired; NIL to allocate new GrafPort" }
+        ],
+        "output": [
+          { "size": "long", "name": "printGrafPortPtr", "description": "POINTER to GrafPort" }
+        ]
+      },
+      "errors": ["pm1302","pm1304","pm1305","pm1306","pm1307","mmUnch","pdUnch"],
+      "c": { "call": "extern pascal GrafPortPtr PrOpenDoc(printRecordHandle,printGrafPortPtr)" },
+      "docs": [{ "ref": "tbv1", "page": "15-36" }]
     },
     {
       "toolcall": "0F",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PrCloseDoc",
-      "description": "Closes the GrafPort being used for printing"
+      "description": "Closes the GrafPort being used for printing",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "printGrafPortPtr", "description": "POINTER to GrafPort to be used for printing" }
+        ]
+      },
+      "errors": ["pm1302"],
+      "c": { "call": "extern pascal void PrCloseDoc(printGrafPortPtr)" },
+      "docs": [{ "ref": "tbv1", "page": "15-30" }]
     },
     {
       "toolcall": "10",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PrOpenPage",
-      "description": "Begins a new page"
+      "description": "Begins a new page. Only printed if it falls within page range given in job subrecord. Must balance each PrOpenPage with a call to PrClosePage.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "printGrafPortPtr", "description": "POINTER to GrafPort to be used for printing" },
+          { "size": "long", "name": "pageFramePtr", "description": "POINTER to scaling rectangle; NIL for none" }
+        ]
+      },
+      "errors": ["pm1302","mmUnch"],
+      "c": { "call": "extern pascal void PrOpenPage(printGrafPortPtr,pageFramePtr)" },
+      "docs": [{ "ref": "tbv1", "page": "15-38" }]
     },
     {
       "toolcall": "11",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PrClosePage",
-      "description": "Ends the printing of the current page"
+      "description": "Ends the printing of the current page",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "printGrafPortPtr", "description": "POINTER to GrafPort to be used for printing" }
+        ]
+      },
+      "errors": ["pm1302"],
+      "c": { "call": "extern pascal void PrClosePage(printGrafPortPtr)" },
+      "docs": [{ "ref": "tbv1", "page": "15-31" }]
     },
     {
       "toolcall": "12",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PrPicFile",
-      "description": "Prints a spooled document"
+      "description": "Prints a spooled document. If spool printing is being used, your application should normally call PrPicFile after it calls the PrCloseDoc routine.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "printRecordHandle", "description": "HANDLE to print record" },
+          { "size": "long", "name": "printGrafPortPtr", "description": "POINTER to GrafPort, if desired; NIL to allocate new GrafPort" },
+          { "size": "long", "name": "statusRecPtr", "description": "POINTER to printer status record (see Toolbox Ref Vol1, Figure 15-13)" }
+        ]
+      },
+      "errors": ["pm1302","mmUnch"],
+      "c": { "call": "extern pascal void PrPicfile(printRecordHandle,printGrafPortPtr,statusRecPtr)" },
+      "docs": [{ "ref": "tbv1", "page": "15-40" }]
     },
     {
       "toolcall": "14",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PrError",
-      "description": "Returns last printer error code left during printing loop by Print Manager routines"
+      "description": "Returns last printer error code left during printing loop by Print Manager routines (see Toolbox Ref Vol1, Figure 15-7).",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "lastError", "description": "Last printer error code left by Print Manager routine" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal word PrError()" },
+      "docs": [{ "ref": "tbv1", "page": "15-34" }]
     },
     {
       "toolcall": "15",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PrSetError",
-      "description": "Stores specified value into global variable where Print Manager keeps its printer err codes"
+      "description": "Stores a specified value into the global variable where the Print Manager keeps its printer error code. E.g. - can be used to abort a print by setting to prAbort.",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "errorNumber", "description": "Error number to be stored" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void PrSetError(errorNumber)" },
+      "docs": [{ "ref": "tbv1", "page": "15-44" }]
     },
     {
       "toolcall": "16",
       "toolnum": "13",
       "toolname": "Print Manager",
-      "callname": "PrChoosePrinte",
-      "description": "Conducts a Choose Printer dialog w/user to determine printer and port driver to use"
+      "callname": "PrChoosePrinter",
+      "description": "Conducts a Choose Printer dialog w/user to determine printer and port driver to use.",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "driverChangedFlag", "description": "BOOLEAN; TRUE if driver changed, FALSE if no change" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Boolean PrChoosePrinter()" },
+      "docs": [{ "ref": "tbv1", "page": "15-29" }]
     },
     {
       "toolcall": "18",
       "toolnum": "13",
       "toolname": "Print Manager",
-      "callname": "PrGetPrinterSp",
-      "description": "Returns information about the currently selected printer"
+      "callname": "PrGetPrinterSpecs",
+      "description": "Returns information about the currently selected printer.",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "characteristics", "description": "Word defining printer characteristics" },
+          { "size": "word", "name": "printerType", "description": "Word indicating the type of printer connected" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal PrinterSpecs PrGetPrinterSpecs()" },
+      "docs": [{ "ref": "tbv3", "page": "42-8" }]
     },
     {
       "toolcall": "23",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PrDriverVer",
-      "description": "Returns the version number of the currently installed printer driver"
+      "description": "Returns the version number of the currently installed printer driver",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "versionInfo", "description": "Version number of the printer driver" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word PrDriverVer()" },
+      "docs": [{ "ref": "tbv1", "page": "15-33" }]
     },
     {
       "toolcall": "24",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PrPortVer",
-      "description": "Returns the version number of the currently installed port driver"
+      "description": "Returns the version number of the currently installed port driver",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "word", "name": "versionInfo", "description": "Version number of the port driver" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word PrPortVer()" },
+      "docs": [{ "ref": "tbv1", "page": "15-43" }]
     },
     {
       "toolcall": "25",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PrGetZoneName",
-      "description": "Returns the name string for the currently selected AppleTalk print zone"
+      "description": "Returns the name string for the currently selected AppleTalk print zone",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "zoneNamePtr", "description": "POINTER to zone namestring (Pascal string)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Pointer PrGetZoneName()" },
+      "docs": [{ "ref": "tbv3", "page": "42-14" }]
     },
     {
       "toolcall": "28",
       "toolnum": "13",
       "toolname": "Print Manager",
-      "callname": "PrGetPrinterDv",
-      "description": "Returns the name string for the currently selected printer driver"
+      "callname": "PrGetPrinterDvrName",
+      "description": "Returns the name string for the currently selected printer driver",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "ptrDvrNamePtr", "description": "POINTER to printer driver name string (Pascal string)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Pointer PrGetPrinterDvrName()" },
+      "docs": [{ "ref": "tbv3", "page": "42-12" }]
     },
     {
       "toolcall": "29",
       "toolnum": "13",
       "toolname": "Print Manager",
-      "callname": "PrGetPortDvrNa",
-      "description": "Returns the name string for the currently selected port driver"
+      "callname": "PrGetPortDvrName",
+      "description": "Returns the name string for the currently selected port driver.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "ptrDvrNamePtr", "description": "POINTER to port driver name string (Pascal string)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Pointer PrGetPortDvrName()" },
+      "docs": [{ "ref": "tbv3", "page": "42-11" }]
     },
     {
       "toolcall": "2A",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PrGetUserName",
-      "description": "Returns the user name as entered in the Control Panel"
+      "description": "Returns the user name as entered in the Control Panel.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "userNamePtr", "description": "POINTER to user name string (Pascal string)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Pointer PrGetUserName()" },
+      "docs": [{ "ref": "tbv3", "page": "42-13" }]
     },
     {
       "toolcall": "2B",
       "toolnum": "13",
       "toolname": "Print Manager",
-      "callname": "PrGetNetworkNa",
-      "description": "Returns the AppleTalk network name for the currently selected printer"
+      "callname": "PrGetNetworkName",
+      "description": "Returns the AppleTalk network name for the currently selected printer; otherwise NIL if non-networked printer.",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "netNamePtr", "description": "POINTER to network name string (Pascal string)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Pointer PrGetNetworkName()" },
+      "docs": [{ "ref": "tbv3", "page": "42-10" }]
     },
     {
       "toolcall": "34",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PMUnloadDriver",
-      "description": "Unloads current port driver, printer driver, or both, depending on input parameter"
+      "description": "Unloads current port driver, printer driver, or both, depending on input parameter",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "whichDriver", "description": "Printer driver to unload" }
+        ]
+      },
+      "errors": ["pm1309","slUnch"],
+      "c": { "call": "extern pascal void PMUnloadDriver(whichDriver)" },
+      "docs": [{ "ref": "tbv3", "page": "42-5" }]
     },
     {
       "toolcall": "35",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PMLoadDriver",
-      "description": "Loads current printer driver, port driver, or both, depending on the input parameter"
+      "description": "Loads current printer driver, port driver, or both, depending on the input parameter",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "whichDriver", "description": "Printer driver to load" }
+        ]
+      },
+      "errors": ["pm1309","slUnch"],
+      "c": { "call": "extern pascal void PMLoadDriver(whichDriver)" },
+      "docs": [{ "ref": "tbv3", "page": "42-4" }]
     },
     {
       "toolcall": "36",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PrGetDocName",
-      "description": "Returns a pointer to the current document name string for your document"
+      "description": "Returns a pointer to the current document name string for your document",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "longspace", "description": "Space for result" }
+        ],
+        "output": [
+          { "size": "long", "name": "docNamePtr", "description": "POINTER to document name string (Pascal string)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Pointer PrGetDocName()" },
+      "docs": [{ "ref": "tbv3", "page": "42-6" }]
     },
     {
       "toolcall": "37",
       "toolnum": "13",
       "toolname": "Print Manager",
       "callname": "PrSetDocName",
-      "description": "Sets the document name for use with AppleTalk printers"
+      "description": "Sets the document name for use with AppleTalk printers",
+      "parameters": {
+        "input": [
+          { "size": "long", "name": "docNamePtr", "description": "POINTER to document name string (Pascal string)" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal void PrSetDocName()" },
+      "docs": [{ "ref": "tbv3", "page": "42-9" }]
     },
     {
       "toolcall": "38",
       "toolnum": "13",
       "toolname": "Print Manager",
-      "callname": "PrGetPgOrienta",
-      "description": "Returns a value indicating the current page orientation for the specified document"
+      "callname": "PrGetPgOrientation",
+      "description": "Returns a value indicating the current page orientation for the specified document",
+      "parameters": {
+        "input": [
+          { "size": "word", "name": "wordspace", "description": "Space for result" },
+          { "size": "long", "name": "prRecordHandle", "description": "HANDLE to print record for document" }
+        ],
+        "output": [
+          { "size": "word", "name": "orientation", "description": "Pageorientation: 0 = portrait, 1 = landscape" }
+        ]
+      },
+      "errors": ["none"],
+      "c": { "call": "extern pascal Word PrGetPgOrientation(prRecordHandle)" },
+      "docs": [{ "ref": "tbv3", "page": "42-7" }]
     },
     {
       "toolcall": "01",
@@ -16332,7 +16995,7 @@
     "wm0e05": { "source": "Window Manager", "code": "0E05", "name": "cantUpdateErr", "description":"Cannot update the specified window in the current environment" },
 
     "mn0f03": { "source": "Menu Manager", "code": "0F03", "name": "menuNoStruct", "description":"Returned if bit 10 of itemFlag is not set" },
-    
+
     "cm1001": { "source": "Control Manager", "code": "1001", "name": "wmNotStartedUp", "description":"The Window Manager is not initialized" },
     "cm1002": { "source": "Control Manager", "code": "1002", "name": "cmNotInitialized", "description":"The Control Manager has not been started" },
     "cm1003": { "source": "Control Manager", "code": "1003", "name": "noCtlInList", "description":"The control is not in the window list" },
@@ -16346,13 +17009,51 @@
     "cm100b": { "source": "Control Manager", "code": "100B", "name": "noCtlToBeTargetError", "description":"No control could be made the target control" },
     "cm100c": { "source": "Control Manager", "code": "100C", "name": "noFrontWindowError", "description":"There is no front window" },
 
+    "sl1101": { "source": "System Loader", "code": "1101", "name": "", "description":"Entry not found" },
+    "sl1102": { "source": "System Loader", "code": "1102", "name": "", "description":"OMF version error" },
+    "sl1103": { "source": "System Loader", "code": "1103", "name": "", "description":"Pathname error" },
+    "sl1104": { "source": "System Loader", "code": "1104", "name": "", "description":"The file is not a load file" },
+    "sl1105": { "source": "System Loader", "code": "1105", "name": "", "description":"System Loader is busy" },
+    "sl1107": { "source": "System Loader", "code": "1107", "name": "", "description":"File version error" },
+    "sl1108": { "source": "System Loader", "code": "1108", "name": "", "description":"User ID error" },
+    "sl1109": { "source": "System Loader", "code": "1109", "name": "", "description":"Segment number out of sequence" },
+    "sl110a": { "source": "System Loader", "code": "110A", "name": "", "description":"Illegal load record found" },
+    "sl110b": { "source": "System Loader", "code": "110B", "name": "", "description":"Load segment is foreign" },
+
+
+    "qa1210": { "source": "QuickDraw Auxiliary", "code": "1210", "name": "picEmpty", "description":"Picture is empty" },
+    "qa1211": { "source": "QuickDraw Auxiliary", "code": "1211", "name": "badRectSize", "description":"The height or width is negative, the destination rect is not the same size as the source rect, or the source or destination rect is not within its boundary" },
+    "qa1212": { "source": "QuickDraw Auxiliary", "code": "1212", "name": "destModeError", "description":"The destMode portion of resMode is invalid" },
+    "qa121F": { "source": "QuickDraw Auxiliary", "code": "121F", "name": "badPictureOpcode", "description":"Bad picture opcode" },
+    "qa1221": { "source": "QuickDraw Auxiliary", "code": "1221", "name": "badRect", "description":"Bad rectangle" },
+    "qa1222": { "source": "QuickDraw Auxiliary", "code": "1222", "name": "badMode", "description":"Bad mode" },
+    "qa1230": { "source": "QuickDraw Auxiliary", "code": "1230", "name": "badGetSysIconInput", "description":"No icon is available for the given input" },
+    "qa1231": { "source": "QuickDraw Auxiliary", "code": "1231", "name": "badQDAuxValue", "description":"Illegal input values" },
+
+    "pm1301": { "source": "Print Manager", "code": "1301", "name": "missingDriver", "description":"Specified driver not in DRIVERS subdirectory of SYSTEM subdirectory" },
+    "pm1302": { "source": "Print Manager", "code": "1302", "name": "portNotOn", "description":"The specified port is not selected in the Control Panel" },
+    "pm1303": { "source": "Print Manager", "code": "1303", "name": "noPrintRecord", "description":"No print record was specified" },
+    "pm1304": { "source": "Print Manager", "code": "1304", "name": "badLaserPrep", "description":"The version of LaserPrep in the drivers folder is not compatible with this version of the Print Manager" },
+    "pm1305": { "source": "Print Manager", "code": "1305", "name": "badLPFile", "description":"The version of LaserPrep in the drivers folder is not compatible with this version of the Print Manager" },
+    "pm1306": { "source": "Print Manager", "code": "1306", "name": "papConnNotOpen", "description":"Connection can’t be established with the LaserWriter" },
+    "pm1307": { "source": "Print Manager", "code": "1307", "name": "papReadWriteErr", "description":"Read-write error on the LaserWriter" },
+    "pm1308": { "source": "Print Manager", "code": "1308", "name": "ptrConnFailed", "description":"Connection can’t be established with the ImageWriter" },
+    "pm1309": { "source": "Print Manager", "code": "1309", "name": "badLoadParam", "description":"The specified parameter is invalid" },
+    "pm130A": { "source": "Print Manager", "code": "130A", "name": "callNotSupported", "description":"Tool call is not supported by the current version of the driver" },
+    "pm1321": { "source": "Print Manager", "code": "1321", "name": "startUpAlreadyMode", "description":"LLDStartUp call already made" },
+    "pm1322": { "source": "Print Manager", "code": "1322", "name": "invalidCtlVal", "description":"Invalid control value specified" },
+
     "cmUnch": { "source": "Control Manager", "code": "", "name": "Control Manager errors", "description": "Returned unchanged" },
+    "dhUnch": { "source": "Memory Manager", "code": "", "name": "DisposeHandle errors", "description": "Returned unchanged" },
     "mmUnch": { "source": "Memory Manager", "code": "", "name": "Memory Manager errors", "description": "Returned unchanged" },
+    "gsUnch": { "source": "GS/OS", "code": "", "name": "GS/OS errors", "description": "Returned unchanged" },
+    "nhUnch": { "source": "Memory Manager", "code": "", "name": "NewHandle errors", "description": "Returned unchanged" },
+    "pdUnch": { "source": "ProDOS 16", "code": "", "name": "ProDOS 16 errors", "description": "Returned unchanged" },
+    "qdUnch": { "source": "QuickDraw II", "code": "", "name": "QuickDraw II errors", "description": "Returned unchanged" },
     "rmUnch": { "source": "Resource Manager", "code": "", "name": "Resource Manager errors", "description": "Returned unchanged" },
     "slUnch": { "source": "System Loader", "code": "", "name": "System Loader errors", "description": "Returned unchanged" },
+    "tlUnch": { "source": "Tool Locator", "code": "", "name": "Tool Locator errors", "description": "Returned unchanged" },
     "wmUnch": { "source": "Window Manager", "code": "", "name": "Window Manager errors", "description": "Returned unchanged" },
-    "proUnch": { "source": "ProDOS 16", "code": "", "name": "ProDOS errors", "description": "Returned unchanged" },
-    "gsosUnch": { "source": "GS/OS", "code": "", "name": "GS/OS errors", "description": "Returned unchanged" },
 
     "****NOTE***": { "_": "Not sure if these might be smartport/gsos/p16 codes?  come from RAMDisk tool which is sketchy (undefined)"},
     "rd01": { "source": "Unknown (ramdisk)", "code": "01", "name": "", "description":"Bad command number" },
@@ -16386,6 +17087,11 @@
       "title": "Programmer's Reference for System 6.0.1",
       "url": "https://juiced.gs/store/opus-ii-software/",
       "emoji": "📕"
+    },
+    "p16ref": {
+      "title": "Apple IIgs ProDOS 16 Reference",
+      "url": "https://archive.org/details/Apple_IIgs_ProDOS_16_Reference_HiRes",
+      "emoji": "📘"
     },
     "tn.iigs.100": {
       "title": "Apple IIgs Technical Note #100: VersionVille",
